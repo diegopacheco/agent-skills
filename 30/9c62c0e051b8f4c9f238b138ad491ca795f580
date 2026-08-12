@@ -1,0 +1,23 @@
+loop-backlog/install.sh
+  s_d4bc9413466ba6::t_3ac442f8c807da 1-15
+loop-backlog/cc-loop-backlog.sh
+  s_d4bc9413466ba6::t_a3ca3ce6d826e7 1-35
+loop-backlog/commands/cc-loop-backlog.md
+  s_d4bc9413466ba6::t_a3ca3ce6d826e7 1-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "309c62c0e051b8f4c9f238b138ad491ca795f580",
+  "prompts": {},
+  "sessions": {
+    "s_d4bc9413466ba6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8edda64d-39bd-4fa0-b722-d02d89f18995",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "diegopacheco <diego.pacheco.it@gmail.com>"
+    }
+  }
+}
