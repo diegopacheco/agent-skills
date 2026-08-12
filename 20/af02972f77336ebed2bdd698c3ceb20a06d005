@@ -1,0 +1,19 @@
+claude-agents-md/install.sh
+  s_5ef81f5f8bd087::t_bf163decf0deab 1-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "20af02972f77336ebed2bdd698c3ceb20a06d005",
+  "prompts": {},
+  "sessions": {
+    "s_5ef81f5f8bd087": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "292ab98b-7aac-421a-af79-ce6be2ca7adf",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "diegopacheco <diego.pacheco.it@gmail.com>"
+    }
+  }
+}
