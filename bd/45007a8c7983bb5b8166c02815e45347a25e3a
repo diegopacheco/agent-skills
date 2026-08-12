@@ -1,0 +1,55 @@
+rerender/install.sh
+  s_153ed6fc7bd217::t_51dea9f49bbc4a 1-15
+bundle-size/install.sh
+  s_153ed6fc7bd217::t_7a4c3ac599cebe 1-15
+bug-recording/install.sh
+  s_153ed6fc7bd217::t_ac4c1c79a52390 1-14
+README.md
+  s_153ed6fc7bd217::t_e756cbf3b689d8 10-12
+bug-recording/SKILL.md
+  s_153ed6fc7bd217::t_9195bc08d97ed7 1-62
+bug-recording/package-lock.json
+  s_153ed6fc7bd217::t_af5173bf590341 1-60
+bug-recording/package.json
+  s_153ed6fc7bd217::t_e50b99a653e0dd 1-11
+bug-recording/record.mjs
+  s_153ed6fc7bd217::t_4d9a2de9cac4a5 1-377
+bug-recording/reduce-size.sh
+  s_153ed6fc7bd217::t_8f89c9ccf75d07 1-20
+bundle-size/SKILL.md
+  s_153ed6fc7bd217::t_32831daf57bfec 1-75
+bundle-size/assets/template.html
+  s_153ed6fc7bd217::t_d39b1f1bd7d348 1-387
+bundle-size/package-lock.json
+  s_153ed6fc7bd217::t_23d9aaf695d596 1-472
+bundle-size/package.json
+  s_153ed6fc7bd217::t_60cf90abc61b79 1-9
+bundle-size/scripts/bundlesize.mjs
+  s_153ed6fc7bd217::t_bbcab804c9e7f4 1-196
+rerender/SKILL.md
+  s_153ed6fc7bd217::t_d68f1aac70c9ef 1-65
+rerender/assets/template.html
+  s_153ed6fc7bd217::t_34ca9a46e1a4aa 1-364
+rerender/package-lock.json
+  s_153ed6fc7bd217::t_45948a9b4df6b0 1-976
+rerender/package.json
+  s_153ed6fc7bd217::t_c5c1bcffe83653 1-10
+rerender/scripts/rerender.mjs
+  s_153ed6fc7bd217::t_bbdc2a14dd8ec0 1-435
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "bd45007a8c7983bb5b8166c02815e45347a25e3a",
+  "prompts": {},
+  "sessions": {
+    "s_153ed6fc7bd217": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9ae4f72f-bade-492e-b732-a93ec48f7033",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "diegopacheco <diego.pacheco.it@gmail.com>"
+    }
+  }
+}
