@@ -1,0 +1,14 @@
+changelog-skill/SKILL.md
+  h_8e2c3875396153 1-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "668bd12618134bf069ecee4497114cb5d54f1f77",
+  "prompts": {},
+  "humans": {
+    "h_8e2c3875396153": {
+      "author": "diegopacheco <diego.pacheco.it@gmail.com>"
+    }
+  }
+}
