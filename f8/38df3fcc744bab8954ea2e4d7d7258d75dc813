@@ -1,0 +1,14 @@
+macos-electron-apps/SKILL.md
+  h_8e2c3875396153 9,13-16,23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "f838df3fcc744bab8954ea2e4d7d7258d75dc813",
+  "prompts": {},
+  "humans": {
+    "h_8e2c3875396153": {
+      "author": "diegopacheco <diego.pacheco.it@gmail.com>"
+    }
+  }
+}
