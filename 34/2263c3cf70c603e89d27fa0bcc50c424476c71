@@ -1,0 +1,35 @@
+README.md
+  s_66eb7a3c00a6ad::t_43c6f0cca125f0 13
+html-research/README.md
+  s_66eb7a3c00a6ad::t_4b74212334a41b 1-35
+html-research/SKILL.md
+  s_66eb7a3c00a6ad::t_6bdc5591b005a0 1-128
+html-research/command.md
+  s_66eb7a3c00a6ad::t_900c7e8eb087d5 1-27
+html-research/install.sh
+  s_66eb7a3c00a6ad::t_2dc8267d8d3a1f 1-41
+html-research/scripts/check_report.py
+  s_66eb7a3c00a6ad::t_e2fa69b7cef0c6 1-73
+html-research/scripts/open_report.sh
+  s_66eb7a3c00a6ad::t_93875b854931d6 1-12
+html-research/templates/handwritten-diagram.svg
+  s_66eb7a3c00a6ad::t_4b779d330d306b 1-33
+html-research/templates/report-template.html
+  s_66eb7a3c00a6ad::t_e1a7deabb22f0f 1-273
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "342263c3cf70c603e89d27fa0bcc50c424476c71",
+  "prompts": {},
+  "sessions": {
+    "s_66eb7a3c00a6ad": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0324185b-d2df-44b9-b076-d34c859553c8",
+        "model": "claude-opus-5"
+      },
+      "human_author": "diegopacheco <diego.pacheco.it@gmail.com>"
+    }
+  }
+}
