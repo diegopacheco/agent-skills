@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>REPORT TITLE</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23c0552f'/%3E%3Ccircle cx='14' cy='14' r='6.5' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Cpath d='M19 19l6 6' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f7f6f3; --panel:#ffffff; --ink:#1c1b19; --muted:#6b6862;
+  --line:#e4e1d9; --accent:#c0552f; --accent-soft:#fbeee8; --chip:#f0eee8;
+}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+a{color:var(--accent)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+header.hero{padding:44px 0 26px;border-bottom:1px solid var(--line);background:var(--panel)}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h1{margin:10px 0 8px;font-size:34px;line-height:1.2;letter-spacing:-.02em}
+.lead{margin:0;color:var(--muted);max-width:80ch;font-size:16px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pill{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:12px;color:var(--muted)}
+.toolbar{position:sticky;top:0;z-index:20;background:rgba(247,246,243,.94);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 0}
+.toolrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#q{flex:1;min-width:240px;padding:10px 13px;border:1px solid var(--line);border-radius:9px;
+  background:var(--panel);color:var(--ink);font-size:14px;outline:none}
+#q:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.count{font-size:12px;color:var(--muted);white-space:nowrap}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.chip{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;
+  padding:5px 12px;font-size:12.5px;cursor:pointer}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+main{padding:26px 0 64px}
+section{margin:0 0 34px}
+h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 17px;
+  cursor:pointer;transition:border-color .12s,transform .12s,box-shadow .12s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 18px rgba(28,27,25,.07)}
+.card h3{margin:0 0 7px;font-size:16px;line-height:1.35}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.badges{display:flex;gap:10px;margin-top:11px;font-size:11.5px;color:var(--muted)}
+.badges b{font-weight:700;color:var(--ink)}
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px}
+@media(max-width:640px){.pc{grid-template-columns:1fr}}
+.pc ul{list-style:none;margin:0;padding:0}
+.pc li{position:relative;padding-left:20px;margin-bottom:7px;font-size:14px}
+.pros li:before{content:"+";position:absolute;left:2px;color:#2f7a4d;font-weight:700}
+.cons li:before{content:"\2212";position:absolute;left:2px;color:var(--accent);font-weight:700}
+.gaps{counter-reset:g;list-style:none;margin:0;padding:0}
+.gaps li{counter-increment:g;position:relative;padding-left:26px;margin-bottom:7px;font-size:14px}
+.gaps li:before{content:counter(g);position:absolute;left:0;top:1px;width:17px;height:17px;border-radius:5px;
+  background:var(--chip);border:1px solid var(--line);color:var(--muted);font-size:10.5px;text-align:center;line-height:16px}
+.tag{font-size:11px;background:var(--accent-soft);color:var(--accent);border-radius:5px;padding:2px 7px}
+.more{margin-top:11px;font-size:12px;color:var(--accent);font-weight:600}
+.summary{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:10px;padding:18px 20px;margin-bottom:30px}
+.summary p{margin:0 0 10px}.summary p:last-child{margin:0}
+.diagram{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:14px;overflow-x:auto}
+.diagram h3{margin:0 0 4px;font-size:16px}
+.diagram .cap{margin:0 0 12px;color:var(--muted);font-size:13px}
+.diagram svg{display:block;max-width:100%;height:auto}
+.srcs{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.srcs li{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px;font-size:14px}
+.srcs a{text-decoration:none;font-weight:600}
+.srcs span{color:var(--muted);font-size:12.5px}
+.empty{color:var(--muted);padding:26px 0;font-size:14px}
+.ov{position:fixed;inset:0;background:rgba(28,27,25,.42);display:none;align-items:flex-start;
+  justify-content:center;padding:5vh 18px;z-index:60;overflow:auto}
+.ov.on{display:flex}
+.modal{background:var(--panel);border:1px solid var(--line);border-radius:14px;max-width:820px;width:100%;
+  padding:26px 28px 30px;box-shadow:0 24px 60px rgba(28,27,25,.2)}
+.modal h3{margin:0 0 6px;font-size:23px;line-height:1.25}
+.modal .kicker{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.modal h4{margin:20px 0 6px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.modal p{margin:0 0 10px}
+.modal ul{margin:0 0 10px;padding-left:20px}
+.modal li{margin-bottom:5px}
+.files{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.files li{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
+  background:var(--chip);border:1px solid var(--line);border-radius:7px;padding:7px 10px;word-break:break-all}
+.close{float:right;border:1px solid var(--line);background:var(--panel);border-radius:8px;
+  width:30px;height:30px;font-size:16px;line-height:1;cursor:pointer;color:var(--muted)}
+.close:hover{border-color:var(--accent);color:var(--accent)}
+footer{border-top:1px solid var(--line);padding:20px 0 40px;color:var(--muted);font-size:12.5px}
+mark{background:#fdf0c9;color:inherit;border-radius:2px}
+@media print{.toolbar,.close{display:none}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="eyebrow" id="hEyebrow"></div>
+  <h1 id="hTitle"></h1>
+  <p class="lead" id="hLead"></p>
+  <div class="pills" id="hPills"></div>
+</div></header>
+
+<div class="toolbar"><div class="wrap">
+  <div class="toolrow">
+    <input id="q" type="search" placeholder="Search everything  (press /)" autocomplete="off">
+    <span class="count" id="count"></span>
+  </div>
+  <div class="chips" id="chips"></div>
+</div></div>
+
+<main class="wrap">
+  <div class="summary" id="summary"></div>
+  <div id="sections"></div>
+  <section id="diagrams" hidden><h2>Diagrams</h2><div id="diagramBody"></div></section>
+  <section id="sourcesSec"><h2>Sources</h2><ul class="srcs" id="sources"></ul></section>
+</main>
+
+<footer><div class="wrap" id="foot"></div></footer>
+
+<div class="ov" id="ov"><div class="modal" id="modal"></div></div>
+
+<script>
+const REPORT = {
+  eyebrow: "RESEARCH",
+  title: "Report title",
+  lead: "One sentence describing what this report covers.",
+  pills: ["Topic", "Researched Month D, YYYY"],
+  summary: ["Executive summary paragraph one.", "Executive summary paragraph two."],
+  groupOrder: ["Overview", "What The Industry Does"],
+  cards: [
+    {
+      group: "Fundamentals",
+      title: "Card title",
+      summary: "One or two sentence teaser shown on the card.",
+      tags: ["tag"],
+      body: [
+        {h: "What it is", p: "Detail paragraph."},
+        {h: "Why it matters", p: "Detail paragraph."}
+      ],
+      bullets: ["Point one.", "Point two."],
+      pros: ["Five concrete upsides.", "", "", "", ""],
+      cons: ["Five concrete downsides.", "", "", "", ""],
+      gaps: ["Five to ten things this leaves unsolved.", "", "", "", ""],
+      files: [{path: "/full/path/to/file.ext", url: "https://github.com/org/repo/blob/main/file.ext"}],
+      links: [{title: "Source title", url: "https://example.com"}]
+    }
+  ],
+  diagrams: [
+    {title: "Diagram title", caption: "What the diagram shows.", svg: ""}
+  ],
+  sources: [
+    {title: "Source title", url: "https://example.com", note: "What it backs up."}
+  ],
+  footer: "Generated by /html-research."
+};
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const hay = c => [c.title, c.summary, c.group, (c.tags||[]).join(" "),
+  (c.body||[]).map(b => b.h + " " + b.p).join(" "), (c.bullets||[]).join(" "),
+  (c.files||[]).map(f => f.path).join(" "), (c.links||[]).map(l => l.title).join(" "),
+  (c.pros||[]).join(" "), (c.cons||[]).join(" "), (c.gaps||[]).join(" ")].join(" ").toLowerCase();
+
+let filter = "";
+let group = "All";
+
+function hl(text, q){
+  const t = esc(text);
+  if(!q) return t;
+  return t.replace(new RegExp("(" + q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "ig"), "<mark>$1</mark>");
+}
+
+function boot(){
+  $("#hEyebrow").textContent = REPORT.eyebrow || "RESEARCH";
+  $("#hTitle").textContent = REPORT.title;
+  $("#hLead").textContent = REPORT.lead;
+  document.title = REPORT.title;
+  $("#hPills").innerHTML = (REPORT.pills||[]).map(p => '<span class="pill">' + esc(p) + '</span>').join("");
+  $("#summary").innerHTML = (REPORT.summary||[]).map(p => "<p>" + esc(p) + "</p>").join("");
+  $("#foot").textContent = REPORT.footer || "";
+
+  const order = REPORT.groupOrder || [];
+  const uniq = [...new Set(REPORT.cards.map(c => c.group))].sort((a, b) => {
+    const ia = order.indexOf(a), ib = order.indexOf(b);
+    return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+  });
+  const groups = ["All", ...uniq];
+  $("#chips").innerHTML = groups.map(g =>
+    '<button class="chip' + (g === group ? " on" : "") + '" data-g="' + esc(g) + '">' + esc(g) + "</button>").join("");
+  $("#chips").onclick = e => {
+    const b = e.target.closest(".chip"); if(!b) return;
+    group = b.dataset.g; boot();
+  };
+
+  const ds = (REPORT.diagrams||[]).filter(d => d.svg);
+  if(ds.length){
+    $("#diagrams").hidden = false;
+    $("#diagramBody").innerHTML = ds.map(d =>
+      '<div class="diagram"><h3>' + esc(d.title) + '</h3><p class="cap">' + esc(d.caption) + "</p>" + d.svg + "</div>").join("");
+  }
+
+  $("#sources").innerHTML = (REPORT.sources||[]).map(s =>
+    '<li><a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.title) + "</a>" +
+    (s.note ? " <span>— " + esc(s.note) + "</span>" : "") + "</li>").join("");
+
+  render();
+}
+
+function badges(c){
+  const b = [];
+  if((c.pros||[]).length) b.push("<span><b>" + c.pros.length + "</b> pros</span>");
+  if((c.cons||[]).length) b.push("<span><b>" + c.cons.length + "</b> cons</span>");
+  if((c.gaps||[]).length) b.push("<span><b>" + c.gaps.length + "</b> gaps</span>");
+  return b.length ? '<div class="badges">' + b.join("") + "</div>" : "";
+}
+
+function render(){
+  const q = filter.trim().toLowerCase();
+  const cards = REPORT.cards.filter(c => (group === "All" || c.group === group) && (!q || hay(c).includes(q)));
+  $("#count").textContent = cards.length + " of " + REPORT.cards.length + " cards";
+  const byGroup = {};
+  cards.forEach(c => (byGroup[c.group] = byGroup[c.group] || []).push(c));
+  const order = REPORT.groupOrder || [];
+  const keys = Object.keys(byGroup).sort((a, b) => {
+    const ia = order.indexOf(a), ib = order.indexOf(b);
+    return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+  });
+  const html = keys.map(g =>
+    "<section><h2>" + esc(g) + '</h2><div class="grid">' + byGroup[g].map(c => {
+      const i = REPORT.cards.indexOf(c);
+      return '<article class="card" data-i="' + i + '"><h3>' + hl(c.title, q) + "</h3><p>" +
+        hl(c.summary, q) + "</p>" +
+        ((c.tags||[]).length ? '<div class="tags">' + c.tags.map(t => '<span class="tag">' + esc(t) + "</span>").join("") + "</div>" : "") +
+        badges(c) + '<div class="more">Open details &rarr;</div></article>';
+    }).join("") + "</div></section>").join("");
+  $("#sections").innerHTML = html || '<p class="empty">No cards match that search.</p>';
+}
+
+function openCard(i){
+  const c = REPORT.cards[i];
+  $("#modal").innerHTML =
+    '<button class="close" id="x">&times;</button>' +
+    '<div class="kicker">' + esc(c.group) + "</div><h3>" + esc(c.title) + "</h3><p>" + esc(c.summary) + "</p>" +
+    (c.body||[]).map(b => "<h4>" + esc(b.h) + "</h4><p>" + esc(b.p) + "</p>").join("") +
+    ((c.bullets||[]).length ? "<h4>Key points</h4><ul>" + c.bullets.map(b => "<li>" + esc(b) + "</li>").join("") + "</ul>" : "") +
+    (((c.pros||[]).length || (c.cons||[]).length) ? '<h4>Pros and cons</h4><div class="pc">' +
+      '<div class="pros"><ul>' + (c.pros||[]).map(p => "<li>" + esc(p) + "</li>").join("") + "</ul></div>" +
+      '<div class="cons"><ul>' + (c.cons||[]).map(p => "<li>" + esc(p) + "</li>").join("") + "</ul></div></div>" : "") +
+    ((c.gaps||[]).length ? "<h4>Gaps</h4><ol class=\"gaps\">" + c.gaps.map(g => "<li>" + esc(g) + "</li>").join("") + "</ol>" : "") +
+    ((c.files||[]).length ? '<h4>Files</h4><ul class="files">' + c.files.map(f =>
+      "<li>" + (f.url ? '<a href="' + esc(f.url) + '" target="_blank" rel="noopener">' + esc(f.path) + "</a>" : esc(f.path)) + "</li>").join("") + "</ul>" : "") +
+    ((c.links||[]).length ? "<h4>Sources</h4><ul>" + c.links.map(l =>
+      '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.title) + "</a></li>").join("") + "</ul>" : "");
+  $("#ov").classList.add("on");
+  $("#x").onclick = close;
+}
+function close(){ $("#ov").classList.remove("on"); }
+
+$("#q").addEventListener("input", e => { filter = e.target.value; render(); });
+document.addEventListener("click", e => {
+  const card = e.target.closest(".card");
+  if(card) openCard(+card.dataset.i);
+});
+$("#ov").addEventListener("click", e => { if(e.target.id === "ov") close(); });
+document.addEventListener("keydown", e => {
+  if(e.key === "Escape") close();
+  if(e.key === "/" && document.activeElement !== $("#q")){ e.preventDefault(); $("#q").focus(); }
+});
+boot();
+</script>
+</body>
+</html>
