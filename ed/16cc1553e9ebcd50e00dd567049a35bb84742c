@@ -1,0 +1,45 @@
+scripts-skill/install.sh
+  s_debc4e2a41304f::t_20c6458bd0aea7 1-47
+scripts-skill/templates/setup.sh
+  s_debc4e2a41304f::t_3b945536177635 1-42
+scripts-skill/templates/start-all.sh
+  s_debc4e2a41304f::t_3b945536177635 1-29
+scripts-skill/README.md
+  s_debc4e2a41304f::t_e21ba290dace6b 1-46
+scripts-skill/templates/ports.env
+  s_debc4e2a41304f::t_2cc336a57a3eb9 1-3
+scripts-skill/templates/stop-all.sh
+  s_debc4e2a41304f::t_3b945536177635 1-22
+scripts-skill/templates/status.sh
+  s_debc4e2a41304f::t_3b945536177635 1-18
+scripts-skill/templates/common.sh
+  s_debc4e2a41304f::t_2cc336a57a3eb9 1-25,27-33,35-44,46-55,57-63,67-69,71-110
+  s_debc4e2a41304f::t_6e8cb02635b334 64-66
+  s_debc4e2a41304f::t_ed2070cb6d1c7b 34,45,56,70
+  s_debc4e2a41304f::t_01beb393b7d2b0 26
+scripts-skill/SKILL.md
+  s_debc4e2a41304f::t_f9904dbc86ae9e 85,109
+  s_debc4e2a41304f::t_455729ed7b0935 1-84,86-108,110-111
+scripts-skill/templates/sql-console.sh
+  s_debc4e2a41304f::t_3b945536177635 1-47
+scripts-skill/templates/ui.sh
+  s_debc4e2a41304f::t_3b945536177635 1-12
+scripts-skill/templates/test-all.sh
+  s_debc4e2a41304f::t_3b945536177635 1-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "ed16cc1553e9ebcd50e00dd567049a35bb84742c",
+  "prompts": {},
+  "sessions": {
+    "s_debc4e2a41304f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d3f0e407-5490-48fc-a913-752f308a2aa3",
+        "model": "claude-opus-5"
+      },
+      "human_author": "diegopacheco <diego.pacheco.it@gmail.com>"
+    }
+  }
+}
