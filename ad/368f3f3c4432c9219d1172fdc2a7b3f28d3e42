@@ -1,0 +1,60 @@
+loop-backlog/install.sh
+  s_4a0859b0a95b87::t_8b688b62e61263 1,5-13,15-20,22-26,28-33
+readme-skill/install.sh
+  s_4a0859b0a95b87::t_2065dd392cc5bf 1-28
+bug-recording/install.sh
+  s_4a0859b0a95b87::t_8b688b62e61263 1,5,7-13,15-23,25-30
+index-html-skill/install.sh
+  s_4a0859b0a95b87::t_2065dd392cc5bf 1-28
+scripts-skill/install.sh
+  s_4a0859b0a95b87::t_e356ccd4d57cc6 11-18,22
+macos-electron-apps/install.sh
+  s_4a0859b0a95b87::t_2065dd392cc5bf 1-28
+commands/install.sh
+  s_4a0859b0a95b87::t_c592c5ad469e4c 1-25
+git-gh-skill/install.sh
+  s_4a0859b0a95b87::t_2065dd392cc5bf 1-28
+changelog-skill/install.sh
+  s_4a0859b0a95b87::t_2065dd392cc5bf 1-28
+bash-skill/install.sh
+  s_4a0859b0a95b87::t_2065dd392cc5bf 1-28
+index-html-skill/SKILL.md
+  s_4a0859b0a95b87::t_1303cddfdb9b13 2
+README.md
+  s_4a0859b0a95b87::t_fd8b4719f2cbd4 8-14
+  s_918c6c1b572333::t_742ad052d012b9 23
+  s_4a0859b0a95b87::t_b33532d169f944 15-22
+container-skill/install.sh
+  s_4a0859b0a95b87::t_2065dd392cc5bf 1-28
+rerender/install.sh
+  s_4a0859b0a95b87::t_bb8704ab98e265 1,5,7-13,15-24,26-31
+html-research/install.sh
+  s_4a0859b0a95b87::t_e356ccd4d57cc6 5,12-26
+  s_4a0859b0a95b87::t_5265f05adc21ec 27
+bundle-size/install.sh
+  s_4a0859b0a95b87::t_bb8704ab98e265 1,5,7-13,15-24,26-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "ad368f3f3c4432c9219d1172fdc2a7b3f28d3e42",
+  "prompts": {},
+  "sessions": {
+    "s_4a0859b0a95b87": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "731329ad-ca8c-45b3-80b8-ee1659f6f2e1",
+        "model": "claude-opus-5"
+      },
+      "human_author": "diegopacheco <diego.pacheco.it@gmail.com>"
+    },
+    "s_918c6c1b572333": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "aa807626-72de-4a39-9995-b3e91df7d212",
+        "model": "claude-opus-5"
+      },
+      "human_author": "diegopacheco <diego.pacheco.it@gmail.com>"
+    }
+  }
+}
