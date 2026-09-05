@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FACT CHECK TITLE</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f7a4d'/%3E%3Cpath d='M8 17l5.5 5.5L24 10' fill='none' stroke='%23fff' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f7f6f3; --panel:#ffffff; --ink:#1c1b19; --muted:#6b6862;
+  --line:#e4e1d9; --accent:#c0552f; --accent-soft:#fbeee8; --chip:#f0eee8;
+  --true:#2f7a4d; --true-soft:#eaf5ee;
+  --false:#c0392b; --false-soft:#fbecea;
+  --partly:#b0761a; --partly-soft:#fdf3e2;
+  --unknown:#6b6862; --unknown-soft:#f0eee8;
+}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+a{color:var(--accent)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+header.hero{padding:44px 0 26px;border-bottom:1px solid var(--line);background:var(--panel)}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h1{margin:10px 0 8px;font-size:34px;line-height:1.2;letter-spacing:-.02em}
+.lead{margin:0;color:var(--muted);max-width:80ch;font-size:16px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pill{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:12px;color:var(--muted)}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+@media(max-width:720px){.board{grid-template-columns:repeat(2,1fr)}}
+.tile{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--line);
+  border-radius:11px;padding:12px 14px;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.tile:hover{border-color:var(--accent);border-left-color:var(--accent)}
+.tile b{display:block;font-size:26px;line-height:1.1}
+.tile span{font-size:12px;color:var(--muted)}
+.tile.on{box-shadow:0 0 0 3px var(--accent-soft)}
+.tile.t-true{border-left-color:var(--true)}.tile.t-true b{color:var(--true)}
+.tile.t-false{border-left-color:var(--false)}.tile.t-false b{color:var(--false)}
+.tile.t-partly{border-left-color:var(--partly)}.tile.t-partly b{color:var(--partly)}
+.tile.t-unverifiable{border-left-color:var(--unknown)}.tile.t-unverifiable b{color:var(--unknown)}
+.toolbar{position:sticky;top:0;z-index:20;background:rgba(247,246,243,.94);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 0}
+.toolrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#q{flex:1;min-width:240px;padding:10px 13px;border:1px solid var(--line);border-radius:9px;
+  background:var(--panel);color:var(--ink);font-size:14px;outline:none}
+#q:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.count{font-size:12px;color:var(--muted);white-space:nowrap}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.chip{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;
+  padding:5px 12px;font-size:12.5px;cursor:pointer}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+main{padding:26px 0 64px}
+section{margin:0 0 34px}
+h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--line);
+  border-radius:12px;padding:15px 17px;cursor:pointer;transition:border-color .12s,transform .12s,box-shadow .12s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 18px rgba(28,27,25,.07)}
+.card.v-true{border-left-color:var(--true)}
+.card.v-false{border-left-color:var(--false)}
+.card.v-partly{border-left-color:var(--partly)}
+.card.v-unverifiable{border-left-color:var(--unknown)}
+.crow{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.fid{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;font-weight:700;
+  background:var(--chip);border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--muted)}
+.badge{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border-radius:6px;padding:3px 8px}
+.badge.v-true{background:var(--true-soft);color:var(--true)}
+.badge.v-false{background:var(--false-soft);color:var(--false)}
+.badge.v-partly{background:var(--partly-soft);color:var(--partly)}
+.badge.v-unverifiable{background:var(--unknown-soft);color:var(--unknown)}
+.conf{font-size:11.5px;color:var(--muted);margin-left:auto}
+.card h3{margin:0 0 7px;font-size:16px;line-height:1.35}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tag{font-size:11px;background:var(--accent-soft);color:var(--accent);border-radius:5px;padding:2px 7px}
+.badges{display:flex;gap:10px;margin-top:11px;font-size:11.5px;color:var(--muted)}
+.badges b{font-weight:700;color:var(--ink)}
+.more{margin-top:11px;font-size:12px;color:var(--accent);font-weight:600}
+.summary{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:10px;padding:18px 20px;margin-bottom:30px}
+.summary p{margin:0 0 10px}.summary p:last-child{margin:0}
+.where{font-size:13px;color:var(--muted);border-left:2px solid var(--line);padding:2px 0 2px 10px;margin:0 0 10px}
+.ev{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px}
+@media(max-width:640px){.ev{grid-template-columns:1fr}}
+.ev ul{list-style:none;margin:0;padding:0}
+.ev li{position:relative;padding-left:20px;margin-bottom:7px;font-size:14px}
+.sup li:before{content:"+";position:absolute;left:2px;color:var(--true);font-weight:700}
+.ref li:before{content:"\2212";position:absolute;left:2px;color:var(--false);font-weight:700}
+.checks{counter-reset:g;list-style:none;margin:0;padding:0}
+.checks li{counter-increment:g;position:relative;padding-left:26px;margin-bottom:7px;font-size:14px}
+.checks li:before{content:counter(g);position:absolute;left:0;top:1px;width:17px;height:17px;border-radius:5px;
+  background:var(--chip);border:1px solid var(--line);color:var(--muted);font-size:10.5px;text-align:center;line-height:16px}
+.rel{display:flex;flex-wrap:wrap;gap:6px}
+.rel button{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;background:var(--chip);
+  border:1px solid var(--line);border-radius:6px;padding:3px 9px;cursor:pointer;color:var(--accent)}
+.rel button:hover{border-color:var(--accent)}
+.diagram{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:14px;overflow-x:auto}
+.diagram h3{margin:0 0 4px;font-size:16px}
+.diagram .cap{margin:0 0 12px;color:var(--muted);font-size:13px}
+.diagram svg{display:block;max-width:100%;height:auto}
+.srcs{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.srcs li{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px;font-size:14px}
+.srcs a{text-decoration:none;font-weight:600}
+.srcs span{color:var(--muted);font-size:12.5px}
+.empty{color:var(--muted);padding:26px 0;font-size:14px}
+.ov{position:fixed;inset:0;background:rgba(28,27,25,.42);display:none;align-items:flex-start;
+  justify-content:center;padding:5vh 18px;z-index:60;overflow:auto}
+.ov.on{display:flex}
+.modal{background:var(--panel);border:1px solid var(--line);border-radius:14px;max-width:820px;width:100%;
+  padding:26px 28px 30px;box-shadow:0 24px 60px rgba(28,27,25,.2)}
+.modal h3{margin:0 0 6px;font-size:23px;line-height:1.25}
+.modal .kicker{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.modal h4{margin:20px 0 6px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.modal p{margin:0 0 10px}
+.modal ul{margin:0 0 10px;padding-left:20px}
+.modal li{margin-bottom:5px}
+.verdictline{font-size:16px;margin:0 0 4px}
+.files{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.files li{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
+  background:var(--chip);border:1px solid var(--line);border-radius:7px;padding:7px 10px;word-break:break-all}
+.close{float:right;border:1px solid var(--line);background:var(--panel);border-radius:8px;
+  width:30px;height:30px;font-size:16px;line-height:1;cursor:pointer;color:var(--muted)}
+.close:hover{border-color:var(--accent);color:var(--accent)}
+footer{border-top:1px solid var(--line);padding:20px 0 40px;color:var(--muted);font-size:12.5px}
+mark{background:#fdf0c9;color:inherit;border-radius:2px}
+@media print{.toolbar,.close{display:none}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="eyebrow" id="hEyebrow"></div>
+  <h1 id="hTitle"></h1>
+  <p class="lead" id="hLead"></p>
+  <div class="pills" id="hPills"></div>
+  <div class="board" id="board"></div>
+</div></header>
+
+<div class="toolbar"><div class="wrap">
+  <div class="toolrow">
+    <input id="q" type="search" placeholder="Search every fact, source and file  (press /)" autocomplete="off">
+    <span class="count" id="count"></span>
+  </div>
+  <div class="chips" id="chips"></div>
+</div></div>
+
+<main class="wrap">
+  <div class="summary" id="summary"></div>
+  <div id="sections"></div>
+  <section id="diagrams" hidden><h2>Diagrams</h2><div id="diagramBody"></div></section>
+  <section id="sourcesSec"><h2>Sources</h2><ul class="srcs" id="sources"></ul></section>
+</main>
+
+<footer><div class="wrap" id="foot"></div></footer>
+
+<div class="ov" id="ov"><div class="modal" id="modal"></div></div>
+
+<script>
+const FACTCHECK = {
+  eyebrow: "FACT CHECK",
+  title: "What was checked",
+  lead: "One sentence naming the input that was checked and how many claims came out of it.",
+  checked: {label: "Source of the claims", url: "https://example.com"},
+  pills: ["Input", "Checked Month D, YYYY"],
+  summary: ["What holds up.", "What does not.", "What could not be settled and why."],
+  facts: [
+    {
+      id: "F1",
+      claim: "is google just a search engine?",
+      verdict: "false",
+      verdictLine: "One sentence: the ruling and the reason for it.",
+      where: "Where the claim appears: quoted text, card title, or /full/path/file.ext:12",
+      confidence: "high",
+      tags: ["tag"],
+      body: [
+        {h: "What the claim says", p: "The claim as written, read literally."},
+        {h: "What the evidence says", p: "What the primary sources actually state."},
+        {h: "Where they differ", p: "The gap between the two."}
+      ],
+      supports: ["Concrete evidence for the claim, with a number or a date."],
+      refutes: ["Concrete evidence against the claim, with a number or a date."],
+      checks: [
+        "Pass 1 — the source says this in these words: what was found.",
+        "Pass 2 — primary and current: what was found.",
+        "Pass 3 — argued the opposite verdict: what was found."
+      ],
+      related: ["F4"],
+      files: [{path: "/full/path/to/file.ext", url: "https://github.com/org/repo/blob/main/file.ext"}],
+      links: [{title: "Source title", url: "https://example.com"}]
+    }
+  ],
+  diagrams: [
+    {title: "Diagram title", caption: "What the diagram shows.", svg: ""}
+  ],
+  sources: [
+    {title: "Source title", url: "https://example.com", note: "Which fact it settles."}
+  ],
+  footer: "Generated by /fact-check."
+};
+
+const V = {
+  "true":         {key: "true",         label: "True",         emoji: "✅", group: "True"},
+  "false":        {key: "false",        label: "False",        emoji: "❌", group: "False"},
+  "partly":       {key: "partly",       label: "Partly True",  emoji: "⚠️", group: "Partly True"},
+  "unverifiable": {key: "unverifiable", label: "Unverifiable", emoji: "❓", group: "Unverifiable"}
+};
+const ORDER = ["true", "false", "partly", "unverifiable"];
+const vOf = f => V[String(f.verdict).toLowerCase()] || V.unverifiable;
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const hay = f => [f.id, f.claim, f.verdict, vOf(f).label, f.verdictLine, f.where, f.confidence,
+  (f.tags||[]).join(" "), (f.body||[]).map(b => b.h + " " + b.p).join(" "),
+  (f.supports||[]).join(" "), (f.refutes||[]).join(" "), (f.checks||[]).join(" "),
+  (f.related||[]).join(" "), (f.files||[]).map(x => x.path).join(" "),
+  (f.links||[]).map(l => l.title + " " + l.url).join(" ")].join(" ").toLowerCase();
+
+let filter = "";
+let group = "All";
+
+function hl(text, q){
+  const t = esc(text);
+  if(!q) return t;
+  return t.replace(new RegExp("(" + q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "ig"), "<mark>$1</mark>");
+}
+
+function counts(){
+  const c = {};
+  ORDER.forEach(k => c[k] = 0);
+  FACTCHECK.facts.forEach(f => c[vOf(f).key]++);
+  return c;
+}
+
+function boot(){
+  $("#hEyebrow").textContent = FACTCHECK.eyebrow || "FACT CHECK";
+  $("#hTitle").textContent = FACTCHECK.title;
+  $("#hLead").textContent = FACTCHECK.lead;
+  document.title = FACTCHECK.title;
+
+  const ck = FACTCHECK.checked;
+  const pills = (FACTCHECK.pills||[]).map(p => '<span class="pill">' + esc(p) + "</span>");
+  if(ck && ck.label){
+    pills.unshift('<span class="pill">' + (ck.url
+      ? 'Checked: <a href="' + esc(ck.url) + '" target="_blank" rel="noopener">' + esc(ck.label) + "</a>"
+      : "Checked: " + esc(ck.label)) + "</span>");
+  }
+  $("#hPills").innerHTML = pills.join("");
+
+  const c = counts();
+  $("#board").innerHTML = ORDER.map(k =>
+    '<button class="tile t-' + k + (group === V[k].group ? " on" : "") + '" data-g="' + esc(V[k].group) + '">' +
+    "<b>" + c[k] + "</b><span>" + V[k].emoji + " " + V[k].label + "</span></button>").join("");
+  $("#board").onclick = e => {
+    const b = e.target.closest(".tile"); if(!b) return;
+    group = (group === b.dataset.g) ? "All" : b.dataset.g; boot();
+  };
+
+  $("#summary").innerHTML = (FACTCHECK.summary||[]).map(p => "<p>" + esc(p) + "</p>").join("");
+  $("#foot").textContent = FACTCHECK.footer || "";
+
+  const groups = ["All", ...ORDER.map(k => V[k].group)];
+  $("#chips").innerHTML = groups.map(g =>
+    '<button class="chip' + (g === group ? " on" : "") + '" data-g="' + esc(g) + '">' + esc(g) + "</button>").join("");
+  $("#chips").onclick = e => {
+    const b = e.target.closest(".chip"); if(!b) return;
+    group = b.dataset.g; boot();
+  };
+
+  const ds = (FACTCHECK.diagrams||[]).filter(d => d.svg);
+  if(ds.length){
+    $("#diagrams").hidden = false;
+    $("#diagramBody").innerHTML = ds.map(d =>
+      '<div class="diagram"><h3>' + esc(d.title) + '</h3><p class="cap">' + esc(d.caption) + "</p>" + d.svg + "</div>").join("");
+  }
+
+  $("#sources").innerHTML = (FACTCHECK.sources||[]).map(s =>
+    '<li><a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.title) + "</a>" +
+    (s.note ? " <span>&mdash; " + esc(s.note) + "</span>" : "") + "</li>").join("");
+
+  render();
+}
+
+function meta(f){
+  const b = [];
+  if((f.supports||[]).length) b.push("<span><b>" + f.supports.length + "</b> for</span>");
+  if((f.refutes||[]).length) b.push("<span><b>" + f.refutes.length + "</b> against</span>");
+  if((f.checks||[]).length) b.push("<span><b>" + f.checks.length + "</b> checks</span>");
+  if((f.links||[]).length) b.push("<span><b>" + f.links.length + "</b> sources</span>");
+  return b.length ? '<div class="badges">' + b.join("") + "</div>" : "";
+}
+
+function render(){
+  const q = filter.trim().toLowerCase();
+  const facts = FACTCHECK.facts.filter(f =>
+    (group === "All" || vOf(f).group === group) && (!q || hay(f).includes(q)));
+  $("#count").textContent = facts.length + " of " + FACTCHECK.facts.length + " facts";
+  const html = ORDER.map(k => {
+    const list = facts.filter(f => vOf(f).key === k);
+    if(!list.length) return "";
+    return "<section><h2>" + V[k].emoji + " " + esc(V[k].label) + " &middot; " + list.length +
+      '</h2><div class="grid">' + list.map(f => {
+        const i = FACTCHECK.facts.indexOf(f);
+        return '<article class="card v-' + k + '" data-i="' + i + '">' +
+          '<div class="crow"><span class="fid">' + esc(f.id) + '</span>' +
+          '<span class="badge v-' + k + '">' + esc(V[k].label) + "</span>" +
+          (f.confidence ? '<span class="conf">' + esc(f.confidence) + " confidence</span>" : "") + "</div>" +
+          "<h3>" + hl(f.claim, q) + "</h3><p>" + hl(f.verdictLine, q) + "</p>" +
+          ((f.tags||[]).length ? '<div class="tags">' + f.tags.map(t => '<span class="tag">' + esc(t) + "</span>").join("") + "</div>" : "") +
+          meta(f) + '<div class="more">Open the evidence &rarr;</div></article>';
+      }).join("") + "</div></section>";
+  }).join("");
+  $("#sections").innerHTML = html || '<p class="empty">No fact matches that search.</p>';
+}
+
+function openFact(i){
+  const f = FACTCHECK.facts[i];
+  const v = vOf(f);
+  $("#modal").innerHTML =
+    '<button class="close" id="x">&times;</button>' +
+    '<div class="kicker"><span class="fid">' + esc(f.id) + '</span>' +
+    '<span class="badge v-' + v.key + '">' + v.emoji + " " + esc(v.label) + "</span>" +
+    (f.confidence ? '<span class="conf">' + esc(f.confidence) + " confidence</span>" : "") + "</div>" +
+    "<h3>" + esc(f.claim) + '</h3><p class="verdictline">' + esc(f.verdictLine) + "</p>" +
+    (f.where ? '<p class="where">' + esc(f.where) + "</p>" : "") +
+    (f.body||[]).map(b => "<h4>" + esc(b.h) + "</h4><p>" + esc(b.p) + "</p>").join("") +
+    (((f.supports||[]).length || (f.refutes||[]).length) ? '<h4>Evidence</h4><div class="ev">' +
+      '<div class="sup"><ul>' + (f.supports||[]).map(s => "<li>" + esc(s) + "</li>").join("") + "</ul></div>" +
+      '<div class="ref"><ul>' + (f.refutes||[]).map(s => "<li>" + esc(s) + "</li>").join("") + "</ul></div></div>" : "") +
+    ((f.checks||[]).length ? '<h4>Triple check</h4><ol class="checks">' +
+      f.checks.map(c => "<li>" + esc(c) + "</li>").join("") + "</ol>" : "") +
+    ((f.related||[]).length ? '<h4>Related facts</h4><div class="rel">' +
+      f.related.map(r => '<button data-id="' + esc(r) + '">' + esc(r) + "</button>").join("") + "</div>" : "") +
+    ((f.files||[]).length ? '<h4>Files</h4><ul class="files">' + f.files.map(x =>
+      "<li>" + (x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.path) + "</a>" : esc(x.path)) + "</li>").join("") + "</ul>" : "") +
+    ((f.links||[]).length ? "<h4>Sources</h4><ul>" + f.links.map(l =>
+      '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.title) + "</a></li>").join("") + "</ul>" : "");
+  $("#ov").classList.add("on");
+  $("#x").onclick = close;
+  $("#modal").querySelectorAll(".rel button").forEach(b => b.onclick = () => {
+    const j = FACTCHECK.facts.findIndex(x => x.id === b.dataset.id);
+    if(j >= 0) openFact(j);
+  });
+}
+function close(){ $("#ov").classList.remove("on"); }
+
+$("#q").addEventListener("input", e => { filter = e.target.value; render(); });
+document.addEventListener("click", e => {
+  const card = e.target.closest(".card");
+  if(card) openFact(+card.dataset.i);
+});
+$("#ov").addEventListener("click", e => { if(e.target.id === "ov") close(); });
+document.addEventListener("keydown", e => {
+  if(e.key === "Escape") close();
+  if(e.key === "/" && document.activeElement !== $("#q")){ e.preventDefault(); $("#q").focus(); }
+});
+boot();
+</script>
+</body>
+</html>
