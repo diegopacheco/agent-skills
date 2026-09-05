@@ -2,12 +2,28 @@
 set -eu
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 NAME="html-research"
-TARGET="${1:-both}"
+TARGET="${1:-}"
 
 CLAUDE_SKILLS="${CLAUDE_SKILLS:-$HOME/.claude/skills}"
 CLAUDE_COMMANDS="${CLAUDE_COMMANDS:-$HOME/.claude/commands}"
 CODEX_SKILLS="${CODEX_SKILLS:-$HOME/.codex/skills}"
 CODEX_PROMPTS="${CODEX_PROMPTS:-$HOME/.codex/prompts}"
+
+if [ -z "$TARGET" ]; then
+  echo "📦 $NAME Installer"
+  echo ""
+  echo "1) 🤖 Global Claude ($CLAUDE_SKILLS/$NAME)"
+  echo "2) 🧠 Global Codex ($CODEX_SKILLS/$NAME)"
+  echo "3) ✨ Both"
+  echo ""
+  read -r -p "Choose an option [1-3]: " choice
+  case "$choice" in
+    1) TARGET=claude ;;
+    2) TARGET=codex ;;
+    3) TARGET=both ;;
+    *) echo "❌ Invalid option, aborting"; exit 1 ;;
+  esac
+fi
 
 install_skill() {
   dest="$1/$NAME"

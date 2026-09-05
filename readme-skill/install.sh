@@ -2,7 +2,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-NAME="rerender"
+NAME="readme-skill"
 
 echo "📦 $NAME Installer"
 echo ""
@@ -15,11 +15,8 @@ read -p "Choose an option [1-3]: " choice
 install_skill() {
   dest="$1/$NAME"
   rm -rf "$dest"
-  mkdir -p "$dest/scripts" "$dest/assets"
-  cp "$SCRIPT_DIR/SKILL.md" "$SCRIPT_DIR/package.json" "$SCRIPT_DIR/package-lock.json" "$dest/"
-  cp "$SCRIPT_DIR/scripts/rerender.mjs" "$dest/scripts/"
-  cp "$SCRIPT_DIR/assets/template.html" "$dest/assets/"
-  (cd "$dest" && npm install)
+  mkdir -p "$dest"
+  cp "$SCRIPT_DIR/SKILL.md" "$dest/"
   echo "✅ Installed $NAME to $dest"
 }
 

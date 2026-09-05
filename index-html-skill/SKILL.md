@@ -1,5 +1,5 @@
 ---
-name: bash-skill
+name: index-html-skill
 description: When need to create a index.html file, use this skill to create a self contained index.html file. IF user mentiond html, index.html, use this skill.
 allowed-tools: [Bash, Read, AskUserQuestion]
 ---

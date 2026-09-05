@@ -8,17 +8,18 @@ CLAUDE_SKILLS="${CLAUDE_SKILLS:-$HOME/.claude/skills}"
 CODEX_SKILLS="${CODEX_SKILLS:-$HOME/.codex/skills}"
 
 if [ -z "$TARGET" ]; then
-  printf "install %s where?\n" "$NAME"
-  printf "  1) claude   %s/%s\n" "$CLAUDE_SKILLS" "$NAME"
-  printf "  2) codex    %s/%s\n" "$CODEX_SKILLS" "$NAME"
-  printf "  3) both\n"
-  printf "choice [3]: "
-  read -r choice
-  case "${choice:-3}" in
+  echo "📦 $NAME Installer"
+  echo ""
+  echo "1) 🤖 Global Claude ($CLAUDE_SKILLS/$NAME)"
+  echo "2) 🧠 Global Codex ($CODEX_SKILLS/$NAME)"
+  echo "3) ✨ Both"
+  echo ""
+  read -r -p "Choose an option [1-3]: " choice
+  case "$choice" in
     1) TARGET=claude ;;
     2) TARGET=codex ;;
     3) TARGET=both ;;
-    *) printf "invalid choice\n" >&2; exit 1 ;;
+    *) echo "❌ Invalid option, aborting"; exit 1 ;;
   esac
 fi
 
