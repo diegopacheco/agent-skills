@@ -1,0 +1,28 @@
+fact-checker/command.md
+  s_051fe30ce5c1d1::t_1828225fcae164 12-16,25-33
+fact-checker/README.md
+  s_051fe30ce5c1d1::t_1828225fcae164 8-13,44,55-59,76-79
+fact-checker/scripts/check_report.py
+  s_051fe30ce5c1d1::t_c5564b17707176 66-68,73-83
+  s_051fe30ce5c1d1::t_bcdaf3559e4905 84
+fact-checker/templates/verdict-template.html
+  s_051fe30ce5c1d1::t_f0366be9504a52 20,23,29-36,42,51-52,54,57,64,66,72,75,80-89,91-92,94-96,100,104-105,113,116,118-119,125-127,131-133,135,140,151,157,180-181,185,188,219-222,229,266-269,316,320-321,326,328-330,335,342,347-348,350,357,362-363
+fact-checker/SKILL.md
+  s_051fe30ce5c1d1::t_d5c747fef8c2ee 48-52,68-75,93-95,98-105,115-121,126-127
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "ca4644752128f7a330234929e03a54231535a2c7",
+  "prompts": {},
+  "sessions": {
+    "s_051fe30ce5c1d1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f0033e90-1f4c-4043-b495-ff58b6c54621",
+        "model": "claude-opus-5"
+      },
+      "human_author": "diegopacheco <diego.pacheco.it@gmail.com>"
+    }
+  }
+}
