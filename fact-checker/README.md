@@ -37,15 +37,19 @@ and `~/.codex/skills/fact-checker` + `~/.codex/prompts/fact-check.md`.
 
 1. Reads the input in full — an `html-research` report is read through its `REPORT` object,
    a URL is fetched, a path is read from disk.
-2. Splits it into checkable claims, `F1` upward, each restated as a yes/no question.
-   Opinions and recommendations are dropped, compound sentences are split.
+2. Splits it into the claims it actually makes, `F1` upward, each restated as a yes/no question.
+   Opinions and recommendations are dropped, compound sentences are split. Nothing is added:
+   one typed question is one fact, and a claim the input never made never becomes a card.
 3. Researches each fact on the web and collects evidence for **and** against it before ruling.
 4. Rules `true`, `false`, `partly` or `unverifiable`. No source means `unverifiable`, never `true`.
    Each ruling carries one plain sentence, under 30 words, saying why.
-5. Cross-checks facts against each other — two facts that cannot both be true are flagged on both.
-6. Triple checks True and False: does the source say this, is it the current primary source,
+5. Writes a **How it works** section on every false or partly true card, right above the sources:
+   plain text saying how the thing really works, the sum behind any number the claim turns on,
+   plus a diagram when the mechanism has steps.
+6. Cross-checks facts against each other — two facts that cannot both be true are flagged on both.
+7. Triple checks True and False: does the source say this, is it the current primary source,
    does the opposite argument hold. Each pass is recorded on the card.
-7. Fills `templates/verdict-template.html`, validates it, and opens it in Chrome.
+8. Fills `templates/verdict-template.html`, validates it, and opens it in Chrome.
 
 ## Output
 
@@ -56,7 +60,8 @@ The report opens with the summary — a one line score and 3 to 5 bullets — th
 the four verdicts that filters the page when clicked, then one search box over every claim,
 reason, source and file. Each card shows the original claim with its ✅ ❌ ⚠️ ❓ icon and the
 plain reason, and opens a modal with where the claim came from, the evidence for and against,
-the three checks, related claim ids and the sources.
+the three checks, related claim ids, how it really works when the claim is false or partly true,
+and the sources.
 
 ## Dependency
 
@@ -75,6 +80,7 @@ text.
 - `scripts/check_report.py` — fails the report on external assets, dark theme, missing favicon,
   missing search, a missing summary or headline, gaps or duplicates in the `F1..Fn` ids, unknown
   verdicts, facts missing the original claim, the question, the reason, origin, confidence,
-  sources or triple check, a reason over 30 words or one that restates the verdict, and any fact
-  ruled true without a source
+  sources or triple check, a reason over 30 words or one that restates the verdict, any fact
+  ruled true without a source, and any fact ruled false or partly true without a How it works
+  section
 - `scripts/open_report.sh` — opens the report in Chrome

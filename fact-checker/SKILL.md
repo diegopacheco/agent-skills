@@ -42,11 +42,14 @@ Filename: `fact-check-{input-slug}-{MM-yyyy}.html`, lowercase, hyphenated.
 
 1. Read the input in full. For a URL, fetch it. For an `html-research` report, parse its
    `REPORT` object. For a directory, read the real files.
-2. Extract every checkable claim into a numbered list: `F1`, `F2`, `F3`, and so on.
+2. Extract the claims the input itself makes, in the order it makes them: `F1`, `F2`, `F3`,
+   and so on. Every fact has to trace back to words that are in the input.
    A checkable claim asserts a fact about the world, a number, a capability, a date, a
    mechanism, or a file. Opinions, preferences and recommendations are not claims — skip them.
    Split compound sentences into separate facts. When the user types several claims in one
-   prompt, each claim is its own fact with its own id and its own icon. Aim for 8 to 40 facts.
+   prompt, each claim is its own fact with its own id and its own icon.
+   The number of facts comes from the input, never from a target. One typed question is one
+   fact. A long report is as many facts as it makes claims. Never pad the report.
 3. Keep every claim twice. `original` is the claim word for word as the input wrote it — this is
    what the card shows next to the ✅ or ❌. `claim` is the same claim restated as a short yes/no
    question: `F1: is Google just a search engine?`, `F2: are LLMs only text?`.
@@ -69,7 +72,11 @@ Filename: `fact-check-{input-slug}-{MM-yyyy}.html`, lowercase, hyphenated.
    (`9 of 14 claims are true.`) and 3 to 5 `summary` bullets — what holds up, what does not and
    why, what could not be settled. Plain words. No preamble.
 9. Copy `templates/verdict-template.html` to the output path and fill the `FACTCHECK` object.
-10. Draw a diagram only when a fact turns on a mechanism a paragraph cannot carry.
+10. Write `howItWorks` on every fact ruled `false` or `partly`: plain text saying how the thing
+    really works, the sum behind any number the claim turns on, plus a small inline diagram or
+    sequence diagram when the mechanism has steps or more than one moving part. It renders on the
+    card just above the sources. On other facts, draw a diagram only when the fact turns on a
+    mechanism a paragraph cannot carry.
 11. Run `python3 scripts/check_report.py <report.html>` and fix everything it reports.
 12. Run `bash scripts/open_report.sh <report.html>`.
 13. Print the full absolute path of the report as the last line of your answer.
@@ -84,20 +91,30 @@ Filename: `fact-check-{input-slug}-{MM-yyyy}.html`, lowercase, hyphenated.
 - Every fact carries at least one clickable source, and the `sources` list at the bottom is
   mandatory. A fact with no source is `unverifiable`, never `true`.
 - Never fabricate a URL, a quote, a number, or a date. If you did not open it, do not cite it.
+- Check the input's claims and nothing else. Never invent a claim, never check a claim the input
+  implies but does not make, never bring in a vendor, product, number or mechanism the input
+  never named. If you cannot point at the words in the input, it is not a fact.
+- What you learn while researching goes into that fact's `body`, `supports` and `refutes`.
+  Background never becomes a card of its own.
 - Never rule `true` because the claim sounds right. Rule on the source or rule `unverifiable`.
 - The verdict is about the claim as written, not about the charitable reading of it.
   A claim that is true only after you fix it is `partly`, and the card says what was fixed.
+- A card ruled `false` or `partly` is not finished until it says how the thing really works.
+  Breaking a claim without leaving the reader the right picture is half a job.
+- When a claim turns on a calculated number, the card shows the sum. Saying a number is wrong
+  without showing how the real one is worked out leaves the reader where they started.
 
 ## Facts
 
 Each fact needs `id`, `original`, `claim`, `verdict`, `verdictLine`, `where`, `confidence`,
-`body`, `checks` and `links`. Add `supports`, `refutes`, `tags`, `related` and `files` where
-they apply.
+`body`, `checks` and `links`. A fact ruled `false` or `partly` also needs `howItWorks`.
+Add `supports`, `refutes`, `tags`, `related` and `files` where they apply.
 
 - `id` — `F1` upward, no gaps, no reuse.
 - `original` — the claim word for word as the input wrote it. Never paraphrase it, never fix its
-  grammar. If the input is long prose, take the one sentence that carries the claim. The card
-  shows this line with ✅ ❌ ⚠️ or ❓ in front of it.
+  grammar. If the input is long prose, take the one sentence that carries the claim. It has to be
+  findable in the input — if you wrote the line yourself, drop the fact. The card shows this line
+  with ✅ ❌ ⚠️ or ❓ in front of it.
 - `claim` — the same claim as a yes/no question. One line, plain, no hedging.
 - `verdictLine` — the reason only, in plain words, under 30 words. Do not write the verdict word,
   the card already prints **True.** / **Not true.** / **Partly true.** / **Cannot tell.** in
@@ -111,6 +128,16 @@ they apply.
   A `true` fact still lists what argues against it when something does.
 - `checks` — the three triple-check passes, one line each, saying what the pass found.
 - `related` — ids of facts this one depends on or contradicts, like `["F4", "F11"]`.
+- `howItWorks` — `{text, svg}`. Required when the verdict is `false` or `partly`, allowed anywhere.
+  `text` is two to five short sentences saying how the thing really works, so a reader who believed
+  the claim walks away with the right picture. Plain words only: no jargon, no short forms, write
+  every name out in full, and say what each part does. `math` is a list of plain lines showing how
+  the number is actually worked out, and is required whenever the claim turns on a number someone
+  calculates — a percentage, an average, a rate, a score, a ratio. Name what goes in, then run one
+  worked case with real values and a real answer. Words and plain arithmetic only, never a symbol
+  the reader has to decode. When two sides work the same number out differently, show both sums.
+  `svg` is an inline diagram or sequence diagram of the same thing, drawn when the mechanism has
+  steps or more than one moving part. The card shows this section right above the sources.
 
 ## Summary
 

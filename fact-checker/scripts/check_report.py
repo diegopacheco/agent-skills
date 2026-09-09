@@ -5,6 +5,9 @@ from pathlib import Path
 
 VERDICTS = {"true", "false", "partly", "unverifiable"}
 
+NUMBERY = re.compile(r"%|\bpercent|\bpercentage|\baverage|\bratio\b|\brate\b|\bscore\b"
+                     r"|\bmedian\b|\bper (?:second|minute|hour|day|month|year)\b", re.I)
+
 def field_count(html, name):
     return len(re.findall(r'["\']?%s["\']?\s*:' % name, html))
 
@@ -46,8 +49,8 @@ def main(path):
 
     ids = re.findall(r'["\']?id["\']?\s*:\s*["\'](F\d+)["\']', html)
     n = len(ids)
-    if n < 2:
-        bad.append("only %d facts, a fact check needs several" % n)
+    if n < 1:
+        bad.append("no facts found")
     if len(set(ids)) != n:
         dupes = sorted({i for i in ids if ids.count(i) > 1})
         bad.append("duplicate fact ids: %s" % ", ".join(dupes))
@@ -93,13 +96,26 @@ def main(path):
     if body:
         blob = body.group(1)
         unsourced = 0
+        nohow = 0
+        nomath = 0
         for chunk in re.split(r'["\']?id["\']?\s*:\s*["\']F\d+["\']', blob)[1:]:
             v = re.search(r'["\']?verdict["\']?\s*:\s*["\']([a-zA-Z]+)["\']', chunk)
             l = re.search(r'["\']?links["\']?\s*:\s*\[\s*\{', chunk)
             if v and v.group(1).lower() == "true" and not l:
                 unsourced += 1
+            if v and v.group(1).lower() in ("false", "partly"):
+                if not re.search(r'["\']?howItWorks["\']?\s*:\s*\{', chunk):
+                    nohow += 1
+                elif NUMBERY.search(chunk) and not re.search(
+                        r'["\']?math["\']?\s*:\s*\[\s*["\']', chunk):
+                    nomath += 1
         if unsourced:
             bad.append("%d facts ruled true with no source, they must be unverifiable" % unsourced)
+        if nohow:
+            bad.append("%d facts ruled false or partly with no howItWorks section" % nohow)
+        if nomath:
+            bad.append("%d facts turn on a calculated number but howItWorks has no math lines"
+                       % nomath)
 
     if field_count(html, "sources") < 1 or html.count("http") < 5:
         bad.append("too few sources")

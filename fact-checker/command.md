@@ -9,8 +9,12 @@ $ARGUMENTS
 If the input is empty, ask what to check and stop.
 
 Use the `fact-checker` skill. Read the input in full, never from memory or from the filename.
-Extract every checkable claim as `F1`, `F2`, `F3`... When the input carries several claims, each
-one is its own fact with its own id and its own icon. Keep each claim word for word in `original`
+Extract the claims the input itself makes as `F1`, `F2`, `F3`... Check those and nothing else:
+never invent a claim, never check a claim the input implies but does not make, never bring in a
+vendor, product or number the input never named. One typed question is one fact. When the input
+carries several claims, each one is its own fact with its own id and its own icon. What you learn
+while researching goes on that fact's card, not on a new one.
+Keep each claim word for word in `original`
 and restate it as a yes/no question in `claim` (`F1: is Google just a search engine?`,
 `F2: are LLMs only text?`), then research each one on the web and find evidence for AND against
 it before ruling.
@@ -19,6 +23,12 @@ Rule each fact `true`, `false`, `partly` or `unverifiable`. A fact with no sourc
 `unverifiable`, never `true`. Flag facts that contradict each other on both cards. Triple-check
 the `true` and `false` groups at the end in three passes — does the source say this, is it the
 current primary source, does the opposite argument hold — and record each pass on the card.
+
+Every fact ruled `false` or `partly` carries a `howItWorks` section above its sources: two to five
+short sentences saying how the thing really works, in plain words with no jargon and no short
+forms, plus a small inline diagram or sequence diagram when the mechanism has steps. When the
+claim turns on a number someone calculates — a percentage, an average, a rate, a score — the
+section also shows `math`: what goes into the number and one worked sum with real values.
 
 Render one self-contained light-theme HTML report from `templates/verdict-template.html` into
 `/Users/diegopacheco/git/diegopacheco/html-research/fact-check-{input-slug}-{MM-yyyy}.html`:

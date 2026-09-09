@@ -128,6 +128,12 @@ h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute
 .modal p{margin:0 0 10px}
 .modal ul{margin:0 0 10px;padding-left:20px}
 .modal li{margin-bottom:5px}
+.modal .hiw{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:14px 16px;margin:0 0 10px;overflow-x:auto}
+.modal .hiw svg{display:block;max-width:100%;height:auto}
+.modal ul.math{list-style:none;margin:0 0 10px;padding:13px 16px;border:1px solid var(--line);
+  background:var(--chip);border-radius:10px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:13px;line-height:1.65;overflow-x:auto}
+.modal ul.math li{margin-bottom:3px}
 .verdictline{font-size:17px;margin:0 0 12px}
 .verdictline b{font-weight:700}
 .modal .v-true .verdictline b{color:var(--true)}
@@ -203,6 +209,11 @@ const FACTCHECK = {
       ],
       related: ["F4"],
       files: [{path: "/full/path/to/file.ext", url: "https://github.com/org/repo/blob/main/file.ext"}],
+      howItWorks: {
+        text: "How the thing really works, in plain words. Required when the verdict is false or partly.",
+        math: ["How the number is worked out, one plain line at a time, ending in a worked sum."],
+        svg: ""
+      },
       links: [{title: "Source title", url: "https://example.com"}]
     }
   ],
@@ -230,7 +241,9 @@ const hay = f => [f.id, f.original, f.claim, f.verdict, vOf(f).label, vOf(f).say
   (f.tags||[]).join(" "), (f.body||[]).map(b => b.h + " " + b.p).join(" "),
   (f.supports||[]).join(" "), (f.refutes||[]).join(" "), (f.checks||[]).join(" "),
   (f.related||[]).join(" "), (f.files||[]).map(x => x.path).join(" "),
-  (f.links||[]).map(l => l.title + " " + l.url).join(" ")].join(" ").toLowerCase();
+  (f.links||[]).map(l => l.title + " " + l.url).join(" "),
+  (f.howItWorks && f.howItWorks.text) || "",
+  ((f.howItWorks && f.howItWorks.math) || []).join(" ")].join(" ").toLowerCase();
 
 let filter = "";
 let group = "All";
@@ -358,6 +371,12 @@ function openFact(i){
       f.related.map(r => '<button data-id="' + esc(r) + '">' + esc(r) + "</button>").join("") + "</div>" : "") +
     ((f.files||[]).length ? '<h4>Files</h4><ul class="files">' + f.files.map(x =>
       "<li>" + (x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.path) + "</a>" : esc(x.path)) + "</li>").join("") + "</ul>" : "") +
+    ((f.howItWorks && (f.howItWorks.text || f.howItWorks.svg || (f.howItWorks.math||[]).length)) ?
+      "<h4>How it works</h4>" +
+      (f.howItWorks.text ? "<p>" + esc(f.howItWorks.text) + "</p>" : "") +
+      ((f.howItWorks.math||[]).length ? '<ul class="math">' +
+        f.howItWorks.math.map(m => "<li>" + esc(m) + "</li>").join("") + "</ul>" : "") +
+      (f.howItWorks.svg ? '<div class="hiw">' + f.howItWorks.svg + "</div>" : "") : "") +
     ((f.links||[]).length ? "<h4>Sources</h4><ul>" + f.links.map(l =>
       '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.title) + "</a></li>").join("") + "</ul>" : "") +
     "</div>";
