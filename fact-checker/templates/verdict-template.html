@@ -17,22 +17,29 @@
 *{box-sizing:border-box}
 html{color-scheme:light}
 body{margin:0;background:var(--bg);color:var(--ink);
-  font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
 a{color:var(--accent)}
 .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
-header.hero{padding:44px 0 26px;border-bottom:1px solid var(--line);background:var(--panel)}
+header.hero{padding:44px 0 28px;border-bottom:1px solid var(--line);background:var(--panel)}
 .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
 h1{margin:10px 0 8px;font-size:34px;line-height:1.2;letter-spacing:-.02em}
 .lead{margin:0;color:var(--muted);max-width:80ch;font-size:16px}
 .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .pill{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:12px;color:var(--muted)}
-.board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+.summary{border:1px solid var(--line);border-left:4px solid var(--accent);background:var(--bg);
+  border-radius:12px;padding:18px 22px;margin-top:22px}
+.summary .headline{margin:0 0 10px;font-size:21px;line-height:1.35;font-weight:700;letter-spacing:-.01em}
+.summary ul{margin:0;padding:0;list-style:none}
+.summary li{position:relative;padding-left:18px;margin-bottom:7px;font-size:15.5px}
+.summary li:last-child{margin-bottom:0}
+.summary li:before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
 @media(max-width:720px){.board{grid-template-columns:repeat(2,1fr)}}
 .tile{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--line);
   border-radius:11px;padding:12px 14px;cursor:pointer;text-align:left;font:inherit;color:inherit}
 .tile:hover{border-color:var(--accent);border-left-color:var(--accent)}
 .tile b{display:block;font-size:26px;line-height:1.1}
-.tile span{font-size:12px;color:var(--muted)}
+.tile span{font-size:12.5px;color:var(--muted)}
 .tile.on{box-shadow:0 0 0 3px var(--accent-soft)}
 .tile.t-true{border-left-color:var(--true)}.tile.t-true b{color:var(--true)}
 .tile.t-false{border-left-color:var(--false)}.tile.t-false b{color:var(--false)}
@@ -41,56 +48,61 @@ h1{margin:10px 0 8px;font-size:34px;line-height:1.2;letter-spacing:-.02em}
 .toolbar{position:sticky;top:0;z-index:20;background:rgba(247,246,243,.94);
   backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 0}
 .toolrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-#q{flex:1;min-width:240px;padding:10px 13px;border:1px solid var(--line);border-radius:9px;
-  background:var(--panel);color:var(--ink);font-size:14px;outline:none}
+#q{flex:1;min-width:240px;padding:11px 14px;border:1px solid var(--line);border-radius:9px;
+  background:var(--panel);color:var(--ink);font-size:15px;outline:none}
 #q:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
-.count{font-size:12px;color:var(--muted);white-space:nowrap}
+.count{font-size:12.5px;color:var(--muted);white-space:nowrap}
 .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
 .chip{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;
-  padding:5px 12px;font-size:12.5px;cursor:pointer}
+  padding:5px 12px;font-size:13px;cursor:pointer}
 .chip:hover{border-color:var(--accent)}
 .chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
 main{padding:26px 0 64px}
 section{margin:0 0 34px}
 h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
   margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
 .card{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--line);
-  border-radius:12px;padding:15px 17px;cursor:pointer;transition:border-color .12s,transform .12s,box-shadow .12s}
+  border-radius:12px;padding:16px 18px;cursor:pointer;transition:border-color .12s,transform .12s,box-shadow .12s}
 .card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 18px rgba(28,27,25,.07)}
 .card.v-true{border-left-color:var(--true)}
 .card.v-false{border-left-color:var(--false)}
 .card.v-partly{border-left-color:var(--partly)}
 .card.v-unverifiable{border-left-color:var(--unknown)}
-.crow{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.crow{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
 .fid{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;font-weight:700;
   background:var(--chip);border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--muted)}
-.badge{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border-radius:6px;padding:3px 8px}
+.badge{font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border-radius:6px;padding:3px 8px}
 .badge.v-true{background:var(--true-soft);color:var(--true)}
 .badge.v-false{background:var(--false-soft);color:var(--false)}
 .badge.v-partly{background:var(--partly-soft);color:var(--partly)}
 .badge.v-unverifiable{background:var(--unknown-soft);color:var(--unknown)}
-.conf{font-size:11.5px;color:var(--muted);margin-left:auto}
-.card h3{margin:0 0 7px;font-size:16px;line-height:1.35}
-.card p{margin:0;color:var(--muted);font-size:14px}
+.conf{font-size:12px;color:var(--muted);margin-left:auto}
+.claimrow{display:flex;gap:11px;align-items:flex-start}
+.ic{font-size:22px;line-height:1.25;flex:none}
+.card h3{margin:0;font-size:17px;line-height:1.4;font-weight:600}
+.said{margin:11px 0 0;font-size:15px}
+.said b{font-weight:700}
+.card.v-true .said b{color:var(--true)}
+.card.v-false .said b{color:var(--false)}
+.card.v-partly .said b{color:var(--partly)}
+.card.v-unverifiable .said b{color:var(--unknown)}
 .card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.tag{font-size:11px;background:var(--accent-soft);color:var(--accent);border-radius:5px;padding:2px 7px}
-.badges{display:flex;gap:10px;margin-top:11px;font-size:11.5px;color:var(--muted)}
+.tag{font-size:11.5px;background:var(--accent-soft);color:var(--accent);border-radius:5px;padding:2px 7px}
+.badges{display:flex;gap:10px;margin-top:11px;font-size:12px;color:var(--muted)}
 .badges b{font-weight:700;color:var(--ink)}
-.more{margin-top:11px;font-size:12px;color:var(--accent);font-weight:600}
-.summary{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
-  border-radius:10px;padding:18px 20px;margin-bottom:30px}
-.summary p{margin:0 0 10px}.summary p:last-child{margin:0}
-.where{font-size:13px;color:var(--muted);border-left:2px solid var(--line);padding:2px 0 2px 10px;margin:0 0 10px}
+.more{margin-top:11px;font-size:12.5px;color:var(--accent);font-weight:600}
+.where{font-size:13.5px;color:var(--muted);border-left:2px solid var(--line);padding:2px 0 2px 10px;margin:0 0 12px}
+.asked{font-size:14px;color:var(--muted);margin:0 0 12px}
 .ev{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px}
 @media(max-width:640px){.ev{grid-template-columns:1fr}}
 .ev ul{list-style:none;margin:0;padding:0}
-.ev li{position:relative;padding-left:20px;margin-bottom:7px;font-size:14px}
+.ev li{position:relative;padding-left:20px;margin-bottom:7px;font-size:15px}
 .sup li:before{content:"+";position:absolute;left:2px;color:var(--true);font-weight:700}
 .ref li:before{content:"\2212";position:absolute;left:2px;color:var(--false);font-weight:700}
 .checks{counter-reset:g;list-style:none;margin:0;padding:0}
-.checks li{counter-increment:g;position:relative;padding-left:26px;margin-bottom:7px;font-size:14px}
-.checks li:before{content:counter(g);position:absolute;left:0;top:1px;width:17px;height:17px;border-radius:5px;
+.checks li{counter-increment:g;position:relative;padding-left:26px;margin-bottom:7px;font-size:15px}
+.checks li:before{content:counter(g);position:absolute;left:0;top:2px;width:17px;height:17px;border-radius:5px;
   background:var(--chip);border:1px solid var(--line);color:var(--muted);font-size:10.5px;text-align:center;line-height:16px}
 .rel{display:flex;flex-wrap:wrap;gap:6px}
 .rel button{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;background:var(--chip);
@@ -98,32 +110,34 @@ h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute
 .rel button:hover{border-color:var(--accent)}
 .diagram{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:14px;overflow-x:auto}
 .diagram h3{margin:0 0 4px;font-size:16px}
-.diagram .cap{margin:0 0 12px;color:var(--muted);font-size:13px}
+.diagram .cap{margin:0 0 12px;color:var(--muted);font-size:13.5px}
 .diagram svg{display:block;max-width:100%;height:auto}
 .srcs{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.srcs li{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px;font-size:14px}
+.srcs li{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 13px;font-size:15px}
 .srcs a{text-decoration:none;font-weight:600}
-.srcs span{color:var(--muted);font-size:12.5px}
-.empty{color:var(--muted);padding:26px 0;font-size:14px}
+.srcs span{color:var(--muted);font-size:13px}
+.empty{color:var(--muted);padding:26px 0;font-size:15px}
 .ov{position:fixed;inset:0;background:rgba(28,27,25,.42);display:none;align-items:flex-start;
   justify-content:center;padding:5vh 18px;z-index:60;overflow:auto}
 .ov.on{display:flex}
 .modal{background:var(--panel);border:1px solid var(--line);border-radius:14px;max-width:820px;width:100%;
   padding:26px 28px 30px;box-shadow:0 24px 60px rgba(28,27,25,.2)}
-.modal h3{margin:0 0 6px;font-size:23px;line-height:1.25}
-.modal .kicker{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
-.modal h4{margin:20px 0 6px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.modal h3{margin:0 0 10px;font-size:23px;line-height:1.3;display:flex;gap:12px;align-items:flex-start}
+.modal .kicker{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.modal h4{margin:22px 0 6px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .modal p{margin:0 0 10px}
 .modal ul{margin:0 0 10px;padding-left:20px}
 .modal li{margin-bottom:5px}
-.verdictline{font-size:16px;margin:0 0 4px}
+.verdictline{font-size:17px;margin:0 0 12px}
+.verdictline b{font-weight:700}
+.modal .v-true .verdictline b{color:var(--true)}
 .files{list-style:none;margin:0;padding:0;display:grid;gap:6px}
-.files li{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
+.files li{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;
   background:var(--chip);border:1px solid var(--line);border-radius:7px;padding:7px 10px;word-break:break-all}
 .close{float:right;border:1px solid var(--line);background:var(--panel);border-radius:8px;
   width:30px;height:30px;font-size:16px;line-height:1;cursor:pointer;color:var(--muted)}
 .close:hover{border-color:var(--accent);color:var(--accent)}
-footer{border-top:1px solid var(--line);padding:20px 0 40px;color:var(--muted);font-size:12.5px}
+footer{border-top:1px solid var(--line);padding:20px 0 40px;color:var(--muted);font-size:13px}
 mark{background:#fdf0c9;color:inherit;border-radius:2px}
 @media print{.toolbar,.close{display:none}}
 </style>
@@ -134,19 +148,19 @@ mark{background:#fdf0c9;color:inherit;border-radius:2px}
   <h1 id="hTitle"></h1>
   <p class="lead" id="hLead"></p>
   <div class="pills" id="hPills"></div>
+  <div class="summary" id="summary"></div>
   <div class="board" id="board"></div>
 </div></header>
 
 <div class="toolbar"><div class="wrap">
   <div class="toolrow">
-    <input id="q" type="search" placeholder="Search every fact, source and file  (press /)" autocomplete="off">
+    <input id="q" type="search" placeholder="Search every claim, reason, source and file  (press /)" autocomplete="off">
     <span class="count" id="count"></span>
   </div>
   <div class="chips" id="chips"></div>
 </div></div>
 
 <main class="wrap">
-  <div class="summary" id="summary"></div>
   <div id="sections"></div>
   <section id="diagrams" hidden><h2>Diagrams</h2><div id="diagramBody"></div></section>
   <section id="sourcesSec"><h2>Sources</h2><ul class="srcs" id="sources"></ul></section>
@@ -163,13 +177,15 @@ const FACTCHECK = {
   lead: "One sentence naming the input that was checked and how many claims came out of it.",
   checked: {label: "Source of the claims", url: "https://example.com"},
   pills: ["Input", "Checked Month D, YYYY"],
-  summary: ["What holds up.", "What does not.", "What could not be settled and why."],
+  headline: "N of M claims are true.",
+  summary: ["What holds up.", "What does not, and why.", "What could not be settled and why."],
   facts: [
     {
       id: "F1",
+      original: "Google is just a search engine.",
       claim: "is google just a search engine?",
       verdict: "false",
-      verdictLine: "One sentence: the ruling and the reason for it.",
+      verdictLine: "Plain reason in one short sentence. No verdict word, the card adds it.",
       where: "Where the claim appears: quoted text, card title, or /full/path/file.ext:12",
       confidence: "high",
       tags: ["tag"],
@@ -200,17 +216,17 @@ const FACTCHECK = {
 };
 
 const V = {
-  "true":         {key: "true",         label: "True",         emoji: "✅", group: "True"},
-  "false":        {key: "false",        label: "False",        emoji: "❌", group: "False"},
-  "partly":       {key: "partly",       label: "Partly True",  emoji: "⚠️", group: "Partly True"},
-  "unverifiable": {key: "unverifiable", label: "Unverifiable", emoji: "❓", group: "Unverifiable"}
+  "true":         {key: "true",         label: "True",         emoji: "✅", say: "True",        group: "True"},
+  "false":        {key: "false",        label: "False",        emoji: "❌", say: "Not true",    group: "False"},
+  "partly":       {key: "partly",       label: "Partly True",  emoji: "⚠️", say: "Partly true", group: "Partly True"},
+  "unverifiable": {key: "unverifiable", label: "Unverifiable", emoji: "❓", say: "Cannot tell", group: "Unverifiable"}
 };
 const ORDER = ["true", "false", "partly", "unverifiable"];
 const vOf = f => V[String(f.verdict).toLowerCase()] || V.unverifiable;
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const hay = f => [f.id, f.claim, f.verdict, vOf(f).label, f.verdictLine, f.where, f.confidence,
+const hay = f => [f.id, f.original, f.claim, f.verdict, vOf(f).label, vOf(f).say, f.verdictLine, f.where, f.confidence,
   (f.tags||[]).join(" "), (f.body||[]).map(b => b.h + " " + b.p).join(" "),
   (f.supports||[]).join(" "), (f.refutes||[]).join(" "), (f.checks||[]).join(" "),
   (f.related||[]).join(" "), (f.files||[]).map(x => x.path).join(" "),
@@ -247,6 +263,10 @@ function boot(){
   }
   $("#hPills").innerHTML = pills.join("");
 
+  $("#summary").innerHTML =
+    '<p class="headline">' + esc(FACTCHECK.headline || "") + "</p><ul>" +
+    (FACTCHECK.summary||[]).map(p => "<li>" + esc(p) + "</li>").join("") + "</ul>";
+
   const c = counts();
   $("#board").innerHTML = ORDER.map(k =>
     '<button class="tile t-' + k + (group === V[k].group ? " on" : "") + '" data-g="' + esc(V[k].group) + '">' +
@@ -256,7 +276,6 @@ function boot(){
     group = (group === b.dataset.g) ? "All" : b.dataset.g; boot();
   };
 
-  $("#summary").innerHTML = (FACTCHECK.summary||[]).map(p => "<p>" + esc(p) + "</p>").join("");
   $("#foot").textContent = FACTCHECK.footer || "";
 
   const groups = ["All", ...ORDER.map(k => V[k].group)];
@@ -294,47 +313,54 @@ function render(){
   const q = filter.trim().toLowerCase();
   const facts = FACTCHECK.facts.filter(f =>
     (group === "All" || vOf(f).group === group) && (!q || hay(f).includes(q)));
-  $("#count").textContent = facts.length + " of " + FACTCHECK.facts.length + " facts";
+  $("#count").textContent = facts.length + " of " + FACTCHECK.facts.length + " claims";
   const html = ORDER.map(k => {
     const list = facts.filter(f => vOf(f).key === k);
     if(!list.length) return "";
-    return "<section><h2>" + V[k].emoji + " " + esc(V[k].label) + " &middot; " + list.length +
+    const v = V[k];
+    return "<section><h2>" + v.emoji + " " + esc(v.label) + " &middot; " + list.length +
       '</h2><div class="grid">' + list.map(f => {
         const i = FACTCHECK.facts.indexOf(f);
         return '<article class="card v-' + k + '" data-i="' + i + '">' +
           '<div class="crow"><span class="fid">' + esc(f.id) + '</span>' +
-          '<span class="badge v-' + k + '">' + esc(V[k].label) + "</span>" +
+          '<span class="badge v-' + k + '">' + v.emoji + " " + esc(v.label) + "</span>" +
           (f.confidence ? '<span class="conf">' + esc(f.confidence) + " confidence</span>" : "") + "</div>" +
-          "<h3>" + hl(f.claim, q) + "</h3><p>" + hl(f.verdictLine, q) + "</p>" +
+          '<div class="claimrow"><span class="ic">' + v.emoji + "</span>" +
+          "<h3>" + hl(f.original || f.claim, q) + "</h3></div>" +
+          '<p class="said"><b>' + v.say + ".</b> " + hl(f.verdictLine, q) + "</p>" +
           ((f.tags||[]).length ? '<div class="tags">' + f.tags.map(t => '<span class="tag">' + esc(t) + "</span>").join("") + "</div>" : "") +
           meta(f) + '<div class="more">Open the evidence &rarr;</div></article>';
       }).join("") + "</div></section>";
   }).join("");
-  $("#sections").innerHTML = html || '<p class="empty">No fact matches that search.</p>';
+  $("#sections").innerHTML = html || '<p class="empty">No claim matches that search.</p>';
 }
 
 function openFact(i){
   const f = FACTCHECK.facts[i];
   const v = vOf(f);
   $("#modal").innerHTML =
+    '<div class="v-' + v.key + '">' +
     '<button class="close" id="x">&times;</button>' +
     '<div class="kicker"><span class="fid">' + esc(f.id) + '</span>' +
     '<span class="badge v-' + v.key + '">' + v.emoji + " " + esc(v.label) + "</span>" +
     (f.confidence ? '<span class="conf">' + esc(f.confidence) + " confidence</span>" : "") + "</div>" +
-    "<h3>" + esc(f.claim) + '</h3><p class="verdictline">' + esc(f.verdictLine) + "</p>" +
+    '<h3><span class="ic">' + v.emoji + "</span><span>" + esc(f.original || f.claim) + "</span></h3>" +
+    '<p class="verdictline"><b>' + v.say + ".</b> " + esc(f.verdictLine) + "</p>" +
     (f.where ? '<p class="where">' + esc(f.where) + "</p>" : "") +
+    (f.original && f.claim ? '<p class="asked">Checked as: ' + esc(f.claim) + "</p>" : "") +
     (f.body||[]).map(b => "<h4>" + esc(b.h) + "</h4><p>" + esc(b.p) + "</p>").join("") +
     (((f.supports||[]).length || (f.refutes||[]).length) ? '<h4>Evidence</h4><div class="ev">' +
       '<div class="sup"><ul>' + (f.supports||[]).map(s => "<li>" + esc(s) + "</li>").join("") + "</ul></div>" +
       '<div class="ref"><ul>' + (f.refutes||[]).map(s => "<li>" + esc(s) + "</li>").join("") + "</ul></div></div>" : "") +
     ((f.checks||[]).length ? '<h4>Triple check</h4><ol class="checks">' +
       f.checks.map(c => "<li>" + esc(c) + "</li>").join("") + "</ol>" : "") +
-    ((f.related||[]).length ? '<h4>Related facts</h4><div class="rel">' +
+    ((f.related||[]).length ? '<h4>Related claims</h4><div class="rel">' +
       f.related.map(r => '<button data-id="' + esc(r) + '">' + esc(r) + "</button>").join("") + "</div>" : "") +
     ((f.files||[]).length ? '<h4>Files</h4><ul class="files">' + f.files.map(x =>
       "<li>" + (x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.path) + "</a>" : esc(x.path)) + "</li>").join("") + "</ul>" : "") +
     ((f.links||[]).length ? "<h4>Sources</h4><ul>" + f.links.map(l =>
-      '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.title) + "</a></li>").join("") + "</ul>" : "");
+      '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.title) + "</a></li>").join("") + "</ul>" : "") +
+    "</div>";
   $("#ov").classList.add("on");
   $("#x").onclick = close;
   $("#modal").querySelectorAll(".rel button").forEach(b => b.onclick = () => {

@@ -63,11 +63,24 @@ def main(path):
     if n and len(graded) < n:
         bad.append("%d facts but only %d verdicts" % (n, len(graded)))
 
-    for name, label in (("claim", "claim"), ("verdictLine", "verdictLine"),
-                        ("where", "where"), ("confidence", "confidence")):
+    for name, label in (("original", "the original claim"), ("claim", "claim"),
+                        ("verdictLine", "verdictLine"), ("where", "where"),
+                        ("confidence", "confidence")):
         c = field_count(html, name)
         if n and c < n:
             bad.append("%d facts but only %d have %s" % (n, c, label))
+
+    if not re.search(r'["\']?headline["\']?\s*:\s*["\'][^"\']+', html):
+        bad.append("no headline, the summary on top needs a one line verdict")
+    if not re.search(r'["\']?summary["\']?\s*:\s*\[\s*["\']', html):
+        bad.append("no summary on top")
+
+    for line in re.findall(r'["\']?verdictLine["\']?\s*:\s*["\']([^"\']+)', html):
+        words = line.split()
+        if len(words) > 30:
+            bad.append("verdictLine is %d words, keep it under 30: %s" % (len(words), line[:60]))
+        if words and words[0].strip(",.").lower() in ("true", "false", "yes", "no", "partly", "correct", "incorrect"):
+            bad.append("verdictLine restates the verdict, give the reason only: %s" % line[:60])
 
     links = field_count(html, "links")
     if n and links < n:

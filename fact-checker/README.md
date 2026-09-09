@@ -5,8 +5,12 @@ self-contained light-theme HTML verdict report.
 
 Each claim becomes a numbered fact — `F1: is Google just a search engine?`,
 `F2: are LLMs only text?` — is researched on the web for and against, and lands in one of four
-groups: ✅ True, ❌ False, ⚠️ Partly True, ❓ Unverifiable. True and False are triple checked
-before the report is written.
+groups: ✅ True, ❌ False, ⚠️ Partly True, ❓ Unverifiable. Feed it several claims at once and
+each one gets its own card and its own icon. True and False are triple checked before the report
+is written.
+
+The report shows the claim exactly as it was written, the icon in front of it, and one short
+plain sentence saying why it is true or why it is not.
 
 ## Install
 
@@ -37,6 +41,7 @@ and `~/.codex/skills/fact-checker` + `~/.codex/prompts/fact-check.md`.
    Opinions and recommendations are dropped, compound sentences are split.
 3. Researches each fact on the web and collects evidence for **and** against it before ruling.
 4. Rules `true`, `false`, `partly` or `unverifiable`. No source means `unverifiable`, never `true`.
+   Each ruling carries one plain sentence, under 30 words, saying why.
 5. Cross-checks facts against each other — two facts that cannot both be true are flagged on both.
 6. Triple checks True and False: does the source say this, is it the current primary source,
    does the opposite argument hold. Each pass is recorded on the card.
@@ -47,10 +52,11 @@ and `~/.codex/skills/fact-checker` + `~/.codex/prompts/fact-check.md`.
 One HTML file in `/Users/diegopacheco/git/diegopacheco/html-research/`, named
 `fact-check-{slug}-{MM-yyyy}.html`, opened in Chrome.
 
-The report has a scoreboard of the four verdicts that filters the page when clicked, one search
-box over every fact, source and file, and one clickable card per fact opening a modal with the
-claim, where it came from, the evidence for and against, the three checks, related fact ids and
-the sources.
+The report opens with the summary — a one line score and 3 to 5 bullets — then a scoreboard of
+the four verdicts that filters the page when clicked, then one search box over every claim,
+reason, source and file. Each card shows the original claim with its ✅ ❌ ⚠️ ❓ icon and the
+plain reason, and opens a modal with where the claim came from, the evidence for and against,
+the three checks, related claim ids and the sources.
 
 ## Dependency
 
@@ -67,7 +73,8 @@ text.
 - `command.md` — the `/fact-check` command, installed into both tools
 - `templates/verdict-template.html` — the report shell, filled by editing its `FACTCHECK` object
 - `scripts/check_report.py` — fails the report on external assets, dark theme, missing favicon,
-  missing search, gaps or duplicates in the `F1..Fn` ids, unknown verdicts, facts missing a
-  claim, verdict line, origin, confidence, sources or triple check, and any fact ruled true
-  without a source
+  missing search, a missing summary or headline, gaps or duplicates in the `F1..Fn` ids, unknown
+  verdicts, facts missing the original claim, the question, the reason, origin, confidence,
+  sources or triple check, a reason over 30 words or one that restates the verdict, and any fact
+  ruled true without a source
 - `scripts/open_report.sh` — opens the report in Chrome

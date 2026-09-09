@@ -45,9 +45,11 @@ Filename: `fact-check-{input-slug}-{MM-yyyy}.html`, lowercase, hyphenated.
 2. Extract every checkable claim into a numbered list: `F1`, `F2`, `F3`, and so on.
    A checkable claim asserts a fact about the world, a number, a capability, a date, a
    mechanism, or a file. Opinions, preferences and recommendations are not claims — skip them.
-   Split compound sentences into separate facts. Aim for 8 to 40 facts.
-3. Restate each fact as a short yes/no question: `F1: is Google just a search engine?`,
-   `F2: are LLMs only text?`. Keep the original wording in `where` so the reader can find it.
+   Split compound sentences into separate facts. When the user types several claims in one
+   prompt, each claim is its own fact with its own id and its own icon. Aim for 8 to 40 facts.
+3. Keep every claim twice. `original` is the claim word for word as the input wrote it — this is
+   what the card shows next to the ✅ or ❌. `claim` is the same claim restated as a short yes/no
+   question: `F1: is Google just a search engine?`, `F2: are LLMs only text?`.
 4. Research each fact on the web. Do not rule from memory. For each fact find evidence that
    supports it AND evidence that refutes it before ruling. Prefer primary sources: official
    docs, filings, papers, the vendor's own pricing or status page, the actual source file.
@@ -63,11 +65,14 @@ Filename: `fact-check-{input-slug}-{MM-yyyy}.html`, lowercase, hyphenated.
    - pass 1: does the source actually say this, in these words, on the page you opened?
    - pass 2: is the source current, and is it the primary source or someone quoting it?
    - pass 3: argue the opposite verdict out loud. If that argument holds, the verdict is `partly`.
-8. Copy `templates/verdict-template.html` to the output path and fill the `FACTCHECK` object.
-9. Draw a diagram only when a fact turns on a mechanism a paragraph cannot carry.
-10. Run `python3 scripts/check_report.py <report.html>` and fix everything it reports.
-11. Run `bash scripts/open_report.sh <report.html>`.
-12. Print the full absolute path of the report as the last line of your answer.
+8. Write the summary that sits on top of the report: a `headline` giving the count in one line
+   (`9 of 14 claims are true.`) and 3 to 5 `summary` bullets — what holds up, what does not and
+   why, what could not be settled. Plain words. No preamble.
+9. Copy `templates/verdict-template.html` to the output path and fill the `FACTCHECK` object.
+10. Draw a diagram only when a fact turns on a mechanism a paragraph cannot carry.
+11. Run `python3 scripts/check_report.py <report.html>` and fix everything it reports.
+12. Run `bash scripts/open_report.sh <report.html>`.
+13. Print the full absolute path of the report as the last line of your answer.
 
 ## Hard Rules
 
@@ -85,12 +90,19 @@ Filename: `fact-check-{input-slug}-{MM-yyyy}.html`, lowercase, hyphenated.
 
 ## Facts
 
-Each fact needs `id`, `claim`, `verdict`, `verdictLine`, `where`, `confidence`, `body`,
-`checks` and `links`. Add `supports`, `refutes`, `tags`, `related` and `files` where they apply.
+Each fact needs `id`, `original`, `claim`, `verdict`, `verdictLine`, `where`, `confidence`,
+`body`, `checks` and `links`. Add `supports`, `refutes`, `tags`, `related` and `files` where
+they apply.
 
 - `id` — `F1` upward, no gaps, no reuse.
-- `claim` — the yes/no question. One line, plain, no hedging.
-- `verdictLine` — one sentence with the ruling and the reason. This is the card teaser.
+- `original` — the claim word for word as the input wrote it. Never paraphrase it, never fix its
+  grammar. If the input is long prose, take the one sentence that carries the claim. The card
+  shows this line with ✅ ❌ ⚠️ or ❓ in front of it.
+- `claim` — the same claim as a yes/no question. One line, plain, no hedging.
+- `verdictLine` — the reason only, in plain words, under 30 words. Do not write the verdict word,
+  the card already prints **True.** / **Not true.** / **Partly true.** / **Cannot tell.** in
+  front of it. When the claim is not true, this line says why it is not, in one short sentence a
+  reader gets on the first pass. Give the fact that breaks it, not an argument about it.
 - `where` — where the claim appears: quoted text, a card title, a line, or a full file path.
 - `confidence` — `high`, `medium` or `low`, based on source quality, not on how sure you feel.
 - `body` — two to four `{h, p}` blocks: what the claim says, what the evidence says, what
@@ -100,11 +112,19 @@ Each fact needs `id`, `claim`, `verdict`, `verdictLine`, `where`, `confidence`, 
 - `checks` — the three triple-check passes, one line each, saying what the pass found.
 - `related` — ids of facts this one depends on or contradicts, like `["F4", "F11"]`.
 
+## Summary
+
+`headline` is one line with the score: `9 of 14 claims are true.`
+`summary` is 3 to 5 bullets, one sentence each, in this order: what holds up, what is wrong and
+why, what could not be settled. It sits at the top of the report, above the search box, so it
+has to read on its own without opening a single card.
+
 ## Style
 
 Direct. No preamble, no summary of what you are about to do, no addressing anyone.
 Never open with "Great question" or "In this report". State the verdict, then the evidence.
-Short sentences. Concrete numbers, dates, versions and names beat adjectives.
+Short sentences, plain words, no jargon, no hedging, no long prose. Say the thing and stop.
+Concrete numbers, dates, versions and names beat adjectives.
 When sources disagree, say which one you trust and why in one line.
 
 ## Final Answer
