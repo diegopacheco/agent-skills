@@ -1,0 +1,14 @@
+commands/do.md
+  h_8e2c3875396153 11,13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "7cb8e9527331f41fa6622e28e90ff48578e48b9c",
+  "prompts": {},
+  "humans": {
+    "h_8e2c3875396153": {
+      "author": "diegopacheco <diego.pacheco.it@gmail.com>"
+    }
+  }
+}
