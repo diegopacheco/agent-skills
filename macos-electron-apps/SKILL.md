@@ -16,8 +16,12 @@ allowed-tools: [Bash, Read, AskUserQuestion]
 - Macos/electron apps remeber the position x,y or full screen when open/close and restore exact position of app in ui/screen.
 - Macos/Electron apps must have common shortcut features like(unless app only lives in top menu bar - for this case you can ignore this):
   - CMD + k: search anything on the app, in a nice modal - enter goto.
-  - CMD + /: display all shortcuts in a modal like cmd + k.
+  - CMD + /: display all shortcuts in a modal like cmd + k. This modal must:
+    - Always fit on the screen: cap the card height (max-height ~92vh), flow the groups in columns, and scroll inside the card so no shortcut is ever cut off. Drop to a single column on narrow windows.
+    - Group the shortcuts by feature area, each group with its own icon and its own color(icon, group title, border and the keys of that group share the color). Draw the icons as inline SVG at a single stroke weight, do not add an icon font or an icon library.
+    - Have a search bar on top, auto focused, filtering as the user types. Matching a group title keeps the whole group, otherwise keep only the rows matching the keys or the description. Show how many shortcuts matched, and a plain message when nothing does. Esc clears a filled search box first, and closes the modal when it is empty.
   - CMD + + and CMD + -: Zoom in and out of the app.
   - CMD + 0..9 Goto tabs of the app.
   - CMD + p: print screen capture like CMD + SHIFT + 4 in macos.
   - CMD + shift + enter: Full screen mode. Again, go back to normal.
+- Double click on the top/title bar makes the app use all the space of the monitor, double click again restores the previous size and position. Do not rely on the macos zoom default, handle the double click on the draggable strip and toggle maximize/unmaximize explicitly, keeping the restored bounds so the app goes back exactly where it was.
