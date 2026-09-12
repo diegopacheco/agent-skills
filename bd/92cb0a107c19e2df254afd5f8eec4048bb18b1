@@ -1,0 +1,19 @@
+macos-electron-apps/SKILL.md
+  s_d566dfca95da71::t_69ba2fe8f5c333 27-30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "bd92cb0a107c19e2df254afd5f8eec4048bb18b1",
+  "prompts": {},
+  "sessions": {
+    "s_d566dfca95da71": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6dc8bd94-665b-4ce2-953a-11417a89e834",
+        "model": "claude-opus-5"
+      },
+      "human_author": "diegopacheco <diego.pacheco.it@gmail.com>"
+    }
+  }
+}
