@@ -25,3 +25,6 @@ allowed-tools: [Bash, Read, AskUserQuestion]
   - CMD + p: print screen capture like CMD + SHIFT + 4 in macos.
   - CMD + shift + enter: Full screen mode. Again, go back to normal.
 - Double click on the top/title bar makes the app use all the space of the monitor, double click again restores the previous size and position. Do not rely on the macos zoom default, handle the double click on the draggable strip and toggle maximize/unmaximize explicitly, keeping the restored bounds so the app goes back exactly where it was.
+- When macos/electron apps start they start all needed services ideally there is alredy a scripts/start-all.sh
+- When macos/electron apps start they show a ui with all services booting i.e nodejs ready, api ready, postgres loading... 
+- When macos/electron apps stop/quit they stop all needed services ideally there is alredy a scripts/stop-all.sh
