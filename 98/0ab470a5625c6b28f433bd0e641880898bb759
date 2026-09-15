@@ -1,0 +1,25 @@
+scripts-skill/README.md
+  s_e3351e0c5e0368::t_79b3d272151546 31
+scripts-skill/templates/common.sh
+  s_e3351e0c5e0368::t_79b3d272151546 25-36
+scripts-skill/SKILL.md
+  s_e3351e0c5e0368::t_79b3d272151546 31,57-60,97
+scripts-skill/templates/start-all.sh
+  s_e3351e0c5e0368::t_79b3d272151546 15,23,27,30-34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "980ab470a5625c6b28f433bd0e641880898bb759",
+  "prompts": {},
+  "sessions": {
+    "s_e3351e0c5e0368": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2a0f14be-2f6a-409e-9453-7e668d7735a8",
+        "model": "claude-opus-5"
+      },
+      "human_author": "diegopacheco <diego.pacheco.it@gmail.com>"
+    }
+  }
+}
