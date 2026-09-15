@@ -28,7 +28,7 @@ Everything lands in `<app-root>/scripts/`, executable, and runs from any directo
 | Script | What it does |
 |---|---|
 | `setup.sh` | Installs dependencies and prepares the app |
-| `start-all.sh` | Starts every service and waits for its port |
+| `start-all.sh` | Starts every service, waits for its port and echoes its full link |
 | `stop-all.sh` | Stops everything and frees every port |
 | `test-all.sh` | Runs every test suite |
 | `status.sh` | One line per service with port, UP or DOWN, and pid |

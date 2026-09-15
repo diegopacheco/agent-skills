@@ -28,7 +28,7 @@ All scripts live in `<app-root>/scripts/`:
 | Script | What it does |
 |---|---|
 | `setup.sh` | Installs every dependency and prepares the app to run for the first time |
-| `start-all.sh` | Starts every service and waits until each declared port is listening |
+| `start-all.sh` | Starts every service, waits until each declared port is listening, then echoes the full link of every service |
 | `stop-all.sh` | Stops everything it started and frees every declared port |
 | `test-all.sh` | Runs every test suite in the app and fails on the first failing suite |
 | `status.sh` | Prints one line per service with its port, UP or DOWN, and the pid |
@@ -54,6 +54,10 @@ commands. Never ship a script with a branch for a stack the app does not use.
 * Stay bash 3.2 compatible so the scripts run on a stock macOS: no associative arrays, no `mapfile`,
   no `${var,,}`.
 * Every port comes from `scripts/ports.env`. No port is hardcoded in any other script.
+* `start-all.sh` must end by echoing the full link of every service, never only the port:
+  `http://localhost:8080`, `http://localhost:3000`, `postgresql://localhost:5432`. Use the real
+  scheme and the real base path the app serves, such as `http://localhost:8080/api`. Build every
+  link with `service_url` from `common.sh`.
 * Every script is idempotent. Running `setup.sh` twice, `start-all.sh` on a started app or
   `stop-all.sh` on a stopped app succeeds and changes nothing.
 * Every script exits non-zero when its job fails, and prints what failed on stderr.
@@ -90,7 +94,7 @@ All scripts live in `scripts/` and run from any directory of the repository.
 | Script | What it does |
 |---|---|
 | `./scripts/setup.sh` | Installs dependencies and prepares the app |
-| `./scripts/start-all.sh` | Starts every service and waits for its port |
+| `./scripts/start-all.sh` | Starts every service and prints the full link of each one |
 | `./scripts/status.sh` | Shows every service port as UP or DOWN |
 | `./scripts/test-all.sh` | Runs every test suite |
 | `./scripts/ui.sh` | Opens the UI in the browser |
