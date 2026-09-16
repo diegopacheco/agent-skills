@@ -1,6 +1,6 @@
 ---
 name: git-gh-skill
-description: When need to use git or gh commands, use this skill to create a git or gh commands. IF user mentiond git or gh, use this skill. Also to commit/push/pull/merge code to git or gh, use this skill.
+description: When need to use git or gh commands, use this skill to create a git or gh commands. IF user mentiond git or gh, use this skill. Also to commit/pull/merge code to git or gh, use this skill.
 allowed-tools: [Bash, Read, AskUserQuestion]
 ---
 
@@ -10,6 +10,10 @@ allowed-tools: [Bash, Read, AskUserQuestion]
 ## Git Commits
 * Never add Co-Authored-By lines to commits
 * Add the name of project: $message - make sure is concise and clear. Ideally 2-3 linex max.
+
+## Git Push
+* Never push. Never run git push (or any variant like --force, --tags, gh repo sync).
+* Only commit locally. The user pushes manually.
 
 ## Github Pull Request(PR) Guidelines
 * Always explain the task (3-5 lines MAX)
