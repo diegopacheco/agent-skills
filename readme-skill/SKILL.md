@@ -20,3 +20,16 @@ allowed-tools: [Bash, Read, AskUserQuestion]
   - key datastructures and software design decision if any 
   - How to run the app/tests
   - Printscreens of the UI (all tabs), render/display the printscreens on README.md and explain what is happening on each printscreen.
+
+## Privacy
+* Never leak information from the local machine into README.md.
+* Never write absolute paths, home directories (/Users/<name>, /home/<name>, ~), machine names, usernames, IPs, ports bound to the local network, emails, tokens, keys or env values.
+* Only use paths relative to the root of the current GitHub repo.
+* Never reference files, folders or projects outside the current repo.
+* Printscreens and images are a leak risk by default: capture only the app window/viewport, never the full screen.
+* Printscreens must not show anything outside the app window: no desktop, no dock, no menu bar, no notifications, no other windows or tabs, no browser bookmarks, no address bar with local paths, no personal data.
+* Printscreens must never show local paths, terminals, shells, IDEs, file explorers, or processes/services running on the machine outside the current git repo.
+* Crop or retake any printscreen that captured something outside the repo app, and delete the original file.
+* Strip image metadata (EXIF, author, device, location) before committing printscreens.
+* Scrub command outputs and logs pasted into the README of any local path or personal information.
+* The only exception is when the user explicitly asks and acknowledges the leak.
