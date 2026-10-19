@@ -2,9 +2,9 @@
 
 # Night Agents
 
-Eight agent skills that work the night shift on your repositories, for Claude Code and Codex. Each one
+Nine agent skills that work the night shift on your repositories, for Claude Code and Codex. Each one
 finds a kind of problem, proves it, works on its own branch, runs the tests before and after,
-and documents the work. Six agents fix what they find, the architect and the security agent only
+and documents the work. Seven agents fix what they find, the architect and the security agent only
 document their findings and never change code. A desktop app shows every night as a GitHub-style activity grid, lets you
 browse every branch the agents created with syntax highlight and line numbers, searches
 everything, and tracks metrics and trends.
@@ -18,6 +18,7 @@ everything, and tracks metrics and trends.
 | 🪱 | `worm-doccer` | `docs` | Checks README, docs, performance.md, backlog.md and design-doc.md against the code and fixes the drift. The code is the source of truth |
 | 🐞 | `bug-hunter` | `bugs` | Hunts bugs, writes `bug-report.md`, fixes each bug with TDD |
 | 🏛️ | `architect-agent` | `architect` | Reviews architecture and design: extensibility, separation of concerns, cohesion, coupling, layering and dependency direction. Documents every finding in `architecture-review.md`, never changes code |
+| 🔎 | `code-review-agent` | `review` | Reviews all the code for bugs, design problems, logical fallacies, bad code, anti-patterns, broken requirements and missing tests. Fixes what a test proves, reports the rest, writes `code-review.md` |
 | 🛡️ | `smith-sec-agent` | `sec` | Hunts the OWASP Top 10 and zero day classes (prototype pollution, path traversal, ReDoS, races), proves each finding locally, documents it in `security-report.md`, never changes code |
 
 ## How it Works
@@ -28,7 +29,7 @@ everything, and tracks metrics and trends.
 4. It hunts, fixes in small commits, proves each change with a test or a benchmark, and reverts anything that breaks a test. The architect and security agents commit only their findings document.
 5. It runs the tests again, writes `report.md` and `result.json`, and commits the report on its branch.
 6. `night-run.sh finish` validates `result.json`, refuses code changes from the report only agents, records git stats, removes the worktree, deletes empty branches and regenerates the UI.
-7. In Claude Code the eight agents run in parallel as subagents. In Codex they run one after the other.
+7. In Claude Code the nine agents run in parallel as subagents. In Codex they run one after the other.
 8. Runs from every repository land in the same folder, so the UI is multi project out of the box.
 
 Your working copy is never touched: agents only work inside their own worktrees and never push, rebase or merge.
@@ -39,7 +40,7 @@ Your working copy is never touched: agents only work inside their own worktrees 
 
 ## Features
 
-* **Eight skills plus a dispatcher** - each agent is a plain `SKILL.md`, so the same files work in Claude Code and Codex.
+* **Nine skills plus a dispatcher** - each agent is a plain `SKILL.md`, so the same files work in Claude Code and Codex.
 * **One contract** - [`CONTRACT.md`](skills/night-agents/CONTRACT.md) gives every agent the same lifecycle, git rules and `result.json` format.
 * **Worktree isolation** - agents run in parallel without touching your checkout or each other.
 * **Fail loud** - `finish` refuses invalid results, regressions reported as success, and uncommitted work.
@@ -66,7 +67,7 @@ Your working copy is never touched: agents only work inside their own worktrees 
 
 | Command | What |
 |---|---|
-| `/night-agents all` | run the eight agents |
+| `/night-agents all` | run the nine agents |
 | `/night-agents digger presto` | run the named agents (names or aliases) |
 | `/night-agents architect sec` | run the architecture and security reviews |
 | `/night-agents` | ask which agents to run |
@@ -178,7 +179,7 @@ KPIs with the trend versus the previous half of the range, runs per week by agen
 
 ![agents](printscreens/7-agents.png)
 
-The eight agents with icon, description, command, totals of their own metrics and their last 30 nights.
+The nine agents with icon, description, command, totals of their own metrics and their last 30 nights.
 
 ### Search
 

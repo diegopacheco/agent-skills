@@ -15,7 +15,7 @@
 
 | Feature | Where |
 |---|---|
-| Eight night agents as skills | `skills/<agent>/SKILL.md` |
+| Nine night agents as skills | `skills/<agent>/SKILL.md` |
 | `/night-agents all`, `/night-agents <alias>`, `/night-agents` (asks) | `skills/night-agents/SKILL.md`, `commands/night-agents.md` |
 | Install for Claude, Codex or both | `install.sh`, `uninstall.sh` |
 | Run lifecycle, git stats, branch cleanup | `bin/night-run.sh` |
@@ -51,7 +51,7 @@ Branches are named `night-agents/<agent>/<yyyy-mm-dd>-<hhmmss>`.
 ## TradeOffs
 
 * Worktrees cost a dependency install per agent per night. In exchange the user's checkout is never
-  touched and the eight agents can run in parallel.
+  touched and the nine agents can run in parallel.
 * The site embeds every changed file and diff in `data.js`. Simple and fully searchable offline,
   but large histories make a large file. Files are capped at 300 KB each.
 * Branch snapshots are cached in `branch.json`, so history survives merged and deleted branches,
@@ -68,7 +68,9 @@ Branches are named `night-agents/<agent>/<yyyy-mm-dd>-<hhmmss>`.
   failures than before must be `failed`. The generator marks broken results `invalid`.
 * Git rules follow the git skill: merge only, never rebase, never push, commit messages prefixed
   with the project name, no `Co-Authored-By` lines.
-* Agent colors are the validated categorical palette slots 1 to 8, in fixed order.
+* Agent colors are the validated categorical palette slots 1 to 8, in fixed order. The palette has eight
+  slots, so `code-review-agent` uses brown `#8c5a2b`, outside the validated set, always shown next to its
+  icon and name so color is never the only cue.
 * `architect-agent` and `smith-sec-agent` are `reportOnly` in `agents.json`. They document findings
   and never change code: their findings must be `reported`, and `finish` refuses a branch that touches
   anything besides their `reportFile` and `.night-agents/`. A review that quietly rewrites code would
@@ -91,6 +93,7 @@ Branches are named `night-agents/<agent>/<yyyy-mm-dd>-<hhmmss>`.
 | worm-doccer | README says Postgres, port 3000, `npm run dev`, `npm run test:unit`, a `FREESHIP` coupon, a search path and a DELETE endpoint that do not exist, and misses seven real endpoints; design-doc lists `src/inventory.js` and cents storage; performance.md claims indexes; backlog lists shipped features as TODO |
 | bug-hunter | same coupon applied twice stacks; coupon expiry parsed as UTC midnight; free shipping uses `>` while the shop promises "$50 or more"; pagination is 0 based while callers send page 1; email uniqueness is case sensitive; money never rounded to cents; the server trusts prices sent by the client |
 | architect-agent | `src/server.js` route `/api/customers/:id` runs SQL and formats money itself instead of going through `src/customers.js`; `src/admin.js` mixes auth and reporting; the admin token is hardcoded instead of configured; `design-doc.md` lists modules the code does not have |
+| code-review-agent | README promises free shipping over $40 while `shipping` charges up to $50 (broken requirement); the same coupon counts twice in one cart (logical fallacy); `checkout` computes `shipping(net)` twice (bad code); inline SQL in a route (design); the only cart test asserts the subtotal and never the total (missing test) |
 | smith-sec-agent | SQL injection in `salesByOrigin` (`/api/admin/sales?origin=`); hardcoded admin token compared with `==` and sent in the query string; `/api/customers/:id` returns any customer's email with no auth (IDOR); no auth on order history; the server trusts client prices; `express` 4.17.1 has known advisories |
 
 ## How to Run

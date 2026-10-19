@@ -1,6 +1,6 @@
 ---
 name: night-agents
-description: 🌙 Night Agents dispatcher. Runs one, several or all of the eight night agents (code-digger-agent, presto-performance-agent, migration-bot-agent, test-automator-agent, worm-doccer, bug-hunter, architect-agent, smith-sec-agent) against the current git repository, each on its own branch and worktree, and records every run under ~/.night-agents/runs/<date>/. Use when the user runs /night-agents, /night-agents all, /night-agents <agent>, $night-agents, or asks to run the night agents, the night shift or the night workers.
+description: 🌙 Night Agents dispatcher. Runs one, several or all of the nine night agents (code-digger-agent, presto-performance-agent, migration-bot-agent, test-automator-agent, worm-doccer, bug-hunter, architect-agent, smith-sec-agent, code-review-agent) against the current git repository, each on its own branch and worktree, and records every run under ~/.night-agents/runs/<date>/. Use when the user runs /night-agents, /night-agents all, /night-agents <agent>, $night-agents, or asks to run the night agents, the night shift or the night workers.
 ---
 
 # 🌙 Night Agents
@@ -22,17 +22,18 @@ Read `CONTRACT.md` next to this file (also at `~/.night-agents/CONTRACT.md`) bef
 | 🐞 | `bug-hunter` | `bugs` | Hunts bugs, writes bug-report.md, fixes them with TDD |
 | 🏛️ | `architect-agent` | `architect` | Reviews architecture, design, extensibility, SoC and cohesion, documents findings |
 | 🛡️ | `smith-sec-agent` | `sec` | Hunts OWASP Top 10 and zero day classes, documents findings |
+| 🔎 | `code-review-agent` | `review` | Reviews all code for bugs, design, fallacies, anti-patterns, broken requirements and missing tests, fixes and reports |
 
 ## Arguments
 
 The input is `$ARGUMENTS`.
 
-* `all` runs the eight agents.
+* `all` runs the nine agents.
 * One or more agent names or aliases, separated by spaces or commas: `presto`, `bugs docs`,
   `digger,tests`. Full names work too.
 * Empty: ask the user which agents to run. In Claude Code use `AskUserQuestion` with
-  `multiSelect: true` in two questions (`digger`, `presto`, `migration`, `tests` and `docs`, `bugs`,
-  `architect`, `sec`).
+  `multiSelect: true` in three questions (`digger`, `presto`, `migration`; `tests`, `docs`, `bugs`;
+  `architect`, `sec`, `review`).
   In Codex ask in plain text with the table above. Wait for the answer.
 * An unknown name: list the valid names and aliases and stop.
 
@@ -57,7 +58,7 @@ The input is `$ARGUMENTS`.
      final message block.
    * Codex or any agent without subagents: run them one at a time in this order: `bug-hunter`,
      `code-digger-agent`, `presto-performance-agent`, `test-automator-agent`, `migration-bot-agent`,
-     `worm-doccer`, `architect-agent`, `smith-sec-agent`. Read each agent's `SKILL.md` and follow it with the values from step 1.
+     `worm-doccer`, `architect-agent`, `smith-sec-agent`, `code-review-agent`. Read each agent's `SKILL.md` and follow it with the values from step 1.
 3. Report progress as `x/y` agents finished at least once a minute.
 4. When an agent fails, record it and go on with the next one. One failing agent never stops the night.
 5. Every started run must end with `night-run.sh finish`, even a failed one: write a `result.json`

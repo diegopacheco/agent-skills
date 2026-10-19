@@ -125,3 +125,18 @@ test("finish keeps a report only branch that only adds its findings document", (
   assert.equal(out.status, 0, out.stderr);
   assert.equal(JSON.parse(fs.readFileSync(path.join(run.RUN_DIR, "git.json"), "utf8")).branchKept, true);
 });
+
+test("the code review agent fixes code and documents its review in the same branch", () => {
+  const repo = makeRepo();
+  const home = tempDir("home");
+  const run = start(repo, home, "code-review-agent");
+  fs.writeFileSync(path.join(run.WORKTREE, "cart.js"), "function total(items) {\n  return items.reduce((s, i) => s + i.price, 0);\n}\nmodule.exports = { total };\n");
+  fs.writeFileSync(path.join(run.WORKTREE, "code-review.md"), "## R1: total counts items instead of adding prices\n");
+  sh(run.WORKTREE, "git", ["add", "."]);
+  sh(run.WORKTREE, "git", ["commit", "-q", "-m", "shop: code-review-agent: fix total and document review"]);
+  const findings = [{ ...result().findings[0], kind: "bug", action: "fixed" }, { ...result().findings[0], id: "R2", kind: "design", action: "reported" }];
+  fs.writeFileSync(path.join(run.RUN_DIR, "result.json"), JSON.stringify(result({ findings })));
+  const out = nightRun(repo, home, ["finish", run.RUN_DIR]);
+  assert.equal(out.status, 0, out.stderr);
+  assert.equal(JSON.parse(fs.readFileSync(path.join(run.RUN_DIR, "git.json"), "utf8")).filesChanged, 2);
+});

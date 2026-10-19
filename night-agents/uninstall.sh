@@ -7,7 +7,7 @@ NIGHT_HOME="${NIGHT_AGENTS_HOME:-$HOME/.night-agents}"
 CLAUDE_SKILLS="${CLAUDE_SKILLS:-$HOME/.claude/skills}"
 CODEX_SKILLS="${CODEX_SKILLS:-$HOME/.codex/skills}"
 CODEX_PROMPTS="${CODEX_PROMPTS:-$HOME/.codex/prompts}"
-SKILLS="night-agents code-digger-agent presto-performance-agent migration-bot-agent test-automator-agent worm-doccer bug-hunter architect-agent smith-sec-agent"
+SKILLS="night-agents code-digger-agent presto-performance-agent migration-bot-agent test-automator-agent worm-doccer bug-hunter architect-agent smith-sec-agent code-review-agent"
 
 remove_skills() {
   for skill in $SKILLS; do

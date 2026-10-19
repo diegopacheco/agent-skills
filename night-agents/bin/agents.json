@@ -66,5 +66,13 @@
     "reportOnly": true,
     "reportFile": "security-report.md",
     "description": "Hunts security holes: the OWASP Top 10, zero day classes in the code and known vulnerable dependencies. Proves each finding without attacking anything and documents it on its own branch, never changes code."
+  },
+  {
+    "name": "code-review-agent",
+    "aliases": ["review", "code-review", "cr"],
+    "title": "Code Review",
+    "icon": "🔎",
+    "color": "#8c5a2b",
+    "description": "Reviews all the code like a senior reviewer: bugs, design problems, logical fallacies, bad code, anti-patterns, broken requirements and missing tests. Fixes what it can prove with a test, reports the rest, and writes code-review.md on its own branch."
   }
 ]
