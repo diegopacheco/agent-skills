@@ -1,0 +1,17 @@
+{
+  "name": "brew-shop",
+  "version": "1.0.0",
+  "description": "A small coffee bean shop API with products, carts, customers and orders.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning src/server.js",
+    "test": "node --disable-warning=ExperimentalWarning --test \"test/**/*.test.js\""
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.17.1"
+  }
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Brew Shop</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 0; color: #222; }
+      header img { width: 100%; display: block; }
+      main { max-width: 900px; margin: 0 auto; padding: 16px; }
+      ul { columns: 3; }
+    </style>
+  </head>
+  <body>
+    <header><img src="hero.png" alt="Fresh roasted beans" /></header>
+    <main>
+      <h1>Brew Shop</h1>
+      <p>Fresh roasted beans, shipped free on orders of $50 or more.</p>
+      <h2>Origins</h2>
+      <ul id="origins"></ul>
+    </main>
+    <script>
+      fetch("/api/origins")
+        .then((r) => r.json())
+        .then((list) => {
+          document.getElementById("origins").innerHTML = list.map((o) => `<li>${o}</li>`).join("");
+        });
+    </script>
+  </body>
+</html>

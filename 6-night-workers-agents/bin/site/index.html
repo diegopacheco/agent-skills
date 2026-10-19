@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Night Agents</title>
+    <link rel="icon" href="logo.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="titlebar" id="titlebar">
+      <img class="brand-logo" src="logo.svg" alt="" />
+      <div class="brand">
+        <strong>Night Agents</strong>
+        <span id="generated" class="muted"></span>
+      </div>
+      <div class="titlebar-controls">
+        <select id="project-filter" aria-label="Project"></select>
+        <select id="agent-filter" aria-label="Agent"></select>
+        <button id="search-button" class="ghost" title="Search everything">Search <kbd>⌘K</kbd></button>
+        <button id="shortcuts-button" class="ghost" title="Shortcuts"><kbd>⌘/</kbd></button>
+        <button id="refresh-button" class="ghost" title="Regenerate from ~/.night-agents/runs">Refresh</button>
+      </div>
+    </header>
+    <nav class="tabs" id="tabs"></nav>
+    <main id="view"></main>
+    <div id="tooltip" class="tooltip" hidden></div>
+    <div id="modal-root"></div>
+    <div id="toast" class="toast" hidden></div>
+    <script src="data.js"></script>
+    <script src="metrics.js"></script>
+    <script src="highlight.js"></script>
+    <script src="markdown.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
