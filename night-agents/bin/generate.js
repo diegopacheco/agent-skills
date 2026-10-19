@@ -204,10 +204,20 @@ function scanRuns(home, onRun) {
   return runs.sort((a, b) => String(b.startedAt).localeCompare(String(a.startedAt)));
 }
 
+function copyDir(from, to) {
+  fs.mkdirSync(to, { recursive: true });
+  for (const entry of fs.readdirSync(from, { withFileTypes: true })) {
+    const source = path.join(from, entry.name);
+    const target = path.join(to, entry.name);
+    if (entry.isDirectory()) copyDir(source, target);
+    else fs.copyFileSync(source, target);
+  }
+}
+
 function generate(home, onRun) {
   const out = path.join(home, "ui");
   fs.mkdirSync(out, { recursive: true });
-  for (const file of fs.readdirSync(SITE_SRC)) fs.copyFileSync(path.join(SITE_SRC, file), path.join(out, file));
+  copyDir(SITE_SRC, out);
   const data = { generatedAt: new Date().toISOString(), home, agents: AGENTS, runs: scanRuns(home, onRun) };
   fs.writeFileSync(path.join(out, "data.js"), `window.NIGHT_DATA = ${JSON.stringify(data).replace(/</g, "\\u003c")};\n`);
   return { out, runs: data.runs.length };

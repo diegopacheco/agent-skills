@@ -1,6 +1,6 @@
 ---
 name: night-agents
-description: 🌙 Night Agents dispatcher. Runs one, several or all of the nine night agents (code-digger-agent, presto-performance-agent, migration-bot-agent, test-automator-agent, worm-doccer, bug-hunter, architect-agent, smith-sec-agent, code-review-agent) against the current git repository, each on its own branch and worktree, and records every run under ~/.night-agents/runs/<date>/. Use when the user runs /night-agents, /night-agents all, /night-agents <agent>, $night-agents, or asks to run the night agents, the night shift or the night workers.
+description: 🌙 Night Agents dispatcher. Runs one, several or all of the eleven night agents (code-digger-agent, presto-performance-agent, migration-bot-agent, test-automator-agent, worm-doccer, bug-hunter, architect-agent, smith-sec-agent, code-review-agent, test-review-agent, chief-of-staff-agent) against the current git repository, each on its own branch and worktree, and records every run under ~/.night-agents/runs/<date>/. Use when the user runs /night-agents, /night-agents all, /night-agents <agent>, $night-agents, or asks to run the night agents, the night shift or the night workers.
 ---
 
 # 🌙 Night Agents
@@ -23,17 +23,19 @@ Read `CONTRACT.md` next to this file (also at `~/.night-agents/CONTRACT.md`) bef
 | 🏛️ | `architect-agent` | `architect` | Reviews architecture, design, extensibility, SoC and cohesion, documents findings |
 | 🛡️ | `smith-sec-agent` | `sec` | Hunts OWASP Top 10 and zero day classes, documents findings |
 | 🔎 | `code-review-agent` | `review` | Reviews all code for bugs, design, fallacies, anti-patterns, broken requirements and missing tests, fixes and reports |
+| 🔬 | `test-review-agent` | `test-review` | Runs the suite many times for flaky tests, deletes tests of the language or framework, fixes weak tests |
+| 🎖️ | `chief-of-staff-agent` | `chief` | Adversarial review of the other agents' work: claims, gaps, contradictions, merge conflicts. Runs last |
 
 ## Arguments
 
 The input is `$ARGUMENTS`.
 
-* `all` runs the nine agents.
+* `all` runs the eleven agents.
 * One or more agent names or aliases, separated by spaces or commas: `presto`, `bugs docs`,
   `digger,tests`. Full names work too.
 * Empty: ask the user which agents to run. In Claude Code use `AskUserQuestion` with
-  `multiSelect: true` in three questions (`digger`, `presto`, `migration`; `tests`, `docs`, `bugs`;
-  `architect`, `sec`, `review`).
+  `multiSelect: true` in three questions (`digger`, `presto`, `migration`, `tests`; `docs`, `bugs`,
+  `architect`, `sec`; `review`, `test-review`, `chief`).
   In Codex ask in plain text with the table above. Wait for the answer.
 * An unknown name: list the valid names and aliases and stop.
 
@@ -47,7 +49,10 @@ The input is `$ARGUMENTS`.
 
 ## Run
 
-1. Start every selected agent, one after the other, from the repository root:
+`chief-of-staff-agent` reviews the work of the others, so it always runs last: start it only after
+every other selected agent finished, then run it on its own.
+
+1. Start every selected agent except `chief-of-staff-agent`, one after the other, from the repository root:
    `~/.night-agents/bin/night-run.sh start <agent-name>`. Keep the printed values of each one:
    `RUN_DIR`, `WORKTREE`, `BRANCH`, `BASE_BRANCH`, `BASE_SHA`, `PROJECT`, `REPO`.
 2. Run the agents:
@@ -58,10 +63,12 @@ The input is `$ARGUMENTS`.
      final message block.
    * Codex or any agent without subagents: run them one at a time in this order: `bug-hunter`,
      `code-digger-agent`, `presto-performance-agent`, `test-automator-agent`, `migration-bot-agent`,
-     `worm-doccer`, `architect-agent`, `smith-sec-agent`, `code-review-agent`. Read each agent's `SKILL.md` and follow it with the values from step 1.
-3. Report progress as `x/y` agents finished at least once a minute.
-4. When an agent fails, record it and go on with the next one. One failing agent never stops the night.
-5. Every started run must end with `night-run.sh finish`, even a failed one: write a `result.json`
+     `worm-doccer`, `architect-agent`, `smith-sec-agent`, `code-review-agent`, `test-review-agent`. Read each agent's `SKILL.md` and follow it with the values from step 1.
+3. When `chief-of-staff-agent` is selected, after every other run finished, start it with
+   `night-run.sh start chief-of-staff-agent` and run it the same way, alone.
+4. Report progress as `x/y` agents finished at least once a minute.
+5. When an agent fails, record it and go on with the next one. One failing agent never stops the night.
+6. Every started run must end with `night-run.sh finish`, even a failed one: write a `result.json`
    with `status: failed` and the reason in `summary`, commit or discard what is left in the worktree,
    then finish.
 

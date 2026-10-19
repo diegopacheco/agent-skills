@@ -74,5 +74,23 @@
     "icon": "🔎",
     "color": "#8c5a2b",
     "description": "Reviews all the code like a senior reviewer: bugs, design problems, logical fallacies, bad code, anti-patterns, broken requirements and missing tests. Fixes what it can prove with a test, reports the rest, and writes code-review.md on its own branch."
+  },
+  {
+    "name": "test-review-agent",
+    "aliases": ["test-review", "flaky", "tr"],
+    "title": "Test Review",
+    "icon": "🔬",
+    "color": "#0e7c86",
+    "description": "Reviews and runs every test: hunts flaky tests by running the suite many times, deletes tests that only exercise the language or the framework, rewrites tests that cannot fail, and fixes weak assertions so each test proves real logic."
+  },
+  {
+    "name": "chief-of-staff-agent",
+    "aliases": ["chief", "chief-of-staff", "cos"],
+    "title": "Chief of Staff",
+    "icon": "🎖️",
+    "color": "#2f3b52",
+    "reportOnly": true,
+    "reportFile": "chief-of-staff-review.md",
+    "description": "Adversarial reviewer of the other agents. Re-checks their claims, re-runs their tests, finds gaps nobody covered, contradictions and merge conflicts between their branches, and documents the verdict on its own branch without changing code."
   }
 ]

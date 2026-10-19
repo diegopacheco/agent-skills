@@ -140,3 +140,16 @@ test("the code review agent fixes code and documents its review in the same bran
   assert.equal(out.status, 0, out.stderr);
   assert.equal(JSON.parse(fs.readFileSync(path.join(run.RUN_DIR, "git.json"), "utf8")).filesChanged, 2);
 });
+
+test("a test review that deletes a bogus test finishes, fewer passing tests is not a regression", () => {
+  const repo = makeRepo();
+  const home = tempDir("home");
+  const run = start(repo, home, "test-review-agent");
+  fs.writeFileSync(path.join(run.WORKTREE, "test-review.md"), "## T1: test asserts [].length is 0, tests the language\n");
+  sh(run.WORKTREE, "git", ["add", "."]);
+  sh(run.WORKTREE, "git", ["commit", "-q", "-m", "shop: test-review-agent: delete language test"]);
+  const deleted = result({ testsBefore: { command: "npm test", passed: 4, failed: 0 }, testsAfter: { command: "npm test", passed: 3, failed: 0 } });
+  fs.writeFileSync(path.join(run.RUN_DIR, "result.json"), JSON.stringify(deleted));
+  const out = nightRun(repo, home, ["finish", run.RUN_DIR]);
+  assert.equal(out.status, 0, out.stderr);
+});

@@ -2,7 +2,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("fs");
 const path = require("path");
-const { validateResult, scanRuns } = require("../bin/generate");
+const { validateResult, scanRuns, generate } = require("../bin/generate");
 const { tempDir, sh, makeRepo, nightRun, parseExports, result } = require("./helpers");
 
 test("a valid result passes", () => {
@@ -65,4 +65,17 @@ test("a report only agent wins by documenting findings, so a reported finding is
 test("a report only agent can never claim a fix, it must not change code", () => {
   const errors = validateResult(result(), "architect-agent");
   assert.ok(errors.some((e) => e.includes("architect-agent only documents findings")));
+});
+
+test("every agent ships a logo so no card in the ui renders a broken image", () => {
+  const home = tempDir("home");
+  generate(home);
+  const agents = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "bin", "agents.json"), "utf8"));
+  const missing = agents.filter((a) => !fs.existsSync(path.join(home, "ui", "logos", `${a.name}.png`))).map((a) => a.name);
+  assert.deepEqual(missing, []);
+});
+
+test("the chief of staff only judges the other agents, the test reviewer may fix tests", () => {
+  assert.ok(validateResult(result(), "chief-of-staff-agent").some((e) => e.includes("only documents findings")));
+  assert.deepEqual(validateResult(result({ findings: [{ ...result().findings[0], kind: "tests-language" }] }), "test-review-agent"), []);
 });

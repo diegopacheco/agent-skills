@@ -12,6 +12,8 @@
 * Six night agents as skills for Claude Code and Codex.
 * `architect-agent` and `smith-sec-agent`, report only reviews for architecture and security.
 * `code-review-agent`, a full code review that fixes what a test proves and reports the rest.
+* `test-review-agent` (flaky and bogus tests) and `chief-of-staff-agent` (adversarial review of the other agents).
+* A logo for every agent and rendered markdown and HTML in the branch viewer.
 * `/night-agents` dispatcher with `all`, aliases, and an interactive pick.
 * `install.sh` and `uninstall.sh` for Claude, Codex or both.
 * `night-run.sh` run lifecycle with worktrees, git stats and branch cleanup.

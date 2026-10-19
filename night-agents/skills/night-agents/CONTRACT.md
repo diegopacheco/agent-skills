@@ -96,7 +96,7 @@ changes in `$REPO` are not part of the run, say so in the report when `git -C $R
 
 | Field | Rule |
 |---|---|
-| `status` | `success` when at least one finding was fixed, `no-findings` when nothing needed a change, `failed` when the run could not finish or a regression could not be reverted. Report only agents (`architect-agent`, `smith-sec-agent`) never fix: `success` means at least one finding was `reported` |
+| `status` | `success` when at least one finding was fixed, `no-findings` when nothing needed a change, `failed` when the run could not finish or a regression could not be reverted. Report only agents (`architect-agent`, `smith-sec-agent`, `chief-of-staff-agent`) never fix: `success` means at least one finding was `reported` |
 | `summary` | one plain sentence |
 | `testsBefore`, `testsAfter` | the real command and the real counts from the logs |
 | `findings[]` | every finding, fixed or not. `severity`: `low`, `medium`, `high`, `critical`. `action`: `fixed`, `reported`, `skipped`. `file` is relative to the repo root. `line`, `detail`, `before`, `after` are optional |

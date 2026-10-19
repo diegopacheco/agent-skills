@@ -2,24 +2,26 @@
 
 # Night Agents
 
-Nine agent skills that work the night shift on your repositories, for Claude Code and Codex. Each one
+Eleven agent skills that work the night shift on your repositories, for Claude Code and Codex. Each one
 finds a kind of problem, proves it, works on its own branch, runs the tests before and after,
-and documents the work. Seven agents fix what they find, the architect and the security agent only
-document their findings and never change code. A desktop app shows every night as a GitHub-style activity grid, lets you
+and documents the work. Eight agents fix what they find. The architect, the security agent and the chief of staff only
+document their findings and never change code, and the chief of staff reviews the work of all the others. A desktop app shows every night as a GitHub-style activity grid, lets you
 browse every branch the agents created with syntax highlight and line numbers, searches
 everything, and tracks metrics and trends.
 
-| Icon | Agent | Alias | What it does |
+| Logo | Agent | Alias | What it does |
 |---|---|---|---|
-| ⛏️ | `code-digger-agent` | `digger` | Finds unused classes, methods, functions, variables, imports, files and dependencies, proves they are dead with tests, removes them |
-| 🏎️ | `presto-performance-agent` | `presto` | Finds missing indexes, N+1 queries, missing pagination, poor algorithms and data structures, missing caching, heavy images. Benchmarks before and after every fix |
-| 🤖 | `migration-bot-agent` | `migration` | Bumps dependencies to the latest stable versions and migrates the code they break, tests green before and after |
-| 🧪 | `test-automator-agent` | `tests` | Adds unit, property based, integration, stress, chaos, contract, CSS and UI tests for core logic. No duplicates, no tests of frameworks or the language |
-| 🪱 | `worm-doccer` | `docs` | Checks README, docs, performance.md, backlog.md and design-doc.md against the code and fixes the drift. The code is the source of truth |
-| 🐞 | `bug-hunter` | `bugs` | Hunts bugs, writes `bug-report.md`, fixes each bug with TDD |
-| 🏛️ | `architect-agent` | `architect` | Reviews architecture and design: extensibility, separation of concerns, cohesion, coupling, layering and dependency direction. Documents every finding in `architecture-review.md`, never changes code |
-| 🔎 | `code-review-agent` | `review` | Reviews all the code for bugs, design problems, logical fallacies, bad code, anti-patterns, broken requirements and missing tests. Fixes what a test proves, reports the rest, writes `code-review.md` |
-| 🛡️ | `smith-sec-agent` | `sec` | Hunts the OWASP Top 10 and zero day classes (prototype pollution, path traversal, ReDoS, races), proves each finding locally, documents it in `security-report.md`, never changes code |
+| <img src="bin/site/logos/code-digger-agent.png" width="40" alt="⛏️" /> | `code-digger-agent` | `digger` | Finds unused classes, methods, functions, variables, imports, files and dependencies, proves they are dead with tests, removes them |
+| <img src="bin/site/logos/presto-performance-agent.png" width="40" alt="🏎️" /> | `presto-performance-agent` | `presto` | Finds missing indexes, N+1 queries, missing pagination, poor algorithms and data structures, missing caching, heavy images. Benchmarks before and after every fix |
+| <img src="bin/site/logos/migration-bot-agent.png" width="40" alt="🤖" /> | `migration-bot-agent` | `migration` | Bumps dependencies to the latest stable versions and migrates the code they break, tests green before and after |
+| <img src="bin/site/logos/test-automator-agent.png" width="40" alt="🧪" /> | `test-automator-agent` | `tests` | Adds unit, property based, integration, stress, chaos, contract, CSS and UI tests for core logic. No duplicates, no tests of frameworks or the language |
+| <img src="bin/site/logos/worm-doccer.png" width="40" alt="🪱" /> | `worm-doccer` | `docs` | Checks README, docs, performance.md, backlog.md and design-doc.md against the code and fixes the drift. The code is the source of truth |
+| <img src="bin/site/logos/bug-hunter.png" width="40" alt="🐞" /> | `bug-hunter` | `bugs` | Hunts bugs, writes `bug-report.md`, fixes each bug with TDD |
+| <img src="bin/site/logos/architect-agent.png" width="40" alt="🏛️" /> | `architect-agent` | `architect` | Reviews architecture and design: extensibility, separation of concerns, cohesion, coupling, layering and dependency direction. Documents every finding in `architecture-review.md`, never changes code |
+| <img src="bin/site/logos/code-review-agent.png" width="40" alt="🔎" /> | `code-review-agent` | `review` | Reviews all the code for bugs, design problems, logical fallacies, bad code, anti-patterns, broken requirements and missing tests. Fixes what a test proves, reports the rest, writes `code-review.md` |
+| <img src="bin/site/logos/smith-sec-agent.png" width="40" alt="🛡️" /> | `smith-sec-agent` | `sec` | Hunts the OWASP Top 10 and zero day classes (prototype pollution, path traversal, ReDoS, races), proves each finding locally, documents it in `security-report.md`, never changes code |
+| <img src="bin/site/logos/test-review-agent.png" width="40" alt="🔬" /> | `test-review-agent` | `test-review` | Runs the suite 10 times to find flaky tests and fixes their cause, deletes tests of the language or the framework, rewrites tests that cannot fail, proves every kept test fails when its logic breaks, writes `test-review.md` |
+| <img src="bin/site/logos/chief-of-staff-agent.png" width="40" alt="🎖️" /> | `chief-of-staff-agent` | `chief` | Runs last. Adversarial review of the other agents: re-checks their claims and test numbers, finds gaps, contradictions and merge conflicts between their branches, recommends a merge order in `chief-of-staff-review.md`, never changes code |
 
 ## How it Works
 
@@ -29,7 +31,7 @@ everything, and tracks metrics and trends.
 4. It hunts, fixes in small commits, proves each change with a test or a benchmark, and reverts anything that breaks a test. The architect and security agents commit only their findings document.
 5. It runs the tests again, writes `report.md` and `result.json`, and commits the report on its branch.
 6. `night-run.sh finish` validates `result.json`, refuses code changes from the report only agents, records git stats, removes the worktree, deletes empty branches and regenerates the UI.
-7. In Claude Code the nine agents run in parallel as subagents. In Codex they run one after the other.
+7. In Claude Code the agents run in parallel and the chief of staff runs last, after all of them as subagents. In Codex they run one after the other.
 8. Runs from every repository land in the same folder, so the UI is multi project out of the box.
 
 Your working copy is never touched: agents only work inside their own worktrees and never push, rebase or merge.
@@ -40,17 +42,18 @@ Your working copy is never touched: agents only work inside their own worktrees 
 
 ## Features
 
-* **Nine skills plus a dispatcher** - each agent is a plain `SKILL.md`, so the same files work in Claude Code and Codex.
+* **Eleven skills plus a dispatcher** - each agent is a plain `SKILL.md`, so the same files work in Claude Code and Codex.
 * **One contract** - [`CONTRACT.md`](skills/night-agents/CONTRACT.md) gives every agent the same lifecycle, git rules and `result.json` format.
 * **Worktree isolation** - agents run in parallel without touching your checkout or each other.
 * **Fail loud** - `finish` refuses invalid results, regressions reported as success, and uncommitted work.
 * **Durable history** - branch files and diffs are snapshotted, so history survives merged and deleted branches.
 * **Activity grid** - one square per night, colored by number of runs, outlined red when a run failed, plus a per agent nightly strip.
-* **Branch browser** - every agent branch, its commits and changed files, file and diff views with syntax highlight, line numbers and find in file.
+* **Branch browser** - every agent branch, its commits and changed files, file and diff views with syntax highlight, line numbers and find in file. Markdown and HTML files open rendered, HTML in a sandbox with scripts off.
+* **Agent logos** - every agent has a rounded logo in its color, generated from `agents.json` by `ui/make-logos.js`.
 * **Search everything** - `⌘K` searches runs, findings, reports, commits, file names and every line of code on the agent branches.
 * **Metrics and trends** - runs per week by agent, findings fixed, lines changed, passing tests over time, success by agent, trend versus the previous period.
 * **Pregenerated UI** - a static site rebuilt after every run, wrapped in a macOS app with a boot screen, single instance, restored window position and the usual shortcuts.
-* **Report only reviews** - the architect and security agents may only commit their findings document, `finish` refuses any other change.
+* **Report only reviews** - the architect, security and chief of staff agents may only commit their findings document, `finish` refuses any other change.
 * **Sample project** - `brew-shop`, a small API with problems planted for every agent.
 
 ## Stack
@@ -67,9 +70,10 @@ Your working copy is never touched: agents only work inside their own worktrees 
 
 | Command | What |
 |---|---|
-| `/night-agents all` | run the nine agents |
+| `/night-agents all` | run the eleven agents |
 | `/night-agents digger presto` | run the named agents (names or aliases) |
 | `/night-agents architect sec` | run the architecture and security reviews |
+| `/night-agents review test-review chief` | review the code and the tests, then the chief of staff reviews both |
 | `/night-agents` | ask which agents to run |
 | `/bug-hunter`, `/worm-doccer`, ... | run one agent directly |
 | Codex: `$night-agents all` or `/prompts:night-agents all` | same, in Codex |
@@ -95,7 +99,7 @@ Your working copy is never touched: agents only work inside their own worktrees 
 }
 ```
 
-`status` is `success`, `no-findings` or `failed`. For `architect-agent` and `smith-sec-agent` every finding is `reported` and `success` means at least one finding was documented. `severity` is `low`, `medium`, `high` or `critical`. `action` is `fixed`, `reported` or `skipped`.
+`status` is `success`, `no-findings` or `failed`. For `architect-agent`, `smith-sec-agent` and `chief-of-staff-agent` every finding is `reported` and `success` means at least one finding was documented. `severity` is `low`, `medium`, `high` or `critical`. `action` is `fixed`, `reported` or `skipped`.
 
 ## Key Design Decisions
 
@@ -179,7 +183,7 @@ KPIs with the trend versus the previous half of the range, runs per week by agen
 
 ![agents](printscreens/7-agents.png)
 
-The nine agents with icon, description, command, totals of their own metrics and their last 30 nights.
+The eleven agents with logo, description, command, totals of their own metrics and their last 30 nights.
 
 ### Search
 

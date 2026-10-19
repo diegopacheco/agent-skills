@@ -9,6 +9,7 @@
   "scripts": {
     "start": "electron .",
     "icon": "electron make-icon.js",
+    "logos": "electron make-logos.js",
     "package": "electron-packager . \"Night Agents\" --platform=darwin --arch=arm64 --out=dist --overwrite --icon=resources/icon.icns --app-bundle-id=com.diegopacheco.nightagents --ignore=^/dist --ignore=^/resources/icon.iconset"
   },
   "devDependencies": {

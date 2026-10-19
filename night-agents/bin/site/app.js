@@ -24,7 +24,7 @@
     runId: null,
     branchRunId: null,
     filePath: null,
-    mode: "file",
+    mode: "render",
     targetLine: null,
     fileQuery: "",
     fileHit: 0,
@@ -377,7 +377,9 @@ codex "$night-agents all"</pre>
   function openFile(runId, file, line) {
     const run = runsById[runId];
     const files = run && run.branchData ? run.branchData.files : [];
-    go({ tab: "branches", branchRunId: runId, filePath: file || (files[0] && files[0].path) || null, targetLine: line, mode: "file", fileHit: 0 });
+    const target = file || (files[0] && files[0].path) || null;
+    const mode = !line && target && renderKind(target) ? "render" : "file";
+    go({ tab: "branches", branchRunId: runId, filePath: target, targetLine: line, mode, fileHit: 0 });
   }
 
   function diffStats(diff) {
@@ -463,6 +465,22 @@ codex "$night-agents all"</pre>
     if (counter) counter.textContent = `${state.fileHit + 1}/${hits.length}`;
   }
 
+  function renderKind(path) {
+    if (/\.(md|markdown)$/i.test(path)) return "markdown";
+    if (/\.html?$/i.test(path)) return "html";
+    return null;
+  }
+
+  function modeFor(path) {
+    if (state.mode === "diff") return "diff";
+    return renderKind(path) ? "render" : "file";
+  }
+
+  function renderedBody(file) {
+    if (renderKind(file.path) === "markdown") return `<div class="report rendered">${MD.render(file.content)}</div>`;
+    return `<iframe class="rendered-html" sandbox="" title="${esc(file.path)}" srcdoc="${esc(file.content)}"></iframe>`;
+  }
+
   function viewBranches(view) {
     const runs = visibleRuns().filter((r) => r.branchData && r.branchData.files.length);
     if (!runs.length) {
@@ -477,9 +495,11 @@ codex "$night-agents all"</pre>
     if (!file) file = files[0];
     state.filePath = file.path;
     const canFile = !file.binary && file.status !== "D";
-    const mode = canFile ? state.mode : "diff";
+    const canRender = canFile && Boolean(renderKind(file.path));
+    const mode = !canFile ? "diff" : state.mode === "render" && !canRender ? "file" : state.mode;
     let body;
     if (file.binary) body = `<div class="empty">Binary file, ${fmtNum(file.size)} bytes</div>`;
+    else if (mode === "render") body = renderedBody(file);
     else body = `<table class="code"><tbody>${mode === "file" ? fileRows(file) : diffRows(file)}</tbody></table>${file.truncated ? `<div class="empty">File truncated at 300 KB</div>` : ""}`;
     view.innerHTML = `<div class="split">
       <div class="pane"><h3>Branches · ${runs.length}</h3>${runs
@@ -501,6 +521,7 @@ codex "$night-agents all"</pre>
       <div class="pane viewer" id="viewer">
         <div class="viewer-head">
           <span class="path">${esc(file.path)}</span>
+          ${canRender ? `<button id="mode-render" class="${mode === "render" ? "active" : ""}">Rendered</button>` : ""}
           <button id="mode-file" class="${mode === "file" ? "active" : ""}" ${canFile ? "" : "disabled"}>File</button>
           <button id="mode-diff" class="${mode === "diff" ? "active" : ""}">Diff</button>
           <input type="search" id="file-query" placeholder="Find in file ⌘F" value="${esc(state.fileQuery)}" />
@@ -510,9 +531,13 @@ codex "$night-agents all"</pre>
       </div>
     </div>`;
     view.querySelectorAll("[data-pick-run]").forEach((b) =>
-      b.addEventListener("click", () => go({ branchRunId: b.dataset.pickRun, filePath: null, targetLine: null, fileHit: 0 }))
+      b.addEventListener("click", () => {
+        const first = runsById[b.dataset.pickRun].branchData.files[0];
+        go({ branchRunId: b.dataset.pickRun, filePath: null, targetLine: null, fileHit: 0, mode: first ? modeFor(first.path) : state.mode });
+      })
     );
-    view.querySelectorAll("[data-pick-file]").forEach((b) => b.addEventListener("click", () => go({ filePath: b.dataset.pickFile, targetLine: null, fileHit: 0 })));
+    view.querySelectorAll("[data-pick-file]").forEach((b) => b.addEventListener("click", () => go({ filePath: b.dataset.pickFile, targetLine: null, fileHit: 0, mode: modeFor(b.dataset.pickFile) })));
+    if (canRender) $("#mode-render").addEventListener("click", () => go({ mode: "render" }));
     $("#mode-file").addEventListener("click", () => go({ mode: "file" }));
     $("#mode-diff").addEventListener("click", () => go({ mode: "diff" }));
     const viewer = $("#viewer");
@@ -745,7 +770,7 @@ codex "$night-agents all"</pre>
         const a = s.agent;
         const metrics = Object.entries(s.metricTotals);
         return `<div class="card agent-card" style="--agent-color:${a.color}">
-          <div class="icon">${a.icon}</div>
+          <img class="logo" src="logos/${esc(a.name)}.png" alt="${esc(a.title)} logo" />
           <h2>${esc(a.title)}</h2>
           <div class="muted"><code>${esc(a.name)}</code> · <code>/night-agents ${esc(a.aliases[0])}</code></div>
           <p>${esc(a.description)}</p>
@@ -911,7 +936,7 @@ codex "$night-agents all"</pre>
         ["⌘F", "Find in the open file"],
         ["Enter", "Next match"],
         ["⇧Enter", "Previous match"],
-        ["⌘⇧D", "Toggle file and diff view"],
+        ["⌘⇧D", "Toggle diff and file or rendered view"],
       ],
     },
     {
@@ -1011,7 +1036,7 @@ codex "$night-agents all"</pre>
       if (input) input.focus();
     } else if (key === "d" && e.shiftKey && state.tab === "branches") {
       e.preventDefault();
-      go({ mode: state.mode === "file" ? "diff" : "file" });
+      go({ mode: state.mode === "diff" ? (renderKind(state.filePath || "") ? "render" : "file") : "diff" });
     } else if (key === "r" && !e.shiftKey) {
       e.preventDefault();
       refresh();
