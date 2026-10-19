@@ -1,0 +1,70 @@
+[
+  {
+    "name": "code-digger-agent",
+    "aliases": ["digger", "code-digger", "dead-code"],
+    "title": "Code Digger",
+    "icon": "⛏️",
+    "color": "#2a78d6",
+    "description": "Digs out dead code: unused classes, methods, functions, variables, imports and files. Proves each piece is dead with tests, removes it, and keeps the suite green."
+  },
+  {
+    "name": "presto-performance-agent",
+    "aliases": ["presto", "performance", "perf"],
+    "title": "Presto Performance",
+    "icon": "🏎️",
+    "color": "#eb6834",
+    "description": "Hunts slow code: missing DB indexes, N+1 queries, missing pagination, poor algorithms and data structures, missing caching, heavy images. Measures before and after every fix."
+  },
+  {
+    "name": "migration-bot-agent",
+    "aliases": ["migration", "migration-bot", "deps"],
+    "title": "Migration Bot",
+    "icon": "🤖",
+    "color": "#1baf7a",
+    "description": "Bumps dependencies to their latest versions and performs the code migrations the bumps require, with the full test suite run before and after."
+  },
+  {
+    "name": "test-automator-agent",
+    "aliases": ["tests", "test-automator", "test"],
+    "title": "Test Automator",
+    "icon": "🧪",
+    "color": "#eda100",
+    "description": "Adds the tests that matter: core logic, property based, integration, stress, chaos, contract, CSS and UI tests. No duplicates, no tests of frameworks or the language."
+  },
+  {
+    "name": "worm-doccer",
+    "aliases": ["docs", "worm", "doccer"],
+    "title": "Worm Doccer",
+    "icon": "🪱",
+    "color": "#e87ba4",
+    "description": "Reads README, docs, performance.md, backlog.md and design-doc.md, compares them with the code, and brings every drifted document back in sync using the code as the source of truth."
+  },
+  {
+    "name": "bug-hunter",
+    "aliases": ["bugs", "hunter", "bug"],
+    "title": "Bug Hunter",
+    "icon": "🐞",
+    "color": "#008300",
+    "description": "Hunts real bugs, writes bug-report.md, and fixes each one with TDD: a failing test first, then the fix, then the green suite."
+  },
+  {
+    "name": "architect-agent",
+    "aliases": ["architect", "arch", "design"],
+    "title": "Architect",
+    "icon": "🏛️",
+    "color": "#6250d6",
+    "reportOnly": true,
+    "reportFile": "architecture-review.md",
+    "description": "Reviews architecture and design: extensibility, separation of concerns, cohesion, coupling, layering and dependency direction. Documents every finding with evidence on its own branch, never changes code."
+  },
+  {
+    "name": "smith-sec-agent",
+    "aliases": ["sec", "security", "smith"],
+    "title": "Smith Sec",
+    "icon": "🛡️",
+    "color": "#e34948",
+    "reportOnly": true,
+    "reportFile": "security-report.md",
+    "description": "Hunts security holes: the OWASP Top 10, zero day classes in the code and known vulnerable dependencies. Proves each finding without attacking anything and documents it on its own branch, never changes code."
+  }
+]
