@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="964" height="374" viewBox="0 0 964 374">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&amp;display=swap');
+.h { font-family: Caveat, 'Comic Sans MS', cursive; font-size: 30px; font-weight: 700; fill: #222; }
+.t { font-family: Caveat, 'Comic Sans MS', cursive; font-size: 22px; font-weight: 700; fill: #222; text-anchor: middle; }
+.s { font-family: Caveat, 'Comic Sans MS', cursive; font-size: 17px; fill: #333; text-anchor: middle; }
+</style>
+<defs>
+<filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="#333"/></marker>
+</defs>
+<rect width="100%" height="100%" fill="#fffdf7"/>
+<text x="30" y="42" class="h">CLI / Harness: calc-harness</text>
+<rect x="30.0" y="70" width="254.5" height="102" rx="14" fill="#ffe8a3" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="157.2" y="108" class="t">Agent + SKILL.md</text>
+<text x="157.2" y="130" class="s">picks /calc, /english</text>
+<text x="157.2" y="150" class="s">or /ask</text>
+<rect x="354.5" y="70" width="254.5" height="102" rx="14" fill="#c9f2d0" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="481.8" y="108" class="t">Harness</text>
+<text x="481.8" y="130" class="s">allowlist, timeout,</text>
+<text x="481.8" y="150" class="s">trace, exit codes</text>
+<rect x="679.0" y="70" width="254.5" height="102" rx="14" fill="#cfe3ff" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="806.2" y="108" class="t">LLM via agent_sdk</text>
+<text x="806.2" y="130" class="s">/english and /ask only:</text>
+<text x="806.2" y="150" class="s">claude -p or codex exec</text>
+<rect x="30.0" y="242" width="254.5" height="102" rx="14" fill="#ffd6e0" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="157.2" y="280" class="t">safe_math</text>
+<text x="157.2" y="302" class="s">/calc and /english:</text>
+<text x="157.2" y="322" class="s">AST allowlist computes</text>
+<rect x="354.5" y="242" width="254.5" height="102" rx="14" fill="#e6d9ff" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="481.8" y="280" class="t">Labelled result</text>
+<text x="481.8" y="302" class="s">[engineering] [blended]</text>
+<text x="481.8" y="322" class="s">or [llm]</text>
+<path d="M292.5,121.0 Q319.5,111.0 346.5,121.0" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M617.0,121.0 Q644.0,111.0 671.0,121.0" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M806.2,180.0 C806.2,220.0 157.2,194.0 157.2,234.0" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M292.5,293.0 Q319.5,283.0 346.5,293.0" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+</svg>

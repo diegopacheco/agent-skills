@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="878" height="374" viewBox="0 0 878 374">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&amp;display=swap');
+.h { font-family: Caveat, 'Comic Sans MS', cursive; font-size: 30px; font-weight: 700; fill: #222; }
+.t { font-family: Caveat, 'Comic Sans MS', cursive; font-size: 22px; font-weight: 700; fill: #222; text-anchor: middle; }
+.s { font-family: Caveat, 'Comic Sans MS', cursive; font-size: 17px; fill: #333; text-anchor: middle; }
+</style>
+<defs>
+<filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="#333"/></marker>
+</defs>
+<rect width="100%" height="100%" fill="#fffdf7"/>
+<text x="30" y="42" class="h">Semantic Skill Routing: ops-router</text>
+<rect x="30.0" y="70" width="226.0" height="102" rx="14" fill="#ffe8a3" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="143.0" y="108" class="t">Request</text>
+<text x="143.0" y="130" class="s">checkout throws 503s</text>
+<rect x="326.0" y="70" width="226.0" height="102" rx="14" fill="#c9f2d0" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="439.0" y="108" class="t">Restate intent</text>
+<text x="439.0" y="130" class="s">meaning, synonyms,</text>
+<text x="439.0" y="150" class="s">not keywords</text>
+<rect x="622.0" y="70" width="226.0" height="102" rx="14" fill="#cfe3ff" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="735.0" y="108" class="t">Score routes</text>
+<text x="735.0" y="130" class="s">strong, weak</text>
+<text x="735.0" y="150" class="s">or no match</text>
+<rect x="30.0" y="242" width="226.0" height="102" rx="14" fill="#ffd6e0" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="143.0" y="280" class="t">Load one route</text>
+<text x="143.0" y="302" class="s">routes/incident.md</text>
+<rect x="326.0" y="242" width="226.0" height="102" rx="14" fill="#e6d9ff" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="439.0" y="280" class="t">No strong match</text>
+<text x="439.0" y="302" class="s">ask one question,</text>
+<text x="439.0" y="322" class="s">never guess</text>
+<path d="M264.0,121.0 Q291.0,111.0 318.0,121.0" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M560.0,121.0 Q587.0,111.0 614.0,121.0" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M735.0,180.0 C735.0,220.0 143.0,194.0 143.0,234.0" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M264.0,293.0 Q291.0,283.0 318.0,293.0" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+</svg>

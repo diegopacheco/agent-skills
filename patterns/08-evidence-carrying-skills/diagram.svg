@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="956" height="374" viewBox="0 0 956 374">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&amp;display=swap');
+.h { font-family: Caveat, 'Comic Sans MS', cursive; font-size: 30px; font-weight: 700; fill: #222; }
+.t { font-family: Caveat, 'Comic Sans MS', cursive; font-size: 22px; font-weight: 700; fill: #222; text-anchor: middle; }
+.s { font-family: Caveat, 'Comic Sans MS', cursive; font-size: 17px; fill: #333; text-anchor: middle; }
+</style>
+<defs>
+<filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="#333"/></marker>
+</defs>
+<rect width="100%" height="100%" fill="#fffdf7"/>
+<text x="30" y="42" class="h">Evidence-Carrying Skills: proof-of-done</text>
+<rect x="30.0" y="70" width="252.0" height="102" rx="14" fill="#ffe8a3" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="156.0" y="108" class="t">Make the change</text>
+<text x="156.0" y="130" class="s">edit the code</text>
+<rect x="352.0" y="70" width="252.0" height="102" rx="14" fill="#c9f2d0" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="478.0" y="108" class="t">record.sh run</text>
+<text x="478.0" y="130" class="s">command, exit code,</text>
+<text x="478.0" y="150" class="s">output sha256</text>
+<rect x="674.0" y="70" width="252.0" height="102" rx="14" fill="#cfe3ff" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="800.0" y="108" class="t">record.sh artifact</text>
+<text x="800.0" y="130" class="s">file + sha256</text>
+<rect x="30.0" y="242" width="252.0" height="102" rx="14" fill="#ffd6e0" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="156.0" y="280" class="t">Reply</text>
+<text x="156.0" y="302" class="s">claim + evidence.md,</text>
+<text x="156.0" y="322" class="s">never hand written</text>
+<path d="M290.0,121.0 Q317.0,111.0 344.0,121.0" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M612.0,121.0 Q639.0,111.0 666.0,121.0" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M800.0,180.0 C800.0,220.0 156.0,194.0 156.0,234.0" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+</svg>

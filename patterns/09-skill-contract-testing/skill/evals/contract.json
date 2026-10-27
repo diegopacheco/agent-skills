@@ -1,0 +1,12 @@
+[
+  {"message": "fix(auth): reject expired refresh tokens", "valid": true, "why": "plain fix with scope"},
+  {"message": "feat: add csv export to reports\n\nUsers can download any report as csv.", "valid": true, "why": "header, blank line, body"},
+  {"message": "feat(api)!: remove v1 endpoints\n\nBREAKING CHANGE: clients must call /v2", "valid": true, "why": "breaking change with footer"},
+  {"message": "Fixed the login bug", "valid": false, "why": "no type"},
+  {"message": "feature: add export", "valid": false, "why": "unknown type"},
+  {"message": "fix: Reject expired tokens", "valid": false, "why": "subject starts uppercase"},
+  {"message": "fix: reject expired tokens.", "valid": false, "why": "subject ends with a period"},
+  {"message": "fix: reject expired tokens\nbody without blank line", "valid": false, "why": "no blank line before body"},
+  {"message": "feat(api)!: remove v1 endpoints", "valid": false, "why": "breaking change without footer"},
+  {"message": "refactor(billing): move the invoice rounding helpers into a dedicated module for reuse", "valid": false, "why": "header longer than 72"}
+]

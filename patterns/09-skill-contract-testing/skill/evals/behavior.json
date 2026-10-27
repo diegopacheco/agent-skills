@@ -1,0 +1,6 @@
+[
+  {"name": "bug fix", "change": "src/auth/tokens.py: refresh tokens were accepted after expiry because the comparison used <= instead of <. Changed to < and added a test.", "expect_type": "fix"},
+  {"name": "new feature", "change": "src/reports/export.py: new endpoint GET /reports/{id}/csv that streams the report as CSV. Added a download button in the UI.", "expect_type": "feat"},
+  {"name": "docs only", "change": "README.md: added a section explaining how to run the app with podman-compose.", "expect_type": "docs"},
+  {"name": "refactor", "change": "src/billing/: moved rounding helpers from invoice.py into money.py. No behavior change, all tests unchanged and passing.", "expect_type": "refactor"}
+]

@@ -1,0 +1,33 @@
+[project]
+name = "agent-skill-patterns"
+version = "0.1.0"
+description = "Ten agent skill architecture patterns, each one an installable skill"
+requires-python = ">=3.15"
+dependencies = []
+
+[dependency-groups]
+dev = ["pytest", "ty"]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+    "02-cli-harness/tests",
+    "04-rag-backed-skills/tests",
+    "05-deterministic-script-delegation/tests",
+    "08-evidence-carrying-skills/tests",
+    "09-skill-contract-testing/tests",
+]
+pythonpath = [
+    "02-cli-harness/skill/scripts",
+    "04-rag-backed-skills/skill/scripts",
+    "05-deterministic-script-delegation/skill/scripts",
+    "09-skill-contract-testing/skill/scripts",
+]
+
+[tool.ty.environment]
+extra-paths = [
+    "02-cli-harness/skill/scripts",
+    "04-rag-backed-skills/skill/scripts",
+    "05-deterministic-script-delegation/skill/scripts",
+    "09-skill-contract-testing/skill/scripts",
+]

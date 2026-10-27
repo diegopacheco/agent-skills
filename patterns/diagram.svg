@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1244" height="374" viewBox="0 0 1244 374">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&amp;display=swap');
+.h { font-family: Caveat, 'Comic Sans MS', cursive; font-size: 30px; font-weight: 700; fill: #222; }
+.t { font-family: Caveat, 'Comic Sans MS', cursive; font-size: 22px; font-weight: 700; fill: #222; text-anchor: middle; }
+.s { font-family: Caveat, 'Comic Sans MS', cursive; font-size: 17px; fill: #333; text-anchor: middle; }
+</style>
+<defs>
+<filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="#333"/></marker>
+</defs>
+<rect width="100%" height="100%" fill="#fffdf7"/>
+<text x="30" y="42" class="h">Agent Skill Patterns by category</text>
+<rect x="30.0" y="70" width="348.0" height="102" rx="14" fill="#ffe8a3" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="204.0" y="108" class="t">Discovery and context</text>
+<text x="204.0" y="130" class="s">01 Progressive Disclosure</text>
+<text x="204.0" y="150" class="s">03 Semantic Skill Routing</text>
+<rect x="448.0" y="70" width="348.0" height="102" rx="14" fill="#c9f2d0" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="622.0" y="108" class="t">Knowledge and retrieval</text>
+<text x="622.0" y="130" class="s">04 RAG-Backed Skills</text>
+<rect x="866.0" y="70" width="348.0" height="102" rx="14" fill="#cfe3ff" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="1040.0" y="108" class="t">Execution and harness</text>
+<text x="1040.0" y="130" class="s">02 CLI / Harness</text>
+<text x="1040.0" y="150" class="s">05 Script Delegation</text>
+<rect x="30.0" y="242" width="348.0" height="102" rx="14" fill="#ffd6e0" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="204.0" y="280" class="t">Orchestration and workflow</text>
+<text x="204.0" y="302" class="s">06 Plan-Execute-Verify</text>
+<text x="204.0" y="322" class="s">07 Checkpoint and Resume</text>
+<rect x="448.0" y="242" width="348.0" height="102" rx="14" fill="#e6d9ff" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="622.0" y="280" class="t">Reliability and evaluation</text>
+<text x="622.0" y="302" class="s">08 Evidence-Carrying Skills</text>
+<text x="622.0" y="322" class="s">09 Skill Contract Testing</text>
+<rect x="866.0" y="242" width="348.0" height="102" rx="14" fill="#ffe0c2" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="1040.0" y="280" class="t">Security and governance</text>
+<text x="1040.0" y="302" class="s">10 Capability Leasing</text>
+</svg>
