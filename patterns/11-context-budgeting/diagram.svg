@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="884" height="374" viewBox="0 0 884 374">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&amp;display=swap');
+.h { font-family: Caveat, 'Comic Sans MS', cursive; font-size: 30px; font-weight: 700; fill: #222; }
+.t { font-family: Caveat, 'Comic Sans MS', cursive; font-size: 22px; font-weight: 700; fill: #222; text-anchor: middle; }
+.s { font-family: Caveat, 'Comic Sans MS', cursive; font-size: 17px; fill: #333; text-anchor: middle; }
+</style>
+<defs>
+<filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="#333"/></marker>
+</defs>
+<rect width="100%" height="100%" fill="#fffdf7"/>
+<text x="30" y="42" class="h">Context Budgeting: log-triage</text>
+<rect x="30.0" y="70" width="228.0" height="102" rx="14" fill="#ffe8a3" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="144.0" y="108" class="t">200 MB log</text>
+<text x="144.0" y="130" class="s">never enters</text>
+<text x="144.0" y="150" class="s">the context</text>
+<rect x="328.0" y="70" width="228.0" height="102" rx="14" fill="#c9f2d0" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="442.0" y="108" class="t">log_triage.py</text>
+<text x="442.0" y="130" class="s">group by signature,</text>
+<text x="442.0" y="150" class="s">count, head, tail</text>
+<rect x="626.0" y="70" width="228.0" height="102" rx="14" fill="#cfe3ff" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="740.0" y="108" class="t">Budget</text>
+<text x="740.0" y="130" class="s">drop smallest groups</text>
+<text x="740.0" y="150" class="s">until JSON fits</text>
+<rect x="30.0" y="242" width="228.0" height="102" rx="14" fill="#ffd6e0" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="144.0" y="280" class="t">JSON summary</text>
+<text x="144.0" y="302" class="s">groups_omitted</text>
+<text x="144.0" y="322" class="s">says what is missing</text>
+<rect x="328.0" y="242" width="228.0" height="102" rx="14" fill="#e6d9ff" stroke="#333" stroke-width="2" filter="url(#wobble)"/>
+<text x="442.0" y="280" class="t">Drill-down</text>
+<text x="442.0" y="302" class="s">window around one</text>
+<text x="442.0" y="322" class="s">first_line only</text>
+<path d="M266.0,121.0 Q293.0,111.0 320.0,121.0" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M564.0,121.0 Q591.0,111.0 618.0,121.0" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M740.0,180.0 C740.0,220.0 144.0,194.0 144.0,234.0" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M266.0,293.0 Q293.0,283.0 320.0,293.0" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" marker-end="url(#arrow)"/>
+</svg>

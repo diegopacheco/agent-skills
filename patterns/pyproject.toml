@@ -1,7 +1,7 @@
 [project]
 name = "agent-skill-patterns"
 version = "0.1.0"
-description = "Ten agent skill architecture patterns, each one an installable skill"
+description = "Nineteen agent skill architecture patterns, each one an installable skill"
 requires-python = ">=3.15"
 dependencies = []
 
@@ -16,12 +16,28 @@ testpaths = [
     "05-deterministic-script-delegation/tests",
     "08-evidence-carrying-skills/tests",
     "09-skill-contract-testing/tests",
+    "11-context-budgeting/tests",
+    "12-skill-supply-chain-verification/tests",
+    "13-sandboxed-execution/tests",
+    "14-skill-chaining/tests",
+    "16-human-approval-gates/tests",
+    "17-self-verification-loop/tests",
+    "18-skill-observability/tests",
+    "19-policy-as-code-guardrails/tests",
 ]
 pythonpath = [
     "02-cli-harness/skill/scripts",
     "04-rag-backed-skills/skill/scripts",
     "05-deterministic-script-delegation/skill/scripts",
     "09-skill-contract-testing/skill/scripts",
+    "11-context-budgeting/skill/scripts",
+    "12-skill-supply-chain-verification/skill/scripts",
+    "13-sandboxed-execution/skill/scripts",
+    "14-skill-chaining/skill/scripts",
+    "16-human-approval-gates/skill/scripts",
+    "17-self-verification-loop/skill/scripts",
+    "18-skill-observability/skill/scripts",
+    "19-policy-as-code-guardrails/skill/scripts",
 ]
 
 [tool.ty.environment]
@@ -30,4 +46,12 @@ extra-paths = [
     "04-rag-backed-skills/skill/scripts",
     "05-deterministic-script-delegation/skill/scripts",
     "09-skill-contract-testing/skill/scripts",
+    "11-context-budgeting/skill/scripts",
+    "12-skill-supply-chain-verification/skill/scripts",
+    "13-sandboxed-execution/skill/scripts",
+    "14-skill-chaining/skill/scripts",
+    "16-human-approval-gates/skill/scripts",
+    "17-self-verification-loop/skill/scripts",
+    "18-skill-observability/skill/scripts",
+    "19-policy-as-code-guardrails/skill/scripts",
 ]

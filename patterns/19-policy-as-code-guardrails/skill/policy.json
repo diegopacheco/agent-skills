@@ -1,0 +1,35 @@
+{
+  "rules": [
+    {
+      "id": "no-recursive-force-delete",
+      "tools": ["Bash"],
+      "deny_command": "\\brm\\s+(-[a-zA-Z]*r[a-zA-Z]*f|-[a-zA-Z]*f[a-zA-Z]*r|-r\\s+-f|-f\\s+-r|--recursive\\s+--force|--force\\s+--recursive)\\b",
+      "reason": "recursive force delete can wipe a tree, delete named files one by one or ask the user"
+    },
+    {
+      "id": "no-force-push",
+      "tools": ["Bash"],
+      "deny_command": "\\bgit\\s+push\\b.*(--force\\b|--force-with-lease\\b|\\s-f\\b)",
+      "reason": "force push rewrites shared history, push a new commit instead"
+    },
+    {
+      "id": "no-pipe-to-shell",
+      "tools": ["Bash"],
+      "deny_command": "\\b(curl|wget)\\b[^|]*\\|\\s*(sudo\\s+)?(ba|z)?sh\\b",
+      "reason": "piping a download into a shell runs code nobody reviewed, download it and read it first"
+    },
+    {
+      "id": "migrations-are-append-only",
+      "tools": ["Edit", "MultiEdit", "Write"],
+      "deny_path": "**/migrations/*",
+      "allow_new_files": true,
+      "reason": "applied migrations must never change, add a new migration file instead"
+    },
+    {
+      "id": "no-env-files",
+      "tools": ["Read", "Edit", "MultiEdit", "Write"],
+      "deny_path": "**/.env*",
+      "reason": "env files hold secrets, ask the user for the value you need"
+    }
+  ]
+}

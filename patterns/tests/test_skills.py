@@ -21,8 +21,8 @@ def installer_name(pattern: Path) -> str:
     return match.group(1)
 
 
-def test_there_are_ten_patterns() -> None:
-    assert len(PATTERNS) == 10
+def test_there_are_nineteen_patterns() -> None:
+    assert len(PATTERNS) == 19
 
 
 @pytest.mark.parametrize("pattern", PATTERNS, ids=[p.name for p in PATTERNS])
