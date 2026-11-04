@@ -22,6 +22,8 @@ allowed-tools: [Bash, Read, AskUserQuestion]
     - Have a search bar on top, auto focused, filtering as the user types. Matching a group title keeps the whole group, otherwise keep only the rows matching the keys or the description. Show how many shortcuts matched, and a plain message when nothing does. Esc clears a filled search box first, and closes the modal when it is empty.
   - CMD + + and CMD + -: Zoom in and out of the app.
   - CMD + 0..9 Goto tabs of the app.
+- Tabs always have an icon next to the tab title. Draw the icons as inline SVG at a single stroke weight, no icon font or icon library. The CMD + / modal shows each tab shortcut (CMD + 0..9) with the same icon of the tab it goes to.
+- When the mouse hovers over an element of the app that has a shortcut (tabs, buttons, menu items, toolbar actions), show a small tooltip with the action name and its shortcut keys, i.e "Search  ⌘ K". Show it after a short delay (~400ms), hide it on mouse leave, keep it inside the window, and keep the keys in sync with the real shortcut map so the tooltip and the CMD + / modal never disagree.
   - CMD + p: print screen capture like CMD + SHIFT + 4 in macos.
   - CMD + shift + enter: Full screen mode. Again, go back to normal.
 - Double click on the top/title bar makes the app use all the space of the monitor, double click again restores the previous size and position. Do not rely on the macos zoom default, handle the double click on the draggable strip and toggle maximize/unmaximize explicitly, keeping the restored bounds so the app goes back exactly where it was.
