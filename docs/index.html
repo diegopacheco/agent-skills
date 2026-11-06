@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>agent-skills</title>
+<meta name="description" content="Skills, commands, night agents and patterns for Claude Code and Codex. Install any of them with ram.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2306120b'/%3E%3Cpath d='M16 22l12 10-12 10' stroke='%2334f58a' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M32 44h16' stroke='%2334f58a' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#050d08;--bg2:#08150d;--card:#0b1c12;--line:#173823;--line2:#22553a;--fg:#d9f7e4;--mute:#7fa58d;--green:#34f58a;--green2:#16c768;--glow:rgba(52,245,138,.18);--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;opacity:.22;mask-image:radial-gradient(ellipse at top,#000 20%,transparent 70%)}
+a{color:var(--green);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px;position:relative}
+header{position:sticky;top:0;z-index:5;background:rgba(5,13,8,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:58px}
+.brand{white-space:nowrap;flex-shrink:0;font-family:var(--mono);font-weight:700;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand b{color:var(--green)}
+.links{display:flex;gap:18px;font-size:14px;overflow-x:auto;white-space:nowrap}
+.links a{color:var(--mute)}
+.links a:hover{color:var(--green);text-decoration:none}
+.hero{padding:88px 0 56px}
+.tag{display:inline-flex;gap:8px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--green);border:1px solid var(--line2);border-radius:999px;padding:4px 12px;background:var(--bg2)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+h1{font-size:clamp(38px,6.4vw,68px);line-height:1.04;letter-spacing:-.03em;margin:22px 0 18px;font-weight:800}
+h1 em{font-style:normal;color:var(--green);text-shadow:0 0 28px var(--glow)}
+.lead{font-size:18px;color:var(--mute);max-width:640px;margin:0 0 30px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:14px;padding:11px 18px;border-radius:10px;border:1px solid var(--line2);color:var(--fg);background:var(--card)}
+.btn:hover{border-color:var(--green);text-decoration:none}
+.btn.pri{background:var(--green);color:#03140a;border-color:var(--green);font-weight:700}
+.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.grid2>*,.links{min-width:0}
+.term{background:#030a06;border:1px solid var(--line2);border-radius:14px;box-shadow:0 0 0 1px rgba(0,0,0,.4),0 24px 60px -20px var(--glow);overflow:hidden}
+.term-top{display:flex;gap:6px;padding:11px 14px;border-bottom:1px solid var(--line)}
+.term-top i{width:11px;height:11px;border-radius:50%;background:var(--line2)}
+.term-top span{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--mute)}
+pre{margin:0;padding:18px;font-family:var(--mono);font-size:13px;line-height:1.7;overflow-x:auto;color:var(--fg)}
+.p{color:var(--green)}
+.c{color:var(--mute)}
+.ok{color:var(--green2)}
+.cursor{display:inline-block;width:8px;height:15px;background:var(--green);vertical-align:-2px;animation:pulse 1s steps(1) infinite}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:8px 0 72px}
+.stat{background:var(--bg2);padding:20px}
+.stat b{display:block;font-family:var(--mono);font-size:30px;color:var(--green)}
+.stat span{font-size:13px;color:var(--mute)}
+section{padding:24px 0 56px}
+.sh{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+h2{font-size:28px;letter-spacing:-.02em;margin:0}
+h2 small{display:block;font-family:var(--mono);font-size:12px;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;font-weight:500}
+.sh p{margin:0;color:var(--mute);max-width:520px;font-size:15px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;color:var(--fg);transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--green);transform:translateY(-2px);text-decoration:none}
+.card h3{margin:0 0 6px;font-family:var(--mono);font-size:15px;color:var(--green)}
+.card p{margin:0;font-size:14px;color:var(--mute)}
+.card code{font-family:var(--mono);font-size:12px;color:var(--fg);background:var(--bg);border:1px solid var(--line);padding:1px 5px;border-radius:5px}
+.search{width:100%;max-width:340px;font-family:var(--mono);font-size:14px;background:var(--bg2);border:1px solid var(--line2);color:var(--fg);padding:10px 14px;border-radius:10px;outline:none}
+.search:focus{border-color:var(--green);box-shadow:0 0 0 3px var(--glow)}
+.empty{display:none;color:var(--mute);font-family:var(--mono);font-size:14px;padding:12px 0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+.step::before{counter-increment:s;content:"0" counter(s);font-family:var(--mono);color:var(--green);font-size:13px}
+.step h3{margin:6px 0;font-size:16px}
+.step p{margin:0;color:var(--mute);font-size:14px}
+.more{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.more a{font-family:var(--mono);font-size:14px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg2);color:var(--fg)}
+.more a:hover{border-color:var(--green);text-decoration:none}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--mute);font-size:13px;font-family:var(--mono)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}.hero{padding:56px 0 40px}.links a.opt{display:none}}
+@media (max-width:480px){.wrap{padding:0 16px}pre{font-size:12px}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar"><a class="brand" href="#top"><b>&gt;_</b>agent-skills</a><nav class="links"><a href="#install">Install</a><a href="#night">Night Agents</a><a href="#skills">Skills</a><a class="opt" href="#patterns">Patterns</a><a href="https://github.com/diegopacheco/agent-skills" target="_blank" rel="noreferrer">GitHub &nearr;</a></nav></div></header>
+
+<main id="top" class="wrap">
+<div class="hero grid2">
+<div>
+<span class="tag"><span class="dot"></span>claude code · codex</span>
+<h1>Skills your agent <em>actually runs.</em></h1>
+<p class="lead">Night agents that hunt bugs while you sleep, analyzers that render real reports, conventions that keep the output boring in the good way, and 19 patterns for building your own. Plain markdown and scripts. Install what you need, skip the rest.</p>
+<div class="cta"><a class="btn pri" href="#install">$ ram</a><a class="btn" href="https://github.com/diegopacheco/agent-skills" target="_blank" rel="noreferrer">Browse the repo &nearr;</a></div>
+</div>
+<div class="term">
+<div class="term-top"><i></i><i></i><i></i><span>~/code</span></div>
+<pre><span class="p">$</span> ram install night-agents stacks-skill --target both
+<span class="c">fetching diegopacheco/agent-skills ...</span>
+<span class="ok">✓</span> skill night-agents   <span class="c">→ ~/.claude/skills ~/.codex/skills</span>
+<span class="ok">✓</span> skill stacks-skill   <span class="c">→ ~/.claude/skills ~/.codex/skills</span>
+
+<span class="p">$</span> claude
+<span class="p">&gt;</span> /night-agents all
+<span class="c">11 agents · 11 worktrees · 11 branches</span>
+<span class="p">&gt;</span> <span class="cursor"></span></pre>
+</div>
+</div>
+
+<div class="stats">
+<div class="stat"><b>11</b><span>night agents</span></div>
+<div class="stat"><b>17</b><span>skills &amp; commands</span></div>
+<div class="stat"><b>19</b><span>skill patterns</span></div>
+<div class="stat"><b>2</b><span>targets: claude, codex</span></div>
+</div>
+
+<section id="install">
+<div class="sh"><h2><small>install</small>One binary. Always fresh.</h2><p><a href="https://github.com/diegopacheco/ai-playground/tree/main/pocs/ram-skills-agents-npx" target="_blank" rel="noreferrer">ram</a> is an npx-style installer in Rust. Every run pulls the latest commit of this repo, so new skills show up with no release step.</p></div>
+<div class="steps">
+<div class="step"><h3>Pick a target</h3><p>Claude, Codex or both. One choice decides where everything lands.</p></div>
+<div class="step"><h3>Search &amp; check</h3><p>Full-screen picker. Type to filter, <code>tab</code> by kind, space to toggle, <code>→</code> to read the whole SKILL.md first.</p></div>
+<div class="step"><h3>Install in parallel</h3><p>Copies and <code>npm install</code> run concurrently. Fails loud with the reason.</p></div>
+</div>
+<p style="color:var(--mute);font-size:14px;margin-top:16px">Prefer no tools? Every folder ships an <code style="font-family:var(--mono)">install.sh [claude|codex|both]</code>.</p>
+</section>
+
+<section id="night">
+<div class="sh"><h2><small>night agents</small>The night shift.</h2><p>Each agent works in its own git worktree and branch, runs the tests before and after, and leaves a report. You review in the morning.</p></div>
+<div class="cards">
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/night-agents/skills/night-agents" target="_blank" rel="noreferrer"><h3>night-agents</h3><p>Dispatcher. <code>/night-agents all</code>, one alias, or pick. Records runs under <code>~/.night-agents/runs</code>.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/night-agents/skills/code-digger-agent" target="_blank" rel="noreferrer"><h3>code-digger-agent</h3><p>Finds dead code, proves it with tests, removes it.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/night-agents/skills/presto-performance-agent" target="_blank" rel="noreferrer"><h3>presto-performance-agent</h3><p>N+1s, missing indexes, quadratic loops. Measure, fix, measure again.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/night-agents/skills/migration-bot-agent" target="_blank" rel="noreferrer"><h3>migration-bot-agent</h3><p>Bumps deps one by one, migrates breaking changes, tests after each.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/night-agents/skills/test-automator-agent" target="_blank" rel="noreferrer"><h3>test-automator-agent</h3><p>Adds the tests that matter to untested core logic.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/night-agents/skills/worm-doccer" target="_blank" rel="noreferrer"><h3>worm-doccer</h3><p>Checks every doc claim against the code and fixes what drifted.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/night-agents/skills/bug-hunter" target="_blank" rel="noreferrer"><h3>bug-hunter</h3><p>Off-by-ones, rounding, races, null paths. Fixed with TDD.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/night-agents/skills/architect-agent" target="_blank" rel="noreferrer"><h3>architect-agent</h3><p>Coupling, cohesion, layering. Every finding with file and line.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/night-agents/skills/smith-sec-agent" target="_blank" rel="noreferrer"><h3>smith-sec-agent</h3><p>OWASP Top 10 plus zero-day classes, proven locally.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/night-agents/skills/code-review-agent" target="_blank" rel="noreferrer"><h3>code-review-agent</h3><p>Senior-style full review. Fixes what it can prove with a test.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/night-agents/skills/test-review-agent" target="_blank" rel="noreferrer"><h3>test-review-agent</h3><p>Hunts flaky tests and rewrites tests that cannot fail.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/night-agents/skills/chief-of-staff-agent" target="_blank" rel="noreferrer"><h3>chief-of-staff-agent</h3><p>Reviews the other agents. Gaps, contradictions, merge conflicts.</p></a>
+</div>
+</section>
+
+<section id="skills">
+<div class="sh"><h2><small>skills &amp; commands</small>Everything else.</h2><input class="search" id="q" type="search" placeholder="grep skills..." aria-label="Search skills"></div>
+<div class="cards" id="skill-cards">
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/bundle-size" target="_blank" rel="noreferrer"><h3>bundle-size</h3><p>Which import made your bundle fat. esbuild metafile, ranked by minified KB.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/rerender" target="_blank" rel="noreferrer"><h3>rerender</h3><p>Counts wasted React renders inside a Profiler. Lighthouse-style report.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/bug-recording" target="_blank" rel="noreferrer"><h3>bug-recording</h3><p>Hunts UI bugs with Playwright and records a narrated video of each.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/html-research" target="_blank" rel="noreferrer"><h3>html-research</h3><p>Web research into one self-contained HTML report with sources for every claim.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/fact-checker" target="_blank" rel="noreferrer"><h3>fact-checker</h3><p>Every claim becomes F1, F2, F3. No source means unverifiable, never true.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/stacks-skill" target="_blank" rel="noreferrer"><h3>stacks-skill</h3><p>Predefined java, scala, kotlin, ts, nodejs, rust, go and python stacks.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/scripts-skill" target="_blank" rel="noreferrer"><h3>scripts-skill</h3><p>setup, start-all, stop-all, test-all, status, ui and sql-console scripts.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/macos-electron-apps" target="_blank" rel="noreferrer"><h3>macos-electron-apps</h3><p>Single instance, restored window, real shortcuts, clean install and uninstall.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/readme-skill" target="_blank" rel="noreferrer"><h3>readme-skill</h3><p>README with logo, hand-drawn architecture and screenshots of every tab.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/changelog-skill" target="_blank" rel="noreferrer"><h3>changelog-skill</h3><p>Added, Changed, Fixed, Verified. Verified lists only what really ran.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/container-skill" target="_blank" rel="noreferrer"><h3>container-skill</h3><p>Containerfile, podman-compose and start, stop, test scripts.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/bash-skill" target="_blank" rel="noreferrer"><h3>bash-skill</h3><p>No comments, no long sleeps, poll resources instead of waiting.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/git-gh-skill" target="_blank" rel="noreferrer"><h3>git-gh-skill</h3><p>Merge never rebase, prefixed commits, PRs with prompt and real test output.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/index-html-skill" target="_blank" rel="noreferrer"><h3>index-html-skill</h3><p>Single self-contained index.html with highlighted, numbered code.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/commands" target="_blank" rel="noreferrer"><h3>/do</h3><p>Design doc, backlog, implement, keep tests green, update the docs.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/loop-backlog" target="_blank" rel="noreferrer"><h3>loop-backlog</h3><p>Drives the agent through backlog.md until it is done.</p></a>
+<a class="card" href="https://github.com/diegopacheco/agent-skills/tree/main/claude-agents-md" target="_blank" rel="noreferrer"><h3>claude-agents-md</h3><p>One shared CLAUDE.md / AGENTS.md rules file for both agents.</p></a>
+</div>
+<div class="empty" id="empty">no matches. try another grep.</div>
+</section>
+
+<section id="patterns">
+<div class="sh"><h2><small>patterns</small>19 ways to build a skill.</h2><p>Independent design choices, each one a real installable skill with a README, a diagram and install scripts.</p></div>
+<div class="cards" id="pattern-cards"></div>
+</section>
+
+<section id="more">
+<div class="sh"><h2><small>more</small>Keep exploring.</h2><p>600+ AI POCs, agents, games and tools live in the AI playground.</p></div>
+<div class="more">
+<a href="https://github.com/diegopacheco/ai-playground/tree/main/pocs/ram-skills-agents-npx" target="_blank" rel="noreferrer">ram installer &nearr;</a>
+<a href="https://diegopacheco.github.io/ai-playground/" target="_blank" rel="noreferrer">AI Playground &nearr;</a>
+<a href="https://diegopacheco.github.io/ai-playground/mcp/" target="_blank" rel="noreferrer">MCP &nearr;</a>
+<a href="https://diegopacheco.github.io/ai-playground/sec/" target="_blank" rel="noreferrer">Security &nearr;</a>
+<a href="https://diegopacheco.github.io/ai-playground/games/" target="_blank" rel="noreferrer">Games &nearr;</a>
+<a href="https://diegopacheco.github.io/ai-playground/macos-chrome-apps/" target="_blank" rel="noreferrer">macOS &amp; Chrome apps &nearr;</a>
+<a href="https://diegopacheco.github.io/" target="_blank" rel="noreferrer">Main site &nearr;</a>
+</div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>agent-skills · MIT · claude code + codex</span><a href="https://github.com/diegopacheco/agent-skills" target="_blank" rel="noreferrer">github.com/diegopacheco/agent-skills</a></div></footer>
+
+<script>
+const patterns=["progressive-disclosure","cli-harness","semantic-skill-routing","rag-backed-skills","deterministic-script-delegation","plan-execute-verify","checkpoint-and-resume","evidence-carrying-skills","skill-contract-testing","least-privilege-capability-leasing","context-budgeting","skill-supply-chain-verification","sandboxed-execution","skill-chaining","parallel-skill-fan-out","human-approval-gates","self-verification-loop","skill-observability","policy-as-code-guardrails"];
+const pc=document.getElementById("pattern-cards");
+patterns.forEach((p,i)=>{
+const n=String(i+1).padStart(2,"0");
+const a=document.createElement("a");
+a.className="card";
+a.href=`https://github.com/diegopacheco/agent-skills/tree/main/patterns/${n}-${p}`;
+a.target="_blank";
+a.rel="noreferrer";
+a.innerHTML=`<h3>${n} ${p}</h3>`;
+pc.appendChild(a);
+});
+const q=document.getElementById("q");
+const cards=[...document.querySelectorAll("#skill-cards .card")];
+const empty=document.getElementById("empty");
+q.addEventListener("input",()=>{
+const t=q.value.trim().toLowerCase();
+let shown=0;
+cards.forEach(c=>{const hit=c.textContent.toLowerCase().includes(t);c.style.display=hit?"":"none";if(hit)shown++});
+empty.style.display=shown?"none":"block";
+});
+</script>
+</body>
+</html>

@@ -1,6 +1,20 @@
 # agent-skills
 Agent-Skills: Repo with agent skills for claude/codex.
 
+Landing page: https://diegopacheco.github.io/agent-skills/
+
+## Install with RAM
+
+[RAM](https://github.com/diegopacheco/ai-playground/tree/main/pocs/ram-skills-agents-npx) is an `npx`-style installer written in Rust. It fetches the latest commit of this repo on every run, asks for Claude, Codex or both, and opens a searchable picker over every skill, command, agent and plugin here. Checked items install in parallel.
+
+```
+ram                                      interactive picker
+ram list                                 list everything in the repo
+ram install <name|kind:name>... --target claude|codex|both
+```
+
+Source, docs and printscreens: [ai-playground/pocs/ram-skills-agents-npx](https://github.com/diegopacheco/ai-playground/tree/main/pocs/ram-skills-agents-npx).
+
 ## Skills
 
 | Skill | What it is |
