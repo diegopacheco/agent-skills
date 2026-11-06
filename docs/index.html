@@ -68,13 +68,23 @@ h2 em{font-style:normal;color:var(--green)}
 .keys{display:grid;gap:12px;margin-top:24px}
 .keys div{display:flex;gap:12px;align-items:center;color:var(--mute);font-size:15px}
 .keys kbd{font:700 13px var(--mono);color:var(--green);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:5px 9px;min-width:64px;text-align:center}
-.marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.track{display:flex;gap:10px;width:max-content;animation:slide 60s linear infinite}
-.marquee:hover .track{animation-play-state:paused}
-.track a{font-family:var(--mono);font-size:14px;padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:var(--bg2);white-space:nowrap}
-.track a b{color:var(--green);margin-right:6px}
-.track a:hover{border-color:var(--green)}
-@keyframes slide{to{transform:translateX(-50%)}}
+.flips{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.flip{perspective:1000px;height:230px;background:none;border:0;padding:0;cursor:pointer;font:inherit;color:var(--fg);text-align:left}
+.flip .in{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;border-radius:18px;padding:18px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;border:1px solid var(--line);overflow:hidden}
+.flip .f{background:radial-gradient(circle at 85% 0%,rgba(62,240,143,.16),transparent 55%),var(--card)}
+.flip:hover .f{border-color:var(--green)}
+.flip:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:18px}
+.flip .f .n{font:800 46px/1 var(--mono);color:transparent;-webkit-text-stroke:1px var(--green);opacity:.75}
+.flip .f .e{position:absolute;top:18px;right:18px;font-size:30px}
+.flip .f h3{margin:auto 0 6px;font-size:18px;line-height:1.2;letter-spacing:-.01em}
+.flip .f small{font:12px var(--mono);color:var(--mute)}
+.flip .b{transform:rotateY(180deg);background:linear-gradient(160deg,#0f2e1c,#06150d);border-color:var(--green);box-shadow:0 0 40px -10px var(--glow)}
+.flip .b code{font:700 13px var(--mono);color:var(--green)}
+.flip .b p{margin:10px 0 0;font-size:14px;line-height:1.45;color:var(--fg)}
+.flip .b a{margin-top:auto;align-self:flex-start;font:700 13px var(--mono);color:#02170b;background:var(--green);border-radius:8px;padding:7px 11px}
+.flip .b a:hover{box-shadow:0 0 20px var(--glow)}
 footer{border-top:1px solid var(--line);padding:30px 0 50px;position:relative;z-index:1}
 footer .wrap{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:14px;color:var(--mute)}
 footer a:hover{color:var(--green)}
@@ -131,9 +141,9 @@ footer a:hover{color:var(--green)}
 
 <section id="patterns"><div class="wrap">
 <h2>19 <em>patterns</em> to build your own.</h2>
-<p class="lede">Each one a real, installable skill.</p>
+<p class="lede">Flip a card. Each one is a real, installable skill.</p>
+<div class="flips" id="flips"></div>
 </div>
-<div class="marquee"><div class="track" id="track"></div></div>
 </section>
 </main>
 
@@ -164,7 +174,26 @@ const skills=[
 ["⚡","commands","/do anything"],
 ["🔁","loop-backlog","until backlog is done"],
 ["🧭","claude-agents-md","one rules file"]];
-const patterns=["progressive-disclosure","cli-harness","semantic-skill-routing","rag-backed-skills","deterministic-script-delegation","plan-execute-verify","checkpoint-and-resume","evidence-carrying-skills","skill-contract-testing","least-privilege-capability-leasing","context-budgeting","skill-supply-chain-verification","sandboxed-execution","skill-chaining","parallel-skill-fan-out","human-approval-gates","self-verification-loop","skill-observability","policy-as-code-guardrails"];
+const patterns=[
+["progressive-disclosure","Progressive Disclosure","🪜","sql-migration","Metadata always, body when picked, one engine reference out of four only when needed."],
+["cli-harness","CLI / Harness","🖥️","calc-harness","Three modes: code only, LLM parses and code computes, or LLM decides."],
+["semantic-skill-routing","Semantic Skill Routing","🧭","ops-router","Routes by meaning to one of five runbooks. Asks instead of guessing."],
+["rag-backed-skills","RAG-Backed Skills","📚","team-handbook","BM25 retrieval over the handbook. Answers only with citations."],
+["deterministic-script-delegation","Deterministic Script Delegation","🧮","invoice-total","Money math in a script with exact decimals. Only JSON enters the context."],
+["plan-execute-verify","Plan-Execute-Verify","📋","verified-change","A check per step. Done only when every check passed."],
+["checkpoint-and-resume","Checkpoint and Resume","💾","resumable-task","Checkpoint per step. A new session resumes without redoing work."],
+["evidence-carrying-skills","Evidence-Carrying Skills","🔏","proof-of-done","A recorder writes exit codes and sha256 hashes. Never the model."],
+["skill-contract-testing","Skill Contract Testing","📐","conventional-commit","Written contract, deterministic checker, evals on Claude and Codex."],
+["least-privilege-capability-leasing","Least-Privilege Leasing","🔑","log-cleanup","Leases three exact commands. Everything else prompts."],
+["context-budgeting","Context Budgeting","🗜️","log-triage","Shrinks a huge log to error groups, counts, head and tail in a fixed budget."],
+["skill-supply-chain-verification","Supply-Chain Verification","🔐","trusted-install","Pinned sha256 manifest. Any modified, missing or unlisted file: refused."],
+["sandboxed-execution","Sandboxed Execution","🏖️","untrusted-run","podman, no network, read-only mount, no credentials, resource limits."],
+["skill-chaining","Skill Chaining","⛓️","csv-to-report","Link one writes a fixed JSON schema. Link two accepts only that schema."],
+["parallel-skill-fan-out","Parallel Fan-Out","🐙","multi-lens-review","Four blind subagents review in parallel. Merge dedupes by file:line."],
+["human-approval-gates","Human Approval Gates","🚦","prod-deploy","A hook blocks prod deploys until a human approves that exact command."],
+["self-verification-loop","Self-Verification Loop","🔄","fix-until-green","Test, fix, test again. A script stops it after N attempts or no progress."],
+["skill-observability","Skill Observability","🔭","skill-trace","Hooks write skills, files and tool timings to JSONL. Ask what happened."],
+["policy-as-code-guardrails","Policy-as-Code Guardrails","⚖️","policy-guard","A hook enforces policy.json rules and fails closed."]];
 const $=id=>document.getElementById(id);
 
 const sky=$("sky");
@@ -200,9 +229,17 @@ if(img)el.onclick=()=>open(n,img);else{el.href=GH+n;el.target="_blank";el.rel="n
 tiles.appendChild(el);
 });
 
-const track=$("track");
-const chips=patterns.map((p,i)=>{const n=String(i+1).padStart(2,"0");return `<a href="${GH}patterns/${n}-${p}" target="_blank" rel="noreferrer"><b>${n}</b>${p}</a>`}).join("");
-track.innerHTML=chips+chips;
+const flips=$("flips");
+patterns.forEach(([slug,name,ic,skill,txt],i)=>{
+const n=String(i+1).padStart(2,"0");
+const el=document.createElement("div");
+el.className="flip";el.tabIndex=0;el.setAttribute("role","button");el.setAttribute("aria-label",name);
+el.innerHTML=`<div class="in"><div class="f"><span class="n">${n}</span><span class="e">${ic}</span><h3>${name}</h3><small>tap to flip</small></div><div class="b"><code>/${skill}</code><p>${txt}</p><a href="${GH}patterns/${n}-${slug}" target="_blank" rel="noreferrer">Read more →</a></div></div>`;
+const t=()=>el.classList.toggle("on");
+el.onclick=e=>{if(!e.target.closest("a"))t()};
+el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();t()}};
+flips.appendChild(el);
+});
 
 $("copy").onclick=()=>{try{navigator.clipboard.writeText("ram")}catch(e){}const t=$("toast");t.classList.add("on");setTimeout(()=>t.classList.remove("on"),1200)};
 </script>
