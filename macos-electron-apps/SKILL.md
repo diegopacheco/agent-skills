@@ -30,3 +30,8 @@ allowed-tools: [Bash, Read, AskUserQuestion]
 - When macos/electron apps start they start all needed services ideally there is alredy a scripts/start-all.sh
 - When macos/electron apps start they show a ui with all services booting i.e nodejs ready, api ready, postgres loading... 
 - When macos/electron apps stop/quit they stop all needed services ideally there is alredy a scripts/stop-all.sh
+- The same solution must work well as a web app, as a mobile app and as the macos/electron experience. The same UI is rendered on an iPhone 18 MP, so it must be responsive: no horizontal scroll, touch targets of at least 44px, safe-area insets respected, and every feature reachable by touch, not only by shortcut or hover. Verify all three: macos/electron window, desktop browser and the iPhone 18 MP viewport.
+- Every panel, modal and widget, in every UI, has two buttons on its top right corner, drawn as inline SVG at a single stroke weight:
+  - Expand/collapse: an icon with two diagonal arrows (one up-right, one down-left). Click expands the panel to almost full screen (leave a small margin around it), click again collapses it back to its normal size and position. The icon switches to two arrows pointing inward while expanded.
+  - Hide/restore: an icon to hide the panel, and a way to bring it back to normal (i.e a small restore chip or the same button), so a hidden panel is never lost.
+  - Both buttons must work the same on macos/electron, web and mobile: real click and tap, touch targets of at least 44px on mobile, Esc collapses an expanded panel, and each button shows a tooltip with its action name.
