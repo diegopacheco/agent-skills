@@ -15,7 +15,9 @@ allowed-tools: [Bash, Read, AskUserQuestion]
 - Macos/electron apps allow copy and paste with CMD + c and CMD + v, and also allow cut with CMD + x.
 - Macos/electron apps remeber the position x,y or full screen when open/close and restore exact position of app in ui/screen.
 - Macos/Electron apps must have common shortcut features like(unless app only lives in top menu bar - for this case you can ignore this):
-  - CMD + k: search anything on the app, in a nice modal - enter goto.
+  - CMD + k: search anything on the app, in a nice modal - enter goto. This modal must:
+    - List the app menu tabs as entries, so any tab can be reached from CMD + k.
+    - Always show an icon next to every entry, no entry without an icon. Tab entries use the same icon of the tab they go to. Draw the icons as inline SVG at a single stroke weight, no icon font or icon library.
   - CMD + /: display all shortcuts in a modal like cmd + k. This modal must:
     - Always fit on the screen: cap the card height (max-height ~92vh), flow the groups in columns, and scroll inside the card so no shortcut is ever cut off. Drop to a single column on narrow windows.
     - Group the shortcuts by feature area, each group with its own icon and its own color(icon, group title, border and the keys of that group share the color). Draw the icons as inline SVG at a single stroke weight, do not add an icon font or an icon library.
