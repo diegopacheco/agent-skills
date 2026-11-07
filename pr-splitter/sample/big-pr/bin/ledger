@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")/../lib" && pwd)/ledger.sh"
+
+LEDGER_FILE="${LEDGER_FILE:-$HOME/.ledger.tsv}"
+
+usage() { echo "usage: ledger add <description> <amount> | balance | list" >&2; exit 2; }
+
+case "${1:-}" in
+  add) [ $# -eq 3 ] || usage; ledger_add "$2" "$3" ;;
+  balance) [ $# -eq 1 ] || usage; ledger_balance ;;
+  list) [ $# -eq 1 ] || usage; ledger_list ;;
+  *) usage ;;
+esac
