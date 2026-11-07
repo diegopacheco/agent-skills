@@ -109,3 +109,55 @@ Inside a repository, run `/pr-splitter` or `/pr-splitter feature/big main`.
 ```bash
 ./uninstall.sh both
 ```
+
+## Step by Step
+
+1. Install the skill for Claude, Codex or both:
+   ```bash
+   ./install.sh both
+   ```
+2. Go to the repository, commit or stash everything and make sure the big branch is green:
+   ```bash
+   cd ~/git/my-repo
+   git status
+   git switch feature/big && ./test.sh
+   ```
+3. If `main` moved since the branch was created, merge it in, never rebase:
+   ```bash
+   git merge main
+   ```
+4. Ask the agent to split it, with an optional target size per PR in changed lines:
+   ```
+   /pr-splitter feature/big main
+   /pr-splitter feature/big main 200
+   ```
+5. The agent runs `plan.sh`, reads the diff and the code, and writes the plan, the prompt and any partial
+   patches in `.git/pr-split/feature-big/`. See [sample/plan.md](sample/plan.md) for a real plan.
+6. The agent runs `split.sh`. Each slice prints `ok` with its size and the run ends with
+   `same tree as feature/big: yes`. A red slice stops the split and names its log in `out/NN.log`.
+   The agent moves files or hunks, runs `cleanup.sh feature/big` and splits again.
+7. Check the result yourself:
+   ```bash
+   git branch --list 'split/feature/big/*'
+   git diff split/feature/big/03-<slug> feature/big
+   cat .git/pr-split/feature-big/out/01.md
+   ```
+   The diff must be empty. Each `out/NN.md` is the PR body, with the task, the prompt and the real test output.
+8. Push the slices and open the stacked PRs. Each PR targets the previous slice:
+   ```bash
+   git push origin $(git for-each-ref --format='%(refname:short)' 'refs/heads/split/feature/big/')
+   .git/pr-split/feature-big/out/create-prs.sh
+   ```
+9. After a review comment, commit the fix on the slice it belongs to and move it forward with merges:
+   ```bash
+   git switch split/feature/big/01-<slug>
+   git commit -am "fix from review"
+   ~/.claude/skills/pr-splitter/scripts/restack.sh .git/pr-split/feature-big/plan.md
+   git push origin $(git for-each-ref --format='%(refname:short)' 'refs/heads/split/feature/big/')
+   ```
+10. Merge the PRs in order with merge commits. When one merges, GitHub retargets the next one to `main`.
+11. When the stack is merged, delete the local slices. The plan stays in the work dir:
+    ```bash
+    git switch main
+    ~/.claude/skills/pr-splitter/scripts/cleanup.sh feature/big
+    ```
