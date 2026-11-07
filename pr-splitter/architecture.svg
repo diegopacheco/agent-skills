@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 440" width="940" height="440">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&amp;display=swap');
+      text{font-family:'Caveat',cursive;fill:#1e1e1e}
+      .t{font-size:22px;font-weight:700}
+      .s{font-size:17px}
+      .box{stroke:#1e1e1e;stroke-width:2;filter:url(#wobble)}
+      .line{stroke:#1e1e1e;stroke-width:2;fill:none;filter:url(#wobble)}</style>
+    <filter id="wobble" filterUnits="userSpaceOnUse" x="0" y="0" width="940" height="440"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#1e1e1e"/></marker>
+  </defs>
+  <rect width="940" height="440" fill="#ffffff"/>
+
+  <rect class="box" x="30" y="40" width="170" height="70" rx="12" fill="#ffd8a8"/>
+  <text class="t" x="115" y="70" text-anchor="middle">feature/big</text>
+  <text class="s" x="115" y="94" text-anchor="middle">one huge branch</text>
+
+  <rect class="box" x="250" y="40" width="170" height="70" rx="12" fill="#d0ebff"/>
+  <text class="t" x="335" y="70" text-anchor="middle">plan.sh</text>
+  <text class="s" x="335" y="94" text-anchor="middle">inventory of changes</text>
+
+  <rect class="box" x="470" y="40" width="190" height="70" rx="12" fill="#e5dbff"/>
+  <text class="t" x="565" y="70" text-anchor="middle">plan.md</text>
+  <text class="s" x="565" y="94" text-anchor="middle">agent slices by dependency</text>
+
+  <rect class="box" x="710" y="40" width="200" height="70" rx="12" fill="#d0ebff"/>
+  <text class="t" x="810" y="70" text-anchor="middle">split.sh</text>
+  <text class="s" x="810" y="94" text-anchor="middle">no file dropped or invented</text>
+
+  <rect class="box" x="30" y="190" width="170" height="80" rx="12" fill="#b2f2bb"/>
+  <text class="t" x="115" y="222" text-anchor="middle">01-model</text>
+  <text class="s" x="115" y="248" text-anchor="middle">build + test green</text>
+
+  <rect class="box" x="250" y="190" width="170" height="80" rx="12" fill="#b2f2bb"/>
+  <text class="t" x="335" y="222" text-anchor="middle">02-service</text>
+  <text class="s" x="335" y="248" text-anchor="middle">build + test green</text>
+
+  <rect class="box" x="470" y="190" width="190" height="80" rx="12" fill="#b2f2bb"/>
+  <text class="t" x="565" y="222" text-anchor="middle">03-api</text>
+  <text class="s" x="565" y="248" text-anchor="middle">build + test green</text>
+
+  <rect class="box" x="710" y="190" width="200" height="80" rx="12" fill="#fff3bf"/>
+  <text class="t" x="810" y="222" text-anchor="middle">same tree as source?</text>
+  <text class="s" x="810" y="248" text-anchor="middle">must be yes</text>
+
+  <rect class="box" x="710" y="340" width="200" height="70" rx="12" fill="#ffd8a8"/>
+  <text class="t" x="810" y="370" text-anchor="middle">out/</text>
+  <text class="s" x="810" y="394" text-anchor="middle">PR bodies + create-prs.sh</text>
+
+  <rect class="box" x="470" y="340" width="190" height="70" rx="12" fill="#ffc9c9"/>
+  <text class="t" x="565" y="370" text-anchor="middle">you push</text>
+  <text class="s" x="565" y="394" text-anchor="middle">then run create-prs.sh</text>
+
+  <rect class="box" x="190" y="340" width="230" height="70" rx="12" fill="#e5dbff"/>
+  <text class="t" x="305" y="370" text-anchor="middle">review fix + restack.sh</text>
+  <text class="s" x="305" y="394" text-anchor="middle">merge forward, never rebase</text>
+
+  <path class="line" d="M200 75 L246 75" marker-end="url(#arrow)"/>
+  <path class="line" d="M420 75 L466 75" marker-end="url(#arrow)"/>
+  <path class="line" d="M660 75 L706 75" marker-end="url(#arrow)"/>
+  <path class="line" d="M810 110 L810 150 L115 150 L115 186" marker-end="url(#arrow)"/>
+  <path class="line" d="M200 230 L246 230" marker-end="url(#arrow)"/>
+  <path class="line" d="M420 230 L466 230" marker-end="url(#arrow)"/>
+  <path class="line" d="M660 230 L706 230" marker-end="url(#arrow)"/>
+  <path class="line" d="M810 270 L810 336" marker-end="url(#arrow)"/>
+  <path class="line" d="M710 375 L664 375" marker-end="url(#arrow)"/>
+  <path class="line" d="M470 375 L424 375" marker-end="url(#arrow)"/>
+  <path class="line" d="M305 340 L305 300 L335 300 L335 274" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+  <text class="s" x="150" y="296" text-anchor="middle">stacked: each PR targets the one before</text>
+</svg>
