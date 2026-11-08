@@ -19,14 +19,14 @@ A skill with a fixed set of technology stacks. Name one, such as `java stack` or
 | `kotlin` | Kotlin 2.x, Java 25, Gradle wrapper, Spring Boot 4.1.x, Postgres, HikariCP, proper types, modular code |
 | `ts` | TypeScript 7.x, Bun 2.x, Vite, React 19.3.x, TanStack 1.x (Router, Query, Table, Form), proper types, modular code |
 | `nodejs` | Node.js 26, npm, TypeScript 7.x, Express.js, proper types, modular code |
-| `rust` | Rust 1.99.x edition 2024, Tokio, async functions that return `Result`, traits, modular code |
+| `rust` (`rs`) | Rust 1.99.x edition 2024, Tokio, async functions that return `Result`, traits, modular code, release mode for the finished app and all scripts, no debug leftovers |
 | `go` | Go 1.26.x, proper types, modular packages |
 | `python` | Python 3.15.x, uv, ty, Granian, type hints, modular code, tests |
 
 ## Features
 
 * Fixed stacks: every project made with a stack gets the same tools and versions.
-* Flexible names: `java stack`, `java-stack`, `java_stack` and aliases like `typescript` or `golang` all match.
+* Flexible names: `java stack`, `java-stack`, `java_stack` and aliases like `typescript`, `golang` or `rs` all match.
 * Asks when unsure: if the stack is unclear, the agent shows the list instead of guessing.
 * Shared rules: modular code, proper types, no comments, few libraries and tests for every stack.
 

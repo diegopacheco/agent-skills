@@ -1,13 +1,13 @@
 ---
 name: stacks-skill
-description: Predefined technology stacks (java, scala, kotlin, ts, nodejs, rust, go, python). Use when the user mentions a stack by name such as "java stack", "java-stack", "rust stack", "ts-stack", "python stack", or asks to create a project, service or app with one of these stacks. If the user asks for a stack but it is not clear which one, ask the user to choose from the list.
+description: Predefined technology stacks (java, scala, kotlin, ts, nodejs, rust, go, python). Use when the user mentions a stack by name such as "java stack", "java-stack", "rust stack", "rs stack", "ts-stack", "python stack", or asks to create a project, service or app with one of these stacks. If the user asks for a stack but it is not clear which one, ask the user to choose from the list.
 allowed-tools: [Bash, Read, Write, Edit, AskUserQuestion]
 ---
 
 ## How to pick a stack
 * The user refers to a stack as `<name> stack`, `<name>-stack`, `<name>_stack` or just `<name>` in the context of creating a project.
 * Valid names: `java`, `scala`, `kotlin`, `ts`, `nodejs`, `rust`, `go`, `python`.
-* Aliases: `typescript`, `react`, `bun` -> `ts`. `node`, `express` -> `nodejs`. `golang` -> `go`. `py` -> `python`. `kt` -> `kotlin`.
+* Aliases: `typescript`, `react`, `bun` -> `ts`. `node`, `express` -> `nodejs`. `golang` -> `go`. `py` -> `python`. `kt` -> `kotlin`. `rs` -> `rust`.
 * If the stack is not clear, or more than one could fit, ask the user with AskUserQuestion and show the stacks as options. Never guess.
 * Use exactly the stack chosen. Do not add libraries or tools outside the stack unless the user asks.
 * If a version listed here is not available, stop and tell the user, then use the latest stable version only after the user agrees.
@@ -66,6 +66,11 @@ allowed-tools: [Bash, Read, Write, Edit, AskUserQuestion]
 * Tokio
 * Async code, functions return `Result`
 * Traits and modular code
+* Debug builds are fine while testing and troubleshooting.
+* Once the app is done and working, everything must be in release mode: `cargo build --release`, `cargo run --release`, `cargo test --release`.
+* Every script (build, run, start, test, install) must use release mode. No script may use a debug build.
+* If debug was used, clean it before finishing: delete `target/debug` (or run `cargo clean` and rebuild in release). Debug leftovers compound the disk size, so never leave them behind.
+* Fix the problems found in debug, then confirm the final build, scripts and tests all run in release and no debug artifacts remain.
 
 ## go
 * Go 1.26.x
