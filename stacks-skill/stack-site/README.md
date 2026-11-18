@@ -2,6 +2,8 @@
 
 A local catalog to browse the stacks of `stacks-skill`. Pick a stack, read its markdown rendered or raw, and search across every stack, the rules and the bad vs good samples.
 
+Published at https://diegopacheco.github.io/agent-skills/stacks-skill/catalog/
+
 It is only for viewing. `install.sh` copies `SKILL.md` and `stacks/` only, so `stack-site/` is never installed with the skill.
 
 ## How it Works
@@ -18,8 +20,8 @@ It is only for viewing. `install.sh` copies `SKILL.md` and `stacks/` only, so `s
 
 ## Features
 
-* Catalog grid: one card per stack with its tools, versions and sample count, so you can compare stacks at a glance.
-* Rendered view: headings, tables, lists and code with copy buttons, and Bad vs Good samples marked in red and green.
+* Catalog grid: one card per stack with its language logo, its tools, versions and sample count, so you can compare stacks at a glance.
+* Rendered view: the language logo, headings, tables, lists and code with copy buttons, and Bad vs Good samples marked in red and green.
 * Markdown view: the raw file with line numbers, so you see exactly what the agent reads.
 * Search: searches every stack at once, highlights matches, counts hits per stack and jumps to the section. Press `/` to focus it.
 * Rules page: `SKILL.md` rendered, with its stack table linking to each stack page.
@@ -40,19 +42,22 @@ No markdown library. The parser is about 100 lines and is covered by tests. TanS
 
 ## Routes
 
+Routes use hash history, so the site works from any subpath, such as GitHub Pages.
+
 | Route | What it shows |
 |---|---|
-| `/` | Catalog grid |
-| `/?q=<terms>` | Search results across every stack |
-| `/stacks/$stackId` | One stack rendered, with sidebar and table of contents |
-| `/stacks/$stackId?view=source` | The raw markdown with line numbers |
-| `/rules` | `SKILL.md` rendered |
+| `#/` | Catalog grid |
+| `#/?q=<terms>` | Search results across every stack |
+| `#/stacks/$stackId` | One stack rendered, with sidebar and table of contents |
+| `#/stacks/$stackId?view=source` | The raw markdown with line numbers |
+| `#/rules` | `SKILL.md` rendered |
 
 ## Key design decisions
 
 * `features/markdown`: `parse.ts` and `inline.ts` turn text into `Block` and `Inline` unions. React components only render blocks and never parse.
 * `features/catalog`: `catalog.ts` is pure and gets files as `Record<path, source>`, so tests run without Vite. Only `source.ts` knows about `import.meta.glob`.
 * `features/search`: pure functions over the catalog, scored by term count with a bonus for title matches.
+* `logo.ts` maps a stack id to its SVG in `src/assets/logos/`, so Vite bundles each logo with the build.
 * Search text lives in the URL, so a search can be shared and the back button works.
 
 ## Layout
@@ -67,6 +72,7 @@ stack-site/
     features/catalog/       catalog builder, source glob, cards, nav, toc
     features/search/        search, highlight, results
     components/SearchBox.tsx
+    assets/logos/           transparent SVG language logos from devicon
   docs/architecture.svg
   printscreens/
 ```
@@ -113,6 +119,15 @@ All scripts live in `scripts/` and run from any directory of the repository.
 Ports are declared in `scripts/ports.env`. The site runs on `http://localhost:5180`.
 
 `test-all.sh` runs the unit tests (`bun test`), the typecheck (`tsc --noEmit`) and the production build.
+
+## Publish
+
+The site is served by GitHub Pages from the `docs/` folder of the `main` branch. To publish a new version, build and copy `dist/` to `docs/stacks-skill/catalog/`, then push `main`.
+
+```bash
+./scripts/test-all.sh
+rm -rf ../../docs/stacks-skill/catalog && mkdir -p ../../docs/stacks-skill/catalog && cp -R dist/. ../../docs/stacks-skill/catalog/
+```
 
 ```bash
 ./scripts/setup.sh

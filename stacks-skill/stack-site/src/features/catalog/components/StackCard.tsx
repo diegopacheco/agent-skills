@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { accentOf, monogramOf } from "../accent";
+import { accentOf } from "../accent";
+import { logoOf } from "../logo";
 import type { Stack } from "../types";
 
 type StackCardProps = { readonly stack: Stack };
@@ -8,7 +9,9 @@ export function StackCard({ stack }: StackCardProps) {
   return (
     <Link to="/stacks/$stackId" params={{ stackId: stack.id }} className="card" style={{ "--accent": accentOf(stack.id) }}>
       <div className="card-head">
-        <span className="monogram">{monogramOf(stack.id)}</span>
+        <span className="logo-box">
+          <img src={logoOf(stack.id)} alt={`${stack.id} logo`} />
+        </span>
         <div>
           <h2>{stack.id}</h2>
           <span className="muted">{stack.title}</span>

@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Markdown } from "../../markdown/components/Markdown";
 import { SourceView } from "../../markdown/components/SourceView";
+import { logoOf } from "../logo";
 import type { Stack } from "../types";
 import { StackNav } from "./StackNav";
 import { Toc } from "./Toc";
@@ -14,10 +15,12 @@ type DocPageProps = {
 };
 
 export function DocPage({ stack, view, from }: DocPageProps) {
+  const logo = logoOf(stack.id);
   return (
     <div className="doc-layout">
       <StackNav />
       <article className="doc">
+        {logo && <img className="doc-logo" src={logo} alt={`${stack.id} logo`} />}
         <div className="view-toggle">
           <Link from={from} to="." search={{}} className={view === "rendered" ? "on" : ""}>
             Rendered

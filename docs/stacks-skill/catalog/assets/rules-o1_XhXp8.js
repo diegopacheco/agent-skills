@@ -1,0 +1,1 @@
+import{n as e,r as t}from"./index-C1CvUWy-.js";import{n,v as r}from"./source-BfOs9L55.js";var i=r();function a(){let r=e.useSearch().view??`rendered`;return(0,i.jsx)(t,{stack:n,view:r,from:`/rules`})}export{a as component};

@@ -12,7 +12,3 @@ const ACCENTS: Readonly<Record<string, string>> = {
 export function accentOf(id: string): string {
   return ACCENTS[id] ?? "#475569";
 }
-
-export function monogramOf(id: string): string {
-  return id.slice(0, 2).toUpperCase();
-}
