@@ -508,10 +508,58 @@ tr:last-child td {
 
 .code pre {
   margin: 0;
-  padding: 14px 18px;
+  padding: 14px 18px 14px 0;
   overflow-x: auto;
   color: var(--code-ink);
   font: 13.5px/1.6 var(--mono);
+}
+
+.code-line {
+  display: block;
+}
+
+.code-line:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.code .ln {
+  width: 44px;
+  margin-right: 14px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  color: #475569;
+}
+
+.tk-comment {
+  color: #64748b;
+  font-style: italic;
+}
+
+.tk-string {
+  color: #86efac;
+}
+
+.tk-keyword {
+  color: #c4b5fd;
+}
+
+.tk-literal {
+  color: #fca5a5;
+}
+
+.tk-type {
+  color: #7dd3fc;
+}
+
+.tk-fn {
+  color: #fde68a;
+}
+
+.tk-number {
+  color: #fdba74;
+}
+
+.tk-annotation {
+  color: #f9a8d4;
 }
 
 .source {

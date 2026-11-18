@@ -1,1 +1,0 @@
-import{r as e,t}from"./index-C1CvUWy-.js";import{v as n}from"./source-BfOs9L55.js";var r=n();function i(){let n=t.useLoaderData(),i=t.useSearch().view??`rendered`;return(0,r.jsx)(e,{stack:n,view:i,from:`/stacks/$stackId`})}export{i as component};

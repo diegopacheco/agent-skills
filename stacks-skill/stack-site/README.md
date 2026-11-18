@@ -21,7 +21,7 @@ It is only for viewing. `install.sh` copies `SKILL.md` and `stacks/` only, so `s
 ## Features
 
 * Catalog grid: one card per stack with its language logo, its tools, versions and sample count, so you can compare stacks at a glance.
-* Rendered view: the language logo, headings, tables, lists and code with copy buttons, and Bad vs Good samples marked in red and green.
+* Rendered view: the language logo, headings, tables, lists and code with syntax colors, line numbers and copy buttons, and Bad vs Good samples marked in red and green.
 * Markdown view: the raw file with line numbers, so you see exactly what the agent reads.
 * Search: searches every stack at once, highlights matches, counts hits per stack and jumps to the section. Press `/` to focus it.
 * Rules page: `SKILL.md` rendered, with its stack table linking to each stack page.
@@ -68,7 +68,7 @@ stack-site/
   src/
     main.tsx                router setup
     routes/                 __root, index, stacks.$stackId, rules
-    features/markdown/      parser, inline parser, slugs, render components
+    features/markdown/      parser, inline parser, slugs, syntax highlighter, render components
     features/catalog/       catalog builder, source glob, cards, nav, toc
     features/search/        search, highlight, results
     components/SearchBox.tsx
@@ -89,7 +89,7 @@ The rust stack rendered. On the left you switch stacks. On the right is the tabl
 
 ### Bad vs Good
 ![bad vs good](printscreens/bad-vs-good.png)
-Each sample shows the wrong code with a red BAD badge and the right code with a green GOOD badge. Every code block has a copy button.
+Each sample shows the wrong code with a red BAD badge and the right code with a green GOOD badge. Every code block has syntax colors for java, kotlin, scala, rust, go, python, ts, tsx and bash, line numbers and a copy button.
 
 ### Markdown source
 ![markdown source](printscreens/markdown-source.png)
