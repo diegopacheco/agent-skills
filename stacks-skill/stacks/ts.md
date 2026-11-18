@@ -2,7 +2,7 @@
 
 ## Stack
 * TypeScript 7.x
-* Bun 2.x
+* Bun 1.4.x
 * Vite
 * React 19.3.x
 * TanStack 1.x for everything it covers: Router, Query, Table, Form
