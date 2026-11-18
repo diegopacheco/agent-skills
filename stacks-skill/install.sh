@@ -28,6 +28,7 @@ install_skill() {
   rm -rf "$dest"
   mkdir -p "$dest"
   cp "$ROOT/SKILL.md" "$dest/"
+  cp -R "$ROOT/stacks" "$dest/"
   echo "installed $NAME to $dest"
 }
 

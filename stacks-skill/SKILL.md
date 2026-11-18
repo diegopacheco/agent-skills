@@ -10,7 +10,23 @@ allowed-tools: [Bash, Read, Write, Edit, AskUserQuestion]
 * Aliases: `typescript`, `react`, `bun` -> `ts`. `node`, `express` -> `nodejs`. `golang` -> `go`. `py` -> `python`. `kt` -> `kotlin`. `rs` -> `rust`.
 * If the stack is not clear, or more than one could fit, ask the user with AskUserQuestion and show the stacks as options. Never guess.
 * Use exactly the stack chosen. Do not add libraries or tools outside the stack unless the user asks.
-* If a version listed here is not available, stop and tell the user, then use the latest stable version only after the user agrees.
+* If a version listed in a stack file is not available, stop and tell the user, then use the latest stable version only after the user agrees.
+
+## Progressive disclosure
+Once the stack is known, read only its file before writing any code. Do not load the other stack files.
+
+| Stack | File |
+|---|---|
+| `java` | [stacks/java.md](stacks/java.md) |
+| `scala` | [stacks/scala.md](stacks/scala.md) |
+| `kotlin` | [stacks/kotlin.md](stacks/kotlin.md) |
+| `ts` | [stacks/ts.md](stacks/ts.md) |
+| `nodejs` | [stacks/nodejs.md](stacks/nodejs.md) |
+| `rust` | [stacks/rust.md](stacks/rust.md) |
+| `go` | [stacks/go.md](stacks/go.md) |
+| `python` | [stacks/python.md](stacks/python.md) |
+
+Each stack file has the versions, the idiomatic way to write that language, how the principles below apply to it, and bad vs good code samples. Write code that looks like the good samples.
 
 ## Rules for every stack
 * Modular code: small modules or packages with one responsibility each.
@@ -19,68 +35,24 @@ allowed-tools: [Bash, Read, Write, Edit, AskUserQuestion]
 * Keep the code as simple as possible and use the least number of libraries.
 * Tests for the core logic, and the build and tests must pass before saying it is done.
 
-## java
-* Java 25
-* Maven
-* Spring Boot 4.1.x
-* Spring Data JDBC
-* Postgres
-* HikariCP
-* Modular code
+## Principles
+* Separation of concerns: transport (HTTP, CLI), domain logic and persistence live in different modules. Handlers parse input and call a service. Services hold the rules. Repositories talk to the database. No SQL in handlers, no HTTP types in services.
+* DRY: one piece of knowledge lives in one place. The second time the same logic shows up, extract it. Do not extract on the first use, and do not merge code that only looks alike but changes for different reasons.
+* Interfaces at the boundaries: depend on an interface (or trait, protocol) for anything that leaves the process: database, HTTP, clock, file system, queue. Inject the implementation through the constructor. Tests swap in a fake.
+* Small public surface: expose only what callers need. Everything else stays private to the module.
+* Immutability by default: values are immutable unless there is a clear reason to mutate.
+* Fail loud: never swallow errors. Return them in the type (`Result`, `error`) or throw a typed exception, and handle them at one boundary.
 
-## scala
-* Scala 3.x
-* sbt
-* Netty
-* Postgres
-* HikariCP
-* Spring Boot 4.x
-* Proper types and modular code
+## Centralization rules
+Some concerns must have exactly one owner in the codebase. Before writing code for any of them, search the codebase for the existing one. If it exists, every call site must use it. If it does not exist and the concern is needed, create it once in its own module and use it everywhere.
 
-## kotlin
-* Kotlin 2.x
-* Java 25
-* Gradle wrapper (`./gradlew`)
-* Spring Boot 4.1.x
-* Postgres
-* HikariCP
-* Proper types and modular code
+* Logging: one centralized logger module is the only way to log. It always adds the common fields: correlation id, request path, user id and service name. The HTTP entry point reads or creates the `X-Correlation-Id` header, and the centralized HTTP client forwards it on every outbound call, so logs can be followed across services. No `println`, `console.log`, `print` or `fmt.Println` for logs.
+* HTTP client: one configured REST client (base URL, timeouts, retries, auth headers, error mapping). Every outbound REST call goes through it. No ad hoc `fetch`, `requests`, `reqwest` or `HttpClient` calls spread around the code.
+* Configuration: one config module reads environment and files at startup into a typed object. No reading env vars deep in the code.
+* Database access: one connection pool and repositories per aggregate. No opening connections in random places.
+* Error handling: one error type hierarchy per module and one place that maps errors to HTTP responses or exit codes.
+* JSON: one serializer setup with the same naming and date rules for the whole app.
+* Time and IDs: one clock and one ID generator, injected, so tests are deterministic.
+* Validation: one validation layer at the boundary. Inside the domain, values are already valid.
 
-## ts
-* TypeScript 7.x
-* Bun 2.x
-* Vite
-* React 19.3.x
-* TanStack 1.x for everything it covers: Router, Query, Table, Form
-* Modular code and proper types
-
-## nodejs
-* Node.js 26
-* npm
-* TypeScript 7.x
-* Express.js
-* Modular code and proper types
-
-## rust
-* Rust 1.99.x, edition 2024
-* Tokio
-* Async code, functions return `Result`
-* Traits and modular code
-* Debug builds are fine while testing and troubleshooting.
-* Once the app is done and working, everything must be in release mode: `cargo build --release`, `cargo run --release`, `cargo test --release`.
-* Every script (build, run, start, test, install) must use release mode. No script may use a debug build.
-* If debug was used, clean it before finishing: delete `target/debug` (or run `cargo clean` and rebuild in release). Debug leftovers compound the disk size, so never leave them behind.
-* Fix the problems found in debug, then confirm the final build, scripts and tests all run in release and no debug artifacts remain.
-
-## go
-* Go 1.26.x
-* Modular code with packages
-* Proper types
-
-## python
-* Python 3.15.x
-* uv
-* ty for type checking
-* Granian as the server
-* Proper type hints and modular code
-* Tests
+If you find two owners for the same concern, do not add a third and do not blend them. Pick the more used or more tested one, use it, and tell the user about the other so it can be removed.

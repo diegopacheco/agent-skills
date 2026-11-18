@@ -7,8 +7,9 @@ A skill with a fixed set of technology stacks. Name one, such as `java stack` or
 1. You ask for something like `create a todo api with the rust stack`.
 2. The agent matches `rust stack`, `rust-stack` or an alias such as `golang` to one stack in `SKILL.md`.
 3. If no stack matches, or more than one fits, it asks you to choose.
-4. It builds with only that stack's tools and versions, keeping the code modular and typed, with no comments and with tests.
-5. If a listed version is not available, it stops and asks before using another one.
+4. It reads only that stack's file in `stacks/` (progressive disclosure), with the idiomatic way to write the language, the principles, the centralization rules and bad vs good code samples.
+5. It builds with only that stack's tools and versions, keeping the code modular and typed, with no comments and with tests.
+6. If a listed version is not available, it stops and asks before using another one.
 
 ## Stacks
 
@@ -29,6 +30,9 @@ A skill with a fixed set of technology stacks. Name one, such as `java stack` or
 * Flexible names: `java stack`, `java-stack`, `java_stack` and aliases like `typescript`, `golang` or `rs` all match.
 * Asks when unsure: if the stack is unclear, the agent shows the list instead of guessing.
 * Shared rules: modular code, proper types, no comments, few libraries and tests for every stack.
+* Principles: separation of concerns, DRY and interfaces at the boundaries.
+* Centralization rules: one logger, one REST client, one config, one error mapper, one DB pool, one clock. If the codebase has one, every call site must use it.
+* Bad vs good samples: 13 to 15 per language, showing idiomatic code.
 
 ## Install
 
@@ -52,6 +56,7 @@ Installs to and removes from `~/.claude/skills/stacks-skill` and `~/.codex/skill
 
 ## Layout
 
-- `SKILL.md`: the stacks and the rules for picking one
+- `SKILL.md`: how to pick a stack, shared rules, principles, centralization rules
+- `stacks/<lang>.md`: one file per stack with versions, idioms and bad vs good samples
 - `install.sh`: installs the skill for Claude Code, Codex or both
 - `uninstall.sh`: removes the skill from Claude Code, Codex or both
