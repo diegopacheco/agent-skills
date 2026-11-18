@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="420" viewBox="0 0 980 420">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&amp;display=swap'); text { font-family: Caveat, 'Comic Sans MS', cursive; fill: #1e293b; }</style>
+    <filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1,1 L10,6 L1,11" fill="none" stroke="#334155" stroke-width="2"/></marker>
+  </defs>
+  <rect width="980" height="420" fill="#ffffff"/>
+  <g filter="url(#wobble)" stroke="#334155" stroke-width="2.2">
+    <rect x="30" y="60" width="200" height="110" rx="14" fill="#fde2e4"/>
+    <rect x="30" y="230" width="200" height="110" rx="14" fill="#fde2e4"/>
+    <rect x="300" y="140" width="200" height="120" rx="14" fill="#e2ece9"/>
+    <rect x="570" y="40" width="180" height="90" rx="14" fill="#dbe7f7"/>
+    <rect x="570" y="160" width="180" height="90" rx="14" fill="#dbe7f7"/>
+    <rect x="570" y="280" width="180" height="90" rx="14" fill="#dbe7f7"/>
+    <rect x="800" y="140" width="150" height="120" rx="14" fill="#fff1c1"/>
+    <path d="M230,115 L298,180" fill="none" marker-end="url(#arrow)"/>
+    <path d="M230,285 L298,220" fill="none" marker-end="url(#arrow)"/>
+    <path d="M500,175 L568,90" fill="none" marker-end="url(#arrow)"/>
+    <path d="M500,200 L568,205" fill="none" marker-end="url(#arrow)"/>
+    <path d="M500,225 L568,320" fill="none" marker-end="url(#arrow)"/>
+    <path d="M750,85 L798,170" fill="none" marker-end="url(#arrow)"/>
+    <path d="M750,205 L798,205" fill="none" marker-end="url(#arrow)"/>
+    <path d="M750,325 L798,240" fill="none" marker-end="url(#arrow)"/>
+  </g>
+  <text x="490" y="30" font-size="28" font-weight="700" text-anchor="middle">stack-site: markdown in, catalog out</text>
+  <text x="130" y="105" font-size="26" font-weight="700" text-anchor="middle">../stacks/*.md</text>
+  <text x="130" y="138" font-size="20" text-anchor="middle">one file per stack</text>
+  <text x="130" y="275" font-size="26" font-weight="700" text-anchor="middle">../SKILL.md</text>
+  <text x="130" y="308" font-size="20" text-anchor="middle">rules and principles</text>
+  <text x="400" y="185" font-size="24" font-weight="700" text-anchor="middle">Vite glob ?raw</text>
+  <text x="400" y="215" font-size="20" text-anchor="middle">catalog/source.ts</text>
+  <text x="400" y="240" font-size="20" text-anchor="middle">hot reload on edit</text>
+  <text x="660" y="80" font-size="24" font-weight="700" text-anchor="middle">markdown parser</text>
+  <text x="660" y="108" font-size="19" text-anchor="middle">blocks + Bad/Good</text>
+  <text x="660" y="200" font-size="24" font-weight="700" text-anchor="middle">catalog</text>
+  <text x="660" y="228" font-size="19" text-anchor="middle">tools, samples, toc</text>
+  <text x="660" y="320" font-size="24" font-weight="700" text-anchor="middle">search</text>
+  <text x="660" y="348" font-size="19" text-anchor="middle">sections, score, snippet</text>
+  <text x="875" y="190" font-size="24" font-weight="700" text-anchor="middle">React UI</text>
+  <text x="875" y="218" font-size="19" text-anchor="middle">TanStack Router</text>
+  <text x="875" y="243" font-size="19" text-anchor="middle">/, /stacks/$id, /rules</text>
+</svg>

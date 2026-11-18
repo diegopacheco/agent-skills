@@ -60,3 +60,4 @@ Installs to and removes from `~/.claude/skills/stacks-skill` and `~/.codex/skill
 - `stacks/<lang>.md`: one file per stack with versions, idioms and bad vs good samples
 - `install.sh`: installs the skill for Claude Code, Codex or both
 - `uninstall.sh`: removes the skill from Claude Code, Codex or both
+- `stack-site/`: local catalog site to browse and search the stacks, not installed with the skill (see `stack-site/README.md`)
