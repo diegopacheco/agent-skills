@@ -24,8 +24,13 @@ allowed-tools: [Bash, Read, AskUserQuestion]
 * When the user wants to see what happened, stay headless and give them a video (`recordVideo`), a trace (`npx playwright show-trace`) or screenshots instead.
 * Only go headed when the user explicitly asks for it after knowing it will show in the Dock, and close the browser as soon as the task is done.
 
+## Dock Recent Apps
+* A headed run, or an MCP that opens `/Applications/Google Chrome.app`, leaves a Chrome tile in the Dock recent apps area that the user must remove by hand.
+* After any headed run, or when the user sees a Chrome tile in the Dock, run `~/.claude/skills/playwright-skill/dock-clean.sh`. It removes Chrome, Chrome for Testing and Chromium tiles from the Dock recent apps only, never the pinned apps, and restarts the Dock.
+
 ## Playwright MCP
 * Configure it hidden and isolated: `npx @playwright/mcp@latest --headless --isolated --browser chromium`.
+* A bare `npx @playwright/mcp@latest` opens the user Chrome with a visible window. When `claude mcp get playwright` shows args without `--headless --isolated --browser chromium`, fix it: `claude mcp remove playwright -s <scope>` then `claude mcp add playwright -s <scope> -- npx @playwright/mcp@latest --headless --isolated --browser chromium`.
 * Always pass `--browser chromium`. It uses the Playwright Chrome for Testing, not `/Applications/Google Chrome.app`.
 * Never `--browser chrome`, never `--user-data-dir` pointing at the user Chrome, never `--extension`.
 * When the MCP says the browser is not installed, install Chromium for the Playwright version the MCP uses. Never switch to `--browser chrome` to work around it.

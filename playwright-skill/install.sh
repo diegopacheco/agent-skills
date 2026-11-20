@@ -27,7 +27,8 @@ install_skill() {
   dest="$1/$NAME"
   rm -rf "$dest"
   mkdir -p "$dest"
-  cp "$ROOT/SKILL.md" "$dest/"
+  cp "$ROOT/SKILL.md" "$ROOT/dock-clean.sh" "$dest/"
+  chmod +x "$dest/dock-clean.sh"
   echo "installed $NAME to $dest"
 }
 
