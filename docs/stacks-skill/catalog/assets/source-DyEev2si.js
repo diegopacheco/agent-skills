@@ -394,7 +394,7 @@ func writeError(ctx context.Context, w http.ResponseWriter, logger *slog.Logger,
 ## Stack
 * Java 25
 * Maven
-* Spring Boot 4.1.x
+* Spring Boot 4.2.0
 * Spring Data JDBC
 * Postgres
 * HikariCP
@@ -774,7 +774,7 @@ return List.of("admin", "user");
 * Kotlin 2.x
 * Java 25
 * Gradle wrapper (\`./gradlew\`)
-* Spring Boot 4.1.x
+* Spring Boot 4.2.0
 * Postgres
 * HikariCP
 * Proper types and modular code
@@ -2068,7 +2068,7 @@ cargo build --release
 * Netty
 * Postgres
 * HikariCP
-* Spring Boot 4.x
+* Spring Boot 4.2.0
 * Proper types and modular code
 
 ## Idiomatic Scala

@@ -3,7 +3,7 @@
 ## Stack
 * Java 25
 * Maven
-* Spring Boot 4.1.x
+* Spring Boot 4.2.0
 * Spring Data JDBC
 * Postgres
 * HikariCP

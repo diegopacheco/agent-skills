@@ -1,0 +1,1 @@
+import{r as e,t}from"./index-DHl-w-Os.js";import{v as n}from"./source-DyEev2si.js";var r=n();function i(){let n=t.useLoaderData(),i=t.useSearch().view??`rendered`;return(0,r.jsx)(e,{stack:n,view:i,from:`/stacks/$stackId`})}export{i as component};

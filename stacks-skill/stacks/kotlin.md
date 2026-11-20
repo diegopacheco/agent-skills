@@ -4,7 +4,7 @@
 * Kotlin 2.x
 * Java 25
 * Gradle wrapper (`./gradlew`)
-* Spring Boot 4.1.x
+* Spring Boot 4.2.0
 * Postgres
 * HikariCP
 * Proper types and modular code

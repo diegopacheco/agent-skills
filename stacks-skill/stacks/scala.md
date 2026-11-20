@@ -6,7 +6,7 @@
 * Netty
 * Postgres
 * HikariCP
-* Spring Boot 4.x
+* Spring Boot 4.2.0
 * Proper types and modular code
 
 ## Idiomatic Scala
