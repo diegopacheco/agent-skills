@@ -75,8 +75,11 @@ def validate(doc):
         need(len(s["actors"]) <= 6, f"sequence {s['id']}: at most 6 actors")
         between(s["steps"], 4, 10, f"sequence {s['id']} steps")
         between(s.get("notes", []), 2, 6, f"sequence {s['id']} notes")
-        for f, t, label in s["steps"]:
+        for step in s["steps"]:
+            need(isinstance(step, list) and len(step) == 4, f"sequence {s['id']}: every step is [from, to, label, why], got {step}")
+            f, t, label, why = step
             short(label, 40, f"sequence {s['id']} step")
+            need(why and len(why) <= 400, f"sequence {s['id']} step \"{label}\": why is required, at most 400 characters")
             need(f in s["actors"] and t in s["actors"], f"sequence {s['id']}: step {f} -> {t} uses an actor not in actors")
         for rel in s.get("code", []):
             exists(project, rel, f"sequence {s['id']}")

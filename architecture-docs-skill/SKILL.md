@@ -31,7 +31,7 @@ Report progress as `x/7` while you work.
 1. **Map the project.** List the tree (skip `node_modules`, `target`, `dist`, `build`, `.git`). Read the README, design docs, build files (`package.json`, `Cargo.toml`, `pom.xml`, `build.gradle*`, `go.mod`, `pyproject.toml`, `requirements.txt`, `build.sbt`, `Containerfile`, compose files) and the entry points.
 2. **Stack.** One entry per technology that matters: languages, frameworks, databases, queues, runtimes, desktop shells, test tools, AI providers. Take versions from the build files. `why` is one line about what it does in this project.
 3. **Architecture.** Find the real runtime pieces: processes, services, modules with their own job, stores, external systems, and who calls whom. Lay them out left to right in the order a request flows.
-4. **Sequences.** Pick 3-5 flows: the most critical (breaks the product when it fails), the most used, and the most architecture-interesting (crosses processes, queues, schedulers, retries, caches). Follow each one through the code, step by step. For each flow, write the notes a reader will ask after looking at the diagram: how is X decided, where is the state stored, what happens on failure, what runs in parallel, what limits apply. Answer with the real query, column, constant or function name.
+4. **Sequences.** Pick 3-5 flows: the most critical (breaks the product when it fails), the most used, and the most architecture-interesting (crosses processes, queues, schedulers, retries, caches). Follow each one through the code, step by step, and write the `why` of every step from the code you read. For each flow, write the notes a reader will ask after looking at the diagram: how is X decided, where is the state stored, what happens on failure, what runs in parallel, what limits apply. Answer with the real query, column, constant or function name.
 5. **Components.** Pick 3-5 components that are critical or have interesting design. Read them fully.
 6. **Tests.** Count tests per kind from the code (see Test analysis). Find the command that runs them.
 7. **Build and check.** Write `data.json` in the scratch or temp folder, never inside the project, then run:
@@ -63,7 +63,7 @@ Set `loc_exclude` to a list of folders (`"generated/"`) or globs (`"reports/*.ht
     {
       "id": "checkout", "title": "Checkout", "why": "Why this flow was picked, one line.",
       "actors": ["Web", "Orders API", "Postgres"],
-      "steps": [ ["Web", "Orders API", "POST /orders"], ["Orders API", "Orders API", "apply price rules"], ["Orders API", "Postgres", "insert order"] ],
+      "steps": [ ["Web", "Orders API", "POST /orders", "The cart is sent once with an `Idempotency-Key` header, so a retry after a timeout cannot charge twice."], ["Orders API", "Orders API", "apply price rules", "`PriceRules.apply` runs coupons before tax because tax is owed on the discounted price."], ["Orders API", "Postgres", "insert order", "One transaction writes `orders` and `order_lines`; a unique index on `idempotency_key` turns a duplicate into a 409."] ],
       "notes": [ { "q": "What stops a double submit?", "a": "A unique index on `orders.idempotency_key`." } ],
       "code": ["src/main/java/shop/OrderController.java", "src/main/java/shop/OrderRepository.java:40"]
     }
@@ -95,7 +95,8 @@ Set `loc_exclude` to a list of folders (`"generated/"`) or globs (`"reports/*.ht
 * `stack[].url`: the official site or repo, `""` when there is none. `local` is only for a dependency that lives at a local path, written relative to the project folder (`../billing-lib`), never for the project's own code.
 * `arch.nodes`: 6-12 nodes. A server the project starts itself (a local workflow engine, a database container) is `data` or `external` by what it is, not by who starts it. `label` at most 16 characters, `sub` at most 21. `col` 0-5 from left to right in request order, `row` 0-4 top to bottom; halves like `0.5` are allowed; two nodes never share a cell. `kind` is one of `actor` (people, shells, clients), `edge` (UI, gateways, routers), `core` (services, workers, modules), `data` (databases, caches, files), `external` (third-party APIs, the web, other systems).
 * `arch.edges`: `[from, to, label]`, label at most 10 characters or `""`. Keep long edges free of labels.
-* `sequences`: 3-5 flows, at most 6 actors each, 4-10 steps, step labels at most 40 characters. A step from an actor to itself draws a loop. `notes`: 2-6 per flow. `code`: the files the flow runs through, `path:line` allowed.
+* `sequences`: 3-5 flows, at most 6 actors each, 4-10 steps. Every step is `[from, to, label, why]`: label at most 40 characters, `why` 1-2 sentences, at most 400 characters. A step from an actor to itself draws a loop.
+* `why` is what the reader sees when they click the arrow: why this step exists, what it decides, what limit or failure it handles, with the real function, column or constant. Never repeat the label. Read the code for every step; never write a `why` you did not see in the code. `notes`: 2-6 per flow. `code`: the files the flow runs through, `path:line` allowed.
 * `components`: 3-5.
 * `tests.kinds`: always these 11 kinds in this order, nothing else before them: `Unit`, `Integration`, `Mocks / fakes`, `Database`, `E2E / UI`, `Contract`, `Property based`, `Stress / load`, `Chaos`, `CSS / visual`, `Fuzz / security`. Add `Snapshot` or other kinds after them only when the project has them.
 
@@ -130,4 +131,4 @@ Count tests, not files. Use the patterns of the project's language and read a sa
 * `<out-dir>/run.sh`: serves the parent folder on `127.0.0.1` from port 8790 up (the next free port), so every site there is reachable from one server, and opens this site.
 * `<out-dir>/stop.sh`: stops that shared server.
 
-The site has tabs for Overview (summary and lines of code per language), Stack, Architecture, Sequences (step by step with Prev / Next, notes and code files), Components and Tests. `/` or `Cmd+K` searches everything. The `Open another app…` box searches the other sites built next to it and opens their architecture diagram. The theme toggle remembers light or dark.
+The site has tabs for Overview (summary and lines of code per language), Stack, Architecture, Sequences (swimlanes: one lane per actor, one arrow per step, click an arrow to open its why; Open all; notes and code files), Components and Tests. `/` or `Cmd+K` searches everything. The `Open another app…` box searches the other sites built next to it and opens their architecture diagram. The theme toggle remembers light or dark.

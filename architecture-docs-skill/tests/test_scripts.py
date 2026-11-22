@@ -26,7 +26,7 @@ def valid_doc(root):
     write(root, "src/a.rs", "fn a() {}\n")
     write(root, "src/b.rs", "fn b() {}\n")
     write(root, "src/c.rs", "fn c() {}\n")
-    seq = lambda i: {"id": f"s{i}", "title": f"Flow {i}", "why": "w", "actors": ["A", "B"], "steps": [["A", "B", "call"], ["B", "B", "self"], ["B", "A", "reply"], ["A", "A", "done"]], "notes": [{"q": "q1", "a": "a1"}, {"q": "q2", "a": "a2"}], "code": ["src/a.rs:1"]}
+    seq = lambda i: {"id": f"s{i}", "title": f"Flow {i}", "why": "w", "actors": ["A", "B"], "steps": [["A", "B", "call", "why call"], ["B", "B", "self", "why self"], ["B", "A", "reply", "why reply"], ["A", "A", "done", "why done"]], "notes": [{"q": "q1", "a": "a1"}, {"q": "q2", "a": "a2"}], "code": ["src/a.rs:1"]}
     comp = lambda i, f: {"id": f"c{i}", "name": f"C{i}", "path": f, "how": "h", "facts": ["f"], "right": ["r"], "better": ["b"]}
     return {
         "project": "P", "path": root, "repo": "", "tagline": "t", "summary": ["one", "two", "three"],
@@ -109,8 +109,22 @@ class ValidateTest(unittest.TestCase):
     def test_a_step_with_an_unknown_actor_fails_because_the_diagram_would_draw_nothing(self):
         with tempfile.TemporaryDirectory() as root:
             doc = valid_doc(root)
-            doc["sequences"][0]["steps"].append(["A", "Ghost", "call"])
+            doc["sequences"][0]["steps"].append(["A", "Ghost", "call", "why"])
             with self.assertRaisesRegex(build.DataError, "actor not in actors"):
+                build.validate(doc)
+
+    def test_a_step_without_why_fails_because_clicking_a_swimlane_arrow_must_explain_it(self):
+        with tempfile.TemporaryDirectory() as root:
+            doc = valid_doc(root)
+            doc["sequences"][0]["steps"][0] = ["A", "B", "call"]
+            with self.assertRaisesRegex(build.DataError, "every step is"):
+                build.validate(doc)
+
+    def test_an_empty_why_fails_because_the_open_step_would_show_nothing(self):
+        with tempfile.TemporaryDirectory() as root:
+            doc = valid_doc(root)
+            doc["sequences"][0]["steps"][0] = ["A", "B", "call", ""]
+            with self.assertRaisesRegex(build.DataError, "why is required"):
                 build.validate(doc)
 
     def test_two_nodes_in_the_same_cell_fail_because_they_would_overlap(self):

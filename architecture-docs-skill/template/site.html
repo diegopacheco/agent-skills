@@ -23,6 +23,14 @@ table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:9px 10px
 .ico{width:18px;height:18px;flex:none}
 .tabs{display:flex;gap:4px;padding:0 28px;background:var(--card);border-bottom:1px solid var(--line);overflow-x:auto}.tabs button{border:0;background:none;color:var(--mute);padding:12px 16px;font-size:14px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}.tabs button.on{color:var(--ink);border-color:var(--acc);font-weight:700}
 .pane{padding:24px 28px;max-width:1400px}.md{display:grid;grid-template-columns:280px 1fr;gap:20px}.list div{padding:12px 14px;border-radius:10px;cursor:pointer;border:1px solid transparent}.list div:hover{background:var(--card)}.list div.on{background:var(--card);border-color:var(--acc)}.list small{display:block;color:var(--mute)}
+.swim .heads{display:grid;grid-template-columns:repeat(var(--n),1fr);position:sticky;top:0;background:var(--card);border-bottom:2px solid var(--ink);z-index:2}.swim .heads div{padding:10px 6px;text-align:center;font-weight:700;font-size:14px}
+.swim .rows{position:relative;padding:6px 0}.swim .rows>i{position:absolute;top:0;bottom:0;border-left:2px dashed var(--line)}
+.sl{position:relative;padding:12px 0 6px;cursor:pointer;border-radius:8px}.sl:hover{background:var(--bg)}.sl .num{position:absolute;left:6px;top:12px;font-size:11px;color:var(--acc)}
+.arw{position:relative;height:26px}.bar{position:absolute;top:14px;height:2px;background:var(--acc)}.bar:after{content:"";position:absolute;right:-2px;top:-5px;border:6px solid transparent;border-left-color:var(--acc)}
+.bar.back{background:none;border-top:2px dashed var(--mute);height:0}.bar.back:after{right:auto;left:-2px;top:-7px;border-left-color:transparent;border-right-color:var(--mute)}
+.bar.self{width:28px;height:14px;top:6px;background:none;border:2px solid var(--acc);border-left:0;border-radius:0 8px 8px 0}.bar.self:after{right:auto;left:-6px;top:6px;border-left-color:transparent;border-right-color:var(--acc)}
+.lbl{position:absolute;top:-2px;font:12px ui-monospace,Menlo,monospace;background:var(--card);padding:0 5px;white-space:nowrap;border-radius:4px}.lbl.mid{transform:translateX(-50%)}.lbl.lft{transform:translateX(-100%)}.sl:hover .lbl{background:var(--bg)}
+.sl .why{display:none;margin:8px 12px 4px 28px;border-left:3px solid var(--acc);background:var(--bg);padding:8px 12px;border-radius:0 8px 8px 0;cursor:auto}.sl.open .why{display:block}.sl.open .lbl{color:var(--acc);font-weight:700}
 .ctrl{display:flex;gap:8px;align-items:center;margin-bottom:12px}.ctrl span{color:var(--mute);font-size:14px}
 .about{margin-top:16px}.about h3{margin:0 0 8px}.about ol{margin:0;padding-left:22px}.about li{margin:4px 0}
 .notes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.note{border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:12px;padding:12px 14px;background:var(--card)}.note b{display:block;margin-bottom:4px}
@@ -74,19 +82,16 @@ function archSvg() {
   const nodes = ns.map(x => `<g class="node"><rect x="${x.x}" y="${x.y}" width="${NW}" height="${NH}" rx="10" fill="${KIND[x.kind] || KIND.core}"/><text x="${x.x + NW / 2}" y="${x.y + 26}" text-anchor="middle" class="t1"${fit(x.label, 16, NW - 14)}>${esc(x.label)}</text><text x="${x.x + NW / 2}" y="${x.y + 46}" text-anchor="middle" class="t2"${fit(x.sub || "", 21, NW - 14)}>${esc(x.sub)}</text></g>`).join("");
   return `<svg class="hand" viewBox="0 0 ${w} ${h}" style="max-width:${w * 1.4}px">${FILTER}<g filter="url(#wob)">${edges}${nodes}</g></svg>`;
 }
-function seqSvg(seq, active) {
-  const gap = 170, top = 50, row = 42, h = top + seq.steps.length * row + 30;
-  const xi = a => seq.actors.indexOf(a) * gap + gap / 2;
-  const selfEnd = seq.steps.flatMap(([f, t, l], i) => f === t ? [xi(f) + 42 + (String(i + 1).length + 2 + l.length) * 8] : []);
-  const w = Math.max(seq.actors.length * gap, ...selfEnd.map(x => x + 10));
-  const heads = seq.actors.map(a => `<rect x="${xi(a) - 72}" y="6" width="144" height="34" rx="8" fill="${KIND.core}"/><text x="${xi(a)}" y="28" text-anchor="middle" class="t1"${fit(a, 13, 130)}>${esc(a)}</text><line x1="${xi(a)}" y1="40" x2="${xi(a)}" y2="${h}" class="life"/>`).join("");
-  const msgs = seq.steps.map(([f, t, l], i) => {
-    const y = top + i * row + 20, x1 = xi(f), x2 = xi(t), dim = active >= 0 && i !== active ? 0.3 : 1;
-    if (f === t) return `<g class="msg ${i === active ? "lit" : ""}" opacity="${dim}"><path class="self" d="M${x1},${y - 8} h34 v16 h-30" marker-end="url(#arr)"/><text x="${x1 + 42}" y="${y + 4}">${i + 1}. ${esc(l)}</text></g>`;
-    const back = x2 < x1;
-    return `<g class="msg ${i === active ? "lit" : ""}" opacity="${dim}"><line x1="${x1}" y1="${y}" x2="${x2 + (back ? 4 : -4)}" y2="${y}" ${back ? 'stroke-dasharray="6 4"' : ""} marker-end="url(#arr)"/><text x="${(x1 + x2) / 2}" y="${y - 7}" text-anchor="middle">${i + 1}. ${esc(l)}</text></g>`;
+function lanes(seq, open) {
+  const n = seq.actors.length, mid = a => (seq.actors.indexOf(a) + 0.5) / n * 100;
+  const heads = seq.actors.map(a => `<div>${esc(a)}</div>`).join("");
+  const lines = seq.actors.map(a => `<i style="left:${mid(a)}%"></i>`).join("");
+  const rows = seq.steps.map(([f, t, l, why], i) => {
+    const a = mid(f), b = mid(t), lo = Math.min(a, b), self = f === t, back = b < a;
+    const bar = self ? `<span class="bar self" style="left:${a}%"></span>${a > 50 ? `<span class="lbl lft" style="left:calc(${a}% - 10px)">${esc(l)}</span>` : `<span class="lbl" style="left:calc(${a}% + 40px)">${esc(l)}</span>`}` : `<span class="bar${back ? " back" : ""}" style="left:${lo}%;width:${Math.abs(b - a)}%"></span><span class="lbl mid" style="left:${(a + b) / 2}%">${esc(l)}</span>`;
+    return `<div class="sl${open.has(i) ? " open" : ""}" data-st="${i}"><b class="num">${i + 1}</b><div class="arw">${bar}</div><div class="why">${rich(why)}</div></div>`;
   }).join("");
-  return `<svg class="hand" viewBox="0 0 ${w} ${h}" style="max-width:${w}px">${FILTER}<g filter="url(#wob)">${heads}${msgs}</g></svg>`;
+  return `<div class="swim" style="--n:${n}"><div class="heads">${heads}</div><div class="rows">${lines}${rows}</div></div>`;
 }
 
 const about = () => `<div class="card about"><h3>What this project does</h3><ol>${D.summary.map(s => `<li>${rich(s)}</li>`).join("")}</ol></div>`;
@@ -114,7 +119,7 @@ const seqExtra = s => `<div class="notes">${(s.notes || []).map(n => `<div class
 const list = (items, cur, kind) => `<div class="list">${items.map(x => `<div class="${x.id === cur ? "on" : ""}" data-${kind}="${esc(x.id)}"><b>${esc(x.title || x.name)}</b><small>${esc(plain(x.why || x.path))}</small></div>`).join("")}</div>`;
 
 const TABS = { overview: "Overview", stack: "Stack", arch: "Architecture", seq: "Sequences", comp: "Components", tests: "Tests" };
-const state = { tab: "overview", seq: D.sequences[0]?.id, step: -1, comp: D.components[0]?.id };
+const state = { tab: "overview", seq: D.sequences[0]?.id, open: new Set(), comp: D.components[0]?.id };
 function render() {
   tb.innerHTML = Object.entries(TABS).map(([k, v]) => `<button class="${k === state.tab ? "on" : ""}" data-k="${k}">${v}</button>`).join("");
   const s = D.sequences.find(x => x.id === state.seq), c = D.components.find(x => x.id === state.comp);
@@ -122,15 +127,15 @@ function render() {
     overview: `<p style="font-size:18px;margin-top:0">${rich(D.tagline)}</p>${about()}${locView()}`,
     stack: `<div class="stk">${stackView()}</div>`,
     arch: `<div class="card">${archSvg()}</div>${about()}`,
-    seq: s ? `<div class="md">${list(D.sequences, state.seq, "seq")}<div><div class="card"><div class="ctrl"><button class="btn" id="pv">◀ Prev</button><button class="btn" id="nx">Next ▶</button><span>${state.step < 0 ? "All steps" : `Step ${state.step + 1}/${s.steps.length}: ${esc(s.steps[state.step][2])}`}</span></div>${seqSvg(s, state.step)}</div>${seqExtra(s)}</div></div>` : "",
+    seq: s ? `<div class="md">${list(D.sequences, state.seq, "seq")}<div><div class="card"><div class="ctrl"><button class="btn" id="oa">${state.open.size === s.steps.length ? "Close all" : "Open all"}</button><span>Click a step to see why it happens</span></div>${lanes(s, state.open)}</div>${seqExtra(s)}</div></div>` : "",
     comp: c ? `<div class="md">${list(D.components, state.comp, "comp")}<div class="card"><h2 style="margin:0 0 6px">${esc(c.name)}</h2><p style="margin:0 0 14px"><code class="cp" title="Click to copy" data-path="${esc(full(c.path))}">${esc(full(c.path))}</code></p>${quad(c)}</div></div>` : "",
     tests: testsView()
   }[state.tab];
   tb.querySelectorAll("button").forEach(b => b.onclick = () => { state.tab = b.dataset.k; render(); });
-  p.querySelectorAll("[data-seq]").forEach(d => d.onclick = () => { state.seq = d.dataset.seq; state.step = -1; render(); });
+  p.querySelectorAll("[data-seq]").forEach(d => d.onclick = () => { state.seq = d.dataset.seq; state.open = new Set(); render(); });
   p.querySelectorAll("[data-comp]").forEach(d => d.onclick = () => { state.comp = d.dataset.comp; render(); });
   p.querySelectorAll(".cp").forEach(el => el.onclick = () => navigator.clipboard.writeText(el.dataset.path));
-  if (state.tab === "seq" && s) { nx.onclick = () => { state.step = (state.step + 1) % s.steps.length; render(); }; pv.onclick = () => { state.step = Math.max(-1, state.step - 1); render(); }; }
+  if (state.tab === "seq" && s) { oa.onclick = () => { state.open = state.open.size === s.steps.length ? new Set() : new Set(s.steps.map((x, i) => i)); render(); }; p.querySelectorAll("[data-st]").forEach(r => r.onclick = e => { if (e.target.closest(".why")) return; const i = +r.dataset.st; state.open.has(i) ? state.open.delete(i) : state.open.add(i); render(); }); }
   history.replaceState(null, "", "#" + state.tab);
 }
 
@@ -140,7 +145,7 @@ function searchIndex() {
     ...D.loc.langs.map(l => ({ sec: "Code", title: l.name, text: `${l.lines} lines ${l.files} files`, target: "overview" })),
     ...D.stack.map(s => ({ sec: "Stack", title: s.name, text: plain(`${s.layer} ${s.version} ${s.why}`), target: "stack" })),
     ...D.arch.nodes.map(n => ({ sec: "Architecture", title: n.label, text: n.sub || "", target: "arch" })),
-    ...D.sequences.map(s => ({ sec: "Sequence", title: s.title, text: plain([s.why, ...s.steps.map(x => x[2]), ...(s.notes || []).flatMap(n => [n.q, n.a]), ...(s.code || [])].join(" ")), target: "seq:" + s.id })),
+    ...D.sequences.map(s => ({ sec: "Sequence", title: s.title, text: plain([s.why, ...s.steps.flatMap(x => [x[2], x[3]]), ...(s.notes || []).flatMap(n => [n.q, n.a]), ...(s.code || [])].join(" ")), target: "seq:" + s.id })),
     ...D.components.map(c => ({ sec: "Component", title: c.name, text: plain([c.path, c.how, ...c.facts, ...c.right, ...c.better].join(" ")), target: "comp:" + c.id })),
     ...D.tests.kinds.map(t => ({ sec: "Tests", title: t.kind, text: plain(`${t.count} ${t.status} ${t.where || ""} ${t.note}`), target: "tests" }))
   ];
@@ -177,7 +182,7 @@ function mountApps() {
   document.addEventListener("click", e => { if (!ap.contains(e.target)) ar.hidden = true; });
   document.addEventListener("keydown", e => { if (e.key === "Escape") { ar.hidden = true; aq.blur(); } });
 }
-function go(t) { const [k, id] = t.split(":"); state.tab = k; if (k === "seq") { state.seq = id; state.step = -1; } if (k === "comp") state.comp = id; render(); }
+function go(t) { const [k, id] = t.split(":"); state.tab = k; if (k === "seq") { state.seq = id; state.open = new Set(); } if (k === "comp") state.comp = id; render(); }
 function mountTheme() {
   const set = t => { document.documentElement.dataset.theme = t; try { localStorage.setItem("adocs-theme", t); } catch (e) { } th.textContent = t === "dark" ? "☀️ Light" : "🌙 Dark"; };
   let saved = "light"; try { saved = localStorage.getItem("adocs-theme") || "light"; } catch (e) { }

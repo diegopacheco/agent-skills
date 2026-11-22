@@ -20,7 +20,7 @@ A skill for Claude Code and Codex that reads a codebase and generates a self-con
 * **Overview:** 3-5 lines on what the project does and the lines of code per language with logos, file counts and percentages, so you see the size and shape first.
 * **Stack:** one card per technology, grouped by layer, with its logo, version, link to its site and why the project uses it.
 * **Architecture:** a hand-drawn diagram laid out left to right in request order, colored by kind (actors, edges, core, data, external).
-* **Sequences:** 3-5 flows picked because they are critical, most used or architecturally interesting. Prev / Next walks the diagram one step at a time, and notes under it answer the questions the diagram raises with the real query, column or constant.
+* **Sequences:** 3-5 flows picked because they are critical, most used or architecturally interesting. Swimlanes draw one lane per actor and one arrow per step; clicking an arrow opens why that step happens, Open all opens every step, and notes under it answer the questions the diagram raises with the real query, column or constant.
 * **Components:** 3-5 deep dives, each with the full path to the code and four boxes: how it works, interesting facts, what it gets right, what could be better.
 * **Tests:** counters for 11 test kinds (unit, integration, mocks / fakes, database, E2E / UI, contract, property based, stress / load, chaos, CSS / visual, fuzz / security), the command that runs them, and where each missing kind would pay off.
 * **Header:** the full path of the project (click to copy) and its GitHub link when the remote is on GitHub.
@@ -115,7 +115,7 @@ Generated for [stacks-skill/stack-site](../stacks-skill/stack-site), the stack c
 
 ![architecture](printscreens/03-architecture.png)
 
-**Sequences:** the search flow at step 3 of 7 with Prev / Next. The step is highlighted and the others fade. Notes under the diagram explain how a section matches, how results are ranked and where the query lives.
+**Sequences:** the search flow as swimlanes, with one step opened to show its why. Notes under the diagram explain how a section matches, how results are ranked and where the query lives.
 
 ![sequences](printscreens/04-sequences.png)
 
