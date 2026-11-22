@@ -25,6 +25,7 @@ A skill for Claude Code and Codex that reads a codebase and generates a self-con
 * **Tests:** counters for 11 test kinds (unit, integration, mocks / fakes, database, E2E / UI, contract, property based, stress / load, chaos, CSS / visual, fuzz / security), the command that runs them, and where each missing kind would pay off.
 * **Header:** the full path of the project (click to copy) and its GitHub link when the remote is on GitHub.
 * **Search:** `/` or `Cmd+K` searches every section, highlights matches and jumps to them.
+* **Other apps:** the `Open another app…` box searches every site built next to this one (from `architecture-docs/apps.js`) and opens its architecture diagram.
 * **Themes:** light and dark, remembered across visits.
 * **Fails loud:** the build rejects invented files, unknown actors, overlapping nodes and contradicting test counts instead of rendering a wrong site.
 
@@ -78,8 +79,9 @@ In any project:
 The site is written to an `architecture-docs/<project>/` folder in your home directory:
 
 ```bash
-architecture-docs/<project>/run.sh    # serves on 127.0.0.1 from port 8790 and opens the browser
-architecture-docs/<project>/stop.sh   # stops it
+architecture-docs/<project>/run.sh    # serves architecture-docs/ on 127.0.0.1 from port 8790 and opens /<project>/
+architecture-docs/<project>/stop.sh   # stops that shared server
+architecture-docs/apps.js             # list of every built site, rewritten on each build
 ```
 
 `index.html` also opens straight from disk. To build by hand from a `data.json`:

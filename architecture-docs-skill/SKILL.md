@@ -126,7 +126,8 @@ Count tests, not files. Use the patterns of the project's language and read a sa
 ## Output
 * `<out-dir>/index.html`: the site. Opens straight from disk too.
 * `<out-dir>/data.json`: the data the site was built from, with `loc`, `repo` and `generated` filled in.
-* `<out-dir>/run.sh`: serves the folder on `127.0.0.1` from port 8790 up (the next free port) and opens the browser.
-* `<out-dir>/stop.sh`: stops that server.
+* `<out-dir>/../apps.js`: the list of every site built in the same parent folder, rewritten on each build. It feeds the `Open another app…` box.
+* `<out-dir>/run.sh`: serves the parent folder on `127.0.0.1` from port 8790 up (the next free port), so every site there is reachable from one server, and opens this site.
+* `<out-dir>/stop.sh`: stops that shared server.
 
-The site has tabs for Overview (summary and lines of code per language), Stack, Architecture, Sequences (step by step with Prev / Next, notes and code files), Components and Tests. `/` or `Cmd+K` searches everything. The theme toggle remembers light or dark.
+The site has tabs for Overview (summary and lines of code per language), Stack, Architecture, Sequences (step by step with Prev / Next, notes and code files), Components and Tests. `/` or `Cmd+K` searches everything. The `Open another app…` box searches the other sites built next to it and opens their architecture diagram. The theme toggle remembers light or dark.

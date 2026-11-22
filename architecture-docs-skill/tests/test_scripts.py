@@ -168,17 +168,34 @@ class BuildTest(unittest.TestCase):
             build.build(data, out)
             html = open(os.path.join(out, "index.html")).read()
             self.assertNotIn("/*__DOC__*/", html)
-            self.assertNotIn("<script src", html)
+            self.assertEqual(html.count("<script src"), 1)
+            self.assertIn('<script src="../apps.js">', html)
             self.assertNotIn("<link", html)
             for name in ["run.sh", "stop.sh"]:
                 self.assertTrue(os.access(os.path.join(out, name), os.X_OK))
             built = json.load(open(os.path.join(out, "data.json")))
             self.assertEqual(built["loc"]["langs"][0]["name"], "Rust")
 
+    def test_every_built_site_lands_in_the_shared_apps_index_so_each_site_can_open_the_others(self):
+        with tempfile.TemporaryDirectory() as root, tempfile.TemporaryDirectory() as parent:
+            data = os.path.join(parent, "in.json")
+            doc = valid_doc(root)
+            for name in ["alpha", "beta"]:
+                doc["project"] = name.title()
+                with open(data, "w") as f:
+                    json.dump(doc, f)
+                build.build(data, os.path.join(parent, name))
+            os.makedirs(os.path.join(parent, "not-a-site"))
+            write(parent, "not-a-site/data.json", "{}")
+            write(parent, "not-a-site/index.html", "")
+            js = open(os.path.join(parent, "apps.js")).read()
+            apps = json.loads(js.split("=", 1)[1].strip().rstrip(";"))
+            self.assertEqual([(a["dir"], a["project"]) for a in apps], [("alpha", "Alpha"), ("beta", "Beta")])
+
     def test_text_with_a_closing_script_tag_cannot_break_out_of_the_page(self):
         doc = {"project": "P", "tagline": "</script><img src=x onerror=alert(1)>"}
         html = build.render(doc, {})
-        self.assertEqual(html.count("</script>"), 1)
+        self.assertEqual(html.count("</script>"), build.read(build.TEMPLATE).count("</script>"))
 
     def test_only_logos_the_site_uses_are_embedded_and_unknown_ones_are_reported(self):
         doc = {"stack": [{"logo": "rust"}, {"logo": "not-a-real-logo"}, {}], "loc": {"langs": [{"logo": "typescript"}, {"logo": ""}]}}

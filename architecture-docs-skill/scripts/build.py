@@ -134,18 +134,20 @@ def render(doc, logos):
 RUN = """#!/usr/bin/env bash
 set -euo pipefail
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PID_FILE="$DIR/.server.pid"
-PORT_FILE="$DIR/.server.port"
+ROOT="$(dirname "$DIR")"
+APP="$(basename "$DIR")"
+PID_FILE="$ROOT/.server.pid"
+PORT_FILE="$ROOT/.server.port"
 if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
-  URL="http://127.0.0.1:$(cat "$PORT_FILE")/"
+  URL="http://127.0.0.1:$(cat "$PORT_FILE")/$APP/"
   echo "already running: $URL"
 else
   PORT="${PORT:-8790}"
   while lsof -nP -iTCP:"$PORT" -sTCP:LISTEN >/dev/null 2>&1; do PORT=$((PORT + 1)); done
-  nohup python3 -m http.server "$PORT" --bind 127.0.0.1 --directory "$DIR" >/dev/null 2>&1 &
+  nohup python3 -m http.server "$PORT" --bind 127.0.0.1 --directory "$ROOT" >/dev/null 2>&1 &
   echo $! > "$PID_FILE"
   echo "$PORT" > "$PORT_FILE"
-  URL="http://127.0.0.1:$PORT/"
+  URL="http://127.0.0.1:$PORT/$APP/"
   for _ in $(seq 1 25); do
     lsof -nP -iTCP:"$PORT" -sTCP:LISTEN >/dev/null 2>&1 && break
     sleep 0.2
@@ -159,15 +161,31 @@ if command -v open >/dev/null 2>&1; then open "$URL"; elif command -v xdg-open >
 STOP = """#!/usr/bin/env bash
 set -euo pipefail
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PID_FILE="$DIR/.server.pid"
+ROOT="$(dirname "$DIR")"
+PID_FILE="$ROOT/.server.pid"
 if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
   kill "$(cat "$PID_FILE")"
   echo "stopped"
 else
   echo "not running"
 fi
-rm -f "$PID_FILE" "$DIR/.server.port"
+rm -f "$PID_FILE" "$ROOT/.server.port"
 """
+
+
+def apps_index(root):
+    apps = []
+    for name in sorted(os.listdir(root)):
+        data = os.path.join(root, name, "data.json")
+        if not os.path.isfile(data) or not os.path.isfile(os.path.join(root, name, "index.html")):
+            continue
+        try:
+            doc = json.loads(read(data))
+        except ValueError:
+            continue
+        if isinstance(doc, dict) and "generated" in doc and "project" in doc:
+            apps.append({"dir": name, "project": doc["project"], "path": doc.get("path", ""), "tagline": doc.get("tagline", "")})
+    return apps
 
 
 def write(path, text, mode=0o644):
@@ -192,6 +210,8 @@ def build(data_path, out_dir=None):
     write(os.path.join(out_dir, "data.json"), json.dumps(doc, indent=2, ensure_ascii=False))
     write(os.path.join(out_dir, "run.sh"), RUN, 0o755)
     write(os.path.join(out_dir, "stop.sh"), STOP, 0o755)
+    root = os.path.dirname(os.path.abspath(out_dir))
+    write(os.path.join(root, "apps.js"), f"window.ADOCS_APPS = {script_json(apps_index(root))};\n")
     return out_dir, unknown
 
 
