@@ -1,0 +1,178 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>__TITLE__ · Architecture</title>
+<style>
+:root{--bg:#fafaf7;--card:#fff;--ink:#1f2328;--mute:#667085;--line:#e4e4de;--acc:#4f6bed;--ok:#1f9d55;--warn:#c98a00;--bad:#d64545;--mark:#fff1a8}
+[data-theme=dark]{--bg:#0f1115;--card:#171a21;--ink:#e6e8ee;--mute:#9aa3b2;--line:#2a2f3a;--acc:#8ea2ff;--ok:#4cc38a;--warn:#e0b341;--bad:#f07171;--mark:#5a4b00}
+*{box-sizing:border-box}body{margin:0;font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;background:var(--bg);color:var(--ink)}
+.hand{width:100%;height:auto;font-family:"Caveat","Comic Sans MS","Chalkboard SE",cursive}
+.hand rect{stroke:#333;stroke-width:1.6}.hand .t1{font-size:19px;font-weight:700;fill:#1f2328}.hand .t2{font-size:14px;fill:#555}
+.hand line,.hand path.self{stroke:var(--ink);stroke-width:1.6;fill:none}.hand text{fill:var(--ink);font-size:15px}
+.hand .edge text,.hand .msg text{paint-order:stroke;stroke:var(--card);stroke-width:5px;stroke-linejoin:round}.hand .life{stroke-dasharray:4 5;opacity:.5}
+.hand .lit line,.hand .lit path.self{stroke:var(--acc);stroke-width:3}.hand .lit text{fill:var(--acc);font-weight:700}
+mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 2px}
+code{font:13px ui-monospace,Menlo,monospace;background:var(--bg);border:1px solid var(--line);padding:1px 6px;border-radius:6px;word-break:break-all}
+table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;text-transform:uppercase;color:var(--mute)}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 12px;cursor:pointer;font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.pill{font-size:12px;padding:2px 9px;border-radius:99px;font-weight:600;white-space:nowrap}.pill.present{background:#1f9d5522;color:var(--ok)}.pill.partial{background:#c98a0022;color:var(--warn)}.pill.missing{background:#d6454522;color:var(--bad)}.pill.n\/a{background:var(--bg);color:var(--mute)}
+.tag{font-size:11px;padding:2px 7px;border-radius:99px;background:var(--bg);border:1px solid var(--line);color:var(--mute);align-self:center}
+.search{position:relative}.search input{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font-size:14px}
+.results{position:absolute;top:110%;left:0;right:0;background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 30px #0002;z-index:50;max-height:420px;overflow:auto}
+.hit{padding:9px 12px;cursor:pointer;border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:2px 8px}.hit:hover{background:var(--bg)}.hit small{grid-column:2;color:var(--mute)}
+.top{display:flex;gap:16px;align-items:center;padding:14px 28px;background:var(--card);border-bottom:1px solid var(--line)}.top h1{margin:0;font-size:20px}.top .search{flex:1;max-width:480px;margin-left:auto}
+.where{display:flex;flex-direction:column;gap:6px;align-items:flex-start;margin-top:4px;font-size:13px}.where code{cursor:pointer}.where a{display:inline-flex;gap:6px;align-items:center;color:var(--acc);text-decoration:none}.where a:hover{text-decoration:underline}
+.ico{width:18px;height:18px;flex:none}
+.tabs{display:flex;gap:4px;padding:0 28px;background:var(--card);border-bottom:1px solid var(--line);overflow-x:auto}.tabs button{border:0;background:none;color:var(--mute);padding:12px 16px;font-size:14px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}.tabs button.on{color:var(--ink);border-color:var(--acc);font-weight:700}
+.pane{padding:24px 28px;max-width:1400px}.md{display:grid;grid-template-columns:280px 1fr;gap:20px}.list div{padding:12px 14px;border-radius:10px;cursor:pointer;border:1px solid transparent}.list div:hover{background:var(--card)}.list div.on{background:var(--card);border-color:var(--acc)}.list small{display:block;color:var(--mute)}
+.ctrl{display:flex;gap:8px;align-items:center;margin-bottom:12px}.ctrl span{color:var(--mute);font-size:14px}
+.about{margin-top:16px}.about h3{margin:0 0 8px}.about ol{margin:0;padding-left:22px}.about li{margin:4px 0}
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.note{border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:12px;padding:12px 14px;background:var(--card)}.note b{display:block;margin-bottom:4px}
+.files{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:var(--mute);font-size:13px}
+.q4{display:grid;grid-template-columns:1fr 1fr;gap:12px}.q4>div{border:1px solid var(--line);border-radius:12px;padding:12px 14px}.q4 h4{margin:0 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute)}.q4 ul{margin:0;padding-left:18px}
+.q4 .r{border-left:4px solid var(--ok)}.q4 .b{border-left:4px solid var(--warn)}.q4 .h{border-left:4px solid var(--acc)}.q4 .f{border-left:4px solid #a78bfa}
+.stk{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}.stk h3{grid-column:1/-1;margin:14px 0 0;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.tech{display:grid;grid-template-columns:44px 1fr;gap:4px 12px;align-items:center;text-decoration:none;color:inherit;transition:.15s}a.tech:hover{border-color:var(--acc);transform:translateY(-2px)}
+.tech .lg{grid-row:span 2;width:44px;height:44px;border-radius:10px;background:var(--bg);border:1px solid var(--line);display:grid;place-items:center}.tech .lg svg{width:26px;height:26px}.tech .lg span{font-weight:800;font-size:15px;color:var(--acc)}
+.tech b{display:flex;gap:8px;align-items:center}.tech small{color:var(--mute)}.tech p{grid-column:1/-1;margin:6px 0 0;font-size:14px;color:var(--mute)}
+.ctr{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:18px}.ctr div{border-radius:12px;padding:12px 14px;border:1px solid var(--line);background:var(--card)}.ctr b{display:block;font-size:28px;line-height:1.1}.ctr span{font-size:13px;color:var(--mute)}
+.ctr .present b{color:var(--ok)}.ctr .partial b{color:var(--warn)}.ctr .missing b{color:var(--bad)}.ctr .n\/a b{color:var(--mute)}.ctr .total{background:var(--acc);border-color:var(--acc)}.ctr .total b,.ctr .total span{color:#fff}
+.loc{margin-top:16px}.loc h3{margin:0 0 4px}.loc .sum{color:var(--mute);font-size:13px;margin:0 0 12px}.lrow{display:grid;grid-template-columns:24px 120px 1fr 170px;gap:10px;align-items:center;margin:7px 0;font-size:14px}.lrow svg{width:20px;height:20px}.lrow .mono{font-size:10px;font-weight:800;color:var(--acc)}.lrow i{display:block;height:12px;border-radius:6px;background:var(--acc);min-width:3px}.lrow span{text-align:right;color:var(--mute);font-variant-numeric:tabular-nums}.lrow span b{color:var(--ink)}
+.runner{color:var(--mute);font-size:14px;margin:0 0 14px}.foot{color:var(--mute);font-size:12px;padding:0 28px 30px}
+@media (max-width:900px){.md,.notes,.q4{grid-template-columns:1fr}.top{flex-wrap:wrap}}
+</style></head><body>
+<div class="top"><div><h1>🏛️ <span id="pn"></span></h1><div class="where" id="wh"></div></div><div class="search"><input id="q" placeholder="Search everything…  ( / )" aria-label="Search"><div class="results" id="r" hidden></div></div><button class="btn" id="th"></button></div>
+<div class="tabs" id="tb"></div><div class="pane" id="p"></div><div class="foot" id="ft"></div>
+<script>
+const D = /*__DOC__*/null;
+const LOGOS = /*__LOGOS__*/null;
+const NW = 170, NH = 60, CX = 230, RY = 110;
+const KIND = { actor: "#fde2e4", edge: "#e2ece9", core: "#dfe7fd", data: "#fff1c1", external: "#fff1c1" };
+const STATUS = { present: "✔ present", partial: "◐ partial", missing: "✖ missing", "n/a": "– n/a" };
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const rich = s => esc(s).replace(/`([^`]+)`/g, "<code>$1</code>");
+const plain = s => String(s ?? "").replace(/`/g, "");
+const full = f => D.path + "/" + f;
+const FILTER = `<defs><filter id="wob"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink)"/></marker></defs>`;
+const fit = (s, max, room) => s.length > max ? ` textLength="${room}" lengthAdjust="spacingAndGlyphs"` : "";
+
+const icon = (k, cls) => { const l = LOGOS[k]; if (!l) return ""; const dark = parseInt(l.hex, 16) < 0x333333; return `<svg class="${cls || ""}" viewBox="0 0 24 24" fill="${dark ? "currentColor" : "#" + l.hex}"><path d="${l.path}"/></svg>`; };
+const mono = s => esc(String(s).replace(/[^A-Za-z0-9]/g, "").slice(0, 2).toUpperCase());
+
+function placed() { return D.arch.nodes.map(n => ({ ...n, x: 20 + n.col * CX, y: 30 + n.row * RY })); }
+function clip(a, b) {
+  const cx = a.x + NW / 2, cy = a.y + NH / 2, dx = b.x + NW / 2 - cx, dy = b.y + NH / 2 - cy;
+  const t = Math.min(Math.abs((NW / 2) / (dx || 1e-9)), Math.abs((NH / 2) / (dy || 1e-9)));
+  return [cx + dx * t, cy + dy * t];
+}
+function archSvg() {
+  const ns = placed(), n = Object.fromEntries(ns.map(x => [x.id, x]));
+  const w = Math.max(...ns.map(x => x.x)) + NW + 20, h = Math.max(...ns.map(x => x.y)) + NH + 30;
+  const edges = D.arch.edges.map(([a, b, l]) => {
+    const [x1, y1] = clip(n[a], n[b]), [x2, y2] = clip(n[b], n[a]);
+    return `<g class="edge"><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#arr)"/>${l ? `<text x="${(x1 + x2) / 2}" y="${(y1 + y2) / 2 - 6}" text-anchor="middle">${esc(l)}</text>` : ""}</g>`;
+  }).join("");
+  const nodes = ns.map(x => `<g class="node"><rect x="${x.x}" y="${x.y}" width="${NW}" height="${NH}" rx="10" fill="${KIND[x.kind] || KIND.core}"/><text x="${x.x + NW / 2}" y="${x.y + 26}" text-anchor="middle" class="t1"${fit(x.label, 16, NW - 14)}>${esc(x.label)}</text><text x="${x.x + NW / 2}" y="${x.y + 46}" text-anchor="middle" class="t2"${fit(x.sub || "", 21, NW - 14)}>${esc(x.sub)}</text></g>`).join("");
+  return `<svg class="hand" viewBox="0 0 ${w} ${h}" style="max-width:${w * 1.4}px">${FILTER}<g filter="url(#wob)">${edges}${nodes}</g></svg>`;
+}
+function seqSvg(seq, active) {
+  const gap = 170, top = 50, row = 42, h = top + seq.steps.length * row + 30;
+  const xi = a => seq.actors.indexOf(a) * gap + gap / 2;
+  const selfEnd = seq.steps.flatMap(([f, t, l], i) => f === t ? [xi(f) + 42 + (String(i + 1).length + 2 + l.length) * 8] : []);
+  const w = Math.max(seq.actors.length * gap, ...selfEnd.map(x => x + 10));
+  const heads = seq.actors.map(a => `<rect x="${xi(a) - 72}" y="6" width="144" height="34" rx="8" fill="${KIND.core}"/><text x="${xi(a)}" y="28" text-anchor="middle" class="t1"${fit(a, 13, 130)}>${esc(a)}</text><line x1="${xi(a)}" y1="40" x2="${xi(a)}" y2="${h}" class="life"/>`).join("");
+  const msgs = seq.steps.map(([f, t, l], i) => {
+    const y = top + i * row + 20, x1 = xi(f), x2 = xi(t), dim = active >= 0 && i !== active ? 0.3 : 1;
+    if (f === t) return `<g class="msg ${i === active ? "lit" : ""}" opacity="${dim}"><path class="self" d="M${x1},${y - 8} h34 v16 h-30" marker-end="url(#arr)"/><text x="${x1 + 42}" y="${y + 4}">${i + 1}. ${esc(l)}</text></g>`;
+    const back = x2 < x1;
+    return `<g class="msg ${i === active ? "lit" : ""}" opacity="${dim}"><line x1="${x1}" y1="${y}" x2="${x2 + (back ? 4 : -4)}" y2="${y}" ${back ? 'stroke-dasharray="6 4"' : ""} marker-end="url(#arr)"/><text x="${(x1 + x2) / 2}" y="${y - 7}" text-anchor="middle">${i + 1}. ${esc(l)}</text></g>`;
+  }).join("");
+  return `<svg class="hand" viewBox="0 0 ${w} ${h}" style="max-width:${w}px">${FILTER}<g filter="url(#wob)">${heads}${msgs}</g></svg>`;
+}
+
+const about = () => `<div class="card about"><h3>What this project does</h3><ol>${D.summary.map(s => `<li>${rich(s)}</li>`).join("")}</ol></div>`;
+const plural = (n, w) => `${n.toLocaleString()} ${w}${n === 1 ? "" : "s"}`;
+function locView() {
+  const L = D.loc.langs, total = L.reduce((a, l) => a + l.lines, 0), max = Math.max(1, ...L.map(l => l.lines));
+  const docs = D.loc.docs ? ` · Markdown docs: ${D.loc.docs.toLocaleString()} lines.` : "";
+  return `<div class="card loc"><h3>${total.toLocaleString()} lines of code</h3><p class="sum">${plural(L.length, "language")} · ${plural(L.reduce((a, l) => a + l.files, 0), "file")} · ${esc(D.loc.note)}${docs}</p>${L.map(l => `<div class="lrow">${icon(l.logo) || `<b class="mono">${mono(l.name)}</b>`}<b>${esc(l.name)}</b><i style="width:${(l.lines / max) * 100}%"></i><span><b>${l.lines.toLocaleString()}</b> · ${Math.round((l.lines / total) * 100)}% · ${plural(l.files, "file")}</span></div>`).join("")}</div>`;
+}
+function stackView() {
+  return [...new Set(D.stack.map(s => s.layer))].map(layer => `<h3>${esc(layer)}</h3>` + D.stack.filter(s => s.layer === layer).map(s => {
+    const lg = (s.logo && icon(s.logo)) || `<span>${mono(s.name)}</span>`;
+    const inner = `<div class="lg">${lg}</div><b>${esc(s.name)}${s.url ? " ↗" : ""}</b><small>${[s.version ? esc(s.version) : "", s.local ? `<code>${esc(s.local)}</code>` : ""].filter(Boolean).join(" · ")}</small><p>${rich(s.why)}</p>`;
+    return s.url ? `<a class="card tech" href="${esc(s.url)}" target="_blank" rel="noopener">${inner}</a>` : `<div class="card tech">${inner}</div>`;
+  }).join("")).join("");
+}
+function testsView() {
+  const T = D.tests.kinds, total = T.filter(t => !t.subset).reduce((a, t) => a + t.count, 0), covered = T.filter(t => t.status === "present" || t.status === "partial").length, applies = T.filter(t => t.status !== "n/a").length;
+  return `<div class="ctr"><div class="total"><b>${total.toLocaleString()}</b><span>tests total</span></div><div class="total"><b>${covered}/${applies}</b><span>test kinds covered</span></div>${T.map(t => `<div class="${t.status}"><b>${t.count.toLocaleString()}</b><span>${esc(t.kind)}${t.unit ? ` (${esc(t.unit)})` : ""}</span></div>`).join("")}</div>
+  ${D.tests.runner ? `<p class="runner">Runner: ${rich(D.tests.runner)}</p>` : ""}
+  <table><tr><th>Kind</th><th>Count</th><th>Status</th><th>Where</th><th>Notes</th></tr>${T.map(t => `<tr><td><b>${esc(t.kind)}</b></td><td><b>${t.count.toLocaleString()}</b></td><td><span class="pill ${t.status}">${STATUS[t.status]}</span></td><td><code>${esc(t.where || "-")}</code></td><td>${rich(t.note)}</td></tr>`).join("")}</table>`;
+}
+const quad = c => { const li = a => a.map(x => `<li>${rich(x)}</li>`).join(""); return `<div class="q4"><div class="h"><h4>How it works</h4>${rich(c.how)}</div><div class="f"><h4>Interesting facts</h4><ul>${li(c.facts)}</ul></div><div class="r"><h4>What it gets right</h4><ul>${li(c.right)}</ul></div><div class="b"><h4>What could be better</h4><ul>${li(c.better)}</ul></div></div>`; };
+const seqExtra = s => `<div class="notes">${(s.notes || []).map(n => `<div class="note"><b>${rich(n.q)}</b>${rich(n.a)}</div>`).join("")}</div>${s.code && s.code.length ? `<div class="files">Code: ${s.code.map(c => `<code class="cp" title="Click to copy" data-path="${esc(full(c))}">${esc(c)}</code>`).join("")}</div>` : ""}`;
+const list = (items, cur, kind) => `<div class="list">${items.map(x => `<div class="${x.id === cur ? "on" : ""}" data-${kind}="${esc(x.id)}"><b>${esc(x.title || x.name)}</b><small>${esc(plain(x.why || x.path))}</small></div>`).join("")}</div>`;
+
+const TABS = { overview: "Overview", stack: "Stack", arch: "Architecture", seq: "Sequences", comp: "Components", tests: "Tests" };
+const state = { tab: "overview", seq: D.sequences[0]?.id, step: -1, comp: D.components[0]?.id };
+function render() {
+  tb.innerHTML = Object.entries(TABS).map(([k, v]) => `<button class="${k === state.tab ? "on" : ""}" data-k="${k}">${v}</button>`).join("");
+  const s = D.sequences.find(x => x.id === state.seq), c = D.components.find(x => x.id === state.comp);
+  p.innerHTML = {
+    overview: `<p style="font-size:18px;margin-top:0">${rich(D.tagline)}</p>${about()}${locView()}`,
+    stack: `<div class="stk">${stackView()}</div>`,
+    arch: `<div class="card">${archSvg()}</div>${about()}`,
+    seq: s ? `<div class="md">${list(D.sequences, state.seq, "seq")}<div><div class="card"><div class="ctrl"><button class="btn" id="pv">◀ Prev</button><button class="btn" id="nx">Next ▶</button><span>${state.step < 0 ? "All steps" : `Step ${state.step + 1}/${s.steps.length}: ${esc(s.steps[state.step][2])}`}</span></div>${seqSvg(s, state.step)}</div>${seqExtra(s)}</div></div>` : "",
+    comp: c ? `<div class="md">${list(D.components, state.comp, "comp")}<div class="card"><h2 style="margin:0 0 6px">${esc(c.name)}</h2><p style="margin:0 0 14px"><code class="cp" title="Click to copy" data-path="${esc(full(c.path))}">${esc(full(c.path))}</code></p>${quad(c)}</div></div>` : "",
+    tests: testsView()
+  }[state.tab];
+  tb.querySelectorAll("button").forEach(b => b.onclick = () => { state.tab = b.dataset.k; render(); });
+  p.querySelectorAll("[data-seq]").forEach(d => d.onclick = () => { state.seq = d.dataset.seq; state.step = -1; render(); });
+  p.querySelectorAll("[data-comp]").forEach(d => d.onclick = () => { state.comp = d.dataset.comp; render(); });
+  p.querySelectorAll(".cp").forEach(el => el.onclick = () => navigator.clipboard.writeText(el.dataset.path));
+  if (state.tab === "seq" && s) { nx.onclick = () => { state.step = (state.step + 1) % s.steps.length; render(); }; pv.onclick = () => { state.step = Math.max(-1, state.step - 1); render(); }; }
+  history.replaceState(null, "", "#" + state.tab);
+}
+
+function searchIndex() {
+  return [
+    ...D.summary.map((t, i) => ({ sec: "Overview", title: `Point ${i + 1}`, text: plain(t), target: "overview" })),
+    ...D.loc.langs.map(l => ({ sec: "Code", title: l.name, text: `${l.lines} lines ${l.files} files`, target: "overview" })),
+    ...D.stack.map(s => ({ sec: "Stack", title: s.name, text: plain(`${s.layer} ${s.version} ${s.why}`), target: "stack" })),
+    ...D.arch.nodes.map(n => ({ sec: "Architecture", title: n.label, text: n.sub || "", target: "arch" })),
+    ...D.sequences.map(s => ({ sec: "Sequence", title: s.title, text: plain([s.why, ...s.steps.map(x => x[2]), ...(s.notes || []).flatMap(n => [n.q, n.a]), ...(s.code || [])].join(" ")), target: "seq:" + s.id })),
+    ...D.components.map(c => ({ sec: "Component", title: c.name, text: plain([c.path, c.how, ...c.facts, ...c.right, ...c.better].join(" ")), target: "comp:" + c.id })),
+    ...D.tests.kinds.map(t => ({ sec: "Tests", title: t.kind, text: plain(`${t.count} ${t.status} ${t.where || ""} ${t.note}`), target: "tests" }))
+  ];
+}
+function mountSearch() {
+  const idx = searchIndex();
+  const hl = (s, w) => esc(s).replace(new RegExp(esc(w).replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "ig"), m => `<mark>${m}</mark>`);
+  const snip = (t, w) => { const i = t.toLowerCase().indexOf(w); return (i > 40 ? "…" : "") + t.slice(Math.max(0, i - 40), i + 90); };
+  q.addEventListener("input", () => {
+    const w = q.value.trim().toLowerCase();
+    if (!w) { r.hidden = true; return; }
+    const hits = idx.filter(e => (e.title + " " + e.text).toLowerCase().includes(w)).slice(0, 10);
+    r.innerHTML = hits.length ? hits.map((h, i) => `<div class="hit" data-i="${i}"><span class="tag">${h.sec}</span><b>${hl(h.title, w)}</b><small>${hl(snip(h.text, w), w)}</small></div>`).join("") : `<div class="hit">No matches</div>`;
+    r.hidden = false;
+    r.querySelectorAll(".hit[data-i]").forEach(el => el.onclick = () => { r.hidden = true; q.value = ""; go(hits[+el.dataset.i].target); });
+  });
+  document.addEventListener("keydown", e => {
+    if ((e.key === "/" || (e.key === "k" && (e.metaKey || e.ctrlKey))) && document.activeElement !== q) { e.preventDefault(); q.focus(); }
+    if (e.key === "Escape") { r.hidden = true; q.blur(); }
+  });
+}
+function go(t) { const [k, id] = t.split(":"); state.tab = k; if (k === "seq") { state.seq = id; state.step = -1; } if (k === "comp") state.comp = id; render(); }
+function mountTheme() {
+  const set = t => { document.documentElement.dataset.theme = t; try { localStorage.setItem("adocs-theme", t); } catch (e) { } th.textContent = t === "dark" ? "☀️ Light" : "🌙 Dark"; };
+  let saved = "light"; try { saved = localStorage.getItem("adocs-theme") || "light"; } catch (e) { }
+  set(saved);
+  th.onclick = () => set(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+}
+
+pn.textContent = D.project;
+wh.innerHTML = `<code title="Click to copy" id="cp">${esc(D.path)}</code>${D.repo ? `<a href="${esc(D.repo)}" target="_blank" rel="noopener">${icon("github", "ico")}${esc(D.repo.replace(/^https?:\/\//, ""))}</a>` : ""}`;
+cp.onclick = () => { navigator.clipboard.writeText(D.path); cp.textContent = "copied ✔"; setTimeout(() => cp.textContent = D.path, 1200); };
+ft.textContent = `Generated ${D.generated} by architecture-docs-skill`;
+const start = location.hash.slice(1); if (TABS[start]) state.tab = start;
+mountTheme(); mountSearch(); render();
+</script></body></html>
