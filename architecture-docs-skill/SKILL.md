@@ -1,6 +1,6 @@
 ---
 name: architecture-docs-skill
-description: Reads a codebase and generates a self-contained, searchable architecture website with light and dark themes - stack with logos and links, lines of code per language, a hand-drawn architecture diagram, the 3-5 most critical sequence diagrams with notes, a drill down of the 3-5 most interesting components (how they work, interesting facts, what they get right, what could be better) and a test analysis with counters per test kind. Use when the user runs /architecture-docs-skill or asks to document, explain, map or diagram the architecture of a project.
+description: Reads a codebase and generates a self-contained, searchable architecture website with light and dark themes - stack with logos and links, lines of code per language, a hand-drawn architecture diagram, the 3-5 most critical sequence diagrams with notes, a drill down of the 5-7 most interesting components (one plain sentence, the problem, the obvious fix that fails, what the code does instead, the clever part, the price paid, and the words to know) and a test analysis with counters per test kind. Use when the user runs /architecture-docs-skill or asks to document, explain, map or diagram the architecture of a project.
 allowed-tools: [Bash, Read, Write, Glob, Grep, AskUserQuestion]
 ---
 
@@ -23,7 +23,7 @@ Read a project, write one `data.json` that describes it, and run `scripts/build.
 * Never use the words "demo", "demonstration" or "example" in the generated content.
 * Text fields are escaped. Wrap code, files, tables, columns and commands in backticks and they render as `code`. No other markup.
 * Never write line counts in text fields. The site shows the counted lines and two numbers for one file confuse the reader.
-* "What could be better" must be real and specific to this code. Check before you write it: if the code already does it (jitter, backoff, caching, debounce, retries, migrations), it is not a gap.
+* `better` (the price paid) must be real and specific to this code. Check before you write it: if the code already does it (jitter, backoff, caching, debounce, retries, migrations), it is not a gap.
 
 ## Steps
 Report progress as `x/7` while you work.
@@ -32,7 +32,7 @@ Report progress as `x/7` while you work.
 2. **Stack.** One entry per technology that matters: languages, frameworks, databases, queues, runtimes, desktop shells, test tools, AI providers. Take versions from the build files. `why` is one line about what it does in this project.
 3. **Architecture.** Find the real runtime pieces: processes, services, modules with their own job, stores, external systems, and who calls whom. Lay them out left to right in the order a request flows.
 4. **Sequences.** Pick 3-5 flows: the most critical (breaks the product when it fails), the most used, and the most architecture-interesting (crosses processes, queues, schedulers, retries, caches). Follow each one through the code, step by step, and write the `why` of every step from the code you read. For each flow, write the notes a reader will ask after looking at the diagram: how is X decided, where is the state stored, what happens on failure, what runs in parallel, what limits apply. Answer with the real query, column, constant or function name.
-5. **Components.** Pick 3-5 components that are critical or have interesting design. Read them fully.
+5. **Components.** Pick 5-7 components that are critical or have interesting design. Read them fully. Write each one for a reader who has never seen the code: what it is for in plain words, the problem it solves, the obvious approach and why it would fail, what the code does instead, the clever part, the price paid, and the words a reader must know.
 6. **Tests.** Count tests per kind from the code (see Test analysis). Find the command that runs them.
 7. **Build and check.** Write `data.json` in the scratch or temp folder, never inside the project, then run:
    ```
@@ -71,10 +71,13 @@ Set `loc_exclude` to a list of folders (`"generated/"`) or globs (`"reports/*.ht
   "components": [
     {
       "id": "pricing", "name": "Pricing engine", "path": "src/main/java/shop/pricing/",
-      "how": "2-4 sentences on how it works.",
-      "facts": ["2-4 interesting facts with real numbers and names"],
-      "right": ["1-3 things it gets right and why that matters"],
-      "better": ["1-3 concrete things that could be better"]
+      "one": "Computes the final price of a cart, applying coupons and tax in the order the law requires.",
+      "problem": "A cart mixes items, [coupons] and regions. Tax is owed on the discounted price, and rounding per line vs per order gives different totals.",
+      "naive": "Add up the prices, subtract the coupon, add tax. Tax lands on the wrong base and totals drift by a cent from the invoice.",
+      "instead": "Runs [rules] in a fixed order, coupons before tax, rounds per line with `RoundingMode.HALF_EVEN`, and keeps cents as `long`.",
+      "clever": "Each rule is a pure function, so a quote and the final charge run the same code and always agree.",
+      "better": ["1-3 concrete things that could be better, the price paid by this design"],
+      "terms": [["Coupon", "A discount code applied before tax."], ["Rule", "One pricing step: input cart, output cart."], ["Half-even rounding", "Rounds .5 to the even cent so errors cancel out."]]
     }
   ],
   "tests": {
@@ -97,7 +100,9 @@ Set `loc_exclude` to a list of folders (`"generated/"`) or globs (`"reports/*.ht
 * `arch.edges`: `[from, to, label]`, label at most 10 characters or `""`. Keep long edges free of labels.
 * `sequences`: 3-5 flows, at most 6 actors each, 4-10 steps. Every step is `[from, to, label, why]`: label at most 40 characters, `why` 1-2 sentences, at most 400 characters. A step from an actor to itself draws a loop.
 * `why` is what the reader sees when they click the arrow: why this step exists, what it decides, what limit or failure it handles, with the real function, column or constant. Never repeat the label. Read the code for every step; never write a `why` you did not see in the code. `notes`: 2-6 per flow. `code`: the files the flow runs through, `path:line` allowed.
-* `components`: 3-5.
+* `components`: 5-7. `one` at most 160 characters, one plain sentence on what it is for, no jargon. `problem`, `naive`, `instead`: 1-3 sentences each. `clever`: 1-3 sentences. `better`: 1-3 items. `terms`: 3-6 `[word, meaning]` pairs, the words of this code a newcomer must know, explained in plain words.
+* In `problem`, `naive`, `instead`, `clever` and `better`, wrap a term in square brackets, `[Slot]`, to show its meaning on hover. Every marked word must be in `terms` (case does not matter) or the build fails. Brackets inside backticks are code, not terms.
+* `naive` is the approach a reasonable engineer would try first and the concrete way it would fail here. Never a straw man.
 * `tests.kinds`: always these 11 kinds in this order, nothing else before them: `Unit`, `Integration`, `Mocks / fakes`, `Database`, `E2E / UI`, `Contract`, `Property based`, `Stress / load`, `Chaos`, `CSS / visual`, `Fuzz / security`. Add `Snapshot` or other kinds after them only when the project has them.
 
 ## Test analysis
@@ -131,4 +136,4 @@ Count tests, not files. Use the patterns of the project's language and read a sa
 * `<out-dir>/run.sh`: serves the parent folder on `127.0.0.1` from port 8790 up (the next free port), so every site there is reachable from one server, and opens this site.
 * `<out-dir>/stop.sh`: stops that shared server.
 
-The site has tabs for Overview (summary and lines of code per language), Stack, Architecture, Sequences (swimlanes: one lane per actor, one arrow per step, click an arrow to open its why; Open all; notes and code files), Components and Tests. `/` or `Cmd+K` searches everything. The `Open another app…` box searches the other sites built next to it and opens their architecture diagram. The theme toggle remembers light or dark.
+The site has tabs for Overview (summary and lines of code per language), Stack, Architecture, Sequences (swimlanes: one lane per actor, one arrow per step, click an arrow to open its why; Open all; notes and code files), Components (pick on the left; each card: one sentence, problem → obvious fix → what it does instead, the clever part, the price paid, then the words to know, with hover definitions in the text) and Tests. `/` or `Cmd+K` searches everything. The `Open another app…` box searches the other sites built next to it and opens their architecture diagram. The theme toggle remembers light or dark.

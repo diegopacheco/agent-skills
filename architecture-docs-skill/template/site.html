@@ -35,8 +35,11 @@ table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:9px 10px
 .about{margin-top:16px}.about h3{margin:0 0 8px}.about ol{margin:0;padding-left:22px}.about li{margin:4px 0}
 .notes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.note{border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:12px;padding:12px 14px;background:var(--card)}.note b{display:block;margin-bottom:4px}
 .files{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:var(--mute);font-size:13px}
-.q4{display:grid;grid-template-columns:1fr 1fr;gap:12px}.q4>div{border:1px solid var(--line);border-radius:12px;padding:12px 14px}.q4 h4{margin:0 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute)}.q4 ul{margin:0;padding-left:18px}
-.q4 .r{border-left:4px solid var(--ok)}.q4 .b{border-left:4px solid var(--warn)}.q4 .h{border-left:4px solid var(--acc)}.q4 .f{border-left:4px solid #a78bfa}
+.cc .one{font-size:17px;font-weight:600;margin:10px 0 0}.cc .sec{margin-top:18px}.cc .sec h4{margin:0 0 6px;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--mute)}.cc .sec p{margin:0}.cc .sec ul{margin:0;padding-left:20px}.cc .sec li{margin:4px 0}.cc .warn h4{color:var(--warn)}
+.flow3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}.flow3>div{border-radius:12px;padding:14px 16px;border:1px solid var(--line)}.flow3 h4{margin:0 0 6px;font-size:12px;letter-spacing:.07em;text-transform:uppercase}
+.flow3 .p1{background:#d6454514}.flow3 .p1 h4{color:var(--bad)}.flow3 .p2{background:#c98a0014}.flow3 .p2 h4{color:var(--warn)}.flow3 .p3{background:#1f9d5514}.flow3 .p3 h4{color:var(--ok)}
+.words{border-top:1px solid var(--line);padding-top:16px;margin-top:22px}.terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}.terms div{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:14px}.terms b{display:block;color:var(--acc)}
+.term{border-bottom:2px dotted var(--acc);cursor:help;position:relative}.term:hover:after{content:attr(data-d);position:absolute;left:0;top:130%;width:260px;background:var(--ink);color:var(--card);font-size:13px;line-height:1.45;padding:8px 10px;border-radius:8px;z-index:5;font-weight:400}
 .stk{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}.stk h3{grid-column:1/-1;margin:14px 0 0;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
 .tech{display:grid;grid-template-columns:44px 1fr;gap:4px 12px;align-items:center;text-decoration:none;color:inherit;transition:.15s}a.tech:hover{border-color:var(--acc);transform:translateY(-2px)}
 .tech .lg{grid-row:span 2;width:44px;height:44px;border-radius:10px;background:var(--bg);border:1px solid var(--line);display:grid;place-items:center}.tech .lg svg{width:26px;height:26px}.tech .lg span{font-weight:800;font-size:15px;color:var(--acc)}
@@ -45,7 +48,7 @@ table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:9px 10px
 .ctr .present b{color:var(--ok)}.ctr .partial b{color:var(--warn)}.ctr .missing b{color:var(--bad)}.ctr .n\/a b{color:var(--mute)}.ctr .total{background:var(--acc);border-color:var(--acc)}.ctr .total b,.ctr .total span{color:#fff}
 .loc{margin-top:16px}.loc h3{margin:0 0 4px}.loc .sum{color:var(--mute);font-size:13px;margin:0 0 12px}.lrow{display:grid;grid-template-columns:24px 120px 1fr 170px;gap:10px;align-items:center;margin:7px 0;font-size:14px}.lrow svg{width:20px;height:20px}.lrow .mono{font-size:10px;font-weight:800;color:var(--acc)}.lrow i{display:block;height:12px;border-radius:6px;background:var(--acc);min-width:3px}.lrow span{text-align:right;color:var(--mute);font-variant-numeric:tabular-nums}.lrow span b{color:var(--ink)}
 .runner{color:var(--mute);font-size:14px;margin:0 0 14px}.foot{color:var(--mute);font-size:12px;padding:0 28px 30px}
-@media (max-width:900px){.md,.notes,.q4{grid-template-columns:1fr}.top{flex-wrap:wrap}}
+@media (max-width:900px){.md,.notes,.flow3{grid-template-columns:1fr}.top{flex-wrap:wrap}}
 </style></head><body>
 <div class="top"><div><h1>🏛️ <span id="pn"></span></h1><div class="where" id="wh"></div></div><div class="search"><input id="q" placeholder="Search everything…  ( / )" aria-label="Search"><div class="results" id="r" hidden></div></div><div class="search apps" id="ap" hidden><input id="aq" placeholder="Open another app…" aria-label="Open another app"><div class="results" id="ar" hidden></div></div><button class="btn" id="th"></button></div>
 <div class="tabs" id="tb"></div><div class="pane" id="p"></div><div class="foot" id="ft"></div>
@@ -114,9 +117,14 @@ function testsView() {
   ${D.tests.runner ? `<p class="runner">Runner: ${rich(D.tests.runner)}</p>` : ""}
   <table><tr><th>Kind</th><th>Count</th><th>Status</th><th>Where</th><th>Notes</th></tr>${T.map(t => `<tr><td><b>${esc(t.kind)}</b></td><td><b>${t.count.toLocaleString()}</b></td><td><span class="pill ${t.status}">${STATUS[t.status]}</span></td><td><code>${esc(t.where || "-")}</code></td><td>${rich(t.note)}</td></tr>`).join("")}</table>`;
 }
-const quad = c => { const li = a => a.map(x => `<li>${rich(x)}</li>`).join(""); return `<div class="q4"><div class="h"><h4>How it works</h4>${rich(c.how)}</div><div class="f"><h4>Interesting facts</h4><ul>${li(c.facts)}</ul></div><div class="r"><h4>What it gets right</h4><ul>${li(c.right)}</ul></div><div class="b"><h4>What could be better</h4><ul>${li(c.better)}</ul></div></div>`; };
+const termed = (c, s) => String(s ?? "").split(/(`[^`]+`)/).map((part, i) => i % 2 ? rich(part) : esc(part).replace(/\[([^\]]+)\]/g, (m, w) => { const t = c.terms.find(x => x[0].toLowerCase() === w.toLowerCase()); return t ? `<span class="term" data-d="${esc(plain(t[1]))}">${w}</span>` : w; })).join("");
+const compCard = c => `<div class="card cc"><h2 style="margin:0 0 4px">${esc(c.name)}</h2><code class="cp" title="Click to copy" data-path="${esc(full(c.path))}">${esc(c.path)}</code><p class="one">${rich(c.one)}</p>
+<div class="flow3"><div class="p1"><h4>The problem</h4>${termed(c, c.problem)}</div><div class="p2"><h4>The obvious fix, and why it fails</h4>${termed(c, c.naive)}</div><div class="p3"><h4>What it does instead</h4>${termed(c, c.instead)}</div></div>
+<div class="sec"><h4>The clever part</h4><p>${termed(c, c.clever)}</p></div>
+<div class="sec warn"><h4>The price paid</h4><ul>${c.better.map(x => `<li>${termed(c, x)}</li>`).join("")}</ul></div>
+<div class="sec words"><h4>Words to know</h4><div class="terms">${c.terms.map(([w, d]) => `<div><b>${esc(w)}</b>${rich(d)}</div>`).join("")}</div></div></div>`;
 const seqExtra = s => `<div class="notes">${(s.notes || []).map(n => `<div class="note"><b>${rich(n.q)}</b>${rich(n.a)}</div>`).join("")}</div>${s.code && s.code.length ? `<div class="files">Code: ${s.code.map(c => `<code class="cp" title="Click to copy" data-path="${esc(full(c))}">${esc(c)}</code>`).join("")}</div>` : ""}`;
-const list = (items, cur, kind) => `<div class="list">${items.map(x => `<div class="${x.id === cur ? "on" : ""}" data-${kind}="${esc(x.id)}"><b>${esc(x.title || x.name)}</b><small>${esc(plain(x.why || x.path))}</small></div>`).join("")}</div>`;
+const list = (items, cur, kind) => `<div class="list">${items.map(x => `<div class="${x.id === cur ? "on" : ""}" data-${kind}="${esc(x.id)}"><b>${esc(x.title || x.name)}</b><small>${esc(plain(x.why || x.one || x.path))}</small></div>`).join("")}</div>`;
 
 const TABS = { overview: "Overview", stack: "Stack", arch: "Architecture", seq: "Sequences", comp: "Components", tests: "Tests" };
 const state = { tab: "overview", seq: D.sequences[0]?.id, open: new Set(), comp: D.components[0]?.id };
@@ -128,7 +136,7 @@ function render() {
     stack: `<div class="stk">${stackView()}</div>`,
     arch: `<div class="card">${archSvg()}</div>${about()}`,
     seq: s ? `<div class="md">${list(D.sequences, state.seq, "seq")}<div><div class="card"><div class="ctrl"><button class="btn" id="oa">${state.open.size === s.steps.length ? "Close all" : "Open all"}</button><span>Click a step to see why it happens</span></div>${lanes(s, state.open)}</div>${seqExtra(s)}</div></div>` : "",
-    comp: c ? `<div class="md">${list(D.components, state.comp, "comp")}<div class="card"><h2 style="margin:0 0 6px">${esc(c.name)}</h2><p style="margin:0 0 14px"><code class="cp" title="Click to copy" data-path="${esc(full(c.path))}">${esc(full(c.path))}</code></p>${quad(c)}</div></div>` : "",
+    comp: c ? `<div class="md">${list(D.components, state.comp, "comp")}${compCard(c)}</div>` : "",
     tests: testsView()
   }[state.tab];
   tb.querySelectorAll("button").forEach(b => b.onclick = () => { state.tab = b.dataset.k; render(); });
@@ -146,7 +154,7 @@ function searchIndex() {
     ...D.stack.map(s => ({ sec: "Stack", title: s.name, text: plain(`${s.layer} ${s.version} ${s.why}`), target: "stack" })),
     ...D.arch.nodes.map(n => ({ sec: "Architecture", title: n.label, text: n.sub || "", target: "arch" })),
     ...D.sequences.map(s => ({ sec: "Sequence", title: s.title, text: plain([s.why, ...s.steps.flatMap(x => [x[2], x[3]]), ...(s.notes || []).flatMap(n => [n.q, n.a]), ...(s.code || [])].join(" ")), target: "seq:" + s.id })),
-    ...D.components.map(c => ({ sec: "Component", title: c.name, text: plain([c.path, c.how, ...c.facts, ...c.right, ...c.better].join(" ")), target: "comp:" + c.id })),
+    ...D.components.map(c => ({ sec: "Component", title: c.name, text: plain([c.path, c.one, c.problem, c.naive, c.instead, c.clever, ...c.better, ...c.terms.flat()].join(" ")).replace(/[\[\]]/g, ""), target: "comp:" + c.id })),
     ...D.tests.kinds.map(t => ({ sec: "Tests", title: t.kind, text: plain(`${t.count} ${t.status} ${t.where || ""} ${t.note}`), target: "tests" }))
   ];
 }

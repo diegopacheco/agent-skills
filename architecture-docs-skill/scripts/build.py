@@ -83,11 +83,21 @@ def validate(doc):
             need(f in s["actors"] and t in s["actors"], f"sequence {s['id']}: step {f} -> {t} uses an actor not in actors")
         for rel in s.get("code", []):
             exists(project, rel, f"sequence {s['id']}")
-    between(doc["components"], 3, 5, "components")
+    between(doc["components"], 5, 7, "components")
     for c in doc["components"]:
         exists(project, c["path"], f"component {c['id']}")
-        for key in ["how", "facts", "right", "better"]:
+        for key in ["one", "problem", "naive", "instead", "clever", "better", "terms"]:
             need(c.get(key), f"component {c['id']}: missing {key}")
+        short(c["one"], 160, f"component {c['id']} one")
+        between(c["better"], 1, 3, f"component {c['id']} better")
+        between(c["terms"], 3, 6, f"component {c['id']} terms")
+        words = set()
+        for t in c["terms"]:
+            need(isinstance(t, list) and len(t) == 2 and t[0] and t[1], f"component {c['id']}: every term is [word, meaning], got {t}")
+            words.add(t[0].lower())
+        for text in [c["problem"], c["naive"], c["instead"], c["clever"], *c["better"]]:
+            for word in re.findall(r"\[([^\]]+)\]", re.sub(r"`[^`]*`", "", text)):
+                need(word.lower() in words, f"component {c['id']}: [{word}] is marked in the text but is not in terms")
     names = [t.get("kind") for t in doc["tests"]["kinds"]]
     need(names[:len(TEST_KINDS)] == TEST_KINDS, f"tests.kinds must start with {TEST_KINDS}, got {names[:len(TEST_KINDS)]}")
     for t in doc["tests"]["kinds"]:

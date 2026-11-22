@@ -1,13 +1,13 @@
 # architecture-docs-skill
 
-A skill for Claude Code and Codex that reads a codebase and generates a self-contained architecture website: the stack with logos and links, lines of code per language, a hand-drawn architecture diagram, the 3-5 most critical sequence diagrams with notes, a drill down of the 3-5 most interesting components, and a test analysis with a counter per test kind. One `index.html` with everything inlined, searchable, with light and dark themes, plus `run.sh` and `stop.sh`.
+A skill for Claude Code and Codex that reads a codebase and generates a self-contained architecture website: the stack with logos and links, lines of code per language, a hand-drawn architecture diagram, the 3-5 most critical sequence diagrams with notes, a drill down of the 5-7 most interesting components written for a newcomer (problem first, plus the words to know), and a test analysis with a counter per test kind. One `index.html` with everything inlined, searchable, with light and dark themes, plus `run.sh` and `stop.sh`.
 
 ## How it Works?
 
 1. You run `/architecture-docs-skill` in a project, or ask the agent to document its architecture.
 2. The agent follows `SKILL.md`: it reads the build files, entry points and code, follows the critical flows through the code, reads the chosen components fully, and counts the tests per kind.
 3. It writes everything it found into one `data.json`: stack, architecture nodes and edges, sequences with notes, components, test counts.
-4. `scripts/build.py` validates the data: every component path and code file must exist in the project, every sequence step must use a known actor, two diagram nodes cannot share a cell, a missing test kind cannot have a count. Any error stops the build.
+4. `scripts/build.py` validates the data: every component path and code file must exist in the project, every sequence step must use a known actor, two diagram nodes cannot share a cell, a missing test kind cannot have a count, and a word marked like `[Slot]` must be defined in the component's terms. Any error stops the build.
 5. `scripts/loc.py` counts the non-blank lines per language from the files git tracks, and the build reads the GitHub URL from the git remote. The agent never types those numbers.
 6. The build inlines the data, the template and only the logos the site uses into one `index.html`, and writes `run.sh` and `stop.sh` next to it.
 
@@ -21,7 +21,7 @@ A skill for Claude Code and Codex that reads a codebase and generates a self-con
 * **Stack:** one card per technology, grouped by layer, with its logo, version, link to its site and why the project uses it.
 * **Architecture:** a hand-drawn diagram laid out left to right in request order, colored by kind (actors, edges, core, data, external).
 * **Sequences:** 3-5 flows picked because they are critical, most used or architecturally interesting. Swimlanes draw one lane per actor and one arrow per step; clicking an arrow opens why that step happens, Open all opens every step, and notes under it answer the questions the diagram raises with the real query, column or constant.
-* **Components:** 3-5 deep dives, each with the full path to the code and four boxes: how it works, interesting facts, what it gets right, what could be better.
+* **Components:** 5-7 deep dives, picked on the left. Each card has one plain sentence, then the problem, the obvious fix and why it fails, what the code does instead, the clever part, the price paid, and the words to know. Marked words show their meaning on hover.
 * **Tests:** counters for 11 test kinds (unit, integration, mocks / fakes, database, E2E / UI, contract, property based, stress / load, chaos, CSS / visual, fuzz / security), the command that runs them, and where each missing kind would pay off.
 * **Header:** the full path of the project (click to copy) and its GitHub link when the remote is on GitHub.
 * **Search:** `/` or `Cmd+K` searches every section, highlights matches and jumps to them.
@@ -48,7 +48,7 @@ A skill for Claude Code and Codex that reads a codebase and generates a self-con
 | `stack[]` | `layer`, `name`, `version`, `logo` (Simple Icons slug), `url`, `why` |
 | `arch.nodes[]` / `arch.edges[]` | Nodes with `kind`, `col`, `row`; edges as `[from, to, label]` |
 | `sequences[]` | `actors`, `steps` as `[from, to, label]`, `notes` as `{q, a}`, `code` files |
-| `components[]` | `path`, `how`, `facts`, `right`, `better` |
+| `components[]` | `path`, `one`, `problem`, `naive`, `instead`, `clever`, `better`, `terms` |
 | `tests` | `runner` and `kinds[]` with `kind`, `status`, `count`, `where`, `note` |
 
 The build adds `loc`, `repo` and `generated`. Text wrapped in backticks renders as code; everything else is escaped.
@@ -119,7 +119,7 @@ Generated for [stacks-skill/stack-site](../stacks-skill/stack-site), the stack c
 
 ![sequences](printscreens/04-sequences.png)
 
-**Components:** the markdown parser with its full path and the four boxes.
+**Components:** one component card, from the problem to the words to know.
 
 ![components](printscreens/05-components.png)
 

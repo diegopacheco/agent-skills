@@ -27,13 +27,13 @@ def valid_doc(root):
     write(root, "src/b.rs", "fn b() {}\n")
     write(root, "src/c.rs", "fn c() {}\n")
     seq = lambda i: {"id": f"s{i}", "title": f"Flow {i}", "why": "w", "actors": ["A", "B"], "steps": [["A", "B", "call", "why call"], ["B", "B", "self", "why self"], ["B", "A", "reply", "why reply"], ["A", "A", "done", "why done"]], "notes": [{"q": "q1", "a": "a1"}, {"q": "q2", "a": "a2"}], "code": ["src/a.rs:1"]}
-    comp = lambda i, f: {"id": f"c{i}", "name": f"C{i}", "path": f, "how": "h", "facts": ["f"], "right": ["r"], "better": ["b"]}
+    comp = lambda i, f: {"id": f"c{i}", "name": f"C{i}", "path": f, "one": "o", "problem": "A [Job] is slow.", "naive": "n", "instead": "Uses `q[0]` per [job].", "clever": "c", "better": ["b"], "terms": [["Job", "one unit of work"], ["Tick", "a timer beat"], ["Slot", "room for one job"]]}
     return {
         "project": "P", "path": root, "repo": "", "tagline": "t", "summary": ["one", "two", "three"],
         "stack": [{"layer": "Backend", "name": "Rust", "version": "1.91", "logo": "rust", "url": "https://www.rust-lang.org", "why": "w"}],
         "arch": {"nodes": [{"id": n, "label": n.upper(), "sub": "", "kind": "core", "col": i, "row": 0} for i, n in enumerate("abcdef")], "edges": [["a", "b", "x"]]},
         "sequences": [seq(1), seq(2), seq(3)],
-        "components": [comp(1, "src/a.rs"), comp(2, "src/b.rs"), comp(3, "src/")],
+        "components": [comp(1, "src/a.rs"), comp(2, "src/b.rs"), comp(3, "src/"), comp(4, "src/c.rs"), comp(5, "src/a.rs")],
         "tests": {"runner": "", "kinds": [{"kind": k, "status": "present" if k == "Unit" else "missing", "count": 3 if k == "Unit" else 0, "where": "src", "note": "n"} for k in build.TEST_KINDS]},
     }
 
@@ -125,6 +125,42 @@ class ValidateTest(unittest.TestCase):
             doc = valid_doc(root)
             doc["sequences"][0]["steps"][0] = ["A", "B", "call", ""]
             with self.assertRaisesRegex(build.DataError, "why is required"):
+                build.validate(doc)
+
+    def test_fewer_than_five_components_fail_because_the_page_promises_five_to_seven(self):
+        with tempfile.TemporaryDirectory() as root:
+            doc = valid_doc(root)
+            doc["components"] = doc["components"][:4]
+            with self.assertRaisesRegex(build.DataError, "components: expected 5-7"):
+                build.validate(doc)
+
+    def test_a_marked_word_missing_from_terms_fails_because_its_hover_would_explain_nothing(self):
+        with tempfile.TemporaryDirectory() as root:
+            doc = valid_doc(root)
+            doc["components"][0]["clever"] = "It uses a [Frontier]."
+            with self.assertRaisesRegex(build.DataError, r"\[Frontier\] is marked"):
+                build.validate(doc)
+
+    def test_brackets_inside_code_are_not_term_markers_so_indexing_code_stays_valid(self):
+        with tempfile.TemporaryDirectory() as root:
+            doc = valid_doc(root)
+            doc["components"][0]["clever"] = "Reads `BACKOFF[failures - 1]` on each retry."
+            build.validate(doc)
+
+    def test_a_component_without_a_problem_fails_because_the_card_starts_with_it(self):
+        with tempfile.TemporaryDirectory() as root:
+            doc = valid_doc(root)
+            del doc["components"][0]["problem"]
+            with self.assertRaisesRegex(build.DataError, "missing problem"):
+                build.validate(doc)
+
+    def test_too_few_terms_fail_because_words_to_know_needs_at_least_three(self):
+        with tempfile.TemporaryDirectory() as root:
+            doc = valid_doc(root)
+            doc["components"][0]["terms"] = [["Job", "unit"], ["Tick", "beat"]]
+            doc["components"][0]["problem"] = "slow"
+            doc["components"][0]["instead"] = "fast"
+            with self.assertRaisesRegex(build.DataError, "terms: expected 3-6"):
                 build.validate(doc)
 
     def test_two_nodes_in_the_same_cell_fail_because_they_would_overlap(self):
