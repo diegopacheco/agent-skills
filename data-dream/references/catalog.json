@@ -1,0 +1,422 @@
+{
+  "unicode": [
+    {
+      "raw": "\"José Ñúñez\"",
+      "why": "accents survive storage and search"
+    },
+    {
+      "raw": "\"👩‍👩‍👧‍👦\"",
+      "why": "one visible emoji made of 7 code points breaks length and truncation"
+    },
+    {
+      "raw": "\"é\"",
+      "why": "NFD form, equals é only after normalization"
+    },
+    {
+      "raw": "\"é\"",
+      "why": "NFC form, compare with the NFD seed for duplicate keys"
+    },
+    {
+      "raw": "\"مرحبا بالعالم\"",
+      "why": "right to left text breaks layout and concatenation"
+    },
+    {
+      "raw": "\"abc‮dcba\"",
+      "why": "right to left override flips what humans read"
+    },
+    {
+      "raw": "\"zero​width\"",
+      "why": "zero width space makes two equal looking strings different"
+    },
+    {
+      "raw": "\"null\\u0000byte\"",
+      "why": "NUL byte truncates C strings and some drivers"
+    },
+    {
+      "raw": "\"раураl\"",
+      "why": "Cyrillic homoglyphs look like paypal"
+    },
+    {
+      "raw": "\"𝔘𝔫𝔦𝔠𝔬𝔡𝔢\"",
+      "why": "astral plane characters are 2 UTF-16 units each"
+    },
+    {
+      "raw": "\"\\ud800\"",
+      "why": "lone surrogate is invalid UTF-16 and invalid UTF-8"
+    },
+    {
+      "raw": "\"ǅ\"",
+      "why": "title case letter breaks upper and lower case round trips"
+    },
+    {
+      "raw": "\"straße\"",
+      "why": "upper case is STRASSE, longer than the original"
+    }
+  ],
+  "size": [
+    {
+      "raw": "\"\"",
+      "why": "empty string, passes a not null check but is not a value"
+    },
+    {
+      "raw": "\"a\"",
+      "why": "one character, the shortest value most code never tries"
+    },
+    {
+      "gen": "repeat",
+      "char": "a",
+      "count": 256,
+      "why": "past a VARCHAR(255)"
+    },
+    {
+      "gen": "repeat",
+      "char": "a",
+      "count": 65536,
+      "why": "past 64 KB fields and TEXT columns"
+    },
+    {
+      "gen": "repeat",
+      "char": "a",
+      "count": 1048576,
+      "why": "1 MB string, request limits and memory"
+    },
+    {
+      "gen": "repeat",
+      "char": "é",
+      "count": 128,
+      "why": "128 characters but 256 bytes, byte vs char limits"
+    },
+    {
+      "gen": "array",
+      "count": 10000,
+      "why": "list with 10000 items, pagination and N+1"
+    },
+    {
+      "gen": "nest",
+      "count": 1000,
+      "why": "1000 levels of nesting, recursive parsers overflow the stack"
+    }
+  ],
+  "numbers": [
+    {
+      "raw": "0",
+      "why": "zero, division and falsy checks"
+    },
+    {
+      "raw": "-0",
+      "why": "negative zero prints as 0 but is not always equal"
+    },
+    {
+      "raw": "-1",
+      "why": "negative where only positive makes sense"
+    },
+    {
+      "raw": "2147483647",
+      "why": "max 32 bit int, one more and it wraps negative"
+    },
+    {
+      "raw": "2147483648",
+      "why": "max 32 bit int plus one overflows"
+    },
+    {
+      "raw": "9007199254740993",
+      "why": "2^53 + 1 cannot be a JavaScript number"
+    },
+    {
+      "raw": "9223372036854775808",
+      "why": "past max 64 bit int"
+    },
+    {
+      "raw": "1e309",
+      "why": "overflows a double to Infinity"
+    },
+    {
+      "raw": "0.1",
+      "why": "binary floating point cannot hold 0.1"
+    },
+    {
+      "raw": "1e-7",
+      "why": "tiny value printed in scientific notation"
+    },
+    {
+      "raw": "NaN",
+      "why": "not valid JSON, many parsers accept it"
+    },
+    {
+      "raw": "Infinity",
+      "why": "not valid JSON, many parsers accept it"
+    },
+    {
+      "raw": "\"12\"",
+      "why": "number sent as a string"
+    },
+    {
+      "raw": "\"1,5\"",
+      "why": "decimal comma from a pt-BR or de-DE user"
+    },
+    {
+      "raw": "\"١٢٣\"",
+      "why": "Arabic-Indic digits pass some isDigit checks"
+    }
+  ],
+  "time": [
+    {
+      "raw": "\"2024-02-29\"",
+      "why": "leap day, adding a year to it has no right answer"
+    },
+    {
+      "raw": "\"2023-02-29\"",
+      "why": "day that does not exist"
+    },
+    {
+      "raw": "\"2024-03-10T02:30:00\"",
+      "why": "inside the US DST gap, this local time never happened"
+    },
+    {
+      "raw": "\"2024-11-03T01:30:00\"",
+      "why": "inside the US DST overlap, this local time happened twice"
+    },
+    {
+      "raw": "\"2016-12-31T23:59:60Z\"",
+      "why": "leap second, second 60 fails most date parsers"
+    },
+    {
+      "raw": "\"1970-01-01T00:00:00Z\"",
+      "why": "epoch zero, often treated as missing"
+    },
+    {
+      "raw": "\"1969-12-31T23:59:59Z\"",
+      "why": "negative epoch, dates before 1970 break unsigned timestamps"
+    },
+    {
+      "raw": "\"2038-01-19T03:14:08Z\"",
+      "why": "one second past the 32 bit epoch limit"
+    },
+    {
+      "raw": "\"9999-12-31T23:59:59Z\"",
+      "why": "far future sentinel"
+    },
+    {
+      "raw": "\"0001-01-01T00:00:00Z\"",
+      "why": "minimum date, some libraries and databases cannot store it"
+    },
+    {
+      "raw": "\"2024-06-01T12:00:00+14:00\"",
+      "why": "UTC+14, a different calendar day than UTC"
+    },
+    {
+      "raw": "\"2024-06-01T12:00:00-12:00\"",
+      "why": "UTC-12, the last place where a day ends, a different calendar day than UTC"
+    },
+    {
+      "raw": "\"2024-06-01T12:00:00+05:45\"",
+      "why": "Nepal 45 minute offset"
+    },
+    {
+      "raw": "\"2024-06-01T12:00:00\"",
+      "why": "no offset, local to who?"
+    },
+    {
+      "raw": "\"01/02/2024\"",
+      "why": "is it January 2 or February 1"
+    },
+    {
+      "raw": "1717243200000",
+      "why": "epoch in milliseconds where seconds are expected"
+    }
+  ],
+  "empty": [
+    {
+      "raw": "null",
+      "why": "null where a value is expected, the classic null pointer crash"
+    },
+    {
+      "raw": "\"\"",
+      "why": "empty string, passes a not null check but is not a value"
+    },
+    {
+      "raw": "\" \"",
+      "why": "only a space, looks empty to a human but not to a length check"
+    },
+    {
+      "raw": "\"\\t\\n\"",
+      "why": "only tabs and newlines, survives naive trims"
+    },
+    {
+      "raw": "\"null\"",
+      "why": "the word null as text"
+    },
+    {
+      "raw": "\"undefined\"",
+      "why": "the word undefined as text"
+    },
+    {
+      "raw": "[]",
+      "why": "empty list, first element and average of nothing"
+    },
+    {
+      "raw": "{}",
+      "why": "empty object, every required field missing at once"
+    },
+    {
+      "raw": "false",
+      "why": "false where a value is expected"
+    },
+    {
+      "gen": "missing",
+      "why": "the field is not sent at all"
+    }
+  ],
+  "money": [
+    {
+      "raw": "0.1",
+      "why": "0.1 + 0.2 is not 0.3 in floating point"
+    },
+    {
+      "raw": "0.005",
+      "why": "rounds to 0.01 with HALF_UP, 0.00 with HALF_EVEN"
+    },
+    {
+      "raw": "2.675",
+      "why": "is 2.67499999 in binary, round(2.675, 2) gives 2.67"
+    },
+    {
+      "raw": "-10.00",
+      "why": "negative amount, refund or attack"
+    },
+    {
+      "raw": "0.00",
+      "why": "zero amount, free orders hit division by total and skipped payment paths"
+    },
+    {
+      "raw": "0.001",
+      "why": "below the smallest unit"
+    },
+    {
+      "raw": "99999999999999.99",
+      "why": "past a DECIMAL(15,2) and past double precision"
+    },
+    {
+      "raw": "\"100\"",
+      "why": "amount as a string"
+    },
+    {
+      "raw": "\"1.000,50\"",
+      "why": "European format, one thousand and fifty cents"
+    },
+    {
+      "raw": "\"JPY\"",
+      "why": "zero decimal currency, 100 JPY is not 1.00"
+    },
+    {
+      "raw": "\"BHD\"",
+      "why": "three decimal currency"
+    },
+    {
+      "raw": "33.33",
+      "why": "100 / 3 split three ways loses a cent"
+    }
+  ],
+  "text": [
+    {
+      "raw": "\"O'Brien\"",
+      "why": "single quote breaks hand built SQL"
+    },
+    {
+      "raw": "\"Robert'); DROP TABLE students;--\"",
+      "why": "SQL shaped input, must be stored as text"
+    },
+    {
+      "raw": "\"<script>alert(1)</script>\"",
+      "why": "HTML shaped input, must be escaped on render"
+    },
+    {
+      "raw": "\"../../etc/passwd\"",
+      "why": "path shaped input, must never reach the file system"
+    },
+    {
+      "raw": "\"%s%s%n\"",
+      "why": "format string shaped input"
+    },
+    {
+      "raw": "\"${7*7}\"",
+      "why": "template shaped input"
+    },
+    {
+      "raw": "\"line1\\nline2\"",
+      "why": "newline breaks logs, CSV and headers"
+    },
+    {
+      "raw": "\"a,b;\\\"c\\\"\"",
+      "why": "CSV delimiters and quotes"
+    },
+    {
+      "raw": "\"=SUM(A1:A9)\"",
+      "why": "formula injection when exported to a spreadsheet"
+    },
+    {
+      "raw": "\"  padded  \"",
+      "why": "leading and trailing spaces, trim or not"
+    }
+  ],
+  "identity": [
+    {
+      "raw": "\"user+tag@acme.io\"",
+      "why": "plus addressing is a valid email"
+    },
+    {
+      "raw": "\"USER@Acme.IO\"",
+      "why": "case of the same email, duplicate accounts"
+    },
+    {
+      "raw": "\"用户@例子.广告\"",
+      "why": "internationalized email"
+    },
+    {
+      "raw": "\"a@b\"",
+      "why": "valid by RFC, rejected by most regexes"
+    },
+    {
+      "raw": "\"+1 (555) 010-0000\"",
+      "why": "formatted phone, digits only checks reject it and stored formats drift"
+    },
+    {
+      "raw": "\"00000000-0000-0000-0000-000000000000\"",
+      "why": "nil UUID, often a default that matches records by accident"
+    },
+    {
+      "raw": "\"1 OR 1=1\"",
+      "why": "id shaped input"
+    },
+    {
+      "raw": "\"https://localhost:22/\"",
+      "why": "URL pointing inside, SSRF shaped"
+    }
+  ],
+  "structure": [
+    {
+      "raw": "\"just a string\"",
+      "why": "string where an object is expected"
+    },
+    {
+      "raw": "[{}]",
+      "why": "list where an object is expected"
+    },
+    {
+      "raw": "{\"a\":1,\"a\":2}",
+      "why": "duplicate keys, which one wins"
+    },
+    {
+      "raw": "{\"__proto__\":{\"admin\":true}}",
+      "why": "prototype pollution shaped object"
+    },
+    {
+      "raw": "{\"id\":1,\"extra\":\"field\"}",
+      "why": "unknown extra field, mass assignment or a strict parser crash"
+    },
+    {
+      "raw": "{",
+      "why": "truncated JSON, the parser error must be a 400 and not a 500"
+    }
+  ]
+}
