@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ff4j>
+  <features>
+    <feature uid="legacy-cart" enable="true" description="old cart"/>
+    <feature uid="dead-banner" enable="false" description="never shipped"/>
+  </features>
+</ff4j>

@@ -1,0 +1,7 @@
+{
+  "flags": {
+    "go-flag": { "on": true },
+    "go-of-flag": { "on": false },
+    "ld-orphan": { "on": true }
+  }
+}

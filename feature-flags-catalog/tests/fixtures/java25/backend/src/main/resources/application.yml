@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: pricing
+app:
+  features:
+    pricing-v3: true
+    search-ranking: false
+    unused-thing: true

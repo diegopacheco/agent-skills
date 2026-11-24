@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Feature Flags Catalog</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='6' y='3' width='3' height='26' rx='1.5' fill='%23334155'/%3E%3Cpath d='M9 4h16l-4 6 4 6H9z' fill='%2316a34a'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#f7f8fb;--panel:#ffffff;--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--soft:#f1f5f9;--accent:#2563eb;--used:#16a34a;--unused:#dc2626;--ghost:#9333ea;--test:#d97706;--dyn:#0891b2;--on:#16a34a;--off:#64748b;--shadow:0 1px 2px rgba(15,23,42,.06),0 4px 16px rgba(15,23,42,.05);--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+[data-theme=dark]{--bg:#0b1020;--panel:#121a2e;--ink:#e2e8f0;--muted:#94a3b8;--line:#22304d;--soft:#18223a;--accent:#60a5fa;--used:#4ade80;--unused:#f87171;--ghost:#c084fc;--test:#fbbf24;--dyn:#22d3ee;--on:#4ade80;--off:#94a3b8;--shadow:0 1px 2px rgba(0,0,0,.4)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--panel);border-bottom:1px solid var(--line)}
+.bar{max-width:1280px;margin:0 auto;padding:12px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.brand{display:flex;gap:10px;align-items:center;font-weight:800;font-size:17px}
+.brand small{font-weight:500;color:var(--muted);font-size:12px}
+.search{flex:1;min-width:220px;display:flex;align-items:center;gap:8px;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.search input{flex:1;border:0;background:transparent;color:var(--ink);font:inherit;outline:none}
+.theme{border:1px solid var(--line);background:var(--soft);color:var(--ink);border-radius:10px;padding:8px 12px;cursor:pointer;font:inherit}
+nav.tabs{max-width:1280px;margin:0 auto;padding:0 20px;display:flex;gap:4px}
+nav.tabs button{border:0;background:transparent;color:var(--muted);font:600 14px system-ui;padding:10px 14px;border-bottom:2px solid transparent;cursor:pointer}
+nav.tabs button.active{color:var(--ink);border-bottom-color:var(--accent)}
+nav.tabs .n{display:inline-block;margin-left:6px;background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:0 7px;font-size:12px}
+main{max-width:1280px;margin:0 auto;padding:20px}
+.section{display:none;scroll-margin-top:200px}.section.active{display:block}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+.kpi b{display:block;font-size:28px;line-height:1.1}
+.kpi span{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.panel h3{margin:0;padding:12px 16px;border-bottom:1px solid var(--line);font-size:14px;display:flex;justify-content:space-between;align-items:center}
+.panel h3 .side{display:inline-flex;gap:8px;align-items:center}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.map{padding:14px 16px}
+.stack{display:flex;height:26px;border-radius:8px;overflow:hidden;background:var(--soft);border:1px solid var(--line)}
+.stack div{height:100%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;min-width:0}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;color:var(--muted);font-size:12px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 16px 14px}
+.chip{font-size:11px;border:1px solid var(--line);background:var(--soft);border-radius:999px;padding:2px 8px;color:var(--ink)}
+.row{border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.rowhead{display:grid;grid-template-columns:minmax(0,1.6fr) auto auto;gap:10px;align-items:center;padding:10px 16px;cursor:pointer}
+.rowhead:hover{background:var(--soft)}
+.name{font-family:var(--mono);font-weight:600;word-break:break-all}
+.meta{color:var(--muted);font-size:12px;margin-top:2px}
+.badge{font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;white-space:nowrap;border:1px solid currentColor}
+.b-used{color:var(--used)}.b-unused{color:var(--unused)}.b-ghost{color:var(--ghost)}.b-test-only{color:var(--test)}.b-maybe-dynamic{color:var(--dyn)}
+.val{font-family:var(--mono);font-size:11px;padding:2px 7px;border-radius:6px;background:var(--soft);border:1px solid var(--line)}
+.v-on{color:var(--on)}.v-off{color:var(--off)}
+.detail{display:none;padding:4px 16px 14px;background:var(--soft)}
+.row.open .detail{display:block}
+.detail h4{margin:10px 0 4px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.loc{font-family:var(--mono);font-size:12px;padding:4px 0;border-bottom:1px dashed var(--line);word-break:break-all}
+.loc em{color:var(--accent);font-style:normal}
+.loc code{display:block;color:var(--muted)}
+.empty{padding:18px 16px;color:var(--muted)}
+.sugs{display:grid;gap:12px}
+.sug{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+.sug.p1{border-left-color:var(--unused)}.sug.p2{border-left-color:var(--test)}.sug.p3{border-left-color:var(--used)}.sug.p4{border-left-color:var(--dyn)}.sug.p5{border-left-color:var(--off)}
+.sug header{position:static;background:none;border:0;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sug h4{margin:0;font-size:15px}
+.sug p{margin:6px 0;color:var(--muted)}
+.sug ol{margin:8px 0 0;padding-left:20px}
+.sug li{margin:3px 0}
+.sug code{font-family:var(--mono);font-size:12px;background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:0 5px}
+.risk{font-size:11px;font-weight:700;color:var(--muted)}
+.filters{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.filters button{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer;font:inherit;font-size:12px}
+.filters button.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:14px;color:var(--muted)}
+.note b{color:var(--ink)}
+footer{max-width:1280px;margin:0 auto;padding:10px 20px 30px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<header>
+<div class="bar">
+<div class="brand"><svg width="22" height="22" viewBox="0 0 32 32"><rect x="6" y="3" width="3" height="26" rx="1.5" fill="currentColor"/><path d="M9 4h16l-4 6 4 6H9z" fill="#16a34a"/></svg>Feature Flags Catalog <small id="root"></small></div>
+<label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="q" placeholder="Search flags, files, providers, status..." autocomplete="off"></label>
+<button class="theme" id="theme"></button>
+</div>
+<nav class="tabs" id="tabs"></nav>
+</header>
+<main>
+<section class="section" id="total"></section>
+<section class="section" id="used"></section>
+<section class="section" id="unused"></section>
+<section class="section" id="suggestions"></section>
+</main>
+<footer id="foot"></footer>
+<script>
+const DATA = /*__DATA__*/null;
+const SIDES = ["front", "back"];
+const STATUS_LABEL = { "used": "used", "unused": "unused", "ghost": "ghost", "test-only": "test only", "maybe-dynamic": "dynamic?" };
+const STATUS_COLOR = { "used": "var(--used)", "unused": "var(--unused)", "ghost": "var(--ghost)", "test-only": "var(--test)", "maybe-dynamic": "var(--dyn)" };
+const WINDOW = (DATA.evalLogs && DATA.evalLogs.windowDays) || 21;
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+const at = (l) => esc(l.file) + ":" + l.line;
+const isUnused = (f) => f.status !== "used" && f.status !== "ghost";
+const isUsed = (f) => f.status === "used" || f.status === "ghost";
+let query = "";
+
+function theme(t) {
+  document.documentElement.dataset.theme = t;
+  localStorage.setItem("ffc-theme", t);
+  document.getElementById("theme").textContent = t === "dark" ? "Light mode" : "Dark mode";
+}
+
+function haystack(f) {
+  return [f.name, f.side, f.status, f.value, f.note, ...f.providers, ...f.declarations.map((d) => d.file + " " + d.code), ...f.references.map((r) => r.file + " " + r.code)].join(" ").toLowerCase();
+}
+
+function matches(f) {
+  return !query || query.split(/\s+/).every((w) => haystack(f).includes(w));
+}
+
+function suggestion(f) {
+  const refs = f.references.filter((r) => !r.test);
+  const tests = f.references.filter((r) => r.test);
+  const decl = f.declarations.map(at);
+  const where = refs.map(at);
+  const ev = f.evaluations;
+  const logs = DATA.evalLogs && DATA.evalLogs.enabled;
+  const covered = logs && (DATA.evalLogs.coverageDays || 0) >= WINDOW;
+  const quiet = covered && (!ev || (ev.daysSinceLast !== null && ev.daysSinceLast >= WINDOW));
+  const live = logs && ev && ev.daysSinceLast !== null && ev.daysSinceLast < WINDOW;
+  const logFirst = "Log first: make every read of <code>" + esc(f.name) + "</code> write a <code>flag_evaluated</code> line with the flag name and the value it returned" + (where.length ? " (" + where.map((w) => "<code>" + w + "</code>").join(", ") + ")" : "") + ".";
+  const wait = "Wait " + WINDOW + " days (3 weeks), then run the catalog again with <code>--eval-log</code> pointing at those logs.";
+  const coverage = logs && !covered ? " The logs cover only " + (DATA.evalLogs.coverageDays || 0) + " days, so keep logging until they cover " + WINDOW + "." : "";
+  const evidence = (ev ? "Evaluated " + ev.count + " times, last " + (ev.last ? ev.last.slice(0, 10) : "unknown") + (ev.daysSinceLast !== null ? " (" + ev.daysSinceLast + " days ago)" : "") + "." : logs ? "No evaluations in the logs given." : "No evaluation logs given, so runtime usage is unknown.") + coverage;
+  const delDecl = "Delete the declaration" + (decl.length ? " at " + decl.map((d) => "<code>" + d + "</code>").join(", ") : "") + " and remove the flag from the provider or config in every environment.";
+  const rerun = "Run the catalog again and confirm <code>" + esc(f.name) + "</code> is gone from the " + f.side + " side.";
+  if (f.status === "unused") {
+    if (live) return { p: 3, title: "Declared, not read here, but still evaluated at runtime", why: "No code in this repo reads it, yet the logs show evaluations. Another service or an old deployment still asks for it. " + evidence, risk: "medium", steps: ["Find who still evaluates it: search the logs for the caller and search every other repo for <code>" + esc(f.name) + "</code>.", "Remove it from that caller first.", wait, delDecl, rerun] };
+    return { p: 1, title: "Delete: declared but nothing reads it", why: "No code on the " + f.side + " side reads this flag, so it only adds config noise. " + evidence, risk: "low", steps: [quiet ? "Logs confirm no evaluations in " + WINDOW + " days, so it is safe to delete now." : "Search every other repo and service for <code>" + esc(f.name) + "</code>, since a flag can be read outside this repo.", quiet ? "Search every other repo once more as a last check." : "If a provider serves it, check its last evaluated date in the provider dashboard. No evaluations in " + WINDOW + " days means safe.", delDecl, rerun] };
+  }
+  if (f.status === "test-only") return { p: 1, title: "Delete: only tests read it", why: "Production code never reads it. Tests keep a dead switch alive.", risk: "low", steps: ["Remove the flag setup from the tests: " + tests.map((t) => "<code>" + at(t) + "</code>").join(", ") + ".", "Keep the test cases that cover the behavior that ships, delete the ones for the path that never runs.", delDecl, rerun] };
+  if (f.status === "ghost") return { p: 2, title: "Ghost flag: read but never declared", why: "The code reads a flag that no config on this side declares" + (f.declaredOn ? " (it is declared on the " + f.declaredOn + " side)" : "") + ", so it always gets the default value and one branch never runs.", risk: "medium", steps: ["Check the default value at " + where.map((w) => "<code>" + w + "</code>").join(", ") + ": that is the branch that runs in production.", "If the flag should exist, declare it next to the other " + f.side + " flags. If not, delete the branch that never runs.", logFirst, rerun] };
+  if (f.status === "maybe-dynamic") return { p: 4, title: "Check before deleting: read through a dynamic key", why: "No literal read, but a dynamic key with prefix <code>" + esc((f.dynamicMatches[0] || {}).prefix) + "</code> at <code>" + esc((f.dynamicMatches[0] || {}).file) + ":" + esc((f.dynamicMatches[0] || {}).line) + "</code> can build this name at runtime.", risk: "medium", steps: ["Read the dynamic expression <code>" + esc((f.dynamicMatches[0] || {}).expression) + "</code> and list every value it can take.", logFirst, wait, "If no evaluation shows up in " + WINDOW + " days, delete the declaration. Otherwise keep it and record it in review.json as used.", rerun] };
+  if (f.value === "on") return { p: live ? 3 : 2, title: "Fully on: make it permanent", why: "Every declaration is on" + (f.ageDays !== null ? " and the oldest is " + f.ageDays + " days old" : "") + ", so the off branch is dead code. " + evidence, risk: "medium", steps: [ev ? "Logs already record evaluations. Confirm every one returned <code>true</code>." : logFirst, ev && quiet ? "No evaluations in " + WINDOW + " days, so the guarded code may be unreachable: check the route before inlining." : wait, "Inline the on branch at " + where.map((w) => "<code>" + w + "</code>").join(", ") + " and delete the off branch and its tests.", delDecl, rerun] };
+  if (f.value === "off") return { p: 2, title: "Always off: delete the guarded code", why: "Every declaration is off, so the code behind the flag never runs in production. " + evidence, risk: "medium", steps: [ev ? "Logs record evaluations. Confirm every one returned <code>false</code>." : logFirst, wait, "Delete the on branch at " + where.map((w) => "<code>" + w + "</code>").join(", ") + " and keep the else path. Delete tests for the on path.", delDecl, rerun] };
+  const stale = f.ageDays !== null && f.ageDays > 90;
+  return { p: stale ? 3 : 5, title: stale ? "Stale rollout: decide on or off" : "Active: keep it", why: (f.value === "mixed" ? "Environments disagree on the value, so a rollout is in progress. " : f.value === "variant" ? "It returns variants, not a plain on or off. " : "The value is set outside the code. ") + evidence, risk: stale ? "medium" : "none", steps: stale ? ["It has been rolling out for " + f.ageDays + " days. Pick the winner with the owner.", logFirst, wait, "Set every environment to the winner, then follow the fully on or always off steps."] : ["Keep it. Re-check in " + WINDOW + " days.", logs ? "Watch the evaluation counts in the next run." : logFirst] };
+}
+
+function flagRow(f) {
+  const ev = f.evaluations;
+  const meta = [f.providers.join(", "), f.references.filter((r) => !r.test).length + " reads", f.declarations.length + " decl", f.ageDays !== null ? f.ageDays + "d old" : null, ev ? ev.count + " evals" : null, f.declaredOn ? "declared on " + f.declaredOn : null].filter(Boolean).join(" · ");
+  const loc = (l, kind) => '<div class="loc"><em>' + at(l) + "</em> " + esc(kind) + "<code>" + esc(l.code) + "</code></div>";
+  return '<div class="row" data-id="' + esc(f.id) + '"><div class="rowhead"><div><div class="name">' + esc(f.name) + '</div><div class="meta">' + esc(meta) + '</div></div><span class="val v-' + esc(f.value) + '">' + esc(f.value) + '</span><span class="badge b-' + esc(f.status) + '">' + esc(STATUS_LABEL[f.status] || f.status) + "</span></div>" +
+    '<div class="detail">' + (f.note ? "<h4>Review note</h4><div>" + esc(f.note) + "</div>" : "") +
+    "<h4>Declarations</h4>" + (f.declarations.map((d) => loc(d, d.provider + " · " + d.source + " · " + d.value)).join("") || '<div class="loc">none</div>') +
+    "<h4>Reads</h4>" + (f.references.map((r) => loc(r, r.provider + " · " + r.kind + (r.test ? " · test" : ""))).join("") || '<div class="loc">none</div>') +
+    (f.dynamicMatches.length ? "<h4>Dynamic keys that may build it</h4>" + f.dynamicMatches.map((d) => loc({ file: d.file, line: d.line, code: d.expression }, "prefix " + d.prefix)).join("") : "") +
+    (ev ? "<h4>Evaluations</h4><div class=\"loc\">" + ev.count + " evaluations, last " + esc(ev.last || "unknown") + " " + esc(JSON.stringify(ev.values)) + "</div>" : "") + "</div></div>";
+}
+
+function sidePanel(side, list, title) {
+  const color = side === "front" ? "var(--accent)" : "var(--ghost)";
+  return '<div class="panel"><h3><span class="side"><span class="dot" style="background:' + color + '"></span>' + title + " · " + side + "</span><span>" + list.length + "</span></h3>" + (list.map(flagRow).join("") || '<div class="empty">No flags here.</div>') + "</div>";
+}
+
+function mapPanel(side, all) {
+  const list = all.filter((f) => f.side === side);
+  const counts = Object.keys(STATUS_LABEL).map((s) => [s, list.filter((f) => f.status === s).length]).filter(([, n]) => n);
+  const total = list.length || 1;
+  const prov = {};
+  list.forEach((f) => f.providers.forEach((p) => (prov[p] = (prov[p] || 0) + 1)));
+  return '<div class="panel"><h3><span class="side"><span class="dot" style="background:' + (side === "front" ? "var(--accent)" : "var(--ghost)") + '"></span>Flags on the ' + side + "</span><span>" + list.length + '</span></h3><div class="map"><div class="stack">' +
+    counts.map(([s, n]) => '<div title="' + esc(STATUS_LABEL[s]) + ": " + n + '" style="width:' + (n / total) * 100 + "%;background:" + STATUS_COLOR[s] + '">' + n + "</div>").join("") +
+    '</div><div class="legend">' + counts.map(([s, n]) => '<span><i style="background:' + STATUS_COLOR[s] + '"></i>' + esc(STATUS_LABEL[s]) + " " + n + "</span>").join("") + "</div></div>" +
+    '<div class="chips">' + Object.entries(prov).sort((a, b) => b[1] - a[1]).map(([p, n]) => '<span class="chip">' + esc(p) + " " + n + "</span>").join("") + "</div></div>";
+}
+
+function kpis(all) {
+  const c = (pred) => all.filter(pred).length;
+  const items = [["Total flags", c(() => true)], ["Front", c((f) => f.side === "front")], ["Back", c((f) => f.side === "back")], ["Used", c(isUsed)], ["Unused", c(isUnused)], ["Ghost", c((f) => f.status === "ghost")], ["Dynamic keys", DATA.dynamics.length]];
+  return '<div class="kpis">' + items.map(([k, v]) => '<div class="kpi"><b>' + v + "</b><span>" + k + "</span></div>").join("") + "</div>";
+}
+
+let sugFilter = "all";
+function renderSuggestions(all) {
+  const items = all.map((f) => ({ f, s: suggestion(f) })).sort((a, b) => a.s.p - b.s.p || a.f.name.localeCompare(b.f.name));
+  const shown = items.filter((x) => sugFilter === "all" || x.f.side === sugFilter);
+  const dyn = DATA.dynamics.filter((d) => !query || (d.file + " " + d.code + " " + d.expression).toLowerCase().includes(query));
+  return '<div class="note"><b>How to delete a flag safely.</b> Log first: every read writes <code>flag_evaluated</code>. Wait 3 weeks. No evaluations in ' + WINDOW + " days means nothing needs it, so delete the code path, then the declaration, then the flag in the provider. " + (DATA.evalLogs.enabled ? "Eval logs read: " + esc(DATA.evalLogs.files.join(", ") || "none found") + ", covering " + (DATA.evalLogs.coverageDays || 0) + " days." : "This run had no eval logs, so the advice below starts with logging.") + "</div>" +
+    '<div class="filters">' + ["all", "front", "back"].map((s) => '<button data-sf="' + s + '" class="' + (sugFilter === s ? "active" : "") + '">' + s + "</button>").join("") + "</div>" +
+    '<div class="sugs">' + (shown.map(({ f, s }) => '<article class="sug p' + s.p + '"><header><span class="badge b-' + esc(f.status) + '">' + esc(STATUS_LABEL[f.status]) + '</span><h4><span class="name">' + esc(f.name) + "</span> · " + esc(f.side) + " · " + s.title + '</h4><span class="risk">risk: ' + s.risk + "</span></header><p>" + s.why + "</p><ol>" + s.steps.map((x) => "<li>" + x + "</li>").join("") + "</ol>" + (f.note ? "<p><b>Review:</b> " + esc(f.note) + "</p>" : "") + "</article>").join("") || '<div class="empty">No suggestions match.</div>') + "</div>" +
+    (dyn.length ? '<h3>Dynamic flag reads the agent reviewed</h3><div class="panel">' + dyn.map((d) => '<div class="row"><div class="rowhead"><div><div class="name">' + esc(d.expression) + '</div><div class="meta">' + esc(d.provider) + " · " + at(d) + " · " + esc(d.side) + '</div></div><span class="val">' + esc(d.prefix || "no prefix") + "</span><span></span></div></div>").join("") + "</div>" : "");
+}
+
+function draw() {
+  const all = DATA.flags.filter(matches);
+  const tabs = [["total", "Total flags", all.length], ["used", "Used", all.filter(isUsed).length], ["unused", "Unused", all.filter(isUnused).length], ["suggestions", "Suggestions", all.length]];
+  const active = location.hash.slice(1) || "total";
+  document.getElementById("tabs").innerHTML = tabs.map(([id, label, n]) => '<button data-tab="' + id + '" class="' + (id === active ? "active" : "") + '">' + label + '<span class="n">' + n + "</span></button>").join("");
+  document.querySelectorAll(".section").forEach((s) => s.classList.toggle("active", s.id === active));
+  document.getElementById("total").innerHTML = kpis(all) + '<div class="cols">' + SIDES.map((s) => mapPanel(s, all)).join("") + '</div><div style="height:16px"></div><div class="cols">' + SIDES.map((s) => sidePanel(s, all.filter((f) => f.side === s), "All flags")).join("") + "</div>";
+  document.getElementById("used").innerHTML = '<div class="cols">' + SIDES.map((s) => sidePanel(s, all.filter((f) => f.side === s && isUsed(f)), "Used")).join("") + "</div>";
+  document.getElementById("unused").innerHTML = '<div class="cols">' + SIDES.map((s) => sidePanel(s, all.filter((f) => f.side === s && isUnused(f)), "Unused")).join("") + "</div>";
+  document.getElementById("suggestions").innerHTML = renderSuggestions(all);
+}
+
+document.getElementById("root").textContent = DATA.root + " · " + DATA.languages.join(", ");
+document.getElementById("foot").textContent = "Generated " + DATA.generatedAt + " · " + DATA.flags.length + " flags · providers: " + [...new Set(DATA.flags.flatMap((f) => f.providers))].join(", ");
+theme(localStorage.getItem("ffc-theme") || "light");
+document.getElementById("theme").onclick = () => theme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+document.getElementById("q").oninput = (e) => { query = e.target.value.trim().toLowerCase(); draw(); };
+document.addEventListener("click", (e) => {
+  const tab = e.target.closest("[data-tab]");
+  if (tab) { location.hash = tab.dataset.tab; draw(); return; }
+  const sf = e.target.closest("[data-sf]");
+  if (sf) { sugFilter = sf.dataset.sf; draw(); return; }
+  const head = e.target.closest(".rowhead");
+  if (head) head.parentElement.classList.toggle("open");
+});
+window.addEventListener("hashchange", draw);
+draw();
+</script>
+</body>
+</html>

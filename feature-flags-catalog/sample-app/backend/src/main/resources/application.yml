@@ -1,0 +1,20 @@
+server:
+  port: ${BACKEND_PORT:8081}
+spring:
+  application:
+    name: shop-backend
+  threads:
+    virtual:
+      enabled: true
+logging:
+  structured:
+    format:
+      console: logstash
+app:
+  features:
+    new-pricing-engine: true
+    bulk-export: false
+    region-eu: true
+    region-us: false
+    legacy-tax-rules: false
+    audit-trail-v2: true

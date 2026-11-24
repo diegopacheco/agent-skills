@@ -1,0 +1,6 @@
+{
+  "flags": {
+    "py-flag": { "on": true },
+    "py-local-dead": { "on": false }
+  }
+}

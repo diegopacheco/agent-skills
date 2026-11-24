@@ -1,0 +1,4 @@
+features:
+  kotlin-new-ui: true
+  kotlin-old-ui: false
+  region-eu: true
