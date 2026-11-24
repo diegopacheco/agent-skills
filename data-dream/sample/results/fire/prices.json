@@ -1,0 +1,152 @@
+[
+  {
+    "id": "numbers-1",
+    "category": "numbers",
+    "why": "zero, division and falsy checks",
+    "status": 201,
+    "ms": 20,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":1,\"userId\":1,\"price\":0,\"qty\":1,\"total\":0,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "numbers-2",
+    "category": "numbers",
+    "why": "negative zero prints as 0 but is not always equal",
+    "status": 201,
+    "ms": 2,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":2,\"userId\":1,\"price\":0,\"qty\":1,\"total\":0,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "numbers-3",
+    "category": "numbers",
+    "why": "negative where only positive makes sense",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":3,\"userId\":1,\"price\":-1,\"qty\":1,\"total\":-1,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "numbers-4",
+    "category": "numbers",
+    "why": "max 32 bit int, one more and it wraps negative",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":4,\"userId\":1,\"price\":2147483647,\"qty\":1,\"total\":2147483647,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "numbers-5",
+    "category": "numbers",
+    "why": "max 32 bit int plus one overflows",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":5,\"userId\":1,\"price\":2147483648,\"qty\":1,\"total\":2147483648,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "numbers-6",
+    "category": "numbers",
+    "why": "2^53 + 1 cannot be a JavaScript number",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":6,\"userId\":1,\"price\":9007199254740992,\"qty\":1,\"total\":9007199254740992,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "numbers-7",
+    "category": "numbers",
+    "why": "past max 64 bit int",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":7,\"userId\":1,\"price\":9223372036854776000,\"qty\":1,\"total\":9223372036854776000,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "numbers-8",
+    "category": "numbers",
+    "why": "overflows a double to Infinity",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":8,\"userId\":1,\"price\":null,\"qty\":1,\"total\":null,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "numbers-9",
+    "category": "numbers",
+    "why": "binary floating point cannot hold 0.1",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":9,\"userId\":1,\"price\":0.1,\"qty\":1,\"total\":0.1,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "numbers-10",
+    "category": "numbers",
+    "why": "tiny value printed in scientific notation",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":10,\"userId\":1,\"price\":1e-7,\"qty\":1,\"total\":0,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "numbers-11",
+    "category": "numbers",
+    "why": "not valid JSON, many parsers accept it",
+    "status": 500,
+    "ms": 1,
+    "verdict": "crash",
+    "error": "",
+    "body": "{\"error\":\"internal error\"}"
+  },
+  {
+    "id": "numbers-12",
+    "category": "numbers",
+    "why": "not valid JSON, many parsers accept it",
+    "status": 500,
+    "ms": 0,
+    "verdict": "crash",
+    "error": "",
+    "body": "{\"error\":\"internal error\"}"
+  },
+  {
+    "id": "numbers-13",
+    "category": "numbers",
+    "why": "number sent as a string",
+    "status": 400,
+    "ms": 0,
+    "verdict": "rejected",
+    "error": "",
+    "body": "{\"error\":\"price must be a number and qty a positive integer\"}"
+  },
+  {
+    "id": "numbers-14",
+    "category": "numbers",
+    "why": "decimal comma from a pt-BR or de-DE user",
+    "status": 400,
+    "ms": 1,
+    "verdict": "rejected",
+    "error": "",
+    "body": "{\"error\":\"price must be a number and qty a positive integer\"}"
+  },
+  {
+    "id": "numbers-15",
+    "category": "numbers",
+    "why": "Arabic-Indic digits pass some isDigit checks",
+    "status": 400,
+    "ms": 0,
+    "verdict": "rejected",
+    "error": "",
+    "body": "{\"error\":\"price must be a number and qty a positive integer\"}"
+  }
+]

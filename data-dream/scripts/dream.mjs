@@ -31,9 +31,13 @@ export function seeds(out, only) {
   return Object.fromEntries(Object.entries(cats).map(([n, l]) => [n, l.length]));
 }
 
-export function fill(template, raw) {
-  if (raw === null) return template.replace(/,?\s*"[^"]+"\s*:\s*@@/, "").replace("@@", "");
-  return template.replace("@@", () => raw);
+export function fill(template, raw, id = "") {
+  const t = template.replaceAll("@@id", id);
+  if (raw === null) {
+    const lead = /,\s*"[^"]+"\s*:\s*@@/;
+    return lead.test(t) ? t.replace(lead, "") : t.replace(/"[^"]+"\s*:\s*@@\s*,?\s*/, "");
+  }
+  return t.replace("@@", () => raw);
 }
 
 export function fillUrl(url, raw) {
@@ -43,7 +47,7 @@ export function fillUrl(url, raw) {
     const v = JSON.parse(raw);
     if (typeof v === "string") text = v;
   } catch {}
-  return url.replace("@@", () => encodeURIComponent(text));
+  return url.replace("@@", () => encodeURIComponent(text.toWellFormed()));
 }
 
 export function assertLocal(url) {
@@ -68,7 +72,7 @@ export async function fire({ url, method = "POST", template, path, timeout = 500
   const results = [];
   for (const seed of readSeeds(path)) {
     const target = url.includes("@@") ? fillUrl(url, seed.raw) : url;
-    const body = template ? fill(template, seed.raw) : undefined;
+    const body = template ? fill(template, seed.raw, seed.id) : undefined;
     const started = Date.now();
     let status = 0;
     let text = "";

@@ -60,10 +60,15 @@ test("seeds writes one file per chosen category and refuses unknown ones", () =>
 test("a missing field is removed from the body instead of sent as an empty value", () => {
   assert.equal(fill('{"name":@@}', null), "{}");
   assert.equal(fill('{"a":1,"name":@@}', null), '{"a":1}');
+  assert.equal(fill('{"name":@@,"email":"x"}', null), '{"email":"x"}');
+  assert.equal(fill('{"name":@@, "email":"x"}', null), '{"email":"x"}');
   assert.equal(fill('{"name":@@}', '"$&x"'), '{"name":"$&x"}');
+  assert.equal(fill('{"name":@@,"email":"@@id@shop.io"}', '"a"', "unicode-3"), '{"name":"a","email":"unicode-3@shop.io"}');
+  assert.equal(fill('{"email":"@@id@shop.io","name":@@}', null, "empty-10"), '{"email":"empty-10@shop.io"}');
   assert.equal(fillUrl("http://localhost/o?from=@@", null), "http://localhost/o");
   assert.equal(fillUrl("http://localhost/o?from=@@", JSON.stringify("a b&c")), "http://localhost/o?from=a%20b%26c");
   assert.equal(fillUrl("http://localhost/o?n=@@", "1e309"), "http://localhost/o?n=1e309");
+  assert.equal(fillUrl("http://localhost/o?q=@@", JSON.stringify(String.fromCharCode(0xd800))), "http://localhost/o?q=%EF%BF%BD");
 });
 
 test("only an app on this machine can be fired at", async () => {

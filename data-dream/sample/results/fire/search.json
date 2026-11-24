@@ -1,0 +1,982 @@
+[
+  {
+    "id": "empty-1",
+    "category": "empty",
+    "why": "null where a value is expected, the classic null pointer crash",
+    "status": 200,
+    "ms": 19,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":3,\"name\":\"null\",\"email\":\"empty-5@shop.io\"},{\"id\":58,\"name\":\"null\\u0000byte\",\"email\":\"unicode-8@shop.io\"}]"
+  },
+  {
+    "id": "empty-2",
+    "category": "empty",
+    "why": "empty string, passes a not null check but is not a value",
+    "status": 200,
+    "ms": 5,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":1,\"name\":\"\",\"email\":\"empty-3@shop.io\"},{\"id\":2,\"name\":\"\",\"email\":\"empty-4@shop.io\"},{\"id\":3,\"name\":\"null\",\"email\":\"empty-5@shop.io\"},{\"id\":4,\"name\":\"undefined\",\"email\":\"empty-6@shop.io\"},{\"id\":5,\"name\":\"user+tag@acme.io\",\"email\":\"identity-1@shop.io\"},{\"id\":6,\"name\":\"USER@Acme.IO\",\"email\":\"ide"
+  },
+  {
+    "id": "empty-3",
+    "category": "empty",
+    "why": "only a space, looks empty to a human but not to a length check",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":9,\"name\":\"+1 (555) 010-0000\",\"email\":\"identity-5@shop.io\"},{\"id\":11,\"name\":\"1 OR 1=1\",\"email\":\"identity-7@shop.io\"},{\"id\":25,\"name\":\"just a string\",\"email\":\"structure-1@shop.io\"},{\"id\":27,\"name\":\"Robert'); DROP TABLE students;--\",\"email\":\"text-2@shop.io\"},{\"id\":51,\"name\":\"José Ñúñez\",\"email\":"
+  },
+  {
+    "id": "empty-4",
+    "category": "empty",
+    "why": "only tabs and newlines, survives naive trims",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "empty-5",
+    "category": "empty",
+    "why": "the word null as text",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":3,\"name\":\"null\",\"email\":\"empty-5@shop.io\"},{\"id\":58,\"name\":\"null\\u0000byte\",\"email\":\"unicode-8@shop.io\"}]"
+  },
+  {
+    "id": "empty-6",
+    "category": "empty",
+    "why": "the word undefined as text",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":4,\"name\":\"undefined\",\"email\":\"empty-6@shop.io\"}]"
+  },
+  {
+    "id": "empty-7",
+    "category": "empty",
+    "why": "empty list, first element and average of nothing",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "empty-8",
+    "category": "empty",
+    "why": "empty object, every required field missing at once",
+    "status": 500,
+    "ms": 1,
+    "verdict": "crash",
+    "error": "",
+    "body": "{\"error\":\"internal error\"}"
+  },
+  {
+    "id": "empty-9",
+    "category": "empty",
+    "why": "false where a value is expected",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "empty-10",
+    "category": "empty",
+    "why": "the field is not sent at all",
+    "status": 200,
+    "ms": 4,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":1,\"name\":\"\",\"email\":\"empty-3@shop.io\"},{\"id\":2,\"name\":\"\",\"email\":\"empty-4@shop.io\"},{\"id\":3,\"name\":\"null\",\"email\":\"empty-5@shop.io\"},{\"id\":4,\"name\":\"undefined\",\"email\":\"empty-6@shop.io\"},{\"id\":5,\"name\":\"user+tag@acme.io\",\"email\":\"identity-1@shop.io\"},{\"id\":6,\"name\":\"USER@Acme.IO\",\"email\":\"ide"
+  },
+  {
+    "id": "identity-1",
+    "category": "identity",
+    "why": "plus addressing is a valid email",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "identity-2",
+    "category": "identity",
+    "why": "case of the same email, duplicate accounts",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":6,\"name\":\"USER@Acme.IO\",\"email\":\"identity-2@shop.io\"}]"
+  },
+  {
+    "id": "identity-3",
+    "category": "identity",
+    "why": "internationalized email",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":7,\"name\":\"用户@例子.广告\",\"email\":\"identity-3@shop.io\"}]"
+  },
+  {
+    "id": "identity-4",
+    "category": "identity",
+    "why": "valid by RFC, rejected by most regexes",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":8,\"name\":\"a@b\",\"email\":\"identity-4@shop.io\"}]"
+  },
+  {
+    "id": "identity-5",
+    "category": "identity",
+    "why": "formatted phone, digits only checks reject it and stored formats drift",
+    "status": 500,
+    "ms": 1,
+    "verdict": "crash",
+    "error": "",
+    "body": "{\"error\":\"internal error\"}"
+  },
+  {
+    "id": "identity-6",
+    "category": "identity",
+    "why": "nil UUID, often a default that matches records by accident",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":10,\"name\":\"00000000-0000-0000-0000-000000000000\",\"email\":\"identity-6@shop.io\"}]"
+  },
+  {
+    "id": "identity-7",
+    "category": "identity",
+    "why": "id shaped input",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":11,\"name\":\"1 OR 1=1\",\"email\":\"identity-7@shop.io\"}]"
+  },
+  {
+    "id": "identity-8",
+    "category": "identity",
+    "why": "URL pointing inside, SSRF shaped",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":12,\"name\":\"https://localhost:22/\",\"email\":\"identity-8@shop.io\"}]"
+  },
+  {
+    "id": "money-1",
+    "category": "money",
+    "why": "0.1 + 0.2 is not 0.3 in floating point",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":45,\"name\":\"0001-01-01T00:00:00Z\",\"email\":\"time-10@shop.io\"},{\"id\":46,\"name\":\"2024-06-01T12:00:00+14:00\",\"email\":\"time-11@shop.io\"},{\"id\":47,\"name\":\"2024-06-01T12:00:00-12:00\",\"email\":\"time-12@shop.io\"}]"
+  },
+  {
+    "id": "money-2",
+    "category": "money",
+    "why": "rounds to 0.01 with HALF_UP, 0.00 with HALF_EVEN",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "money-3",
+    "category": "money",
+    "why": "is 2.67499999 in binary, round(2.675, 2) gives 2.67",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "money-4",
+    "category": "money",
+    "why": "negative amount, refund or attack",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "money-5",
+    "category": "money",
+    "why": "zero amount, free orders hit division by total and skipped payment paths",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":9,\"name\":\"+1 (555) 010-0000\",\"email\":\"identity-5@shop.io\"},{\"id\":10,\"name\":\"00000000-0000-0000-0000-000000000000\",\"email\":\"identity-6@shop.io\"},{\"id\":38,\"name\":\"2024-03-10T02:30:00\",\"email\":\"time-3@shop.io\"},{\"id\":39,\"name\":\"2024-11-03T01:30:00\",\"email\":\"time-4@shop.io\"},{\"id\":41,\"name\":\"1970"
+  },
+  {
+    "id": "money-6",
+    "category": "money",
+    "why": "below the smallest unit",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "money-7",
+    "category": "money",
+    "why": "past a DECIMAL(15,2) and past double precision",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "money-8",
+    "category": "money",
+    "why": "amount as a string",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":13,\"name\":\"100\",\"email\":\"money-8@shop.io\"}]"
+  },
+  {
+    "id": "money-9",
+    "category": "money",
+    "why": "European format, one thousand and fifty cents",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":14,\"name\":\"1.000,50\",\"email\":\"money-9@shop.io\"}]"
+  },
+  {
+    "id": "money-10",
+    "category": "money",
+    "why": "zero decimal currency, 100 JPY is not 1.00",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":15,\"name\":\"JPY\",\"email\":\"money-10@shop.io\"}]"
+  },
+  {
+    "id": "money-11",
+    "category": "money",
+    "why": "three decimal currency",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":16,\"name\":\"BHD\",\"email\":\"money-11@shop.io\"}]"
+  },
+  {
+    "id": "money-12",
+    "category": "money",
+    "why": "100 / 3 split three ways loses a cent",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "numbers-1",
+    "category": "numbers",
+    "why": "zero, division and falsy checks",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":9,\"name\":\"+1 (555) 010-0000\",\"email\":\"identity-5@shop.io\"},{\"id\":10,\"name\":\"00000000-0000-0000-0000-000000000000\",\"email\":\"identity-6@shop.io\"},{\"id\":13,\"name\":\"100\",\"email\":\"money-8@shop.io\"},{\"id\":14,\"name\":\"1.000,50\",\"email\":\"money-9@shop.io\"},{\"id\":36,\"name\":\"2024-02-29\",\"email\":\"time-1@s"
+  },
+  {
+    "id": "numbers-2",
+    "category": "numbers",
+    "why": "negative zero prints as 0 but is not always equal",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":9,\"name\":\"+1 (555) 010-0000\",\"email\":\"identity-5@shop.io\"},{\"id\":10,\"name\":\"00000000-0000-0000-0000-000000000000\",\"email\":\"identity-6@shop.io\"},{\"id\":36,\"name\":\"2024-02-29\",\"email\":\"time-1@shop.io\"},{\"id\":37,\"name\":\"2023-02-29\",\"email\":\"time-2@shop.io\"},{\"id\":38,\"name\":\"2024-03-10T02:30:00\",\""
+  },
+  {
+    "id": "numbers-3",
+    "category": "numbers",
+    "why": "negative where only positive makes sense",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":38,\"name\":\"2024-03-10T02:30:00\",\"email\":\"time-3@shop.io\"},{\"id\":39,\"name\":\"2024-11-03T01:30:00\",\"email\":\"time-4@shop.io\"},{\"id\":40,\"name\":\"2016-12-31T23:59:60Z\",\"email\":\"time-5@shop.io\"},{\"id\":42,\"name\":\"1969-12-31T23:59:59Z\",\"email\":\"time-7@shop.io\"},{\"id\":43,\"name\":\"2038-01-19T03:14:08Z\",\"e"
+  },
+  {
+    "id": "numbers-4",
+    "category": "numbers",
+    "why": "max 32 bit int, one more and it wraps negative",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "numbers-5",
+    "category": "numbers",
+    "why": "max 32 bit int plus one overflows",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "numbers-6",
+    "category": "numbers",
+    "why": "2^53 + 1 cannot be a JavaScript number",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "numbers-7",
+    "category": "numbers",
+    "why": "past max 64 bit int",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "numbers-8",
+    "category": "numbers",
+    "why": "overflows a double to Infinity",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "numbers-9",
+    "category": "numbers",
+    "why": "binary floating point cannot hold 0.1",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":45,\"name\":\"0001-01-01T00:00:00Z\",\"email\":\"time-10@shop.io\"},{\"id\":46,\"name\":\"2024-06-01T12:00:00+14:00\",\"email\":\"time-11@shop.io\"},{\"id\":47,\"name\":\"2024-06-01T12:00:00-12:00\",\"email\":\"time-12@shop.io\"}]"
+  },
+  {
+    "id": "numbers-10",
+    "category": "numbers",
+    "why": "tiny value printed in scientific notation",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "numbers-11",
+    "category": "numbers",
+    "why": "not valid JSON, many parsers accept it",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "numbers-12",
+    "category": "numbers",
+    "why": "not valid JSON, many parsers accept it",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "numbers-13",
+    "category": "numbers",
+    "why": "number sent as a string",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":17,\"name\":\"12\",\"email\":\"numbers-13@shop.io\"},{\"id\":40,\"name\":\"2016-12-31T23:59:60Z\",\"email\":\"time-5@shop.io\"},{\"id\":42,\"name\":\"1969-12-31T23:59:59Z\",\"email\":\"time-7@shop.io\"},{\"id\":44,\"name\":\"9999-12-31T23:59:59Z\",\"email\":\"time-9@shop.io\"},{\"id\":46,\"name\":\"2024-06-01T12:00:00+14:00\",\"email\":\""
+  },
+  {
+    "id": "numbers-14",
+    "category": "numbers",
+    "why": "decimal comma from a pt-BR or de-DE user",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":18,\"name\":\"1,5\",\"email\":\"numbers-14@shop.io\"}]"
+  },
+  {
+    "id": "numbers-15",
+    "category": "numbers",
+    "why": "Arabic-Indic digits pass some isDigit checks",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":19,\"name\":\"١٢٣\",\"email\":\"numbers-15@shop.io\"}]"
+  },
+  {
+    "id": "size-1",
+    "category": "size",
+    "why": "empty string, passes a not null check but is not a value",
+    "status": 200,
+    "ms": 4,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":1,\"name\":\"\",\"email\":\"empty-3@shop.io\"},{\"id\":2,\"name\":\"\",\"email\":\"empty-4@shop.io\"},{\"id\":3,\"name\":\"null\",\"email\":\"empty-5@shop.io\"},{\"id\":4,\"name\":\"undefined\",\"email\":\"empty-6@shop.io\"},{\"id\":5,\"name\":\"user+tag@acme.io\",\"email\":\"identity-1@shop.io\"},{\"id\":6,\"name\":\"USER@Acme.IO\",\"email\":\"ide"
+  },
+  {
+    "id": "size-2",
+    "category": "size",
+    "why": "one character, the shortest value most code never tries",
+    "status": 200,
+    "ms": 3,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":5,\"name\":\"user+tag@acme.io\",\"email\":\"identity-1@shop.io\"},{\"id\":6,\"name\":\"USER@Acme.IO\",\"email\":\"identity-2@shop.io\"},{\"id\":8,\"name\":\"a@b\",\"email\":\"identity-4@shop.io\"},{\"id\":12,\"name\":\"https://localhost:22/\",\"email\":\"identity-8@shop.io\"},{\"id\":20,\"name\":\"a\",\"email\":\"size-2@shop.io\"},{\"id\":21"
+  },
+  {
+    "id": "size-3",
+    "category": "size",
+    "why": "past a VARCHAR(255)",
+    "status": 200,
+    "ms": 2,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":21,\"name\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"email\":\"size-3@shop.io\""
+  },
+  {
+    "id": "size-4",
+    "category": "size",
+    "why": "past 64 KB fields and TEXT columns",
+    "status": 431,
+    "ms": 1,
+    "verdict": "rejected",
+    "error": "",
+    "body": ""
+  },
+  {
+    "id": "size-5",
+    "category": "size",
+    "why": "1 MB string, request limits and memory",
+    "status": 431,
+    "ms": 2,
+    "verdict": "crash",
+    "error": "EPIPE",
+    "body": ""
+  },
+  {
+    "id": "size-6",
+    "category": "size",
+    "why": "128 characters but 256 bytes, byte vs char limits",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":24,\"name\":\"éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé\",\"email\":\"size-6@shop.io\"}]"
+  },
+  {
+    "id": "size-7",
+    "category": "size",
+    "why": "list with 10000 items, pagination and N+1",
+    "status": 431,
+    "ms": 1,
+    "verdict": "rejected",
+    "error": "",
+    "body": ""
+  },
+  {
+    "id": "size-8",
+    "category": "size",
+    "why": "1000 levels of nesting, recursive parsers overflow the stack",
+    "status": 500,
+    "ms": 1,
+    "verdict": "crash",
+    "error": "",
+    "body": "{\"error\":\"internal error\"}"
+  },
+  {
+    "id": "structure-1",
+    "category": "structure",
+    "why": "string where an object is expected",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":25,\"name\":\"just a string\",\"email\":\"structure-1@shop.io\"}]"
+  },
+  {
+    "id": "structure-2",
+    "category": "structure",
+    "why": "list where an object is expected",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":31,\"name\":\"${7*7}\",\"email\":\"text-6@shop.io\"}]"
+  },
+  {
+    "id": "structure-3",
+    "category": "structure",
+    "why": "duplicate keys, which one wins",
+    "status": 500,
+    "ms": 1,
+    "verdict": "crash",
+    "error": "",
+    "body": "{\"error\":\"internal error\"}"
+  },
+  {
+    "id": "structure-4",
+    "category": "structure",
+    "why": "prototype pollution shaped object",
+    "status": 500,
+    "ms": 0,
+    "verdict": "crash",
+    "error": "",
+    "body": "{\"error\":\"internal error\"}"
+  },
+  {
+    "id": "structure-5",
+    "category": "structure",
+    "why": "unknown extra field, mass assignment or a strict parser crash",
+    "status": 500,
+    "ms": 0,
+    "verdict": "crash",
+    "error": "",
+    "body": "{\"error\":\"internal error\"}"
+  },
+  {
+    "id": "structure-6",
+    "category": "structure",
+    "why": "truncated JSON, the parser error must be a 400 and not a 500",
+    "status": 500,
+    "ms": 1,
+    "verdict": "crash",
+    "error": "",
+    "body": "{\"error\":\"internal error\"}"
+  },
+  {
+    "id": "text-1",
+    "category": "text",
+    "why": "single quote breaks hand built SQL",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":26,\"name\":\"O'Brien\",\"email\":\"text-1@shop.io\"}]"
+  },
+  {
+    "id": "text-2",
+    "category": "text",
+    "why": "SQL shaped input, must be stored as text",
+    "status": 500,
+    "ms": 0,
+    "verdict": "crash",
+    "error": "",
+    "body": "{\"error\":\"internal error\"}"
+  },
+  {
+    "id": "text-3",
+    "category": "text",
+    "why": "HTML shaped input, must be escaped on render",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "text-4",
+    "category": "text",
+    "why": "path shaped input, must never reach the file system",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":29,\"name\":\"../../etc/passwd\",\"email\":\"text-4@shop.io\"}]"
+  },
+  {
+    "id": "text-5",
+    "category": "text",
+    "why": "format string shaped input",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":30,\"name\":\"%s%s%n\",\"email\":\"text-5@shop.io\"}]"
+  },
+  {
+    "id": "text-6",
+    "category": "text",
+    "why": "template shaped input",
+    "status": 500,
+    "ms": 1,
+    "verdict": "crash",
+    "error": "",
+    "body": "{\"error\":\"internal error\"}"
+  },
+  {
+    "id": "text-7",
+    "category": "text",
+    "why": "newline breaks logs, CSV and headers",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":32,\"name\":\"line1\\nline2\",\"email\":\"text-7@shop.io\"}]"
+  },
+  {
+    "id": "text-8",
+    "category": "text",
+    "why": "CSV delimiters and quotes",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":33,\"name\":\"a,b;\\\"c\\\"\",\"email\":\"text-8@shop.io\"}]"
+  },
+  {
+    "id": "text-9",
+    "category": "text",
+    "why": "formula injection when exported to a spreadsheet",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "text-10",
+    "category": "text",
+    "why": "leading and trailing spaces, trim or not",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "time-1",
+    "category": "time",
+    "why": "leap day, adding a year to it has no right answer",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":36,\"name\":\"2024-02-29\",\"email\":\"time-1@shop.io\"}]"
+  },
+  {
+    "id": "time-2",
+    "category": "time",
+    "why": "day that does not exist",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":37,\"name\":\"2023-02-29\",\"email\":\"time-2@shop.io\"}]"
+  },
+  {
+    "id": "time-3",
+    "category": "time",
+    "why": "inside the US DST gap, this local time never happened",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":38,\"name\":\"2024-03-10T02:30:00\",\"email\":\"time-3@shop.io\"}]"
+  },
+  {
+    "id": "time-4",
+    "category": "time",
+    "why": "inside the US DST overlap, this local time happened twice",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":39,\"name\":\"2024-11-03T01:30:00\",\"email\":\"time-4@shop.io\"}]"
+  },
+  {
+    "id": "time-5",
+    "category": "time",
+    "why": "leap second, second 60 fails most date parsers",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":40,\"name\":\"2016-12-31T23:59:60Z\",\"email\":\"time-5@shop.io\"}]"
+  },
+  {
+    "id": "time-6",
+    "category": "time",
+    "why": "epoch zero, often treated as missing",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":41,\"name\":\"1970-01-01T00:00:00Z\",\"email\":\"time-6@shop.io\"}]"
+  },
+  {
+    "id": "time-7",
+    "category": "time",
+    "why": "negative epoch, dates before 1970 break unsigned timestamps",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":42,\"name\":\"1969-12-31T23:59:59Z\",\"email\":\"time-7@shop.io\"}]"
+  },
+  {
+    "id": "time-8",
+    "category": "time",
+    "why": "one second past the 32 bit epoch limit",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":43,\"name\":\"2038-01-19T03:14:08Z\",\"email\":\"time-8@shop.io\"}]"
+  },
+  {
+    "id": "time-9",
+    "category": "time",
+    "why": "far future sentinel",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":44,\"name\":\"9999-12-31T23:59:59Z\",\"email\":\"time-9@shop.io\"}]"
+  },
+  {
+    "id": "time-10",
+    "category": "time",
+    "why": "minimum date, some libraries and databases cannot store it",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":45,\"name\":\"0001-01-01T00:00:00Z\",\"email\":\"time-10@shop.io\"}]"
+  },
+  {
+    "id": "time-11",
+    "category": "time",
+    "why": "UTC+14, a different calendar day than UTC",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "time-12",
+    "category": "time",
+    "why": "UTC-12, the last place where a day ends, a different calendar day than UTC",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":47,\"name\":\"2024-06-01T12:00:00-12:00\",\"email\":\"time-12@shop.io\"}]"
+  },
+  {
+    "id": "time-13",
+    "category": "time",
+    "why": "Nepal 45 minute offset",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "time-14",
+    "category": "time",
+    "why": "no offset, local to who?",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":46,\"name\":\"2024-06-01T12:00:00+14:00\",\"email\":\"time-11@shop.io\"},{\"id\":47,\"name\":\"2024-06-01T12:00:00-12:00\",\"email\":\"time-12@shop.io\"},{\"id\":48,\"name\":\"2024-06-01T12:00:00+05:45\",\"email\":\"time-13@shop.io\"},{\"id\":49,\"name\":\"2024-06-01T12:00:00\",\"email\":\"time-14@shop.io\"}]"
+  },
+  {
+    "id": "time-15",
+    "category": "time",
+    "why": "is it January 2 or February 1",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":50,\"name\":\"01/02/2024\",\"email\":\"time-15@shop.io\"}]"
+  },
+  {
+    "id": "time-16",
+    "category": "time",
+    "why": "epoch in milliseconds where seconds are expected",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "unicode-1",
+    "category": "unicode",
+    "why": "accents survive storage and search",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":51,\"name\":\"José Ñúñez\",\"email\":\"unicode-1@shop.io\"}]"
+  },
+  {
+    "id": "unicode-2",
+    "category": "unicode",
+    "why": "one visible emoji made of 7 code points breaks length and truncation",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":52,\"name\":\"👩‍👩‍👧‍👦\",\"email\":\"unicode-2@shop.io\"}]"
+  },
+  {
+    "id": "unicode-3",
+    "category": "unicode",
+    "why": "NFD form, equals é only after normalization",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":53,\"name\":\"é\",\"email\":\"unicode-3@shop.io\"}]"
+  },
+  {
+    "id": "unicode-4",
+    "category": "unicode",
+    "why": "NFC form, compare with the NFD seed for duplicate keys",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":24,\"name\":\"éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé\",\"email\":\"size-6@shop.io\"},{\"id\":51,\"name\":\"José Ñúñez\",\"email\":\"unicode-1@shop.io\"},{\"id\":54,\"name\":\"é\",\"email\":\"unicode-4@shop.io\"}]"
+  },
+  {
+    "id": "unicode-5",
+    "category": "unicode",
+    "why": "right to left text breaks layout and concatenation",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":55,\"name\":\"مرحبا بالعالم\",\"email\":\"unicode-5@shop.io\"}]"
+  },
+  {
+    "id": "unicode-6",
+    "category": "unicode",
+    "why": "right to left override flips what humans read",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":56,\"name\":\"abc‮dcba\",\"email\":\"unicode-6@shop.io\"}]"
+  },
+  {
+    "id": "unicode-7",
+    "category": "unicode",
+    "why": "zero width space makes two equal looking strings different",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":57,\"name\":\"zero​width\",\"email\":\"unicode-7@shop.io\"}]"
+  },
+  {
+    "id": "unicode-8",
+    "category": "unicode",
+    "why": "NUL byte truncates C strings and some drivers",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":58,\"name\":\"null\\u0000byte\",\"email\":\"unicode-8@shop.io\"}]"
+  },
+  {
+    "id": "unicode-9",
+    "category": "unicode",
+    "why": "Cyrillic homoglyphs look like paypal",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":59,\"name\":\"раураl\",\"email\":\"unicode-9@shop.io\"}]"
+  },
+  {
+    "id": "unicode-10",
+    "category": "unicode",
+    "why": "astral plane characters are 2 UTF-16 units each",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":60,\"name\":\"𝔘𝔫𝔦𝔠𝔬𝔡𝔢\",\"email\":\"unicode-10@shop.io\"}]"
+  },
+  {
+    "id": "unicode-11",
+    "category": "unicode",
+    "why": "lone surrogate is invalid UTF-16 and invalid UTF-8",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[]"
+  },
+  {
+    "id": "unicode-12",
+    "category": "unicode",
+    "why": "title case letter breaks upper and lower case round trips",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":62,\"name\":\"ǅ\",\"email\":\"unicode-12@shop.io\"}]"
+  },
+  {
+    "id": "unicode-13",
+    "category": "unicode",
+    "why": "upper case is STRASSE, longer than the original",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "[{\"id\":63,\"name\":\"straße\",\"email\":\"unicode-13@shop.io\"}]"
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "id": "time-1",
+    "category": "time",
+    "why": "leap day, adding a year to it has no right answer",
+    "status": 201,
+    "ms": 20,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":21,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"2024-02-29\"}"
+  },
+  {
+    "id": "time-2",
+    "category": "time",
+    "why": "day that does not exist",
+    "status": 201,
+    "ms": 2,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":22,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"2023-02-29\"}"
+  },
+  {
+    "id": "time-3",
+    "category": "time",
+    "why": "inside the US DST gap, this local time never happened",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":23,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"2024-03-10T02:30:00\"}"
+  },
+  {
+    "id": "time-4",
+    "category": "time",
+    "why": "inside the US DST overlap, this local time happened twice",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":24,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"2024-11-03T01:30:00\"}"
+  },
+  {
+    "id": "time-5",
+    "category": "time",
+    "why": "leap second, second 60 fails most date parsers",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":25,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"2016-12-31T23:59:60Z\"}"
+  },
+  {
+    "id": "time-6",
+    "category": "time",
+    "why": "epoch zero, often treated as missing",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":26,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"1970-01-01T00:00:00Z\"}"
+  },
+  {
+    "id": "time-7",
+    "category": "time",
+    "why": "negative epoch, dates before 1970 break unsigned timestamps",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":27,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"1969-12-31T23:59:59Z\"}"
+  },
+  {
+    "id": "time-8",
+    "category": "time",
+    "why": "one second past the 32 bit epoch limit",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":28,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"2038-01-19T03:14:08Z\"}"
+  },
+  {
+    "id": "time-9",
+    "category": "time",
+    "why": "far future sentinel",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":29,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"9999-12-31T23:59:59Z\"}"
+  },
+  {
+    "id": "time-10",
+    "category": "time",
+    "why": "minimum date, some libraries and databases cannot store it",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":30,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"0001-01-01T00:00:00Z\"}"
+  },
+  {
+    "id": "time-11",
+    "category": "time",
+    "why": "UTC+14, a different calendar day than UTC",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":31,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"2024-06-01T12:00:00+14:00\"}"
+  },
+  {
+    "id": "time-12",
+    "category": "time",
+    "why": "UTC-12, the last place where a day ends, a different calendar day than UTC",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":32,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"2024-06-01T12:00:00-12:00\"}"
+  },
+  {
+    "id": "time-13",
+    "category": "time",
+    "why": "Nepal 45 minute offset",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":33,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"2024-06-01T12:00:00+05:45\"}"
+  },
+  {
+    "id": "time-14",
+    "category": "time",
+    "why": "no offset, local to who?",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":34,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"2024-06-01T12:00:00\"}"
+  },
+  {
+    "id": "time-15",
+    "category": "time",
+    "why": "is it January 2 or February 1",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":35,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"01/02/2024\"}"
+  },
+  {
+    "id": "time-16",
+    "category": "time",
+    "why": "epoch in milliseconds where seconds are expected",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":36,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":1717243200000}"
+  }
+]

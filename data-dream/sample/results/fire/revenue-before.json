@@ -1,0 +1,162 @@
+[
+  {
+    "id": "time-1",
+    "category": "time",
+    "why": "leap day, adding a year to it has no right answer",
+    "status": 200,
+    "ms": 20,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"2024-02-29\",\"total\":0}"
+  },
+  {
+    "id": "time-2",
+    "category": "time",
+    "why": "day that does not exist",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"2023-02-29\",\"total\":0}"
+  },
+  {
+    "id": "time-3",
+    "category": "time",
+    "why": "inside the US DST gap, this local time never happened",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"2024-03-10T02:30:00\",\"total\":0}"
+  },
+  {
+    "id": "time-4",
+    "category": "time",
+    "why": "inside the US DST overlap, this local time happened twice",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"2024-11-03T01:30:00\",\"total\":0}"
+  },
+  {
+    "id": "time-5",
+    "category": "time",
+    "why": "leap second, second 60 fails most date parsers",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"2016-12-31T23:59:60Z\",\"total\":0}"
+  },
+  {
+    "id": "time-6",
+    "category": "time",
+    "why": "epoch zero, often treated as missing",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"1970-01-01T00:00:00Z\",\"total\":0}"
+  },
+  {
+    "id": "time-7",
+    "category": "time",
+    "why": "negative epoch, dates before 1970 break unsigned timestamps",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"1969-12-31T23:59:59Z\",\"total\":0}"
+  },
+  {
+    "id": "time-8",
+    "category": "time",
+    "why": "one second past the 32 bit epoch limit",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"2038-01-19T03:14:08Z\",\"total\":0}"
+  },
+  {
+    "id": "time-9",
+    "category": "time",
+    "why": "far future sentinel",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"9999-12-31T23:59:59Z\",\"total\":0}"
+  },
+  {
+    "id": "time-10",
+    "category": "time",
+    "why": "minimum date, some libraries and databases cannot store it",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"0001-01-01T00:00:00Z\",\"total\":0}"
+  },
+  {
+    "id": "time-11",
+    "category": "time",
+    "why": "UTC+14, a different calendar day than UTC",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"2024-06-01T12:00:00+14:00\",\"total\":0}"
+  },
+  {
+    "id": "time-12",
+    "category": "time",
+    "why": "UTC-12, the last place where a day ends, a different calendar day than UTC",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"2024-06-01T12:00:00-12:00\",\"total\":0}"
+  },
+  {
+    "id": "time-13",
+    "category": "time",
+    "why": "Nepal 45 minute offset",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"2024-06-01T12:00:00+05:45\",\"total\":0}"
+  },
+  {
+    "id": "time-14",
+    "category": "time",
+    "why": "no offset, local to who?",
+    "status": 200,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"2024-06-01T12:00:00\",\"total\":0}"
+  },
+  {
+    "id": "time-15",
+    "category": "time",
+    "why": "is it January 2 or February 1",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"01/02/2024\",\"total\":0}"
+  },
+  {
+    "id": "time-16",
+    "category": "time",
+    "why": "epoch in milliseconds where seconds are expected",
+    "status": 200,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"day\":\"1717243200000\",\"total\":0}"
+  }
+]

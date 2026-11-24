@@ -26,7 +26,17 @@ echo 3 | "$ROOT/uninstall.sh" > /dev/null
 check "invalid target fails" '! "$ROOT/install.sh" nope > /dev/null 2>&1'
 check "skill name matches its folder so /data-dream resolves" 'grep -q "^name: data-dream$" "$ROOT/SKILL.md"'
 check "the CLI refuses a remote host" '! node "$ROOT/scripts/dream.mjs" fire --url https://api.company.com/x --seeds "$ROOT/references/catalog.json" > /dev/null 2>&1'
-check "the skill never uses the banned words" '! grep -rqiE "\b(demo|demonstration|example)\b" "$ROOT/SKILL.md" "$ROOT/README.md" "$ROOT/scripts" "$ROOT/tests" "$ROOT/references"'
+check "the skill never uses the banned words" '! grep -rqiE "\b(demo|demonstration|example)\b" "$ROOT/SKILL.md" "$ROOT/README.md" "$ROOT/scripts" "$ROOT/tests" "$ROOT/references" "$ROOT/sample"'
+SAMPLE="$TMP/sample"
+cp -R "$ROOT/sample" "$SAMPLE"
+rm -rf "$SAMPLE/results"
+check "the sample app's own tests pass" '(cd "$SAMPLE" && scripts/test-all.sh > /dev/null 2>&1)'
+cp "$ROOT/sample/results/data-dream.test.mjs" "$SAMPLE/test/"
+(cd "$SAMPLE" && node --test test/data-dream.test.mjs > "$TMP/dd.out" 2>&1) || true
+FINDINGS="$(grep -c "^## DD" "$ROOT/sample/results/report.md")"
+check "every finding in the sample report has a test that still fails against the sample ($FINDINGS findings)" '[ "$FINDINGS" = 10 ] && grep -q "^ℹ fail $FINDINGS$" "$TMP/dd.out" && grep -q "^ℹ pass 0$" "$TMP/dd.out"'
+check "the sample report has no local paths" '! grep -qE "/Users/|/home/|/private/" "$ROOT/sample/results/report.md" "$ROOT/sample/results/transcript.md"'
+
 check "node tests pass" 'node --test "$ROOT/tests/dream.test.mjs" > "$TMP/node.out" 2>&1 || { cat "$TMP/node.out"; false; }'
 grep -E "^. (tests|pass|fail) " "$TMP/node.out" || true
 

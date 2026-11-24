@@ -146,7 +146,16 @@ check "main was never touched" '[ "$(git log main --format=%s | wc -l | tr -d " 
 check "end removes the state and keeps the branch" '[ ! -d .test-climb ] && git branch --show-current | grep -q "^test-climb/"'
 cd "$ROOT"
 
-check "the skill never uses the banned words" '! grep -rqiE "\b(demo|demonstration|example)\b" "$ROOT/SKILL.md" "$ROOT/README.md" "$ROOT/references" "$ROOT/scripts"'
+SAMPLE="$TMP/sample"
+cp -R "$ROOT/sample" "$SAMPLE"
+rm -rf "$SAMPLE/results"
+sample_cov() { (cd "$SAMPLE" && node --test --experimental-test-coverage 2>&1 | awk -F"|" '/all files/{gsub(/[ #]/,"",$2); print $2}' | tr -d 'ℹ'); }
+check "the sample starts at the baseline the report shows" '[ "$(sample_cov)" = "37.93" ] && grep -q "\*\*37.93%\*\*" "$ROOT/sample/results/climb-report.md"'
+cp "$ROOT"/sample/results/tests/*.test.mjs "$SAMPLE/test/"
+check "the kept tests from the sample climb pass and reach the 100% the report shows" '[ "$(sample_cov)" = "100.00" ] && grep -q "\*\*100.00%\*\*" "$ROOT/sample/results/climb-report.md"'
+check "every kept step in the report has its test in the results" '[ "$(grep -c "| kept |" "$ROOT/sample/results/climb-report.md")" = "$(ls "$ROOT"/sample/results/tests/*.test.mjs | wc -l | tr -d " ")" ]'
+
+check "the skill never uses the banned words" '! grep -rqiE "\b(demo|demonstration|example)\b" "$ROOT/SKILL.md" "$ROOT/README.md" "$ROOT/references" "$ROOT/scripts" "$ROOT/sample"'
 
 echo ""
 if [ "$FAILS" -gt 0 ]; then echo "$FAILS test(s) failed"; exit 1; fi

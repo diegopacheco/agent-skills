@@ -49,6 +49,47 @@ A skill for Claude Code and Codex that hill climbs test coverage one test at a t
 * Coverage is read as the last `NN.N%` the command prints, so any stack plugs in with one command.
 * The mutant restores the file from a backup in a trap, so a crash in the middle still leaves the production code untouched.
 
+## Sample
+
+[`sample/`](sample) is a small invoice library (subtotals, discount tiers, tax by state, shipping, coupons) that ships with one test. test-climb was run on a git copy of it, for real, with `--patience 2`. Everything it produced is in [`sample/results/`](sample/results): the [report](sample/results/climb-report.md), the [chart](sample/results/climb-chart.svg), the [kept tests](sample/results/tests) and the [full transcript](sample/results/transcript.md) of every command and its output.
+
+<p align="center"><img src="sample/results/climb-chart.svg" alt="coverage per kept step on the sample"></p>
+
+Coverage went from **37.93%** to **100.00%** in 6 kept steps. 2 steps were rejected, and patience stopped the climb.
+
+| Step | Result | Coverage | Test | Mutants killed |
+|---|---|---|---|---|
+| 0 | baseline | 37.93% | the one test it shipped with | - |
+| 1 | kept | 51.72% | discount tiers start exactly at 500 and 1000 | `>= 1000` to `> 1000`, `>= 500` to `> 500` |
+| 2 | kept | 56.90% | unknown states are taxed at the default rate, never zero | `?? TAX.DEFAULT` to `?? 0` |
+| 3 | kept | 65.52% | free shipping starts at 300 and extra items cost 2 each | `>= 300` to `> 300`, `items - 3` to `items - 2` |
+| 4 | kept | 77.59% | the total is rounded to cents after discount, tax and shipping | `* 100) / 100` to `* 10) / 10`, `tax(net)` to `tax(sub)` |
+| 5 | kept | 87.93% | a coupon can never take 100 percent or more | `{1,2}` to `{1,3}` |
+| 6 | kept | 100.00% | a coupon expires after its last day, not on it | `today >` to `today >=` |
+| 7 | no-gain | 100.00% | large orders get exactly 10 percent | reverted |
+| 8 | no-gain | 100.00% | an empty invoice costs nothing | reverted, stop |
+
+The mutant gate caught a weak test on the way. The first shipping test only asserted `shipping(100, 5) > 0`:
+
+```
+$ climb.sh mutant src/invoice.mjs 30 "items - 3" "items - 2" "node --test test/shipping.test.mjs"
+survived: src/invoice.mjs:30 'items - 3' -> 'items - 2'. The tests pass with broken code, strengthen the assertion
+```
+
+It was rewritten to assert exact values at the 300 boundary and for items above 3, and both mutants were killed before the step was kept. The climb branch ended with one commit per kept step plus the report:
+
+```
+invoice: test-climb report 37.93% -> 100.00%
+invoice: test-climb 87.93% -> 100.00% a coupon expires after its last day, not on it
+invoice: test-climb 77.59% -> 87.93% a coupon can never take 100 percent or more
+invoice: test-climb 65.52% -> 77.59% the invoice total is rounded to cents after discount, tax and shipping
+invoice: test-climb 56.90% -> 65.52% free shipping starts at 300 and extra items cost 2 each
+invoice: test-climb 51.72% -> 56.90% unknown states are taxed at the default rate, never zero
+invoice: test-climb 37.93% -> 51.72% discount tiers start exactly at 500 and 1000
+```
+
+`test.sh` checks that these results are real: the sample measures 37.93% on its own, and 100.00% with the kept tests copied in.
+
 ## How to run
 
 ```

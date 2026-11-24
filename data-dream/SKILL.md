@@ -45,8 +45,8 @@ DREAM=<skill-dir>/scripts/dream.mjs
 4. **Generate the seeds** into a temp folder, never into the repo:
    `node $DREAM seeds <tmp>/seeds --only unicode,size,money`
 5. **Dream against the app.** Two ways, use both when they apply:
-   * HTTP: start the app with `scripts/start-all.sh`, confirm with `scripts/status.sh` (scripts-skill). `@@` marks where the seed goes, in the body or the URL:
-     `node $DREAM fire --url http://localhost:<port>/users --template '{"name":@@,"email":"a@b.c"}' --seeds <tmp>/seeds --out <tmp>/users.json`
+   * HTTP: start the app with `scripts/start-all.sh`, confirm with `scripts/status.sh` (scripts-skill). `@@` marks where the seed goes, in the body or the URL. `@@id` becomes the seed id, for fields that must be unique per request like an email:
+     `node $DREAM fire --url http://localhost:<port>/users --template '{"name":@@,"email":"@@id@shop.io"}' --seeds <tmp>/seeds --out <tmp>/users.json`
      `node $DREAM fire --method GET --url 'http://localhost:<port>/orders?from=@@' --seeds <tmp>/seeds/time.json --out <tmp>/orders.json`
    * Functions: write a throwaway harness in a temp folder, in the project's language, that loops over the seed files and calls the function. It is never committed.
 6. **Judge every result.** `fire` marks `crash` (5xx or connection lost) and `hang` (timeout). You judge the rest by reading the response and the data:

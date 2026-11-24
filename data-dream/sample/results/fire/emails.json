@@ -1,0 +1,82 @@
+[
+  {
+    "id": "identity-1",
+    "category": "identity",
+    "why": "plus addressing is a valid email",
+    "status": 201,
+    "ms": 21,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":64,\"name\":\"Ana\",\"email\":\"user+tag@acme.io\"}"
+  },
+  {
+    "id": "identity-2",
+    "category": "identity",
+    "why": "case of the same email, duplicate accounts",
+    "status": 201,
+    "ms": 2,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":65,\"name\":\"Ana\",\"email\":\"USER@Acme.IO\"}"
+  },
+  {
+    "id": "identity-3",
+    "category": "identity",
+    "why": "internationalized email",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":66,\"name\":\"Ana\",\"email\":\"用户@例子.广告\"}"
+  },
+  {
+    "id": "identity-4",
+    "category": "identity",
+    "why": "valid by RFC, rejected by most regexes",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":67,\"name\":\"Ana\",\"email\":\"a@b\"}"
+  },
+  {
+    "id": "identity-5",
+    "category": "identity",
+    "why": "formatted phone, digits only checks reject it and stored formats drift",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":68,\"name\":\"Ana\",\"email\":\"+1 (555) 010-0000\"}"
+  },
+  {
+    "id": "identity-6",
+    "category": "identity",
+    "why": "nil UUID, often a default that matches records by accident",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":69,\"name\":\"Ana\",\"email\":\"00000000-0000-0000-0000-000000000000\"}"
+  },
+  {
+    "id": "identity-7",
+    "category": "identity",
+    "why": "id shaped input",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":70,\"name\":\"Ana\",\"email\":\"1 OR 1=1\"}"
+  },
+  {
+    "id": "identity-8",
+    "category": "identity",
+    "why": "URL pointing inside, SSRF shaped",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":71,\"name\":\"Ana\",\"email\":\"https://localhost:22/\"}"
+  }
+]

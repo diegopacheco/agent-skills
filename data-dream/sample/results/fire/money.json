@@ -1,0 +1,122 @@
+[
+  {
+    "id": "money-1",
+    "category": "money",
+    "why": "0.1 + 0.2 is not 0.3 in floating point",
+    "status": 201,
+    "ms": 22,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":11,\"userId\":1,\"price\":0.1,\"qty\":1,\"total\":0.1,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "money-2",
+    "category": "money",
+    "why": "rounds to 0.01 with HALF_UP, 0.00 with HALF_EVEN",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":12,\"userId\":1,\"price\":0.005,\"qty\":1,\"total\":0.01,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "money-3",
+    "category": "money",
+    "why": "is 2.67499999 in binary, round(2.675, 2) gives 2.67",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":13,\"userId\":1,\"price\":2.675,\"qty\":1,\"total\":2.67,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "money-4",
+    "category": "money",
+    "why": "negative amount, refund or attack",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":14,\"userId\":1,\"price\":-10,\"qty\":1,\"total\":-10,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "money-5",
+    "category": "money",
+    "why": "zero amount, free orders hit division by total and skipped payment paths",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":15,\"userId\":1,\"price\":0,\"qty\":1,\"total\":0,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "money-6",
+    "category": "money",
+    "why": "below the smallest unit",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":16,\"userId\":1,\"price\":0.001,\"qty\":1,\"total\":0,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "money-7",
+    "category": "money",
+    "why": "past a DECIMAL(15,2) and past double precision",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":17,\"userId\":1,\"price\":99999999999999.98,\"qty\":1,\"total\":99999999999999.98,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "money-8",
+    "category": "money",
+    "why": "amount as a string",
+    "status": 400,
+    "ms": 1,
+    "verdict": "rejected",
+    "error": "",
+    "body": "{\"error\":\"price must be a number and qty a positive integer\"}"
+  },
+  {
+    "id": "money-9",
+    "category": "money",
+    "why": "European format, one thousand and fifty cents",
+    "status": 400,
+    "ms": 0,
+    "verdict": "rejected",
+    "error": "",
+    "body": "{\"error\":\"price must be a number and qty a positive integer\"}"
+  },
+  {
+    "id": "money-10",
+    "category": "money",
+    "why": "zero decimal currency, 100 JPY is not 1.00",
+    "status": 400,
+    "ms": 1,
+    "verdict": "rejected",
+    "error": "",
+    "body": "{\"error\":\"price must be a number and qty a positive integer\"}"
+  },
+  {
+    "id": "money-11",
+    "category": "money",
+    "why": "three decimal currency",
+    "status": 400,
+    "ms": 0,
+    "verdict": "rejected",
+    "error": "",
+    "body": "{\"error\":\"price must be a number and qty a positive integer\"}"
+  },
+  {
+    "id": "money-12",
+    "category": "money",
+    "why": "100 / 3 split three ways loses a cent",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":18,\"userId\":1,\"price\":33.33,\"qty\":1,\"total\":33.33,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  }
+]

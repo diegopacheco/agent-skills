@@ -15,6 +15,8 @@
 | Java / Kotlin Gradle (JaCoCo) | `./gradlew -q test jacocoTestReport && awk -F, 'NR>1{m+=$8;c+=$9} END{printf "%.2f%%\n", 100*c/(m+c)}' build/reports/jacoco/test/jacocoTestReport.csv` |
 | Scala (sbt-scoverage) | `sbt -batch coverage test coverageReport 2>&1 \| grep -i "statement coverage"` |
 
+node:test and Bun only count files that a test loads. If a module has no test yet it is missing from the total, and the first test that loads it can lower the percentage. Load every module from the tests through the package entry point (`src/index.mjs`) before `climb.sh init`.
+
 If the stack is not listed, build a command that prints one percentage and run it once by hand before `climb.sh init`.
 
 ## Mutants that work well

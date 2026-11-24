@@ -1,0 +1,72 @@
+[
+  {
+    "id": "domain-1",
+    "category": "domain-seeds",
+    "why": "store.mjs:10 compares emails with ===, first registration",
+    "status": 201,
+    "ms": 21,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":72,\"name\":\"Ana\",\"email\":\"ana@shop.io\"}"
+  },
+  {
+    "id": "domain-2",
+    "category": "domain-seeds",
+    "why": "same mailbox in upper case, must be a duplicate",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":73,\"name\":\"Ana\",\"email\":\"ANA@shop.io\"}"
+  },
+  {
+    "id": "domain-3",
+    "category": "domain-seeds",
+    "why": "same mailbox with a leading space, email is never trimmed",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":74,\"name\":\"Ana\",\"email\":\" ana@shop.io\"}"
+  },
+  {
+    "id": "domain-4",
+    "category": "domain-seeds",
+    "why": "store.mjs:28 qty below 1 must be rejected",
+    "status": 400,
+    "ms": 1,
+    "verdict": "rejected",
+    "error": "",
+    "body": "{\"error\":\"name and email are required\"}"
+  },
+  {
+    "id": "domain-5",
+    "category": "domain-seeds",
+    "why": "store.mjs:28 half an item must be rejected",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":75,\"name\":\"Ana\",\"email\":1.5}"
+  },
+  {
+    "id": "domain-6",
+    "category": "domain-seeds",
+    "why": "smallest valid qty",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":76,\"name\":\"Ana\",\"email\":1}"
+  },
+  {
+    "id": "domain-7",
+    "category": "domain-seeds",
+    "why": "no upper limit on qty in the code",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":77,\"name\":\"Ana\",\"email\":100000}"
+  }
+]

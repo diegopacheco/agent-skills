@@ -1,0 +1,37 @@
+[
+  {
+    "id": "domain-1",
+    "raw": "\"ana@shop.io\"",
+    "why": "store.mjs:10 compares emails with ===, first registration"
+  },
+  {
+    "id": "domain-2",
+    "raw": "\"ANA@shop.io\"",
+    "why": "same mailbox in upper case, must be a duplicate"
+  },
+  {
+    "id": "domain-3",
+    "raw": "\" ana@shop.io\"",
+    "why": "same mailbox with a leading space, email is never trimmed"
+  },
+  {
+    "id": "domain-4",
+    "raw": "0",
+    "why": "store.mjs:28 qty below 1 must be rejected"
+  },
+  {
+    "id": "domain-5",
+    "raw": "1.5",
+    "why": "store.mjs:28 half an item must be rejected"
+  },
+  {
+    "id": "domain-6",
+    "raw": "1",
+    "why": "smallest valid qty"
+  },
+  {
+    "id": "domain-7",
+    "raw": "100000",
+    "why": "no upper limit on qty in the code"
+  }
+]

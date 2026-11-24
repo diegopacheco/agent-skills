@@ -1,0 +1,72 @@
+[
+  {
+    "id": "domain-1",
+    "category": "domain-seeds",
+    "why": "store.mjs:10 compares emails with ===, first registration",
+    "status": 400,
+    "ms": 21,
+    "verdict": "rejected",
+    "error": "",
+    "body": "{\"error\":\"price must be a number and qty a positive integer\"}"
+  },
+  {
+    "id": "domain-2",
+    "category": "domain-seeds",
+    "why": "same mailbox in upper case, must be a duplicate",
+    "status": 400,
+    "ms": 2,
+    "verdict": "rejected",
+    "error": "",
+    "body": "{\"error\":\"price must be a number and qty a positive integer\"}"
+  },
+  {
+    "id": "domain-3",
+    "category": "domain-seeds",
+    "why": "same mailbox with a leading space, email is never trimmed",
+    "status": 400,
+    "ms": 0,
+    "verdict": "rejected",
+    "error": "",
+    "body": "{\"error\":\"price must be a number and qty a positive integer\"}"
+  },
+  {
+    "id": "domain-4",
+    "category": "domain-seeds",
+    "why": "store.mjs:28 qty below 1 must be rejected",
+    "status": 400,
+    "ms": 1,
+    "verdict": "rejected",
+    "error": "",
+    "body": "{\"error\":\"price must be a number and qty a positive integer\"}"
+  },
+  {
+    "id": "domain-5",
+    "category": "domain-seeds",
+    "why": "store.mjs:28 half an item must be rejected",
+    "status": 400,
+    "ms": 1,
+    "verdict": "rejected",
+    "error": "",
+    "body": "{\"error\":\"price must be a number and qty a positive integer\"}"
+  },
+  {
+    "id": "domain-6",
+    "category": "domain-seeds",
+    "why": "smallest valid qty",
+    "status": 201,
+    "ms": 0,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":19,\"userId\":1,\"price\":10,\"qty\":1,\"total\":10,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  },
+  {
+    "id": "domain-7",
+    "category": "domain-seeds",
+    "why": "no upper limit on qty in the code",
+    "status": 201,
+    "ms": 1,
+    "verdict": "accepted",
+    "error": "",
+    "body": "{\"id\":20,\"userId\":1,\"price\":10,\"qty\":100000,\"total\":1000000,\"createdAt\":\"2026-11-20T10:00:00Z\"}"
+  }
+]
