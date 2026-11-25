@@ -2,6 +2,15 @@
 
 Branch `data-dream/2026-11-24`. 98 catalog values in 9 categories plus 7 domain seeds, fired at 4 routes of the app running on localhost with `scripts/start-all.sh`.
 
+## What the dreams added
+
+The counts and findings below come from firing the catalog once. Two dream nights on the same app ([journal](journal.md)) added:
+
+* Night 1 dreamed 2 cycles past the catalog. Transplanting `NaN` from the name to the email and the date showed that DD2 hits every input that reads a body, not only the ones the catalog was aimed at.
+* Night 1 fired 300 catalog values and 472 dreamed ones. The catalog broke the app 45 times, and the dreams broke it 165 times.
+* Night 2, after the developer's fixes ([patch](night-2-fixes.patch)), replayed 207 nightmares: 125 healed and 82 recur. The fix `if (!createdAt)` for DD9 healed `null`, `false`, `0` and a missing field, but 44 values still poison `/revenue`: 2 from the catalog (`{}`, `1717243200000`) and 42 dreamed, among them `true` (flipped from `false`, a kind the catalog never tried) and `-1` (transplanted from the name). The DD9 test now sends those values, so it fails on the half fixed copy too.
+* DD3 was not fixed and the journal lists its search crashes as still broken. DD10 is a wrong result the agent judges, so it is not in the journal.
+
 ## Counts
 
 | Surface | Seeds | Crash | Hang | Rejected | Accepted |

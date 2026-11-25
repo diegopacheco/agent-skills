@@ -1,6 +1,6 @@
 ---
 name: data-dream
-description: Dreams up realistic data that breaks things - unicode, huge sizes, numbers past their limits, odd timezones and DST gaps, empty values, money rounding and currencies, SQL, HTML and path shaped text, identities and malformed structures - fires it at the real code (local HTTP endpoints or functions), finds crashes, hangs, wrong results and bad data silently accepted, and writes one failing test per finding that reproduces it. Never fixes production code, never rebases, never pushes. Use when the user runs /data-dream or asks for nasty data, edge case data, fuzzing with realistic values, or what input breaks their app.
+description: Dreams up realistic data that breaks things and keeps dreaming. Cycle 1 fires a catalog of 98 nasty values (unicode, sizes, number limits, DST gaps, empty values, money rounding, SQL, HTML and path shaped text, identities, broken JSON) at the app on localhost. Every value that crashes, hangs, poisons another endpoint or comes back changed is a nightmare, and each next cycle dreams new values from the nightmares of the cycle before by mutating them and transplanting them to other inputs, until a cycle finds no new kind of nightmare. Nightmares are remembered across nights and replayed first, so the journal shows what healed and which dreamed values outlived a fix. Writes a dream journal with a family tree of every value and one failing test per finding. Never fixes production code, never rebases, never pushes. Use when the user runs /data-dream or asks for nasty data, edge case data, dreaming, fuzzing with realistic values, or what input breaks their app.
 allowed-tools: [Bash, Read, Write, Edit, Glob, Grep, AskUserQuestion]
 ---
 
@@ -16,6 +16,31 @@ Dream the data real users will send one day, send it now, and leave a failing te
 * One finding per root cause. Ten seeds hitting the same missing null check are one finding with ten seeds.
 * Git follows git-gh-skill: one branch `data-dream/<date>`, commit messages start with the project name, no Co-Authored-By lines, merge only, never rebase, never push.
 * No comments in the tests.
+
+## What problem it solves
+
+Apps are tested with the data their developers imagine. data-dream finds what production will send instead: untested values that crash or corrupt, the same bug sitting in inputs nobody aimed at, writes that are accepted and then break a read for everyone, and fixes that only cover the value from the bug report. The catalog covers the first. Dreaming covers the rest: it varies every value that hurt and moves it to every other input, and its memory replays each nightmare after a fix to prove whether the fix held. Tell the user both, with numbers from the journal: how many breaks the catalog found and how many the dreams added.
+
+## The dreaming technique
+
+Dreaming is how the brain replays the day and recombines it into things that never happened. data-dream does the same with data:
+
+1. **Day residue**: cycle 1 fires the catalog and the domain seeds. Every value that hurts the app becomes a nightmare.
+2. **Recombination**: each next cycle only dreams from the nightmares of the cycle before. A nightmare is mutated (negated, made tiny or huge, turned into text, put in a list, doubled, upper cased, padded, cut in half, flipped, emptied, nested) and transplanted to every other input. A value that broke the name is tried on the email, the price and the date.
+3. **Waking up**: a kind is the input, the verdict, the status and the shape of the value. When a whole cycle finds no new kind, the dream ends. A cycle limit stops it too.
+4. **Memory**: nightmares are kept in a memory file across nights. The next night replays them first: the ones that stopped hurting are healed, the rest recur and are dreamed on. A fix that healed some values of a kind while a dreamed value still breaks it shows up as a dream that outlived a fix.
+5. **Journal**: every night is written to `journal.md` with a table per cycle, the healed and the still broken kinds, and a family tree from each dreamed value back to the catalog value it came from.
+
+## Verdicts
+
+| Verdict | Nightmare | Meaning |
+|---|---|---|
+| crash | yes | 5xx or the connection was lost |
+| hang | yes | no answer before the timeout |
+| poison | yes | the request was accepted, and then the probe endpoint of the input started to fail |
+| changed | yes | accepted, but the echoed field is not what was sent (`1e309` stored as `null`) |
+| rejected | no | a 4xx, the app defending itself |
+| accepted | no | stored as sent, judged by the agent for silent accepts |
 
 ## Catalog
 
@@ -39,28 +64,39 @@ Dream the data real users will send one day, send it now, and leave a failing te
 DREAM=<skill-dir>/scripts/dream.mjs
 ```
 
-1. **Map the input surfaces.** Read the code: HTTP routes and their DTOs, CLI args, file and CSV parsers, public functions of the domain, DB columns with their types and lengths. Write each one with `file:line` and its fields.
-2. **Pick categories per field.** Strings get unicode, size, text, empty. Numbers get numbers, empty. Dates get time. Amounts and currencies get money. Emails, ids and URLs get identity. JSON bodies get structure.
-3. **Add domain seeds.** Read the limits in the code and write `data-dream/domain-seeds.json` with the exact boundaries the catalog cannot know: a `VARCHAR(80)` gets 80 and 81 characters, an enum gets its values in the wrong case, a quantity limit gets limit and limit + 1. Same format as the generated seeds: `[{"id": "domain-1", "raw": "<JSON text>", "why": "..."}]`. Use `"raw": null` for a missing field.
-4. **Generate the seeds** into a temp folder, never into the repo:
-   `node $DREAM seeds <tmp>/seeds --only unicode,size,money`
-5. **Dream against the app.** Two ways, use both when they apply:
-   * HTTP: start the app with `scripts/start-all.sh`, confirm with `scripts/status.sh` (scripts-skill). `@@` marks where the seed goes, in the body or the URL. `@@id` becomes the seed id, for fields that must be unique per request like an email:
-     `node $DREAM fire --url http://localhost:<port>/users --template '{"name":@@,"email":"@@id@shop.io"}' --seeds <tmp>/seeds --out <tmp>/users.json`
-     `node $DREAM fire --method GET --url 'http://localhost:<port>/orders?from=@@' --seeds <tmp>/seeds/time.json --out <tmp>/orders.json`
-   * Functions: write a throwaway harness in a temp folder, in the project's language, that loops over the seed files and calls the function. It is never committed.
-6. **Judge every result.** `fire` marks `crash` (5xx or connection lost) and `hang` (timeout). You judge the rest by reading the response and the data:
-   * **wrong**: a result that breaks a rule of the domain. Money that does not add up, a date on the wrong day, a name that comes back different, a count off by one, a sort that is wrong.
-   * **silent accept**: `accepted` data that should have been rejected and is now stored: negative amounts, NaN, invalid dates, 1 MB names, `__proto__` keys.
-   * **round trip**: save a seed, read it back, compare. Unicode and money break here most.
-   * `rejected` with a clear 4xx is the app working, not a finding.
-7. **Prove each finding.** Write one test per root cause, next to the existing tests, named after the finding (`DataDreamUserNameTest`, `data-dream-money.test.ts`). Run it, see it fail for the reason in the finding, and paste the failure.
-8. **Stop the app** with `scripts/stop-all.sh`.
+1. **Map the input surfaces.** Read the code: HTTP routes and their DTOs, CLI args, parsers, domain functions, DB columns with their types and lengths. Write each one with `file:line`.
+2. **Add domain seeds.** Read the limits in the code and write `data-dream/domain-seeds.json` with the exact boundaries the catalog cannot know: a `VARCHAR(80)` gets 80 and 81 characters, an enum gets its values in the wrong case. Format: `[{"id": "domain-1", "raw": "<JSON text>", "why": "..."}]`, `"raw": null` for a missing field.
+3. **Write the plan** `data-dream/plan.json`, one target per input:
+   ```json
+   {
+     "reset": "scripts/stop-all.sh > /dev/null && scripts/start-all.sh > /dev/null",
+     "setup": [{ "method": "POST", "url": "http://localhost:4170/users", "body": "{\"name\":\"Owner\",\"email\":\"owner@shop.io\"}" }],
+     "targets": [
+       { "name": "user-name", "url": "http://localhost:4170/users", "template": "{\"name\":@@,\"email\":\"@@id@shop.io\"}", "categories": "all" },
+       { "name": "user-search", "method": "GET", "url": "http://localhost:4170/users?q=@@", "categories": "all" },
+       { "name": "order-price", "url": "http://localhost:4170/orders", "template": "{\"userId\":1,\"price\":@@,\"qty\":1,\"createdAt\":\"2026-11-20T10:00:00Z\"}", "categories": "numbers,money", "echo": "price", "probe": { "url": "http://localhost:4170/revenue?day=2026-11-20" } }
+     ]
+   }
+   ```
+   * `@@` is where the value goes, in the body or the URL. `@@id` becomes the value id, for fields that must be unique like an email.
+   * `categories` picks catalog categories, `extra` adds seed files like the domain seeds.
+   * `echo` names the response field that must come back as sent, or the value is `changed`.
+   * `probe` is a read that must keep working after the write, or the value is `poison`. When the probe is down, `reset` restarts the app (scripts-skill) and `setup` runs again. A probe that a reset cannot bring back stops the dream with an error.
+4. **Dream.** Start the app with `scripts/start-all.sh`, then:
+   `node $DREAM dream --plan data-dream/plan.json --journal data-dream/journal.md [--memory <file>] [--cycles 5] [--max 60]`
+   The memory defaults to `~/.data-dream/<repo>/memory.json`, outside the repo, so the next night finds it on any branch. Stop the app with `scripts/stop-all.sh`.
+5. **Read the journal.** Crashes, hangs, poisons and changed values are found by the script. Judge the rest yourself from the accepted values and the code: wrong results (money that does not add up, a date on the wrong day) and silent accepts (negative prices, duplicates, 1 MB names).
+6. **Prove each finding.** One test per root cause, next to the existing tests, using the values the journal recorded, including the dreamed ones. A test that only uses the catalog value lets a partial fix pass; add the dreamed values that outlived a fix. Run it, see it fail for the reason in the finding.
+7. **Next night.** Run step 4 again after the user fixed something. The replay shows what healed and what recurs.
+
+`dream.mjs seeds` and `dream.mjs fire` still exist to fire one seed file at one input by hand.
 
 ## Output
 
 On the branch `data-dream/<date>`, committed:
 
+* `data-dream/journal.md` and `data-dream/dream-chart.svg`, the dream of every night.
+* `data-dream/plan.json`.
 * `data-dream/report.md` with the counts by verdict and one section per finding: id `DD1`, `DD2`..., the surface `file:line`, the seeds that hit it, what happened, what should happen, why it matters, the test file and its real failure output.
 * `data-dream/domain-seeds.json`.
 * The failing tests. The branch is red on purpose: each red test is a bug waiting for a fix. The report lists the command that runs only them.

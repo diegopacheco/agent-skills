@@ -71,12 +71,14 @@ test("DD8 order totals round half up to the cent and keep every cent", () => {
   assert.equal(store.addOrder({ userId: 1, price: 1.005, qty: 1, createdAt: "2026-11-20T10:00:00Z" }).total, 1.01);
 });
 
-test("DD9 one order without a valid createdAt cannot take down revenue for every day", async () => {
-  const store = withUser();
-  try {
-    store.addOrder({ userId: 1, price: 10, qty: 1 });
-  } catch {}
-  assert.doesNotThrow(() => store.dailyRevenue("2026-11-20"));
+test("DD9 one order without a valid createdAt cannot take down revenue for every day", () => {
+  for (const createdAt of [undefined, null, {}, true, -1, 1717243200000]) {
+    const store = withUser();
+    try {
+      store.addOrder({ userId: 1, price: 10, qty: 1, createdAt });
+    } catch {}
+    assert.doesNotThrow(() => store.dailyRevenue("2026-11-20"), `createdAt ${JSON.stringify(createdAt)}`);
+  }
 });
 
 test("DD10 createdAt is a real instant and revenue days are UTC days", () => {

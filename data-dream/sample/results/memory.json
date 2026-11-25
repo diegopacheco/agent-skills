@@ -1,0 +1,4802 @@
+{
+  "nights": [
+    {
+      "night": 1,
+      "date": "2026-11-24",
+      "cycles": [
+        {
+          "cycle": 1,
+          "from": "catalog and domain seeds",
+          "fired": 300,
+          "nightmares": 45,
+          "newKinds": 16,
+          "healed": 0
+        },
+        {
+          "cycle": 2,
+          "from": "dreamed from cycle 1",
+          "fired": 187,
+          "nightmares": 97,
+          "newKinds": 2,
+          "healed": 0
+        },
+        {
+          "cycle": 3,
+          "from": "dreamed from cycle 2",
+          "fired": 285,
+          "nightmares": 68,
+          "newKinds": 0,
+          "healed": 0
+        }
+      ],
+      "woke": "no new kind of nightmare in cycle 3"
+    },
+    {
+      "night": 2,
+      "date": "2026-11-24",
+      "cycles": [
+        {
+          "cycle": 0,
+          "from": "replay of earlier nights",
+          "fired": 207,
+          "nightmares": 82,
+          "newKinds": 0,
+          "healed": 125
+        },
+        {
+          "cycle": 1,
+          "from": "catalog and domain seeds",
+          "fired": 256,
+          "nightmares": 0,
+          "newKinds": 0,
+          "healed": 0
+        },
+        {
+          "cycle": 2,
+          "from": "dreamed from cycle 1",
+          "fired": 210,
+          "nightmares": 10,
+          "newKinds": 0,
+          "healed": 0
+        }
+      ],
+      "woke": "no new kind of nightmare in cycle 2"
+    }
+  ],
+  "nightmares": [
+    {
+      "id": "n1.size-7@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "length": 48891,
+      "seed": "size-7",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": true,
+      "seen": [
+        1
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.size-8@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+      "length": 2000,
+      "seed": "size-8",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.numbers-3@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "-1",
+      "length": 2,
+      "seed": "numbers-3",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": true,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.numbers-4@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "2147483647",
+      "length": 10,
+      "seed": "numbers-4",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.numbers-5@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "2147483648",
+      "length": 10,
+      "seed": "numbers-5",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.numbers-6@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "9007199254740993",
+      "length": 16,
+      "seed": "numbers-6",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.numbers-7@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "9223372036854775808",
+      "length": 19,
+      "seed": "numbers-7",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.numbers-8@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "1e309",
+      "length": 5,
+      "seed": "numbers-8",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.numbers-9@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "0.1",
+      "length": 3,
+      "seed": "numbers-9",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.numbers-10@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "1e-7",
+      "length": 4,
+      "seed": "numbers-10",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.numbers-11@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "NaN",
+      "length": 3,
+      "seed": "numbers-11",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 invalid",
+      "founder": true,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.numbers-12@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "Infinity",
+      "length": 8,
+      "seed": "numbers-12",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.time-16@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "1717243200000",
+      "length": 13,
+      "seed": "time-16",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.empty-7@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "[]",
+      "length": 2,
+      "seed": "empty-7",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.empty-8@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "{}",
+      "length": 2,
+      "seed": "empty-8",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 object",
+      "founder": true,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.money-2@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "0.005",
+      "length": 5,
+      "seed": "money-2",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.money-3@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "2.675",
+      "length": 5,
+      "seed": "money-3",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.money-4@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "-10.00",
+      "length": 6,
+      "seed": "money-4",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.money-6@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "0.001",
+      "length": 5,
+      "seed": "money-6",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.money-7@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "99999999999999.99",
+      "length": 17,
+      "seed": "money-7",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.money-12@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "33.33",
+      "length": 5,
+      "seed": "money-12",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.structure-2@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "[{}]",
+      "length": 4,
+      "seed": "structure-2",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.structure-3@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "{\"a\":1,\"a\":2}",
+      "length": 13,
+      "seed": "structure-3",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 object",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.structure-4@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "{\"__proto__\":{\"admin\":true}}",
+      "length": 28,
+      "seed": "structure-4",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 object",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.structure-5@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "{\"id\":1,\"extra\":\"field\"}",
+      "length": 24,
+      "seed": "structure-5",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 object",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.structure-6@user-name",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-name",
+      "raw": "{",
+      "length": 1,
+      "seed": "structure-6",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.size-8@user-search",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-search",
+      "raw": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+      "length": 2000,
+      "seed": "size-8",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 array",
+      "founder": true,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.empty-8@user-search",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-search",
+      "raw": "{}",
+      "length": 2,
+      "seed": "empty-8",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 object",
+      "founder": true,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.text-2@user-search",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-search",
+      "raw": "\"Robert'); DROP TABLE students;--\"",
+      "length": 34,
+      "seed": "text-2",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": true,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.text-6@user-search",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-search",
+      "raw": "\"${7*7}\"",
+      "length": 8,
+      "seed": "text-6",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.identity-5@user-search",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-search",
+      "raw": "\"+1 (555) 010-0000\"",
+      "length": 19,
+      "seed": "identity-5",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.structure-3@user-search",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-search",
+      "raw": "{\"a\":1,\"a\":2}",
+      "length": 13,
+      "seed": "structure-3",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 object",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.structure-4@user-search",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-search",
+      "raw": "{\"__proto__\":{\"admin\":true}}",
+      "length": 28,
+      "seed": "structure-4",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 object",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.structure-5@user-search",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-search",
+      "raw": "{\"id\":1,\"extra\":\"field\"}",
+      "length": 24,
+      "seed": "structure-5",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 object",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.structure-6@user-search",
+      "night": 1,
+      "cycle": 1,
+      "target": "user-search",
+      "raw": "{",
+      "length": 1,
+      "seed": "structure-6",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 invalid",
+      "founder": true,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.numbers-8@order-price",
+      "night": 1,
+      "cycle": 1,
+      "target": "order-price",
+      "raw": "1e309",
+      "length": 5,
+      "seed": "numbers-8",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "changed",
+      "status": 201,
+      "kind": "order-price changed 201 number",
+      "founder": true,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.numbers-11@order-price",
+      "night": 1,
+      "cycle": 1,
+      "target": "order-price",
+      "raw": "NaN",
+      "length": 3,
+      "seed": "numbers-11",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-price crash 500 invalid",
+      "founder": true,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.numbers-12@order-price",
+      "night": 1,
+      "cycle": 1,
+      "target": "order-price",
+      "raw": "Infinity",
+      "length": 8,
+      "seed": "numbers-12",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-price crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.numbers-11@order-qty",
+      "night": 1,
+      "cycle": 1,
+      "target": "order-qty",
+      "raw": "NaN",
+      "length": 3,
+      "seed": "numbers-11",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-qty crash 500 invalid",
+      "founder": true,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.numbers-12@order-qty",
+      "night": 1,
+      "cycle": 1,
+      "target": "order-qty",
+      "raw": "Infinity",
+      "length": 8,
+      "seed": "numbers-12",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-qty crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.time-16@order-date",
+      "night": 1,
+      "cycle": 1,
+      "target": "order-date",
+      "raw": "1717243200000",
+      "length": 13,
+      "seed": "time-16",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": true,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.empty-1@order-date",
+      "night": 1,
+      "cycle": 1,
+      "target": "order-date",
+      "raw": "null",
+      "length": 4,
+      "seed": "empty-1",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 null",
+      "founder": true,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.empty-8@order-date",
+      "night": 1,
+      "cycle": 1,
+      "target": "order-date",
+      "raw": "{}",
+      "length": 2,
+      "seed": "empty-8",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 object",
+      "founder": true,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.empty-9@order-date",
+      "night": 1,
+      "cycle": 1,
+      "target": "order-date",
+      "raw": "false",
+      "length": 5,
+      "seed": "empty-9",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 boolean",
+      "founder": true,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.empty-10@order-date",
+      "night": 1,
+      "cycle": 1,
+      "target": "order-date",
+      "raw": null,
+      "length": 0,
+      "seed": "empty-10",
+      "op": "catalog",
+      "parents": [],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 missing",
+      "founder": true,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-2@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "length": 48893,
+      "seed": "c2-2",
+      "op": "nested",
+      "parents": [
+        "n1.size-7@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-5@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+      "length": 2002,
+      "seed": "c2-5",
+      "op": "nested",
+      "parents": [
+        "n1.size-8@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-6@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+      "length": 1998,
+      "seed": "c2-6",
+      "op": "first",
+      "parents": [
+        "n1.size-8@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-7@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "1",
+      "length": 1,
+      "seed": "c2-7",
+      "op": "negate",
+      "parents": [
+        "n1.numbers-3@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-8@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "-0.001",
+      "length": 6,
+      "seed": "c2-8",
+      "op": "tiny",
+      "parents": [
+        "n1.numbers-3@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-9@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "-1000000",
+      "length": 8,
+      "seed": "c2-9",
+      "op": "huge",
+      "parents": [
+        "n1.numbers-3@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-11@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "[-1]",
+      "length": 4,
+      "seed": "c2-11",
+      "op": "in-list",
+      "parents": [
+        "n1.numbers-3@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-12@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "-2147483647",
+      "length": 11,
+      "seed": "c2-12",
+      "op": "negate",
+      "parents": [
+        "n1.numbers-4@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-13@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "2147483.647",
+      "length": 11,
+      "seed": "c2-13",
+      "op": "tiny",
+      "parents": [
+        "n1.numbers-4@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-14@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "2147483647000000",
+      "length": 16,
+      "seed": "c2-14",
+      "op": "huge",
+      "parents": [
+        "n1.numbers-4@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-16@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "[2147483647]",
+      "length": 12,
+      "seed": "c2-16",
+      "op": "in-list",
+      "parents": [
+        "n1.numbers-4@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-17@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "-2147483648",
+      "length": 11,
+      "seed": "c2-17",
+      "op": "negate",
+      "parents": [
+        "n1.numbers-5@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-18@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "2147483.648",
+      "length": 11,
+      "seed": "c2-18",
+      "op": "tiny",
+      "parents": [
+        "n1.numbers-5@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-19@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "2147483648000000",
+      "length": 16,
+      "seed": "c2-19",
+      "op": "huge",
+      "parents": [
+        "n1.numbers-5@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-21@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "[2147483648]",
+      "length": 12,
+      "seed": "c2-21",
+      "op": "in-list",
+      "parents": [
+        "n1.numbers-5@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-22@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "-9007199254740992",
+      "length": 17,
+      "seed": "c2-22",
+      "op": "negate",
+      "parents": [
+        "n1.numbers-6@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-23@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "9007199254740.992",
+      "length": 17,
+      "seed": "c2-23",
+      "op": "tiny",
+      "parents": [
+        "n1.numbers-6@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-24@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "9.007199254740992e+21",
+      "length": 21,
+      "seed": "c2-24",
+      "op": "huge",
+      "parents": [
+        "n1.numbers-6@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-26@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "[9007199254740992]",
+      "length": 18,
+      "seed": "c2-26",
+      "op": "in-list",
+      "parents": [
+        "n1.numbers-6@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-27@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "-9223372036854776000",
+      "length": 20,
+      "seed": "c2-27",
+      "op": "negate",
+      "parents": [
+        "n1.numbers-7@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-28@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "9223372036854776",
+      "length": 16,
+      "seed": "c2-28",
+      "op": "tiny",
+      "parents": [
+        "n1.numbers-7@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-29@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "9.223372036854776e+24",
+      "length": 21,
+      "seed": "c2-29",
+      "op": "huge",
+      "parents": [
+        "n1.numbers-7@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-31@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "[9223372036854776000]",
+      "length": 21,
+      "seed": "c2-31",
+      "op": "in-list",
+      "parents": [
+        "n1.numbers-7@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-36@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "[null]",
+      "length": 6,
+      "seed": "c2-36",
+      "op": "in-list",
+      "parents": [
+        "n1.numbers-8@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-37@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "-0.1",
+      "length": 4,
+      "seed": "c2-37",
+      "op": "negate",
+      "parents": [
+        "n1.numbers-9@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-38@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "0.0001",
+      "length": 6,
+      "seed": "c2-38",
+      "op": "tiny",
+      "parents": [
+        "n1.numbers-9@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-39@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "100000",
+      "length": 6,
+      "seed": "c2-39",
+      "op": "huge",
+      "parents": [
+        "n1.numbers-9@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-41@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "[0.1]",
+      "length": 5,
+      "seed": "c2-41",
+      "op": "in-list",
+      "parents": [
+        "n1.numbers-9@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-42@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "-1e-7",
+      "length": 5,
+      "seed": "c2-42",
+      "op": "negate",
+      "parents": [
+        "n1.numbers-10@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-43@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "9.999999999999999e-11",
+      "length": 21,
+      "seed": "c2-43",
+      "op": "tiny",
+      "parents": [
+        "n1.numbers-10@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-44@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "0.09999999999999999",
+      "length": 19,
+      "seed": "c2-44",
+      "op": "huge",
+      "parents": [
+        "n1.numbers-10@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-46@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "[1e-7]",
+      "length": 6,
+      "seed": "c2-46",
+      "op": "in-list",
+      "parents": [
+        "n1.numbers-10@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-47@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "NaNNaN",
+      "length": 6,
+      "seed": "c2-47",
+      "op": "doubled",
+      "parents": [
+        "n1.numbers-11@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-48@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "Na",
+      "length": 2,
+      "seed": "c2-48",
+      "op": "cut",
+      "parents": [
+        "n1.numbers-11@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-50@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "InfinityInfinity",
+      "length": 16,
+      "seed": "c2-50",
+      "op": "doubled",
+      "parents": [
+        "n1.numbers-12@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-51@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "Infinit",
+      "length": 7,
+      "seed": "c2-51",
+      "op": "cut",
+      "parents": [
+        "n1.numbers-12@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-53@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "-1717243200000",
+      "length": 14,
+      "seed": "c2-53",
+      "op": "negate",
+      "parents": [
+        "n1.time-16@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-54@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "1717243200",
+      "length": 10,
+      "seed": "c2-54",
+      "op": "tiny",
+      "parents": [
+        "n1.time-16@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-55@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "1717243200000000000",
+      "length": 19,
+      "seed": "c2-55",
+      "op": "huge",
+      "parents": [
+        "n1.time-16@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-57@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "[1717243200000]",
+      "length": 15,
+      "seed": "c2-57",
+      "op": "in-list",
+      "parents": [
+        "n1.time-16@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-58@user-name",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-name",
+      "raw": "[[]]",
+      "length": 4,
+      "seed": "c2-58",
+      "op": "nested",
+      "parents": [
+        "n1.empty-7@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-71@user-email",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-email",
+      "raw": "NaN",
+      "length": 3,
+      "seed": "c2-71",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.numbers-11@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-email crash 500 invalid",
+      "founder": true,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-72@user-email",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-email",
+      "raw": "Infinity",
+      "length": 8,
+      "seed": "c2-72",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.numbers-12@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-email crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-86@user-email",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-email",
+      "raw": "{",
+      "length": 1,
+      "seed": "c2-86",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.structure-6@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-email crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-133@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+      "length": 2002,
+      "seed": "c2-133",
+      "op": "nested",
+      "parents": [
+        "n1.size-8@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 array",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-134@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+      "length": 1998,
+      "seed": "c2-134",
+      "op": "first",
+      "parents": [
+        "n1.size-8@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 array",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-136@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"{}\"",
+      "length": 4,
+      "seed": "c2-136",
+      "op": "as-text",
+      "parents": [
+        "n1.empty-8@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-137@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"Robert'); DROP TABLE students;--Robert'); DROP TABLE students;--\"",
+      "length": 66,
+      "seed": "c2-137",
+      "op": "doubled",
+      "parents": [
+        "n1.text-2@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-138@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"ROBERT'); DROP TABLE STUDENTS;--\"",
+      "length": 34,
+      "seed": "c2-138",
+      "op": "upper",
+      "parents": [
+        "n1.text-2@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-139@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\" Robert'); DROP TABLE students;-- \"",
+      "length": 36,
+      "seed": "c2-139",
+      "op": "padded",
+      "parents": [
+        "n1.text-2@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-140@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"Robert'); DROP T\"",
+      "length": 18,
+      "seed": "c2-140",
+      "op": "half",
+      "parents": [
+        "n1.text-2@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-141@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "[\"Robert'); DROP TABLE students;--\"]",
+      "length": 36,
+      "seed": "c2-141",
+      "op": "in-list",
+      "parents": [
+        "n1.text-2@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 array",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-142@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"${7*7}${7*7}\"",
+      "length": 14,
+      "seed": "c2-142",
+      "op": "doubled",
+      "parents": [
+        "n1.text-6@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-143@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\" ${7*7} \"",
+      "length": 10,
+      "seed": "c2-143",
+      "op": "padded",
+      "parents": [
+        "n1.text-6@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-144@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"${7\"",
+      "length": 5,
+      "seed": "c2-144",
+      "op": "half",
+      "parents": [
+        "n1.text-6@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-146@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"+1 (555) 010-0000+1 (555) 010-0000\"",
+      "length": 36,
+      "seed": "c2-146",
+      "op": "doubled",
+      "parents": [
+        "n1.identity-5@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-148@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"+1 (555) \"",
+      "length": 11,
+      "seed": "c2-148",
+      "op": "half",
+      "parents": [
+        "n1.identity-5@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-152@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"{\\\"a\\\":2}\"",
+      "length": 11,
+      "seed": "c2-152",
+      "op": "as-text",
+      "parents": [
+        "n1.structure-3@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-155@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"{\\\"__proto__\\\":{\\\"admin\\\":true}}\"",
+      "length": 34,
+      "seed": "c2-155",
+      "op": "as-text",
+      "parents": [
+        "n1.structure-4@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-158@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"{\\\"id\\\":1,\\\"extra\\\":\\\"field\\\"}\"",
+      "length": 32,
+      "seed": "c2-158",
+      "op": "as-text",
+      "parents": [
+        "n1.structure-5@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-159@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "{{",
+      "length": 2,
+      "seed": "c2-159",
+      "op": "doubled",
+      "parents": [
+        "n1.structure-6@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-160@user-search",
+      "night": 1,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"{\"",
+      "length": 3,
+      "seed": "c2-160",
+      "op": "quoted",
+      "parents": [
+        "n1.structure-6@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-191@order-price",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-price",
+      "raw": "{",
+      "length": 1,
+      "seed": "c2-191",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.structure-6@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-price crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-206@order-price",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-price",
+      "raw": "NaNNaN",
+      "length": 6,
+      "seed": "c2-206",
+      "op": "doubled",
+      "parents": [
+        "n1.numbers-11@order-price"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-price crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-207@order-price",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-price",
+      "raw": "Na",
+      "length": 2,
+      "seed": "c2-207",
+      "op": "cut",
+      "parents": [
+        "n1.numbers-11@order-price"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-price crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-209@order-price",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-price",
+      "raw": "InfinityInfinity",
+      "length": 16,
+      "seed": "c2-209",
+      "op": "doubled",
+      "parents": [
+        "n1.numbers-12@order-price"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-price crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-210@order-price",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-price",
+      "raw": "Infinit",
+      "length": 7,
+      "seed": "c2-210",
+      "op": "cut",
+      "parents": [
+        "n1.numbers-12@order-price"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-price crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-244@order-qty",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-qty",
+      "raw": "{",
+      "length": 1,
+      "seed": "c2-244",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.structure-6@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-qty crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-257@order-qty",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-qty",
+      "raw": "NaNNaN",
+      "length": 6,
+      "seed": "c2-257",
+      "op": "doubled",
+      "parents": [
+        "n1.numbers-11@order-qty"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-qty crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-258@order-qty",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-qty",
+      "raw": "Na",
+      "length": 2,
+      "seed": "c2-258",
+      "op": "cut",
+      "parents": [
+        "n1.numbers-11@order-qty"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-qty crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-260@order-qty",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-qty",
+      "raw": "InfinityInfinity",
+      "length": 16,
+      "seed": "c2-260",
+      "op": "doubled",
+      "parents": [
+        "n1.numbers-12@order-qty"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-qty crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-261@order-qty",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-qty",
+      "raw": "Infinit",
+      "length": 7,
+      "seed": "c2-261",
+      "op": "cut",
+      "parents": [
+        "n1.numbers-12@order-qty"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-qty crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-270@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "-1",
+      "length": 2,
+      "seed": "c2-270",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.numbers-3@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-271@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "2147483647",
+      "length": 10,
+      "seed": "c2-271",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.numbers-4@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-272@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "2147483648",
+      "length": 10,
+      "seed": "c2-272",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.numbers-5@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-273@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "9007199254740993",
+      "length": 16,
+      "seed": "c2-273",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.numbers-6@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-274@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "9223372036854775808",
+      "length": 19,
+      "seed": "c2-274",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.numbers-7@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-275@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "1e309",
+      "length": 5,
+      "seed": "c2-275",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.numbers-8@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-276@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "0.1",
+      "length": 3,
+      "seed": "c2-276",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.numbers-9@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-277@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "1e-7",
+      "length": 4,
+      "seed": "c2-277",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.numbers-10@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-278@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "NaN",
+      "length": 3,
+      "seed": "c2-278",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.numbers-11@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-date crash 500 invalid",
+      "founder": true,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-279@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "Infinity",
+      "length": 8,
+      "seed": "c2-279",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.numbers-12@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-date crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-283@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "0.005",
+      "length": 5,
+      "seed": "c2-283",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.money-2@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-284@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "2.675",
+      "length": 5,
+      "seed": "c2-284",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.money-3@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-285@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "-10.00",
+      "length": 6,
+      "seed": "c2-285",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.money-4@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-286@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "0.001",
+      "length": 5,
+      "seed": "c2-286",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.money-6@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-287@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "99999999999999.99",
+      "length": 17,
+      "seed": "c2-287",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.money-7@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-288@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "33.33",
+      "length": 5,
+      "seed": "c2-288",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.money-12@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-290@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "{\"a\":1,\"a\":2}",
+      "length": 13,
+      "seed": "c2-290",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.structure-3@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 object",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-291@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "{\"__proto__\":{\"admin\":true}}",
+      "length": 28,
+      "seed": "c2-291",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.structure-4@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 object",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-292@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "{\"id\":1,\"extra\":\"field\"}",
+      "length": 24,
+      "seed": "c2-292",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.structure-5@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 object",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-293@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "{",
+      "length": 1,
+      "seed": "c2-293",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.structure-6@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-date crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-308@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "-1717243200000",
+      "length": 14,
+      "seed": "c2-308",
+      "op": "negate",
+      "parents": [
+        "n1.time-16@order-date"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-309@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "1717243200",
+      "length": 10,
+      "seed": "c2-309",
+      "op": "tiny",
+      "parents": [
+        "n1.time-16@order-date"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-310@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "1717243200000000000",
+      "length": 19,
+      "seed": "c2-310",
+      "op": "huge",
+      "parents": [
+        "n1.time-16@order-date"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c2-314@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "0",
+      "length": 1,
+      "seed": "c2-314",
+      "op": "zero",
+      "parents": [
+        "n1.empty-1@order-date"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c2-318@order-date",
+      "night": 1,
+      "cycle": 2,
+      "target": "order-date",
+      "raw": "true",
+      "length": 4,
+      "seed": "c2-318",
+      "op": "flipped",
+      "parents": [
+        "n1.empty-9@order-date"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 boolean",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-2@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "length": 48895,
+      "seed": "c3-2",
+      "op": "nested",
+      "parents": [
+        "n1.c2-2@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-5@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+      "length": 2004,
+      "seed": "c3-5",
+      "op": "nested",
+      "parents": [
+        "n1.c2-5@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-9@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+      "length": 1996,
+      "seed": "c3-9",
+      "op": "first",
+      "parents": [
+        "n1.c2-6@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-12@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "1000000",
+      "length": 7,
+      "seed": "c3-12",
+      "op": "huge",
+      "parents": [
+        "n1.c2-7@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-14@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "[1]",
+      "length": 3,
+      "seed": "c3-14",
+      "op": "in-list",
+      "parents": [
+        "n1.c2-7@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-16@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "-0.000001",
+      "length": 9,
+      "seed": "c3-16",
+      "op": "tiny",
+      "parents": [
+        "n1.c2-8@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-17@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "-1000",
+      "length": 5,
+      "seed": "c3-17",
+      "op": "huge",
+      "parents": [
+        "n1.c2-8@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-19@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "[-0.001]",
+      "length": 8,
+      "seed": "c3-19",
+      "op": "in-list",
+      "parents": [
+        "n1.c2-8@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-22@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "-1000000000000",
+      "length": 14,
+      "seed": "c3-22",
+      "op": "huge",
+      "parents": [
+        "n1.c2-9@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-24@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "[-1000000]",
+      "length": 10,
+      "seed": "c3-24",
+      "op": "in-list",
+      "parents": [
+        "n1.c2-9@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-26@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "[[-1]]",
+      "length": 6,
+      "seed": "c3-26",
+      "op": "nested",
+      "parents": [
+        "n1.c2-11@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-29@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "-2147483.647",
+      "length": 12,
+      "seed": "c3-29",
+      "op": "tiny",
+      "parents": [
+        "n1.c2-12@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-30@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "-2147483647000000",
+      "length": 17,
+      "seed": "c3-30",
+      "op": "huge",
+      "parents": [
+        "n1.c2-12@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-32@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "[-2147483647]",
+      "length": 13,
+      "seed": "c3-32",
+      "op": "in-list",
+      "parents": [
+        "n1.c2-12@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-34@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "2147.483647",
+      "length": 11,
+      "seed": "c3-34",
+      "op": "tiny",
+      "parents": [
+        "n1.c2-13@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-35@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "2147483647000",
+      "length": 13,
+      "seed": "c3-35",
+      "op": "huge",
+      "parents": [
+        "n1.c2-13@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-37@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "[2147483.647]",
+      "length": 13,
+      "seed": "c3-37",
+      "op": "in-list",
+      "parents": [
+        "n1.c2-13@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-40@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "2.147483647e+21",
+      "length": 15,
+      "seed": "c3-40",
+      "op": "huge",
+      "parents": [
+        "n1.c2-14@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-42@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "[2147483647000000]",
+      "length": 18,
+      "seed": "c3-42",
+      "op": "in-list",
+      "parents": [
+        "n1.c2-14@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-44@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "[[2147483647]]",
+      "length": 14,
+      "seed": "c3-44",
+      "op": "nested",
+      "parents": [
+        "n1.c2-16@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-47@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "-2147483.648",
+      "length": 12,
+      "seed": "c3-47",
+      "op": "tiny",
+      "parents": [
+        "n1.c2-17@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-48@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "-2147483648000000",
+      "length": 17,
+      "seed": "c3-48",
+      "op": "huge",
+      "parents": [
+        "n1.c2-17@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-50@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "[-2147483648]",
+      "length": 13,
+      "seed": "c3-50",
+      "op": "in-list",
+      "parents": [
+        "n1.c2-17@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-52@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "2147.483648",
+      "length": 11,
+      "seed": "c3-52",
+      "op": "tiny",
+      "parents": [
+        "n1.c2-18@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-53@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "2147483648000",
+      "length": 13,
+      "seed": "c3-53",
+      "op": "huge",
+      "parents": [
+        "n1.c2-18@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-55@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "[2147483.648]",
+      "length": 13,
+      "seed": "c3-55",
+      "op": "in-list",
+      "parents": [
+        "n1.c2-18@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-58@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "2.147483648e+21",
+      "length": 15,
+      "seed": "c3-58",
+      "op": "huge",
+      "parents": [
+        "n1.c2-19@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 number",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-60@user-name",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-name",
+      "raw": "[2147483648000000]",
+      "length": 18,
+      "seed": "c3-60",
+      "op": "in-list",
+      "parents": [
+        "n1.c2-19@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-name crash 500 array",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-93@user-email",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-email",
+      "raw": "NaNNaN",
+      "length": 6,
+      "seed": "c3-93",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-47@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-email crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-94@user-email",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-email",
+      "raw": "Na",
+      "length": 2,
+      "seed": "c3-94",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-48@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-email crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-95@user-email",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-email",
+      "raw": "InfinityInfinity",
+      "length": 16,
+      "seed": "c3-95",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-50@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-email crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-96@user-email",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-email",
+      "raw": "Infinit",
+      "length": 7,
+      "seed": "c3-96",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-51@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-email crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-108@user-email",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-email",
+      "raw": "{{",
+      "length": 2,
+      "seed": "c3-108",
+      "op": "doubled",
+      "parents": [
+        "n1.c2-86@user-email"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-email crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-152@user-search",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-search",
+      "raw": "[1e-7]",
+      "length": 6,
+      "seed": "c3-152",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-46@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 array",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-161@user-search",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-search",
+      "raw": "[[]]",
+      "length": 4,
+      "seed": "c3-161",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-58@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 array",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-166@user-search",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-search",
+      "raw": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+      "length": 2004,
+      "seed": "c3-166",
+      "op": "nested",
+      "parents": [
+        "n1.c2-133@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 array",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-170@user-search",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-search",
+      "raw": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+      "length": 1996,
+      "seed": "c3-170",
+      "op": "first",
+      "parents": [
+        "n1.c2-134@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 array",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-171@user-search",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-search",
+      "raw": "\"{}{}\"",
+      "length": 6,
+      "seed": "c3-171",
+      "op": "doubled",
+      "parents": [
+        "n1.c2-136@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-172@user-search",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-search",
+      "raw": "\" {} \"",
+      "length": 6,
+      "seed": "c3-172",
+      "op": "padded",
+      "parents": [
+        "n1.c2-136@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-175@user-search",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-search",
+      "raw": "\"Robert'); DROP TABLE students;--Robert'); DROP TABLE students;--Robert'); DROP TABLE students;--Robert'); DROP TABLE students;--\"",
+      "length": 130,
+      "seed": "c3-175",
+      "op": "doubled",
+      "parents": [
+        "n1.c2-137@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-176@user-search",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-search",
+      "raw": "\"ROBERT'); DROP TABLE STUDENTS;--ROBERT'); DROP TABLE STUDENTS;--\"",
+      "length": 66,
+      "seed": "c3-176",
+      "op": "upper",
+      "parents": [
+        "n1.c2-137@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-177@user-search",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-search",
+      "raw": "\" Robert'); DROP TABLE students;--Robert'); DROP TABLE students;-- \"",
+      "length": 68,
+      "seed": "c3-177",
+      "op": "padded",
+      "parents": [
+        "n1.c2-137@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-179@user-search",
+      "night": 1,
+      "cycle": 3,
+      "target": "user-search",
+      "raw": "[\"Robert'); DROP TABLE students;--Robert'); DROP TABLE students;--\"]",
+      "length": 68,
+      "seed": "c3-179",
+      "op": "in-list",
+      "parents": [
+        "n1.c2-137@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 array",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-304@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "1",
+      "length": 1,
+      "seed": "c3-304",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-7@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-305@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "-0.001",
+      "length": 6,
+      "seed": "c3-305",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-8@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-306@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "-1000000",
+      "length": 8,
+      "seed": "c3-306",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-9@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-308@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "-2147483647",
+      "length": 11,
+      "seed": "c3-308",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-12@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-309@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "2147483.647",
+      "length": 11,
+      "seed": "c3-309",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-13@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-310@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "2147483647000000",
+      "length": 16,
+      "seed": "c3-310",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-14@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-312@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "-2147483648",
+      "length": 11,
+      "seed": "c3-312",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-17@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-313@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "2147483.648",
+      "length": 11,
+      "seed": "c3-313",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-18@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-314@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "2147483648000000",
+      "length": 16,
+      "seed": "c3-314",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-19@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-316@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "-9007199254740992",
+      "length": 17,
+      "seed": "c3-316",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-22@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-317@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "9007199254740.992",
+      "length": 17,
+      "seed": "c3-317",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-23@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-318@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "9.007199254740992e+21",
+      "length": 21,
+      "seed": "c3-318",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-24@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-320@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "-9223372036854776000",
+      "length": 20,
+      "seed": "c3-320",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-27@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-321@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "9223372036854776",
+      "length": 16,
+      "seed": "c3-321",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-28@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-322@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "9.223372036854776e+24",
+      "length": 21,
+      "seed": "c3-322",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-29@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-325@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "-0.1",
+      "length": 4,
+      "seed": "c3-325",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-37@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-326@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "0.0001",
+      "length": 6,
+      "seed": "c3-326",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-38@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-327@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "100000",
+      "length": 6,
+      "seed": "c3-327",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-39@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-329@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "-1e-7",
+      "length": 5,
+      "seed": "c3-329",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-42@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-330@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "9.999999999999999e-11",
+      "length": 21,
+      "seed": "c3-330",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-43@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-331@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "0.09999999999999999",
+      "length": 19,
+      "seed": "c3-331",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-44@user-name"
+      ],
+      "verdict": "poison",
+      "status": 201,
+      "kind": "order-date poison 201 number",
+      "founder": false,
+      "seen": [
+        1,
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n1.c3-333@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "NaNNaN",
+      "length": 6,
+      "seed": "c3-333",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-47@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-date crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-334@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "Na",
+      "length": 2,
+      "seed": "c3-334",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-48@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-date crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-335@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "InfinityInfinity",
+      "length": 16,
+      "seed": "c3-335",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-50@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-date crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n1.c3-336@order-date",
+      "night": 1,
+      "cycle": 3,
+      "target": "order-date",
+      "raw": "Infinit",
+      "length": 7,
+      "seed": "c3-336",
+      "op": "transplant from user-name",
+      "parents": [
+        "n1.c2-51@user-name"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "order-date crash 500 invalid",
+      "founder": false,
+      "seen": [
+        1
+      ],
+      "healed": 2,
+      "healedAs": "rejected"
+    },
+    {
+      "id": "n2.c2-169@user-search",
+      "night": 2,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\" ROBERT'); DROP TABLE STUDENTS;-- \"",
+      "length": 36,
+      "seed": "c2-169",
+      "op": "padded",
+      "parents": [
+        "n1.c2-138@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n2.c2-170@user-search",
+      "night": 2,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"ROBERT'); DROP T\"",
+      "length": 18,
+      "seed": "c2-170",
+      "op": "half",
+      "parents": [
+        "n1.c2-138@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n2.c2-171@user-search",
+      "night": 2,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "[\"ROBERT'); DROP TABLE STUDENTS;--\"]",
+      "length": 36,
+      "seed": "c2-171",
+      "op": "in-list",
+      "parents": [
+        "n1.c2-138@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 array",
+      "founder": false,
+      "seen": [
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n2.c2-172@user-search",
+      "night": 2,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\" Robert'); DROP TABLE students;--  Robert'); DROP TABLE students;-- \"",
+      "length": 70,
+      "seed": "c2-172",
+      "op": "doubled",
+      "parents": [
+        "n1.c2-139@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n2.c2-174@user-search",
+      "night": 2,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"  Robert'); DROP TABLE students;--  \"",
+      "length": 38,
+      "seed": "c2-174",
+      "op": "padded",
+      "parents": [
+        "n1.c2-139@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n2.c2-175@user-search",
+      "night": 2,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\" Robert'); DROP T\"",
+      "length": 19,
+      "seed": "c2-175",
+      "op": "half",
+      "parents": [
+        "n1.c2-139@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n2.c2-176@user-search",
+      "night": 2,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "[\" Robert'); DROP TABLE students;-- \"]",
+      "length": 38,
+      "seed": "c2-176",
+      "op": "in-list",
+      "parents": [
+        "n1.c2-139@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 array",
+      "founder": false,
+      "seen": [
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n2.c2-177@user-search",
+      "night": 2,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"Robert'); DROP TRobert'); DROP T\"",
+      "length": 34,
+      "seed": "c2-177",
+      "op": "doubled",
+      "parents": [
+        "n1.c2-140@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n2.c2-179@user-search",
+      "night": 2,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\" Robert'); DROP T \"",
+      "length": 20,
+      "seed": "c2-179",
+      "op": "padded",
+      "parents": [
+        "n1.c2-140@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        2
+      ],
+      "healed": null
+    },
+    {
+      "id": "n2.c2-180@user-search",
+      "night": 2,
+      "cycle": 2,
+      "target": "user-search",
+      "raw": "\"Robert')\"",
+      "length": 10,
+      "seed": "c2-180",
+      "op": "half",
+      "parents": [
+        "n1.c2-140@user-search"
+      ],
+      "verdict": "crash",
+      "status": 500,
+      "kind": "user-search crash 500 string",
+      "founder": false,
+      "seen": [
+        2
+      ],
+      "healed": null
+    }
+  ]
+}

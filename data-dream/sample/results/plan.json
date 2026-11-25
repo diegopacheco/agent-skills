@@ -1,0 +1,68 @@
+{
+  "reset": "scripts/stop-all.sh > /dev/null && scripts/start-all.sh > /dev/null",
+  "setup": [
+    {
+      "method": "POST",
+      "url": "http://localhost:4170/users",
+      "body": "{\"name\":\"Owner\",\"email\":\"owner@shop.io\"}"
+    }
+  ],
+  "targets": [
+    {
+      "name": "user-name",
+      "url": "http://localhost:4170/users",
+      "template": "{\"name\":@@,\"email\":\"@@id@shop.io\"}",
+      "categories": "all"
+    },
+    {
+      "name": "user-email",
+      "url": "http://localhost:4170/users",
+      "template": "{\"name\":\"Ana\",\"email\":@@}",
+      "categories": "identity,empty,unicode",
+      "extra": [
+        "data-dream/domain-seeds.json"
+      ]
+    },
+    {
+      "name": "user-search",
+      "method": "GET",
+      "url": "http://localhost:4170/users?q=@@",
+      "categories": "all"
+    },
+    {
+      "name": "order-price",
+      "url": "http://localhost:4170/orders",
+      "template": "{\"userId\":1,\"price\":@@,\"qty\":1,\"createdAt\":\"2026-11-20T10:00:00Z\"}",
+      "categories": "numbers,money",
+      "echo": "price",
+      "probe": {
+        "method": "GET",
+        "url": "http://localhost:4170/revenue?day=2026-11-20"
+      }
+    },
+    {
+      "name": "order-qty",
+      "url": "http://localhost:4170/orders",
+      "template": "{\"userId\":1,\"price\":10,\"qty\":@@,\"createdAt\":\"2026-11-20T10:00:00Z\"}",
+      "categories": "numbers",
+      "extra": [
+        "data-dream/domain-seeds.json"
+      ],
+      "probe": {
+        "method": "GET",
+        "url": "http://localhost:4170/revenue?day=2026-11-20"
+      }
+    },
+    {
+      "name": "order-date",
+      "url": "http://localhost:4170/orders",
+      "template": "{\"userId\":1,\"price\":10,\"qty\":1,\"createdAt\":@@}",
+      "categories": "time,empty",
+      "echo": "createdAt",
+      "probe": {
+        "method": "GET",
+        "url": "http://localhost:4170/revenue?day=2026-11-20"
+      }
+    }
+  ]
+}

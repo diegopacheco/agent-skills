@@ -1,0 +1,44 @@
+diff --git a/src/app.mjs b/src/app.mjs
+index 5f62559..3ab3bef 100644
+--- a/src/app.mjs
++++ b/src/app.mjs
+@@ -5,7 +5,14 @@ export function createApp(store = createStore()) {
+   return createServer(async (req, res) => {
+     const url = new URL(req.url, "http://localhost");
+     try {
+-      const body = req.method === "POST" ? JSON.parse(await read(req)) : null;
++      let body = null;
++      if (req.method === "POST") {
++        try {
++          body = JSON.parse(await read(req));
++        } catch {
++          return send(res, 400, { error: "body must be valid JSON" });
++        }
++      }
+       if (req.method === "POST" && url.pathname === "/users") return send(res, 201, store.addUser(body));
+       if (req.method === "GET" && url.pathname === "/users") return send(res, 200, store.searchUsers(url.searchParams.get("q") ?? ""));
+       if (req.method === "POST" && url.pathname === "/orders") return send(res, 201, store.addOrder(body));
+diff --git a/src/store.mjs b/src/store.mjs
+index fb15aa8..ff39f3f 100644
+--- a/src/store.mjs
++++ b/src/store.mjs
+@@ -6,6 +6,9 @@ export function createStore() {
+     if (!name || !email) {
+       throw new ValidationError("name and email are required");
+     }
++    if (typeof name !== "string") {
++      throw new ValidationError("name must be text");
++    }
+     const clean = name.trim();
+     if (users.some((u) => u.email === email)) {
+       throw new ValidationError("email already registered");
+@@ -24,6 +27,9 @@ export function createStore() {
+     if (!users.some((u) => u.id === userId)) {
+       throw new ValidationError("unknown user");
+     }
++    if (!createdAt) {
++      throw new ValidationError("createdAt is required");
++    }
+     if (typeof price !== "number" || !Number.isInteger(qty) || qty < 1) {
+       throw new ValidationError("price must be a number and qty a positive integer");
+     }

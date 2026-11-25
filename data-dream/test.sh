@@ -35,7 +35,20 @@ cp "$ROOT/sample/results/data-dream.test.mjs" "$SAMPLE/test/"
 (cd "$SAMPLE" && node --test test/data-dream.test.mjs > "$TMP/dd.out" 2>&1) || true
 FINDINGS="$(grep -c "^## DD" "$ROOT/sample/results/report.md")"
 check "every finding in the sample report has a test that still fails against the sample ($FINDINGS findings)" '[ "$FINDINGS" = 10 ] && grep -q "^ℹ fail $FINDINGS$" "$TMP/dd.out" && grep -q "^ℹ pass 0$" "$TMP/dd.out"'
-check "the sample report has no local paths" '! grep -qE "/Users/|/home/|/private/" "$ROOT/sample/results/report.md" "$ROOT/sample/results/transcript.md"'
+cat > "$TMP/render.mjs" <<EOF
+import { readFileSync } from "node:fs";
+import { journal } from "$ROOT/scripts/dream.mjs";
+const memory = JSON.parse(readFileSync("$ROOT/sample/results/memory.json", "utf8"));
+process.stdout.write(journal(memory));
+EOF
+check "the sample journal is exactly what the sample memory renders" 'node "$TMP/render.mjs" | cmp -s - "$ROOT/sample/results/journal.md"'
+check "the sample memory holds two nights and night 2 replayed it first" 'node -e "const m=require(process.argv[1]);process.exit(m.nights.length===2&&m.nights[1].cycles[0].cycle===0&&m.nights[1].cycles[0].healed>0?0:1)" "$ROOT/sample/results/memory.json"'
+check "the sample journal shows the dreams that outlived the partial fix" 'grep -q "### Dreams that outlived a fix" "$ROOT/sample/results/journal.md" && grep -q "\`true\` on order-date ⟵ flipped ⟵ \`false\` on order-date" "$ROOT/sample/results/journal.md"'
+HALF="$TMP/half"
+cp -R "$SAMPLE" "$HALF"
+(cd "$HALF" && git init -q && git apply "$ROOT/sample/results/night-2-fixes.patch" && node --test --test-name-pattern=DD9 test/data-dream.test.mjs > "$TMP/half.out" 2>&1) || true
+check "the half fixed sample still fails DD9 on a value the partial fix lets through" 'grep -qE "Got unwanted exception: createdAt (\{\}|true|-1|1717243200000)$" "$TMP/half.out" && grep -q "^ℹ fail 1$" "$TMP/half.out"'
+check "the sample report has no local paths" '! grep -qE "/Users/|/home/|/private/" "$ROOT/sample/results/report.md" "$ROOT/sample/results/transcript.md" "$ROOT/sample/results/dream-transcript.md" "$ROOT/sample/results/journal.md" "$ROOT/sample/results/memory.json"'
 
 check "node tests pass" 'node --test "$ROOT/tests/dream.test.mjs" > "$TMP/node.out" 2>&1 || { cat "$TMP/node.out"; false; }'
 grep -E "^. (tests|pass|fail) " "$TMP/node.out" || true
