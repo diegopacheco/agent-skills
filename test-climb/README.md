@@ -4,6 +4,22 @@
 
 A skill for Claude Code and Codex that hill climbs test coverage one test at a time. Each step adds one test, proves the test can fail by breaking the production code on purpose, and is kept only if the suite stays green and coverage goes up. Anything else is reverted.
 
+## The hill climbing technique
+
+Hill climbing is the simplest search there is: stand somewhere, take one small step, keep it if you went up, undo it if you did not, and stop when no step goes up anymore. test-climb climbs coverage that way:
+
+| Hill climbing | In test-climb |
+|---|---|
+| Position | The test suite on the `test-climb/<date>` branch |
+| Height | The coverage percentage the project's own tool prints |
+| One step | One new test file, nothing else changes |
+| Valid step | The suite stays green and the new test kills a mutant, so it can fail when the logic breaks |
+| Uphill | Coverage strictly higher than the best so far: commit it |
+| Not uphill | Red suite or equal coverage: revert it |
+| Top | `--patience` steps in a row without gain, or 100% |
+
+Greedy and one step at a time on purpose: every commit is a small, reviewable test that made the number go up, and nothing that did not survives on the branch.
+
 ## How it Works
 
 1. `climb.sh init` checks for a clean tree and a green suite, creates the branch `test-climb/<date>` and measures the baseline coverage.

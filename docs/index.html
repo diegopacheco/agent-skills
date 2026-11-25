@@ -204,7 +204,7 @@ const patterns=[
 const $=id=>document.getElementById(id);
 
 const sky=$("sky");
-for(let i=0;i<90;i++){const s=document.createElement("i");s.className="star";s.style.left=Math.random()*100+"%";s.style.top=Math.random()*100+"%";s.style.animationDelay=Math.random()*3+"s";s.style.opacity=.2+Math.random()*.6;sky.appendChild(s)}
+for(let i=0;i<90;i++){const s=document.createElement("i");s.className="star";s.style.left=Math.random()*100+"%";s.style.top=Math.random()*100+"%";s.style.animationDelay=Math.random()*3+"s";s.style.opacity=.2+Math.random()*.6;sky.append(s)}
 
 const ring=$("ring");
 agents.forEach(([n,r],i)=>{
@@ -213,14 +213,14 @@ const el=document.createElement("a");
 el.href=GH+"night-agents/skills/"+n;el.target="_blank";el.rel="noreferrer";
 el.style.left=50+46*Math.cos(a)+"%";el.style.top=50+46*Math.sin(a)+"%";
 el.innerHTML=`<img src="assets/logos/${n}.png" alt="${n}"><span>${n} · ${r}</span>`;
-ring.appendChild(el);
+ring.append(el);
 });
 
 const tabs=$("tabs"),shot=$("shot");
 shots.forEach(([t,f],i)=>{
 const b=document.createElement("button");b.textContent=t;
-b.onclick=()=>{[...tabs.children].forEach(x=>x.classList.remove("on"));b.classList.add("on");shot.src=`assets/shots/${f}.jpg`};
-tabs.appendChild(b);if(!i)b.click();
+b.onclick=()=>{[...tabs.querySelectorAll("button")].forEach(x=>x.classList.remove("on"));b.classList.add("on");shot.src=`assets/shots/${f}.jpg`};
+tabs.append(b);if(!i)b.click();
 });
 
 const box=$("box");
@@ -233,7 +233,7 @@ const el=document.createElement(img?"button":"a");
 el.className="tile";
 el.innerHTML=`${img?'<span class="see">SEE IT</span>':""}<div class="ic">${ic}</div><b>${n==="commands"?"/do":n}</b><small>${t}</small>`;
 if(img)el.onclick=()=>open(n,img);else{el.href=GH+n;el.target="_blank";el.rel="noreferrer"}
-tiles.appendChild(el);
+tiles.append(el);
 });
 
 const flips=$("flips");
@@ -245,7 +245,7 @@ el.innerHTML=`<div class="in"><div class="f"><span class="n">${n}</span><span cl
 const t=()=>el.classList.toggle("on");
 el.onclick=e=>{if(!e.target.closest("a"))t()};
 el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();t()}};
-flips.appendChild(el);
+flips.append(el);
 });
 
 $("copy").onclick=()=>{try{navigator.clipboard.writeText("ram")}catch(e){}const t=$("toast");t.classList.add("on");setTimeout(()=>t.classList.remove("on"),1200)};

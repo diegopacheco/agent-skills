@@ -8,6 +8,22 @@ allowed-tools: [Bash, Read, Write, Edit, Glob, Grep, AskUserQuestion]
 
 Raise coverage like a hill climber: one small step, measure, keep it only if it is higher, undo it otherwise. A step is one new test. A test only counts when it can fail.
 
+## The hill climbing technique
+
+Hill climbing is the simplest search there is: stand somewhere, take one small step, keep it if you went up, undo it if you did not, and stop when no step goes up anymore. test-climb climbs coverage that way:
+
+| Hill climbing | In test-climb |
+|---|---|
+| Position | The test suite on the `test-climb/<date>` branch |
+| Height | The coverage percentage the project's own tool prints |
+| One step | One new test file, nothing else changes |
+| Valid step | The suite stays green and the new test kills a mutant, so it can fail when the logic breaks |
+| Uphill | Coverage strictly higher than the best so far: commit it |
+| Not uphill | Red suite or equal coverage: revert it |
+| Top | `--patience` steps in a row without gain, or 100% |
+
+Greedy and one step at a time on purpose: every commit is a small, reviewable test that made the number go up, and nothing that did not survives on the branch.
+
 ## Rules
 
 * Only test files change. `climb.sh try` refuses a step that touches anything else.
