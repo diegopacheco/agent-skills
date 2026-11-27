@@ -16,7 +16,7 @@ A skill with a fixed set of technology stacks. Name one, such as `java stack` or
 | Stack | What it uses |
 |---|---|
 | `java` | Java 25, Maven, Spring Boot 4.2.0, Spring Data JDBC, Postgres, HikariCP, modular code |
-| `scala` | Scala 3.x, sbt, Netty, Spring Boot 4.2.0, Postgres, HikariCP, proper types, modular code |
+| `scala` | Scala 3.10.1, sbt, Netty, Spring Boot 4.2.0, Postgres, HikariCP, proper types, modular code |
 | `kotlin` | Kotlin 2.x, Java 25, Gradle wrapper, Spring Boot 4.2.0, Postgres, HikariCP, proper types, modular code |
 | `ts` | TypeScript 7.x, Bun 2.x, Vite, React 19.3.x, TanStack 1.x (Router, Query, Table, Form), proper types, modular code |
 | `nodejs` | Node.js 26, npm, TypeScript 7.x, Express.js, proper types, modular code |

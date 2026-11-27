@@ -1,7 +1,7 @@
 # scala stack
 
 ## Stack
-* Scala 3.x
+* Scala 3.10.1
 * sbt
 * Netty
 * Postgres
