@@ -28,9 +28,14 @@ Everything lands in `<app-root>/scripts/`, executable, and runs from any directo
 | Script | What it does |
 |---|---|
 | `setup.sh` | Installs dependencies and prepares the app |
+| `build-all.sh` | Builds every part of the app, always present |
+| `build-backend.sh` | Builds the backend, only when the app has one |
+| `build-frontend.sh` | Builds the frontend, only when the app has one |
+| `cli.sh` | Runs the project CLI, only when the project has one |
 | `start-all.sh` | Starts every service, waits for its port and echoes its full link |
 | `stop-all.sh` | Stops everything and frees every port |
-| `test-all.sh` | Runs every test suite |
+| `test-all.sh` | Runs every test suite, always present |
+| `<kind>-test.sh` | One per test kind the project really has: `unit-test.sh`, `integration-test.sh`, `e2e-test.sh`, `contract-test.sh`, `css-test.sh`, `database-test.sh`, `stress-test.sh`, `chaos-test.sh` |
 | `status.sh` | One line per service with port, UP or DOWN, and pid |
 | `ui.sh` | Opens the frontend in the browser |
 | `sql-console.sh` | Console on the database, only when the app has one |

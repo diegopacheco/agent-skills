@@ -1,6 +1,6 @@
 ---
 name: scripts-skill
-description: When a fullstack application needs operational scripts, use this skill to create scripts/setup.sh, start-all.sh, stop-all.sh, test-all.sh, status.sh, ui.sh and sql-console.sh. IF user mentions setup, start, stop, status, run the app, ops scripts, or scripts folder, use this skill.
+description: When a fullstack application needs operational scripts, use this skill to create scripts/setup.sh, build-all.sh, start-all.sh, stop-all.sh, test-all.sh, status.sh, ui.sh, sql-console.sh, plus build-backend.sh, build-frontend.sh, cli.sh and one script per test kind when the project has them. IF user mentions setup, start, stop, status, run the app, ops scripts, or scripts folder, use this skill.
 allowed-tools: [Bash, Read, Write, Edit, Glob, Grep]
 ---
 
@@ -19,7 +19,12 @@ Read the repository before writing anything. Never guess a port, a command or a 
    `application.properties`, `application.yml`, `vite.config.*`, `next.config.*`.
 3. Collect every real port: backend HTTP, frontend dev server, database, cache, broker.
 4. Collect the real commands for install, build, run and test of each stack in the app.
-5. If nothing declares a port, ask the user. Do not invent one.
+5. Find every test kind the project really has: unit, integration, e2e, contract, css, database,
+   stress, chaos, property, ui. Look at test folders, test file names, build profiles, npm scripts,
+   Makefile targets and CI files.
+6. Find out if the project ships a CLI: a `bin` entry in `package.json`, a `[[bin]]` in
+   `Cargo.toml`, a `cmd/` folder in Go, `[project.scripts]` in `pyproject.toml`, or a `cli/` module.
+7. If nothing declares a port, ask the user. Do not invent one.
 
 ## Output
 
@@ -28,9 +33,14 @@ All scripts live in `<app-root>/scripts/`:
 | Script | What it does |
 |---|---|
 | `setup.sh` | Installs every dependency and prepares the app to run for the first time |
+| `build-all.sh` | Builds every part of the app and fails on the first failing build. Always present |
+| `build-backend.sh` | Builds only the backend. Only when the app has a backend |
+| `build-frontend.sh` | Builds only the frontend. Only when the app has a frontend |
+| `cli.sh` | Builds when needed and runs the project CLI, passing every argument through with `"$@"`. Only when the project has a CLI |
 | `start-all.sh` | Starts every service, waits until each declared port is listening, then echoes the full link of every service |
 | `stop-all.sh` | Stops everything it started and frees every declared port |
 | `test-all.sh` | Runs every test suite in the app and fails on the first failing suite |
+| `<kind>-test.sh` | Runs one test kind only, such as `unit-test.sh`, `integration-test.sh`, `e2e-test.sh`, `contract-test.sh`, `css-test.sh`, `database-test.sh`, `stress-test.sh`, `chaos-test.sh`. One script per test kind the project really has |
 | `status.sh` | Prints one line per service with its port, UP or DOWN, and the pid |
 | `ui.sh` | Opens the frontend URL in the browser, starting nothing |
 | `sql-console.sh` | Opens a console against the database. Only when the app has one |
@@ -39,6 +49,13 @@ All scripts live in `<app-root>/scripts/`:
 
 Create `sql-console.sh` only when the app really has a database or cache such as postgres, mysql,
 mariadb, redis, valkey, mongodb, cassandra or clickhouse.
+
+`build-all.sh` and `test-all.sh` are always created. `build-all.sh` calls `build-backend.sh` and
+`build-frontend.sh` when they exist. `test-all.sh` calls every `<kind>-test.sh` when they exist.
+
+Create `build-backend.sh`, `build-frontend.sh`, `cli.sh` and each `<kind>-test.sh` only when the
+project really has that part or that test kind. Never make one up: no `chaos-test.sh` without chaos
+tests, no `cli.sh` without a CLI, no `build-frontend.sh` without a frontend.
 
 Start from `templates/` in this skill and adapt each script to the real app. The templates are a
 starting point, not the answer: delete the stacks the app does not have and fill in the real
@@ -73,12 +90,14 @@ commands. Never ship a script with a branch for a stack the app does not use.
 ## Steps
 
 1. Write `scripts/ports.env` with the real services and ports.
-2. Write `scripts/common.sh`, then the six scripts, then `sql-console.sh` when a database exists.
+2. Write `scripts/common.sh`, then the core scripts, then `build-backend.sh`, `build-frontend.sh`,
+   `cli.sh`, each `<kind>-test.sh` and `sql-console.sh` for the parts the project really has.
 3. `chmod +x <app-root>/scripts/*.sh`.
 4. Add `.run/` to `.gitignore` when it is missing.
 5. Verify: run `scripts/status.sh` from the repo root and from a nested directory, run `setup.sh`,
-   `start-all.sh`, `status.sh`, `test-all.sh`, `stop-all.sh`, `status.sh` in that order and confirm
-   every one exits zero and the ports go up and then down. Fix anything that fails.
+   `build-all.sh`, `start-all.sh`, `status.sh`, `test-all.sh`, `stop-all.sh`, `status.sh` in that order and confirm
+   every one exits zero and the ports go up and then down. Run every `build-*.sh`, `<kind>-test.sh`
+   and `cli.sh --help` that was created and confirm each exits zero. Fix anything that fails.
 6. Append the documentation section to `README.md`.
 
 ## README.md
@@ -94,9 +113,14 @@ All scripts live in `scripts/` and run from any directory of the repository.
 | Script | What it does |
 |---|---|
 | `./scripts/setup.sh` | Installs dependencies and prepares the app |
+| `./scripts/build-all.sh` | Builds every part of the app |
+| `./scripts/build-backend.sh` | Builds the backend |
+| `./scripts/build-frontend.sh` | Builds the frontend |
+| `./scripts/cli.sh` | Runs the project CLI |
 | `./scripts/start-all.sh` | Starts every service and prints the full link of each one |
 | `./scripts/status.sh` | Shows every service port as UP or DOWN |
 | `./scripts/test-all.sh` | Runs every test suite |
+| `./scripts/unit-test.sh` | Runs the unit tests |
 | `./scripts/ui.sh` | Opens the UI in the browser |
 | `./scripts/stop-all.sh` | Stops every service |
 | `./scripts/sql-console.sh` | Opens a console on the database |
@@ -105,6 +129,7 @@ Ports are declared in `scripts/ports.env`.
 
 ```bash
 ./scripts/setup.sh
+./scripts/build-all.sh
 ./scripts/start-all.sh
 ./scripts/status.sh
 ./scripts/ui.sh
@@ -112,4 +137,5 @@ Ports are declared in `scripts/ports.env`.
 ```
 ````
 
-Only list the scripts the app actually has. Drop the `sql-console.sh` row when there is no database.
+Only list the scripts the app actually has. Drop the `sql-console.sh` row when there is no database,
+and drop every build, cli and test row the app does not have. Add one row per `<kind>-test.sh` created.
